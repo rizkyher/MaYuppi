@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - MA Yuppi</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#550D61',
+                        'secondary': '#FFD700',
+                        'accent': '#7C4E9C',
+                        'dark-gray': '#1a1a1a',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'scale-in': 'scaleIn 0.6s ease-out',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans antialiased bg-white text-dark-gray">
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-md transition-all duration-300">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center group">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-extrabold font-serif text-primary tracking-wider">MA YUPPI</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:block">
+                    <div class="flex items-center space-x-8 text-base font-medium">
+                        <a href="index.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Beranda</a>
+                        
+                        <div class="group relative">
+                            <button class="text-dark-gray hover:text-accent transition duration-200 flex items-center">
+                                Profil <i class="fas fa-chevron-down ml-2 text-xs opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-white shadow-2xl rounded-xl mt-2 w-56 py-2 border-t-2 border-primary animate-slide-up">
+                                <a href="about.html" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-school mr-2 text-accent"></i>Profil Sekolah</a>
+                                <a href="about.html#visi-misi" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-bullseye mr-2 text-accent"></i>Visi & Misi</a>
+                                <a href="about.html#struktur" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-sitemap mr-2 text-accent"></i>Struktur Organisasi</a>
+                            </div>
+                        </div>
+                        
+                        <a href="programs.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Program</a>
+                        <a href="about.html#guru-staf" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Guru & Staf</a>
+                        <a href="news.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Berita</a>
+                        <a href="contact.html" class="text-primary hover:text-accent transition duration-200 font-bold relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Kontak</a>
+                        
+                        <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="bg-gradient-to-r from-primary to-accent text-white hover:from-accent hover:to-primary px-6 py-2.5 rounded-full shadow-lg transition-all duration-300 font-bold tracking-wide border-2 border-transparent hover:border-secondary transform hover:scale-105">
+                            PPDB <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-white hover:bg-primary transition-all duration-300">
+                        <i class="fas fa-bars text-2xl" id="icon-open"></i>
+                        <i class="fas fa-times text-2xl hidden" id="icon-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="lg:hidden hidden" id="mobile-menu">
+            <div class="px-5 pt-2 pb-3 space-y-1 bg-white shadow-inner border-t border-gray-100">
+                <a href="index.html" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Beranda</a>
+                <a href="about.html" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Profil Sekolah</a>
+                <a href="about.html#visi-misi" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Visi & Misi</a>
+                <a href="about.html#struktur" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Struktur Organisasi</a>
+                <a href="programs.html" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Program & Ekskul</a>
+                <a href="about.html#guru-staf" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Guru & Staf</a>
+                <a href="news.html" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Berita</a>
+                <a href="contact.html" class="text-primary block px-4 py-3 rounded-lg text-base font-medium bg-gray-50 hover:bg-gray-100 transition-colors duration-200">Kontak</a>
+                <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="bg-gradient-to-r from-primary to-accent text-white hover:from-accent hover:to-primary px-4 py-3 mt-2 rounded-lg shadow-md block font-bold text-center transition-all duration-300">PPDB</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-primary via-accent to-primary text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 lg:px-12 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6">
+                    Hubungi Kami
+                </h1>
+                <p class="text-xl text-white/90 leading-relaxed">
+                    Kami siap membantu Anda dengan informasi lebih lanjut tentang MA Yuppi
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info & Form -->
+    <section class="py-20 md:py-32 bg-white section-reveal">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Information -->
+                <div>
+                    <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 inline-block">Informasi Kontak</span>
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold text-primary mb-8">
+                        Mari Berkomunikasi
+                    </h2>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-2">Alamat</h4>
+                                <p class="text-gray-600">
+                                    Jl. Pendidikan No. 123<br>
+                                    Bandung, Jawa Barat 40123<br>
+                                    Indonesia
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-phone text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-2">Telepon & WhatsApp</h4>
+                                <p class="text-gray-600">
+                                    <a href="tel:+62221234567" class="hover:text-accent transition-colors duration-300">(022) 123-4567</a><br>
+                                    <a href="https://wa.me/6281122334455" target="_blank" class="hover:text-accent transition-colors duration-300">+62 811 2233 4455</a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-envelope text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-2">Email</h4>
+                                <p class="text-gray-600">
+                                    <a href="mailto:info@mayuppi.sch.id" class="hover:text-accent transition-colors duration-300">info@mayuppi.sch.id</a><br>
+                                    <a href="mailto:ppdb@mayuppi.sch.id" class="hover:text-accent transition-colors duration-300">ppdb@mayuppi.sch.id</a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-clock text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-2">Jam Operasional</h4>
+                                <p class="text-gray-600">
+                                    Senin - Jumat: 07:00 - 16:00 WIB<br>
+                                    Sabtu: 08:00 - 13:00 WIB<br>
+                                    Minggu & Hari Libur: Tutup
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="mt-12 pt-8 border-t border-gray-200">
+                        <h4 class="text-xl font-bold text-primary mb-4">Ikuti Kami</h4>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-12 h-12 bg-gray-100 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 group">
+                                <i class="fab fa-facebook-f text-gray-600 group-hover:text-white"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-gray-100 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 group">
+                                <i class="fab fa-instagram text-gray-600 group-hover:text-white"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-gray-100 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 group">
+                                <i class="fab fa-youtube text-gray-600 group-hover:text-white"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-gray-100 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 group">
+                                <i class="fab fa-tiktok text-gray-600 group-hover:text-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-gray-50 rounded-2xl p-8 md:p-10 shadow-lg">
+                    <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 inline-block">Kirim Pesan</span>
+                    <h3 class="text-3xl font-serif font-bold text-primary mb-6">
+                        Tanya atau Konsultasi
+                    </h3>
+                    
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="form-label">Nama Lengkap *</label>
+                            <input type="text" 
+                                   id="name" 
+                                   required 
+                                   class="form-input"
+                                   placeholder="Masukkan nama lengkap">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" 
+                                   id="email" 
+                                   required 
+                                   class="form-input"
+                                   placeholder="nama@email.com">
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="form-label">Nomor Telepon</label>
+                            <input type="tel" 
+                                   id="phone" 
+                                   class="form-input"
+                                   placeholder="0812 3456 7890">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="form-label">Subjek *</label>
+                            <select id="subject" required class="form-input">
+                                <option value="">Pilih subjek...</option>
+                                <option value="ppdb">Informasi PPDB</option>
+                                <option value="program">Program & Ekskul</option>
+                                <option value="kunjungan">Kunjungan Sekolah</option>
+                                <option value="lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="form-label">Pesan *</label>
+                            <textarea id="message" 
+                                      rows="5" 
+                                      required 
+                                      class="form-input"
+                                      placeholder="Tulis pesan Anda di sini..."></textarea>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <input type="checkbox" 
+                                   id="privacy" 
+                                   required 
+                                   class="w-4 h-4 text-accent rounded focus:ring-accent">
+                            <label for="privacy" class="ml-2 text-sm text-gray-600">
+                                Saya menyetujui kebijakan privasi MA Yuppi
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary hover:bg-accent text-white py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            Kirim Pesan <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-20 md:py-32 bg-gray-50 section-reveal">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 inline-block">Lokasi</span>
+                <h2 class="text-4xl md:text-6xl font-serif font-bold text-primary mb-6">
+                    Temukan Kami
+                </h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    Kunjungi kampus MA Yuppi di lokasi strategis di Bandung
+                </p>
+            </div>
+            
+            <!-- Map Container -->
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="h-96 w-full relative">
+                    <!-- Google Maps Embed -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9061528479003!2d107.608766!3d-6.902084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTQnMDcuNSJTIDEwN8KwMzYnMzEuNiJF!5e0!3m2!1sen!2sid!4v1641234567890!5m2!1sen!2sid" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="absolute inset-0">
+                    </iframe>
+                </div>
+                
+                <div class="p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <i class="fas fa-bus text-3xl text-accent mb-4"></i>
+                            <h4 class="font-bold text-primary mb-2">Transportasi Umum</h4>
+                            <p class="text-gray-600 text-sm">Angkot: 02, 05, 10 | Bus: 14, 20</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <i class="fas fa-car text-3xl text-accent mb-4"></i>
+                            <h4 class="font-bold text-primary mb-2">Parkir Luas</h4>
+                            <p class="text-gray-600 text-sm">Kapasitas 100+ kendaraan roda 4 & 2</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <i class="fas fa-wheelchair text-3xl text-accent mb-4"></i>
+                            <h4 class="font-bold text-primary mb-2">Aksesibilitas</h4>
+                            <p class="text-gray-600 text-sm">Fasilitas ramah disabilitas lengkap</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 md:py-32 bg-white section-reveal" id="faq">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 inline-block">Bantuan</span>
+                <h2 class="text-4xl md:text-6xl font-serif font-bold text-primary mb-6">
+                    Pertanyaan Umum
+                </h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    Temukan jawaban untuk pertanyaan yang sering diajukan
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ Items -->
+                <div class="space-y-4">
+                    <div class="faq-item bg-gray-50 rounded-xl p-6 cursor-pointer hover:shadow-md transition-all duration-300">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-lg font-bold text-primary">Bagaimana cara mendaftar PPDB?</h4>
+                            <i class="fas fa-chevron-down text-accent"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-600 hidden">
+                            <p>Pendaftaran PPDB dapat dilakukan secara online melalui website ppdb.mayuppi.sch.id. Calon siswa wajib mengisi formulir online dan mengikuti tes seleksi sesuai jadwal yang ditentukan. Dokumen yang diperlukan antara lain:</p>
+                            <ul class="mt-2 space-y-1">
+                                <li>• Fotokopi akta kelahiran</li>
+                                <li>• Fotokopi KK</li>
+                                <li>• Fotokopi rapor kelas 7-9</li>
+                                <li>• Pas foto 3x4 (3 lembar)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-gray-50 rounded-xl p-6 cursor-pointer hover:shadow-md transition-all duration-300">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-lg font-bold text-primary">Berapa biaya pendidikan di MA Yuppi?</h4>
+                            <i class="fas fa-chevron-down text-accent"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-600 hidden">
+                            <p>MA Yuppi memiliki sistem pembiayaan yang transparan dengan beberapa komponen:</p>
+                            <ul class="mt-2 space-y-1">
+                                <li>• Uang pangkal: Rp 5.000.000 (dapat dicicil)</li>
+                                <li>• SPP bulanan: Rp 800.000</li>
+                                <li>• Biaya kegiatan: Rp 500.000/semester</li>
+                                <li>• Seragam: Rp 1.200.000 (sekali bayar)</li>
+                            </ul>
+                            <p class="mt-2">Tersedia beasiswa bagi siswa berprestasi dan dari keluarga kurang mampu.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-gray-50 rounded-xl p-6 cursor-pointer hover:shadow-md transition-all duration-300">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-lg font-bold text-primary">Apa keunggulan MA Yuppi dibanding sekolah lain?</h4>
+                            <i class="fas fa-chevron-down text-accent"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-600 hidden">
+                            <p>MA Yuppi memiliki beberapa keunggulan utama:</p>
+                            <ul class="mt-2 space-y-1">
+                                <li>• Kurikulum berbasis riset dan teknologi</li>
+                                <li>• Program Tahfidz Quran terintegrasi</li>
+                                <li>• Fasilitas laboratorium sains lengkap</li>
+                                <li>• Guru berpengalaman dengan kualifikasi S2</li>
+                                <li>• 30+ ekstrakurikuler untuk pengembangan bakat</li>
+                                <li>• Kemitraan internasional untuk program student exchange</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-gray-50 rounded-xl p-6 cursor-pointer hover:shadow-md transition-all duration-300">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-lg font-bold text-primary">Apakah ada program beasiswa?</h4>
+                            <i class="fas fa-chevron-down text-accent"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-600 hidden">
+                            <p>Ya, MA Yuppi menyediakan beberapa program beasiswa:</p>
+                            <ul class="mt-2 space-y-1">
+                                <li><strong>Beasiswa Prestasi Akademik:</strong> Untuk siswa dengan nilai rata-rata rapor ≥ 85</li>
+                                <li><strong>Beasiswa Tahfidz Quran:</strong> Untuk siswa yang sudah hafal ≥ 10 juz</li>
+                                <li><strong>Beasiswa Khusus:</strong> Untuk siswa dari keluarga kurang mampu</li>
+                                <li><strong>Beasiswa Atlet/Olahragawan:</strong> Untuk siswa berprestasi di bidang olahraga</li>
+                            </ul>
+                            <p class="mt-2">Informasi lengkap dapat diperoleh di bagian administrasi.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-gray-50 rounded-xl p-6 cursor-pointer hover:shadow-md transition-all duration-300">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-lg font-bold text-primary">Bagaimana sistem pembelajaran di MA Yuppi?</h4>
+                            <i class="fas fa-chevron-down text-accent"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-600 hidden">
+                            <p>MA Yuppi menerapkan sistem pembelajaran yang inovatif:</p>
+                            <ul class="mt-2 space-y-1">
+                                <li>• Pembelajaran aktif dengan metode project-based learning</li>
+                                <li>• Integrasi ilmu agama dan sains</li>
+                                <li>• Penggunaan teknologi dalam pembelajaran (e-learning)</li>
+                                <li>• Program mentoring per 10 siswa</li>
+                                <li>• Pembelajaran bilingual (Indonesia-Inggris) untuk beberapa mata pelajaran</li>
+                                <li>• Kunjungan edukatif ke institusi penelitian dan industri</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-gray-50 rounded-xl p-6 cursor-pointer hover:shadow-md transition-all duration-300">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-lg font-bold text-primary">Apakah bisa melakukan kunjungan ke sekolah?</h4>
+                            <i class="fas fa-chevron-down text-accent"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-600 hidden">
+                            <p>Ya, MA Yuppi membuka kesempatan kunjungan sekolah dengan ketentuan:</p>
+                            <ul class="mt-2 space-y-1">
+                                <li>• Daftar minimal 3 hari sebelumnya melalui website atau telepon</li>
+                                <li>• Kunjungan hanya pada hari kerja (Senin-Jumat)</li>
+                                <li>• Waktu kunjungan: 08.00-14.00 WIB</li>
+                                <li>• Maksimal 10 orang per kunjungan</li>
+                                <li>• Diwajibkan didampingi oleh staf humas sekolah</li>
+                            </ul>
+                            <p class="mt-2">Untuk kunjungan kelompok besar (>10 orang), harap menghubungi bagian humas terlebih dahulu.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <p class="text-gray-600 mb-4">Masih ada pertanyaan?</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="https://wa.me/6281122334455" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            <i class="fab fa-whatsapp mr-2"></i> Chat WhatsApp
+                        </a>
+                        <a href="tel:+62221234567" class="inline-block bg-primary hover:bg-accent text-white px-8 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            <i class="fas fa-phone mr-2"></i> Telepon Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-gray text-white pt-20 pb-10">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-3xl font-serif font-bold text-secondary">MA YUPPI</h4>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Madrasah Aliyah Unggulan Berbasis Riset yang berkomitmen pada keunggulan akademik dan karakter Islami.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-secondary">Tautan Cepat</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Beranda</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Profil Sekolah</a></li>
+                        <li><a href="programs.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Program & Ekskul</a></li>
+                        <li><a href="news.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Berita</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-secondary">Informasi</h4>
+                    <ul class="space-y-3">
+                        <li><a href="about.html#visi-misi" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Visi & Misi</a></li>
+                        <li><a href="about.html#struktur" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Struktur Organisasi</a></li>
+                        <li><a href="about.html#guru-staf" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Guru & Staf</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Kontak Kami</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-secondary">Kontak</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-accent mt-1 mr-3"></i>
+                            <span class="text-gray-400">Jl. Pendidikan No. 123<br>Bandung, Jawa Barat 40123</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-accent mr-3"></i>
+                            <a href="tel:+62221234567" class="text-gray-400 hover:text-secondary transition-colors duration-200">(022) 123-4567</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-accent mr-3"></i>
+                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-secondary transition-colors duration-200">info@mayuppi.sch.id</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-globe text-accent mr-3"></i>
+                            <a href="https://www.mayuppi.sch.id" target="_blank" class="text-gray-400 hover:text-secondary transition-colors duration-200">www.mayuppi.sch.id</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © <span id="current-year">2024</span> MA Yuppi. All rights reserved. Made with <i class="fas fa-heart text-red-500 mx-1"></i> for education.
+                    </p>
+                    <div class="flex gap-6 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-200">Kebijakan Privasi</a>
+                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-200">Syarat & Ketentuan</a>
+                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-200">Peta Situs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-br from-primary to-accent text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 z-50 opacity-0" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- FAQ Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const answer = this.querySelector('.faq-answer');
+                    const icon = this.querySelector('i');
+                    
+                    if (answer.classList.contains('hidden')) {
+                        answer.classList.remove('hidden');
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        answer.classList.add('hidden');
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+
+            // Form submission
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form values
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value.trim();
+                    const privacy = document.getElementById('privacy').checked;
+                    
+                    // Simple validation
+                    if (!name || !email || !subject || !message || !privacy) {
+                        alert('Harap lengkapi semua field yang wajib diisi dan setujui kebijakan privasi!');
+                        return;
+                    }
+                    
+                    if (!validateEmail(email)) {
+                        alert('Email tidak valid!');
+                        return;
+                    }
+                    
+                    // Simulate form submission
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+                    submitBtn.disabled = true;
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        alert('Terima kasih! Pesan Anda telah berhasil dikirim. Tim kami akan menghubungi Anda dalam 1-2 hari kerja.');
+                        contactForm.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, 2000);
+                });
+            }
+            
+            // Email validation helper
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+        });
+    </script>
+    
+    <!-- Main JavaScript -->
+    <script>
+        // DOM Elements
+        const navbar = document.getElementById('navbar');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+        const backToTop = document.getElementById('backToTop');
+        const currentYear = document.getElementById('current-year');
+
+        // Set current year
+        if (currentYear) {
+            currentYear.textContent = new Date().getFullYear();
+        }
+
+        // Scroll Effects
+        window.addEventListener('scroll', () => {
+            // Navbar background on scroll
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+            
+            // Back to top button
+            if (window.scrollY > 300) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'auto';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+            
+            // Section reveal animation
+            const reveals = document.querySelectorAll('.section-reveal');
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveal.getBoundingClientRect().top;
+                const revealPoint = 150;
+                
+                if (revealTop < windowHeight - revealPoint) {
+                    reveal.classList.add('visible');
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    iconOpen.classList.remove('hidden');
+                    iconClose.classList.add('hidden');
+                }
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu after click
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        iconOpen.classList.remove('hidden');
+                        iconClose.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Back to top functionality
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.section-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Trigger initial scroll check
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+</body>
+</html>

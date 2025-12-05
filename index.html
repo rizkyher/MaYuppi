@@ -3,366 +3,827 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MA Yuppi - Madrasah Aliyah Unggulan Berbasis Riset</title>
+    <title>MA YUPPI - Madrasah Aliyah Unggulan Berbasis Riset & Inovasi</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <script >
-              tailwind.config = {
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#550D61',
-                        'secondary': '#FFD700',
-                        'accent': '#7C4E9C',
-                        'dark-gray': '#1a1a1a',
+                        'primary': {
+                            DEFAULT: '#4A0E55',
+                            light: '#5C1A68',
+                            dark: '#3A0844'
+                        },
+                        'secondary': {
+                            DEFAULT: '#FFD700',
+                            light: '#FFE44D',
+                            dark: '#E6C300'
+                        },
+                        'accent': {
+                            DEFAULT: '#8B5FBF',
+                            light: '#9D77D9',
+                            dark: '#7348A6'
+                        },
+                        'dark': '#0F0F1A',
+                        'light': '#F8F9FA'
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'slide-up': 'slideUp 0.8s ease-out',
                         'fade-in': 'fadeIn 1s ease-out',
                         'scale-in': 'scaleIn 0.6s ease-out',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'orbit': 'orbit 20s linear infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
                     },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(100px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        scaleIn: {
-                            '0%': { transform: 'scale(0.8)', opacity: '0' },
-                            '100%': { transform: 'scale(1)', opacity: '1' },
-                        }
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+                        'gradient-pattern': 'linear-gradient(135deg, #4A0E55 0%, #8B5FBF 50%, #FFD700 100%)',
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        .font-serif { font-family: 'Playfair Display', serif; }
-        .font-sans { font-family: 'Inter', sans-serif; }
-        .hero-gradient { background: linear-gradient(135deg, #f0eaf8 0%, #ffffff 100%); }
-        .card-3d { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .card-3d:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); }
-        .section-reveal { opacity: 0; transform: translateY(50px); transition: opacity 1s ease-out, transform 1s ease-out; }
-        .section-reveal.visible { opacity: 1; transform: translateY(0); }
-        .timeline-item { opacity: 0; transform: translateX(-50px); transition: opacity 1s ease-out, transform 1s ease-out; }
-        .timeline-item.visible { opacity: 1; transform: translateX(0); }
-        .achievement-badge { background: linear-gradient(45deg, #FFD700, #FFA500); color: #550D61; padding: 4px 12px; border-radius: 9999px; font-weight: 700; font-size: 0.75rem; display: inline-block; box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4); }
+        /* Custom Animations */
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #FFD700 0%, #8B5FBF 50%, #4A0E55 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(74, 14, 85, 0.25);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0F0F1A 0%, #4A0E55 30%, #8B5FBF 70%, #0F0F1A 100%);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        .parallax {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .section-divider {
+            height: 150px;
+            background: linear-gradient(to bottom right, transparent 49.5%, white 50%);
+        }
     </style>
 </head>
-<body class="font-sans antialiased bg-white text-dark-gray">
-
-    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-md transition-all duration-300">
-        <div class="container mx-auto px-4 lg:px-12">
+<body class="font-sans antialiased bg-white text-dark overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-lg border-b border-gray-100 transition-all duration-500">
+        <div class="container mx-auto px-4 lg:px-16">
             <div class="flex items-center justify-between h-20">
                 <a href="index.html" class="flex items-center group">
-                    <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    <div class="relative">
+                        <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mr-3 group-hover:scale-110 transition-all duration-500 transform group-hover:rotate-6 shadow-lg">
+                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                        </div>
+                        <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-accent rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
                     </div>
-                    <span class="text-2xl font-extrabold font-serif text-primary tracking-wider">MA YUPPI</span>
+                    <div>
+                        <span class="text-2xl font-black font-serif text-primary tracking-tight">MA YUPPI</span>
+                        <p class="text-xs text-gray-500 font-medium tracking-wider">Madrasah Aliyah Unggulan</p>
+                    </div>
                 </a>
                 
+                <!-- Desktop Menu -->
                 <div class="hidden lg:block">
-                    <div class="flex items-center space-x-8 text-base font-medium">
-                        <a href="index.html" class="text-primary hover:text-accent transition duration-200 font-bold relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Beranda</a>
+                    <div class="flex items-center space-x-1">
+                        <a href="index.html" class="px-5 py-2.5 text-sm font-semibold text-primary hover:text-accent transition-all duration-300 relative group">
+                            <span class="relative z-10">Beranda</span>
+                            <span class="absolute inset-0 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                        </a>
                         
                         <div class="group relative">
-                            <button class="text-dark-gray hover:text-accent transition duration-200 flex items-center">
-                                Profil <i class="fas fa-chevron-down ml-2 text-xs opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
+                            <button class="px-5 py-2.5 text-sm font-semibold text-dark hover:text-accent transition-all duration-300 flex items-center gap-1">
+                                <span>Profil</span>
+                                <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
                             </button>
-                            <div class="absolute hidden group-hover:block bg-white shadow-2xl rounded-xl mt-2 w-56 py-2 border-t-2 border-primary animate-slide-up">
-                                <a href="profil.html#profil" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-school mr-2 text-accent"></i>Profil Sekolah</a>
-                                <a href="profil.html#visi-misi" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-bullseye mr-2 text-accent"></i>Visi & Misi</a>
-                                <a href="profil.html#struktur" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-sitemap mr-2 text-accent"></i>Struktur Organisasi</a>
-                                <a href="profil.html#guru-staf" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-users mr-2 text-accent"></i>Daftar Guru & Staf</a>
+                            <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 hidden group-hover:block animate-fade-in">
+                                <div class="glass-morphism rounded-2xl shadow-2xl p-2 min-w-[240px] border border-white/20">
+                                    <a href="about.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 group/item">
+                                        <div class="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                                            <i class="fas fa-school text-white text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-sm text-white">Profil Sekolah</p>
+                                            <p class="text-xs text-gray-300 mt-0.5">Visi, Misi & Sejarah</p>
+                                        </div>
+                                    </a>
+                                    <a href="about.html#struktur" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 group/item">
+                                        <div class="w-8 h-8 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center">
+                                            <i class="fas fa-sitemap text-white text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-sm text-white">Struktur Organisasi</p>
+                                            <p class="text-xs text-gray-300 mt-0.5">Tim Kepemimpinan</p>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         
-                        <a href="galeri.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Galeri</a>
-                        <a href="prestasi.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Prestasi</a>
-                        <a href="ekskul.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Ekstrakurikuler</a>
-                        <a href="berita.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Berita</a>
+                        <a href="programs.html" class="px-5 py-2.5 text-sm font-semibold text-dark hover:text-accent transition-all duration-300 relative group">
+                            <span class="relative z-10">Program</span>
+                            <span class="absolute inset-0 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                        </a>
                         
-                        <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="bg-gradient-to-r from-primary to-accent text-white hover:from-accent hover:to-primary px-6 py-2.5 rounded-full shadow-lg transition-all duration-300 font-bold tracking-wide border-2 border-transparent hover:border-secondary transform hover:scale-105">
-                            PPDB <i class="fas fa-arrow-right ml-1"></i>
+                        <a href="facilities.html" class="px-5 py-2.5 text-sm font-semibold text-dark hover:text-accent transition-all duration-300 relative group">
+                            <span class="relative z-10">Fasilitas</span>
+                            <span class="absolute inset-0 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                        </a>
+                        
+                        <a href="news.html" class="px-5 py-2.5 text-sm font-semibold text-dark hover:text-accent transition-all duration-300 relative group">
+                            <span class="relative z-10">Berita</span>
+                            <span class="absolute inset-0 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                        </a>
+                        
+                        <a href="contact.html" class="px-5 py-2.5 text-sm font-semibold text-dark hover:text-accent transition-all duration-300 relative group">
+                            <span class="relative z-10">Kontak</span>
+                            <span class="absolute inset-0 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                        </a>
+                        
+                        <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-full text-sm font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 transform hover:from-accent hover:to-primary group relative overflow-hidden">
+                            <span class="relative z-10 flex items-center gap-2">
+                                PPDB 2025
+                                <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </span>
+                            <div class="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </a>
                     </div>
                 </div>
 
-                <button id="mobile-menu-button" class="lg:hidden p-2 text-primary hover:text-accent focus:outline-none">
-                    <i id="icon-open" class="fas fa-bars text-2xl"></i>
-                    <i id="icon-close" class="fas fa-times text-2xl hidden"></i>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="lg:hidden relative w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <i class="fas fa-bars text-white text-xl" id="icon-open"></i>
+                    <i class="fas fa-times text-white text-xl hidden" id="icon-close"></i>
                 </button>
-            </div>
-        </div>
-        
-        <div id="mobile-menu" class="hidden lg:hidden absolute top-20 left-0 w-full bg-white shadow-lg border-t border-gray-200 py-4 px-4 animate-slide-up">
-            <div class="flex flex-col space-y-3">
-                <a href="index.html" class="text-dark-gray hover:text-primary font-bold py-2 px-3 border-l-4 border-primary">Beranda</a>
-                <div class="border-t border-gray-100 pt-2">
-                    <span class="block text-sm font-semibold text-accent px-3">Profil</span>
-                    <a href="profil.html#profil" class="block text-dark-gray hover:text-primary py-2 px-6 text-sm"><i class="fas fa-school mr-2 text-accent/70"></i>Profil Sekolah</a>
-                    <a href="profil.html#visi-misi" class="block text-dark-gray hover:text-primary py-2 px-6 text-sm"><i class="fas fa-bullseye mr-2 text-accent/70"></i>Visi & Misi</a>
-                    <a href="profil.html#struktur" class="block text-dark-gray hover:text-primary py-2 px-6 text-sm"><i class="fas fa-sitemap mr-2 text-accent/70"></i>Struktur Organisasi</a>
-                    <a href="profil.html#guru-staf" class="block text-dark-gray hover:text-primary py-2 px-6 text-sm"><i class="fas fa-users mr-2 text-accent/70"></i>Daftar Guru & Staf</a>
-                </div>
-                <a href="galeri.html" class="text-dark-gray hover:text-primary py-2 px-3">Galeri</a>
-                <a href="prestasi.html" class="text-dark-gray hover:text-primary py-2 px-3">Prestasi</a>
-                <a href="ekskul.html" class="text-dark-gray hover:text-primary py-2 px-3">Ekstrakurikuler</a>
-                <a href="berita.html" class="text-dark-gray hover:text-primary py-2 px-3">Berita</a>
-                <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="text-center bg-gradient-to-r from-primary to-accent text-white py-3 rounded-full font-bold mt-2">PPDB Online</a>
             </div>
         </div>
     </nav>
 
-    <main>
-        <section id="beranda" class="hero-gradient relative min-h-screen flex items-center justify-start text-left overflow-hidden pt-20">
-            <div class="absolute inset-0 z-0 opacity-5">
-                <div class="w-64 h-64 bg-accent rounded-full mix-blend-multiply filter blur-3xl opacity-70 absolute top-10 left-10 animate-float"></div>
-                <div class="w-96 h-96 bg-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-50 absolute bottom-20 right-20 animate-float" style="animation-delay: -2s;"></div>
-            </div>
-
-            <div class="container mx-auto px-4 lg:px-12 relative z-10 py-16">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div class="lg:col-span-7">
-                        <div class="animate-fade-in" style="animation-delay: 0.1s;">
-                            <span class="text-accent font-bold text-lg uppercase tracking-widest mb-4 block">Selamat Datang di MA Yuppi</span>
-                            <h1 class="text-5xl md:text-7xl font-serif font-extrabold text-primary leading-tight mb-6">
-                                Madrasah Aliyah Unggulan <span class="text-accent">Berbasis Riset</span>
-                            </h1>
-                            <p class="text-xl md:text-2xl text-dark-gray/80 mb-10 leading-relaxed">
-                                Kami membentuk generasi Muslim yang berprestasi, berakhlak mulia, dan siap menjadi inovator masa depan.
-                            </p>
-                            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                                <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-full text-lg font-bold shadow-2xl shadow-primary/50 hover:shadow-primary/70 transition-all duration-300 transform hover:scale-105">
-                                    Daftar Sekarang <i class="fas fa-arrow-right ml-2"></i>
-                                </a>
-                                <a href="profil.html#profil" class="bg-white text-primary px-8 py-4 rounded-full text-lg font-bold border-2 border-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105">
-                                    Pelajari Lebih Lanjut <i class="fas fa-info-circle ml-2"></i>
-                                </a>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-gradient relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1.5s;"></div>
+            
+            <!-- Floating Orbs -->
+            <div class="absolute top-20 right-20 w-6 h-6 bg-secondary rounded-full animate-orbit"></div>
+            <div class="absolute bottom-40 left-40 w-4 h-4 bg-accent rounded-full animate-orbit" style="animation-duration: 25s; animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 left-1/3 w-3 h-3 bg-primary rounded-full animate-orbit" style="animation-duration: 30s; animation-delay: 1s;"></div>
+        </div>
+        
+        <div class="relative z-10 container mx-auto px-4 lg:px-16 py-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right" data-aos-duration="1000">
+                        <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/20">
+                            <div class="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
+                            <span class="text-sm font-semibold text-white tracking-wider">#MadrasahUnggulan2025</span>
+                        </div>
+                        
+                        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black font-serif text-white leading-tight mb-6">
+                            Masa Depan
+                            <span class="text-gradient block mt-2">Dimulai Dari Sini.</span>
+                        </h1>
+                        
+                        <p class="text-xl text-white/80 mb-10 leading-relaxed max-w-2xl">
+                            Madrasah Aliyah berbasis riset yang mengintegrasikan keunggulan akademik, karakter Islami, dan kecakapan masa depan untuk mencetak pemimpin global yang berakhlak mulia.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                            <a href="programs.html" class="group relative bg-gradient-to-r from-secondary to-secondary-dark text-primary px-8 py-4 rounded-xl text-lg font-bold shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 flex items-center justify-center gap-3 overflow-hidden">
+                                <span class="relative z-10">Explore Programs</span>
+                                <i class="fas fa-arrow-right relative z-10 group-hover:translate-x-2 transition-transform duration-300"></i>
+                                <div class="absolute inset-0 bg-gradient-to-r from-white to-secondary opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+                            </a>
+                            
+                            <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="group relative glass-morphism border-2 border-white/30 text-white px-8 py-4 rounded-xl text-lg font-bold shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 flex items-center justify-center gap-3">
+                                <span class="relative z-10">Daftar Sekarang</span>
+                                <i class="fas fa-external-link-alt relative z-10 text-sm"></i>
+                            </a>
+                        </div>
+                        
+                        <!-- Stats -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="glass-morphism p-4 rounded-xl hover:scale-105 transition-transform duration-300">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
+                                    <p class="text-2xl font-bold text-white">98.7%</p>
+                                </div>
+                                <p class="text-white/60 text-sm mt-1">Kelulusan</p>
+                            </div>
+                            <div class="glass-morphism p-4 rounded-xl hover:scale-105 transition-transform duration-300">
+                                <p class="text-2xl font-bold text-white">150+</p>
+                                <p class="text-white/60 text-sm mt-1">Prestasi</p>
+                            </div>
+                            <div class="glass-morphism p-4 rounded-xl hover:scale-105 transition-transform duration-300">
+                                <p class="text-2xl font-bold text-white">35</p>
+                                <p class="text-white/60 text-sm mt-1">Ekskul</p>
+                            </div>
+                            <div class="glass-morphism p-4 rounded-xl hover:scale-105 transition-transform duration-300">
+                                <p class="text-2xl font-bold text-white">1:10</p>
+                                <p class="text-white/60 text-sm mt-1">Rasio Siswa</p>
                             </div>
                         </div>
                     </div>
-                    <div class="lg:col-span-5 relative hidden lg:block animate-scale-in" style="animation-delay: 0.4s;">
-                        <img src="https://placehold.co/450x450/7C4E9C/FFFFFF/webp?text=Ilustrasi+Sekolah+Riset" alt="Ilustrasi Sekolah Riset" class="w-full h-auto rounded-3xl shadow-2xl border-4 border-white/50 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                    
+                    <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300" class="relative">
+                        <div class="relative">
+                            <!-- Main Hero Image -->
+                            <div class="relative rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-700">
+                                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                                     alt="MA Yuppi Campus" 
+                                     class="w-full h-[500px] object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+                            </div>
+                            
+                            <!-- Floating Card 1 -->
+                            <div class="absolute -bottom-6 -left-6 glass-morphism p-6 rounded-2xl shadow-2xl max-w-xs animate-float">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center">
+                                        <i class="fas fa-trophy text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-white">Juara Nasional</p>
+                                        <p class="text-white/60 text-sm">Kompetisi Sains 2024</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Floating Card 2 -->
+                            <div class="absolute -top-6 -right-6 glass-morphism p-6 rounded-2xl shadow-2xl max-w-xs animate-float" style="animation-delay: 2s;">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
+                                        <i class="fas fa-user-graduate text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-white">Alumni</p>
+                                        <p class="text-white/60 text-sm">92% Masuk PTN</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="absolute bottom-0 left-0 right-0 py-6 bg-white/70 backdrop-blur-md shadow-2xl border-t border-gray-100">
-                <div class="container mx-auto px-4 lg:px-12">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                        <div class="animate-slide-up" style="animation-delay: 0.5s;">
-                            <p class="text-4xl font-extrabold text-primary">200+</p>
-                            <p class="text-sm text-gray-600">Proyek Riset</p>
-                        </div>
-                        <div class="animate-slide-up" style="animation-delay: 0.7s;">
-                            <p class="text-4xl font-extrabold text-primary">500+</p>
-                            <p class="text-sm text-gray-600">Alumni Berkuliah</p>
-                        </div>
-                        <div class="animate-slide-up" style="animation-delay: 0.9s;">
-                            <p class="text-4xl font-extrabold text-primary">10+</p>
-                            <p class="text-sm text-gray-600">Tahun Pengalaman</p>
-                        </div>
-                        <div class="animate-slide-up" style="animation-delay: 1.1s;">
-                            <p class="text-4xl font-extrabold text-primary">A</p>
-                            <p class="text-sm text-gray-600">Akreditasi Sekolah</p>
-                        </div>
-                    </div>
-                </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#features" class="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors duration-300 group">
+                    <span class="text-sm font-medium tracking-wider">EXPLORE</span>
+                    <i class="fas fa-chevron-down text-xl group-hover:translate-y-2 transition-transform duration-300"></i>
+                </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="py-20 md:py-32 bg-white section-reveal" id="program">
-            <div class="container mx-auto px-4 lg:px-12 text-center">
-                <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 inline-block">Keunggulan Kami</span>
-                <h2 class="text-4xl md:text-6xl font-serif font-bold text-primary mb-4">
-                    Mengapa MA Yuppi?
+    <!-- Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-white relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%234A0E55" fill-opacity="0.4"/%3E%3C/svg%3E'); background-size: 50px 50px;"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 lg:px-16 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-4 py-2 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-full text-sm font-semibold text-primary mb-4 tracking-wider">
+                    <i class="fas fa-star mr-2 text-secondary"></i>KEUNGGULAN UTAMA
+                </span>
+                <h2 class="text-5xl md:text-6xl font-serif font-bold text-primary mb-6">
+                    Mengapa Memilih
+                    <span class="text-gradient">MA Yuppi?</span>
                 </h2>
-                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-16 leading-relaxed">
-                    Keunggulan yang membedakan kami dalam membentuk siswa yang siap menghadapi tantangan global dengan iman yang kokoh.
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Kombinasi unik antara pendidikan agama yang kuat, kurikulum berbasis riset, dan pengembangan karakter untuk kesiapan masa depan.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="card-hover bg-white p-8 rounded-3xl shadow-xl border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-microscope text-2xl text-white"></i>
+                        </div>
+                        <div class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-accent/30 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-4">Kurikulum Riset</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">Program penelitian mandiri dengan mentor ahli sejak kelas X, mengembangkan kemampuan analitis dan inovasi.</p>
+                    <a href="#" class="inline-flex items-center text-accent font-semibold group">
+                        Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
+                    </a>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="card-hover bg-gradient-to-br from-primary to-accent p-8 rounded-3xl shadow-xl text-white relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative mb-6">
+                        <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                            <i class="fas fa-mosque text-2xl text-secondary"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-4">Pendidikan Karakter</h3>
+                    <p class="text-white/90 leading-relaxed mb-4">Program Tahfidz, leadership training, dan penguatan akhlak Islami terintegrasi dalam pembelajaran sehari-hari.</p>
+                    <a href="#" class="inline-flex items-center text-secondary font-semibold group">
+                        Selengkapnya <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
+                    </a>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="card-hover bg-white p-8 rounded-3xl shadow-xl border border-gray-100" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-secondary to-accent rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-globe-americas text-2xl text-primary"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-4">Program Global</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">Kemitraan internasional, student exchange, dan pembelajaran berbasis proyek dengan sekolah luar negeri.</p>
+                    <a href="#" class="inline-flex items-center text-accent font-semibold group">
+                        Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
+                    </a>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="card-hover bg-white p-8 rounded-3xl shadow-xl border border-gray-100" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-2xl text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-4">Teknologi Digital</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">Smart classroom, coding bootcamp, dan pembelajaran berbasis teknologi untuk mempersiapkan masa depan digital.</p>
+                    <a href="#" class="inline-flex items-center text-accent font-semibold group">
+                        Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent"></div>
+        
+        <div class="container mx-auto px-4 lg:px-16">
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <div data-aos="fade-right">
+                    <span class="inline-block px-4 py-2 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-full text-sm font-semibold text-primary mb-4 tracking-wider">
+                        <i class="fas fa-rocket mr-2 text-accent"></i>PROGRAM UNGGULAN
+                    </span>
+                    <h2 class="text-5xl md:text-6xl font-serif font-bold text-primary mb-6">
+                        Ekstrakurikuler
+                        <span class="text-gradient">Premium</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Beragam program ekstrakurikuler yang didesain untuk mengembangkan bakat, minat, dan keterampilan abad 21.
+                    </p>
+                    <a href="programs.html" class="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+                        Lihat Semua Program
+                        <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform duration-300"></i>
+                    </a>
+                </div>
+                
+                <div data-aos="fade-left" data-aos-delay="300">
+                    <div class="relative">
+                        <div class="aspect-video rounded-3xl overflow-hidden shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                                 alt="Student Activities" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-2xl max-w-sm">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center animate-wiggle">
+                                    <i class="fas fa-trophy text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold text-primary">85+</p>
+                                    <p class="text-gray-600">Prestasi Nasional</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Program 1 -->
+                <div class="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 card-hover" data-aos="fade-up">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Tahfidz Quran" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-bold text-primary">RELIGIUS</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-primary">Tahfidz Quran</h3>
+                            <div class="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center">
+                                <i class="fas fa-book-open text-white"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Program menghafal Al-Quran dengan sistem sanad dan target hafalan 5-30 juz dengan bimbingan hafiz bersertifikat.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-accent font-semibold">
+                                <i class="fas fa-users mr-1"></i> 45 Siswa Aktif
+                            </span>
+                            <a href="#" class="text-primary hover:text-accent transition-colors duration-300">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 2 -->
+                <div class="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Science Club" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-accent/60 to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-bold text-accent">SAINS</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-primary">Klub Sains & Riset</h3>
+                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
+                                <i class="fas fa-flask text-white"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Eksperimen dan penelitian ilmiah untuk kompetisi olimpiade sains tingkat nasional dan internasional.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-accent font-semibold">
+                                <i class="fas fa-users mr-1"></i> 32 Siswa Aktif
+                            </span>
+                            <a href="#" class="text-primary hover:text-accent transition-colors duration-300">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 3 -->
+                <div class="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 card-hover" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Coding & Robotics" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-secondary/60 to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-bold text-primary">TEKNOLOGI</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-primary">Coding & Robotik</h3>
+                            <div class="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center">
+                                <i class="fas fa-laptop-code text-white"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Pembelajaran pemrograman, pengembangan aplikasi, dan robotika untuk menyiapkan talenta digital masa depan.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-accent font-semibold">
+                                <i class="fas fa-users mr-1"></i> 38 Siswa Aktif
+                            </span>
+                            <a href="#" class="text-primary hover:text-accent transition-colors duration-300">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-gradient-to-br from-primary via-accent-dark to-primary text-white relative overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-full h-full opacity-10">
+                <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-secondary rounded-full blur-3xl animate-pulse"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-4 lg:px-16 relative z-10">
+            <div class="max-w-5xl mx-auto text-center" data-aos="zoom-in">
+                <div class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-secondary to-accent rounded-3xl mb-8 animate-pulse-slow">
+                    <i class="fas fa-graduation-cap text-white text-3xl"></i>
+                </div>
+                
+                <h2 class="text-4xl md:text-6xl font-serif font-bold mb-6">
+                    Siap Menjadi Bagian dari
+                    <span class="text-secondary">Keluarga Yuppi?</span>
+                </h2>
+                
+                <p class="text-xl text-white/90 mb-12 leading-relaxed max-w-3xl mx-auto">
+                    Bergabunglah dengan madrasah unggulan yang tidak hanya fokus pada akademik, tetapi juga pembentukan karakter dan kesiapan menghadapi tantangan global.
                 </p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-                    <div class="p-8 md:p-10 bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg card-3d border border-gray-100">
-                        <div class="w-20 h-20 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center mx-auto mb-6 transform hover:rotate-12 transition-transform duration-300">
-                            <i class="fas fa-microscope text-4xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-2 text-center">Riset dan Inovasi</h3>
-                        <p class="text-gray-600 text-center">Fokus pada proyek penelitian ilmiah dan keagamaan</p>
-                    </div>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+                    <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="group relative bg-gradient-to-r from-secondary to-secondary-dark text-primary px-10 py-5 rounded-xl text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 flex items-center justify-center gap-3 min-w-[250px]">
+                        <span class="relative z-10">DAFTAR SEKARANG</span>
+                        <i class="fas fa-user-plus relative z-10 group-hover:rotate-12 transition-transform duration-300"></i>
+                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-xl"></div>
+                    </a>
                     
-                    <div class="p-8 md:p-10 bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg card-3d border border-gray-100">
-                        <div class="w-20 h-20 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center mx-auto mb-6 transform hover:rotate-12 transition-transform duration-300">
-                            <i class="fas fa-language text-4xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-2 text-center">Trilingual Environment</h3>
-                        <p class="text-gray-600 text-center">Penguasaan Bahasa Arab, Inggris, dan Indonesia</p>
+                    <a href="contact.html" class="group relative glass-morphism border-2 border-white/30 hover:border-white/60 text-white px-10 py-5 rounded-xl text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 flex items-center justify-center gap-3 min-w-[250px]">
+                        <span class="relative z-10">TOUR VIRTUAL</span>
+                        <i class="fas fa-video relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                    <div class="glass-morphism p-6 rounded-2xl hover:scale-105 transition-transform duration-300">
+                        <i class="fas fa-calendar-check text-3xl text-secondary mb-4"></i>
+                        <h4 class="text-lg font-bold mb-2">Pendaftaran</h4>
+                        <p class="text-white/80 text-sm">1 Jan - 31 Mar 2025</p>
                     </div>
+                    <div class="glass-morphism p-6 rounded-2xl hover:scale-105 transition-transform duration-300">
+                        <i class="fas fa-clipboard-check text-3xl text-secondary mb-4"></i>
+                        <h4 class="text-lg font-bold mb-2">Tes Seleksi</h4>
+                        <p class="text-white/80 text-sm">April 2025</p>
+                    </div>
+                    <div class="glass-morphism p-6 rounded-2xl hover:scale-105 transition-transform duration-300">
+                        <i class="fas fa-school text-3xl text-secondary mb-4"></i>
+                        <h4 class="text-lg font-bold mb-2">Mulai Belajar</h4>
+                        <p class="text-white/80 text-sm">Juli 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="p-8 md:p-10 bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg card-3d border border-gray-100">
-                        <div class="w-20 h-20 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center mx-auto mb-6 transform hover:rotate-12 transition-transform duration-300">
-                            <i class="fas fa-quran text-4xl text-white"></i>
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-20 pb-10 relative overflow-hidden">
+        <!-- Footer Background -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary/20 to-transparent"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 lg:px-16 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Logo & Description -->
+                <div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="relative">
+                            <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center">
+                                <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                            </div>
+                            <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-accent rounded-2xl blur opacity-30"></div>
                         </div>
-                        <h3 class="text-xl font-bold text-primary mb-2 text-center">Program Tahfidz</h3>
-                        <p class="text-gray-600 text-center">Integrasi kurikulum dengan program hafalan Al-Quran</p>
+                        <div>
+                            <h4 class="text-3xl font-serif font-bold text-secondary">MA YUPPI</h4>
+                            <p class="text-sm text-gray-400 font-medium">Madrasah Aliyah Unggulan</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        Lembaga pendidikan Islam unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi untuk mencetak generasi pemimpin masa depan.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-12 h-12 bg-white/5 hover:bg-primary rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 group">
+                            <i class="fab fa-instagram text-gray-400 group-hover:text-white"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/5 hover:bg-primary rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 group">
+                            <i class="fab fa-youtube text-gray-400 group-hover:text-white"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/5 hover:bg-primary rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 group">
+                            <i class="fab fa-tiktok text-gray-400 group-hover:text-white"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/5 hover:bg-primary rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 group">
+                            <i class="fab fa-linkedin-in text-gray-400 group-hover:text-white"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="text-center mt-16">
-                    <a href="prestasi.html" class="inline-block bg-secondary hover:bg-yellow-400 text-primary px-10 py-4 rounded-full text-lg font-bold shadow-2xl transition-all duration-300 transform hover:scale-105">
-                        Lihat Semua Prestasi <i class="fas fa-medal ml-2"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-dark-gray text-white pt-20 pb-10">
-        <div class="container mx-auto px-4 lg:px-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Quick Links -->
                 <div>
-                    <a href="index.html" class="flex items-center mb-4 group">
-                        <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-graduation-cap text-primary text-xl"></i>
-                        </div>
-                        <span class="text-2xl font-extrabold font-serif text-white tracking-wider">MA YUPPI</span>
-                    </a>
-                    <p class="text-gray-400 mb-6">Mencetak Generasi Muslim Unggul Berbasis Riset & Berakhlak Qurani.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" target="_blank" class="w-10 h-10 bg-primary/70 hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-facebook-f text-white"></i></a>
-                        <a href="#" target="_blank" class="w-10 h-10 bg-primary/70 hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-instagram text-white"></i></a>
-                        <a href="#" target="_blank" class="w-10 h-10 bg-primary/70 hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-youtube text-white"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-xl font-bold mb-6 text-secondary">Tentang Kami</h4>
+                    <h4 class="text-xl font-bold mb-6 text-secondary relative inline-block">
+                        Tautan Cepat
+                        <span class="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
+                    </h4>
                     <ul class="space-y-3">
-                        <li><a href="profil.html#profil" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Profil Sekolah</a></li>
-                        <li><a href="profil.html#visi-misi" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Visi & Misi</a></li>
-                        <li><a href="profil.html#struktur" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Struktur Organisasi</a></li>
-                        <li><a href="prestasi.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Prestasi</a></li>
-                        <li><a href="berita.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Berita & Acara</a></li>
+                        <li>
+                            <a href="index.html" class="text-gray-400 hover:text-secondary transition-all duration-300 flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                                <span>Beranda</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html" class="text-gray-400 hover:text-secondary transition-all duration-300 flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                                <span>Profil Sekolah</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="programs.html" class="text-gray-400 hover:text-secondary transition-all duration-300 flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                                <span>Program & Ekskul</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="news.html" class="text-gray-400 hover:text-secondary transition-all duration-300 flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                                <span>Berita & Artikel</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
+                
+                <!-- Information -->
                 <div>
-                    <h4 class="text-xl font-bold mb-6 text-secondary">Program</h4>
+                    <h4 class="text-xl font-bold mb-6 text-secondary relative inline-block">
+                        Informasi
+                        <span class="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
+                    </h4>
                     <ul class="space-y-3">
-                        <li><a href="index.html#program" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Riset & Inovasi</a></li>
-                        <li><a href="index.html#program" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Program Tahfidz</a></li>
-                        <li><a href="index.html#program" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Lingkungan Trilingual</a></li>
-                        <li><a href="ekskul.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Ekstrakurikuler</a></li>
-                        <li><a href="https://ppdb.mayuppi.sch.id" target="_blank" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>PPDB Online</a></li>
+                        <li>
+                            <a href="about.html#visi-misi" class="text-gray-400 hover:text-secondary transition-all duration-300 flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                                <span>Visi & Misi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#guru-staf" class="text-gray-400 hover:text-secondary transition-all duration-300 flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                                <span>Guru & Staf</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="facilities.html" class="text-gray-400 hover:text-secondary transition-all duration-300 flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                                <span>Fasilitas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact.html" class="text-gray-400 hover:text-secondary transition-all duration-300 flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                                <span>Kontak Kami</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
+                
+                <!-- Contact -->
                 <div>
-                    <h4 class="text-xl font-bold mb-6 text-secondary">Hubungi Kami</h4>
+                    <h4 class="text-xl font-bold mb-6 text-secondary relative inline-block">
+                        Kontak Kami
+                        <span class="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
+                    </h4>
                     <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-accent text-xl mr-4 mt-1"></i>
-                            <p class="text-gray-400">Jl. Pahlawan No. 123, Kota Pendidikan, 15310</p>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-accent mt-1"></i>
+                            <span class="text-gray-400">Jl. Pendidikan No. 123<br>Bandung, Jawa Barat 40123</span>
                         </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-phone text-accent text-xl mr-4 mt-1"></i>
-                            <p class="text-gray-400">(021) 87654321</p>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone text-accent"></i>
+                            <a href="tel:+62221234567" class="text-gray-400 hover:text-secondary transition-colors duration-300">(022) 123-4567</a>
                         </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-envelope text-accent text-xl mr-4 mt-1"></i>
-                            <p class="text-gray-400">info@mayuppi.sch.id</p>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-accent"></i>
+                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-secondary transition-colors duration-300">info@mayuppi.sch.id</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-globe text-accent"></i>
+                            <a href="https://www.mayuppi.sch.id" target="_blank" class="text-gray-400 hover:text-secondary transition-colors duration-300">www.mayuppi.sch.id</a>
                         </li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-gray-700 pt-8 text-center">
-                <p class="text-gray-500 text-sm">&copy; <span id="current-year">2024</span> MA Yuppi - Madrasah Aliyah Unggulan Berbasis Riset. All Rights Reserved.</p>
+            <!-- Divider -->
+            <div class="border-t border-white/10 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © 2024 <span class="text-secondary font-semibold">MA Yuppi</span>. All rights reserved. 
+                        <span class="hidden md:inline">|</span> Designed with <i class="fas fa-heart text-red-500 mx-1"></i> for education.
+                    </p>
+                    <div class="flex gap-6 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-300">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-300">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-300">Sitemap</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Back to Top -->
+    <a href="#hero" class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-primary to-accent text-white rounded-2xl flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-110 hover:-translate-y-1 z-50 opacity-0" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JavaScript -->
     <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
 
-        const navbar = document.getElementById('navbar');
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const iconOpen = document.getElementById('icon-open');
-        const iconClose = document.getElementById('icon-close');
-
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('h-16', 'shadow-xl');
-                navbar.classList.remove('h-20', 'shadow-md');
+        // Back to Top Button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backToTop.classList.remove('opacity-0');
+                backToTop.classList.add('opacity-100');
             } else {
-                navbar.classList.remove('h-16', 'shadow-xl');
-                navbar.classList.add('h-20', 'shadow-md');
+                backToTop.classList.remove('opacity-100');
+                backToTop.classList.add('opacity-0');
             }
         });
 
         // Mobile Menu Toggle
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', function() {
             iconOpen.classList.toggle('hidden');
             iconClose.classList.toggle('hidden');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('block');
         });
-        
-        // Smooth Scroll for local anchors
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                // Check if the link is on the current page (index.html)
-                const currentFile = window.location.pathname.split('/').pop();
-                const targetHref = this.getAttribute('href');
-                
-                // Only prevent default if it's a link to an anchor on this page
-                if (currentFile === 'index.html' && targetHref.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(targetHref);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        
-                        // Close mobile menu after clicking
-                        if (!mobileMenu.classList.contains('hidden')) {
-                            mobileMenu.classList.add('hidden');
-                            iconOpen.classList.remove('hidden');
-                            iconClose.classList.add('hidden');
-                        }
-                    }
-                }
-            });
-        });
-        
-        // Intersection Observer for Reveal Effect
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.section-reveal, .timeline-item').forEach(el => {
-            observer.observe(el);
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-xl', 'bg-white/95');
+                navbar.classList.remove('bg-white/90');
+            } else {
+                navbar.classList.remove('shadow-xl', 'bg-white/95');
+                navbar.classList.add('bg-white/90');
+            }
         });
     </script>
-
 </body>
 </html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Guru</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+<section class="py-20">
+  <div class="container mx-auto px-4 lg:px-12">
+
+    <a href="guru.html" class="text-primary underline text-sm mb-6 inline-block">← Kembali</a>
+
+    <div id="detail" class="max-w-3xl mx-auto bg-white p-10 rounded-2xl shadow-lg"></div>
+
+  </div>
+</section>
+
+<script>
+const guruList = [
+  {
+    id: 1,
+    nama: "Fatimah Azzahra, S.Pd",
+    mapel: "Bahasa Arab",
+    foto: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=200&q=80",
+    gelar: "S1 Pendidikan",
+    biodata: "Guru Bahasa Arab berpengalaman 6 tahun. Mengampu kelas intensif dan tahfizhul mufrodat."
+  },
+  {
+    id: 2,
+    nama: "Ir. Khalid Musa, M.T",
+    mapel: "Fisika",
+    foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+    gelar: "S2 Teknik",
+    biodata: "Pernah menjadi dosen tamu bidang teknik material dan pengajar olimpiade Fisika."
+  },
+  {
+    id: 3,
+    nama: "Laila Andini, S.Si",
+    mapel: "Kimia",
+    foto: "https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=200&q=80",
+    gelar: "S1 Sains",
+    biodata: "Ahli Kimia Organik dan pembimbing club eksperimen Kimia."
+  },
+  {
+    id: 4,
+    nama: "Rahmat Hidayat, S.Kom",
+    mapel: "TIK",
+    foto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
+    gelar: "S1 Komputer",
+    biodata: "Trainer web development dan pembimbing kompetisi programming."
+  }
+];
+
+// Ambil ID dari URL
+const params = new URLSearchParams(window.location.search);
+const id = parseInt(params.get("id"));
+
+const guru = guruList.find(g => g.id === id);
+
+if (!guru) {
+  document.getElementById("detail").innerHTML = "<p>Guru tidak ditemukan.</p>";
+} else {
+  document.getElementById("detail").innerHTML = `
+    <div class="text-center">
+      <img src="${guru.foto}" class="w-40 h-40 mx-auto rounded-full mb-6 object-cover">
+      <h1 class="text-3xl font-bold mb-2">${guru.nama}</h1>
+      <p class="text-gray-600 text-lg mb-4">${guru.mapel}</p>
+
+      <div class="bg-gray-100 p-4 rounded-xl mb-6">
+        <p class="font-semibold">Gelar: ${guru.gelar}</p>
+      </div>
+
+      <h2 class="text-xl font-bold mb-2">Profil Singkat</h2>
+      <p class="text-gray-700 leading-relaxed">${guru.biodata}</p>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
