@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestasi - MA Yuppi</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+   <script>
+              tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#550D61',
+                        'secondary': '#FFD700',
+                        'accent': '#7C4E9C',
+                        'dark-gray': '#1a1a1a',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'scale-in': 'scaleIn 0.6s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(100px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+        .hero-gradient { background: linear-gradient(135deg, #f0eaf8 0%, #ffffff 100%); }
+        .card-3d { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-3d:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); }
+        .section-reveal { opacity: 0; transform: translateY(50px); transition: opacity 1s ease-out, transform 1s ease-out; }
+        .section-reveal.visible { opacity: 1; transform: translateY(0); }
+        .timeline-item { opacity: 0; transform: translateX(-50px); transition: opacity 1s ease-out, transform 1s ease-out; }
+        .timeline-item.visible { opacity: 1; transform: translateX(0); }
+        .achievement-badge { background: linear-gradient(45deg, #FFD700, #FFA500); color: #550D61; padding: 4px 12px; border-radius: 9999px; font-weight: 700; font-size: 0.75rem; display: inline-block; box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4); }
+    </style>
+</head>
+<body class="font-sans antialiased bg-white text-dark-gray">
+
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-md transition-all duration-300">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center group">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-extrabold font-serif text-primary tracking-wider">MA YUPPI</span>
+                </a>
+                
+                <div class="hidden lg:block">
+                    <div class="flex items-center space-x-8 text-base font-medium">
+                        <a href="index.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Beranda</a>
+                        
+                        <div class="group relative">
+                            <button class="text-dark-gray hover:text-accent transition duration-200 flex items-center">
+                                Profil <i class="fas fa-chevron-down ml-2 text-xs opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-white shadow-2xl rounded-xl mt-2 w-56 py-2 border-t-2 border-primary animate-slide-up">
+                                <a href="profil.html#profil" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-school mr-2 text-accent"></i>Profil Sekolah</a>
+                                <a href="profil.html#visi-misi" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-bullseye mr-2 text-accent"></i>Visi & Misi</a>
+                                <a href="profil.html#struktur" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-sitemap mr-2 text-accent"></i>Struktur Organisasi</a>
+                                <a href="profil.html#guru-staf" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-users mr-2 text-accent"></i>Daftar Guru & Staf</a>
+                            </div>
+                        </div>
+                        
+                        <a href="galeri.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Galeri</a>
+                        <a href="prestasi.html" class="text-primary hover:text-accent transition duration-200 font-bold relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Prestasi</a>
+                        <a href="ekskul.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Ekstrakurikuler</a>
+                        <a href="berita.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Berita</a>
+                        
+                        <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="bg-gradient-to-r from-primary to-accent text-white hover:from-accent hover:to-primary px-6 py-2.5 rounded-full shadow-lg transition-all duration-300 font-bold tracking-wide border-2 border-transparent hover:border-secondary transform hover:scale-105">
+                            PPDB <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <button id="mobile-menu-button" class="lg:hidden p-2 text-primary hover:text-accent focus:outline-none">
+                    <i id="icon-open" class="fas fa-bars text-2xl"></i>
+                    <i id="icon-close" class="fas fa-times text-2xl hidden"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-20 left-0 w-full bg-white shadow-lg border-t border-gray-200 py-4 px-4 animate-slide-up">
+            <div class="flex flex-col space-y-3">
+                <a href="index.html" class="text-dark-gray hover:text-primary py-2 px-3">Beranda</a>
+                <div class="border-t border-gray-100 pt-2">
+                    <span class="block text-sm font-semibold text-accent px-3">Profil</span>
+                    <a href="profil.html#profil" class="block text-dark-gray hover:text-primary py-2 px-6 text-sm"><i class="fas fa-school mr-2 text-accent/70"></i>Profil Sekolah</a>
+                    <a href="profil.html#visi-misi" class="block text-dark-gray hover:text-primary py-2 px-6 text-sm"><i class="fas fa-bullseye mr-2 text-accent/70"></i>Visi & Misi</a>
+                    <a href="profil.html#struktur" class="block text-dark-gray hover:text-primary py-2 px-6 text-sm"><i class="fas fa-sitemap mr-2 text-accent/70"></i>Struktur Organisasi</a>
+                    <a href="profil.html#guru-staf" class="block text-dark-gray hover:text-primary py-2 px-6 text-sm"><i class="fas fa-users mr-2 text-accent/70"></i>Daftar Guru & Staf</a>
+                </div>
+                <a href="galeri.html" class="text-dark-gray hover:text-primary py-2 px-3">Galeri</a>
+                <a href="prestasi.html" class="text-dark-gray hover:text-primary font-bold py-2 px-3 border-l-4 border-primary">Prestasi</a>
+                <a href="ekskul.html" class="text-dark-gray hover:text-primary py-2 px-3">Ekstrakurikuler</a>
+                <a href="berita.html" class="text-dark-gray hover:text-primary py-2 px-3">Berita</a>
+                <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="text-center bg-gradient-to-r from-primary to-accent text-white py-3 rounded-full font-bold mt-2">PPDB Online</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="py-20 md:py-32 bg-gray-50 section-reveal pt-40" id="prestasi">
+            <div class="container mx-auto px-4 lg:px-12 text-center">
+                <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 inline-block">Pencapaian Terbaik</span>
+                <h2 class="text-4xl md:text-6xl font-serif font-bold text-primary mb-6">
+                    Daftar Prestasi
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-16 leading-relaxed">
+                    Ratusan penghargaan dari kompetisi akademik dan non-akademik tingkat regional hingga internasional, mencerminkan komitmen kami pada keunggulan.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300 border-t-4 border-secondary">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-secondary rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+                                <i class="fas fa-trophy text-3xl text-primary"></i>
+                            </div>
+                            <span class="achievement-badge">Juara 1</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2 text-center">Olimpiade Sains Nasional (OSN)</h3>
+                        <p class="text-gray-600 text-center mb-4">Bidang Biologi - Tingkat Nasional</p>
+                        <div class="flex items-center justify-center text-sm text-gray-500">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span>Oktober 2024</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300 border-t-4 border-primary">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+                                <i class="fas fa-microscope text-3xl text-white"></i>
+                            </div>
+                            <span class="achievement-badge">Medali Perak</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2 text-center">Kompetisi Riset Ilmiah Remaja</h3>
+                        <p class="text-gray-600 text-center mb-4">Inovasi Teknologi Pangan - Tingkat Internasional</p>
+                        <div class="flex items-center justify-center text-sm text-gray-500">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span>September 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300 border-t-4 border-accent">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+                                <i class="fas fa-quran text-3xl text-white"></i>
+                            </div>
+                            <span class="achievement-badge">Juara 3</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2 text-center">Musabaqah Hifzil Quran</h3>
+                        <p class="text-gray-600 text-center mb-4">Kategori 10 Juz - Tingkat Provinsi</p>
+                        <div class="flex items-center justify-center text-sm text-gray-500">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span>Agustus 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300 border-t-4 border-secondary">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-secondary rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+                                <i class="fas fa-language text-3xl text-primary"></i>
+                            </div>
+                            <span class="achievement-badge">Finalis</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2 text-center">National English Debate Competition</h3>
+                        <p class="text-gray-600 text-center mb-4">Tingkat Nasional</p>
+                        <div class="flex items-center justify-center text-sm text-gray-500">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span>Mei 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-16">
+                    <a href="#" class="inline-block bg-primary hover:bg-accent text-white px-10 py-4 rounded-full text-lg font-bold shadow-2xl transition-all duration-300 transform hover:scale-105">
+                        Lihat Arsip Prestasi (Coming Soon) <i class="fas fa-archive ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark-gray text-white pt-20 pb-10">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <a href="index.html" class="flex items-center mb-4 group">
+                        <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-graduation-cap text-primary text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-extrabold font-serif text-white tracking-wider">MA YUPPI</span>
+                    </a>
+                    <p class="text-gray-400 mb-6">Mencetak Generasi Muslim Unggul Berbasis Riset & Berakhlak Qurani.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" target="_blank" class="w-10 h-10 bg-primary/70 hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-facebook-f text-white"></i></a>
+                        <a href="#" target="_blank" class="w-10 h-10 bg-primary/70 hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-instagram text-white"></i></a>
+                        <a href="#" target="_blank" class="w-10 h-10 bg-primary/70 hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-youtube text-white"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-secondary">Tentang Kami</h4>
+                    <ul class="space-y-3">
+                        <li><a href="profil.html#profil" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Profil Sekolah</a></li>
+                        <li><a href="profil.html#visi-misi" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Visi & Misi</a></li>
+                        <li><a href="profil.html#struktur" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Struktur Organisasi</a></li>
+                        <li><a href="prestasi.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Prestasi</a></li>
+                        <li><a href="berita.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Berita & Acara</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-secondary">Program</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html#program" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Riset & Inovasi</a></li>
+                        <li><a href="index.html#program" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Program Tahfidz</a></li>
+                        <li><a href="index.html#program" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Lingkungan Trilingual</a></li>
+                        <li><a href="ekskul.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>Ekstrakurikuler</a></li>
+                        <li><a href="https://ppdb.mayuppi.sch.id" target="_blank" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right text-accent text-xs mr-3 group-hover:translate-x-1 transition-transform"></i>PPDB Online</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-secondary">Hubungi Kami</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-accent text-xl mr-4 mt-1"></i>
+                            <p class="text-gray-400">Jl. Pahlawan No. 123, Kota Pendidikan, 15310</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-accent text-xl mr-4 mt-1"></i>
+                            <p class="text-gray-400">(021) 87654321</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-accent text-xl mr-4 mt-1"></i>
+                            <p class="text-gray-400">info@mayuppi.sch.id</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-500 text-sm">&copy; <span id="current-year-footer2">2024</span> MA Yuppi - Madrasah Aliyah Unggulan Berbasis Riset. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year-footer2').textContent = new Date().getFullYear();
+
+        const navbar = document.getElementById('navbar');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('h-16', 'shadow-xl');
+                navbar.classList.remove('h-20', 'shadow-md');
+            } else {
+                navbar.classList.remove('h-16', 'shadow-xl');
+                navbar.classList.add('h-20', 'shadow-md');
+            }
+        });
+
+        // Mobile Menu Toggle
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        });
+        
+        // Intersection Observer for Reveal Effect
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.section-reveal, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

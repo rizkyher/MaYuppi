@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Guru dan Staf MA Yuppi</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // (KONFIGURASI TAILWIND SAMA DENGAN index.html)
+        tailwind.config = { theme: { extend: { colors: { 'primary': '#550D61', 'secondary': '#FFD700', 'accent': '#7C4E9C', 'dark-gray': '#333333', }, fontFamily: { 'serif': ['Playfair Display', 'serif'], 'sans': ['Inter', 'sans-serif'], }, } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .guru-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .guru-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-gray-50 text-dark-gray">
+    
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
+        </header>
+
+    <main>
+        
+        <section class="bg-primary py-24">
+            <div class="container mx-auto px-4 lg:px-12 text-center">
+                <h1 class="text-6xl font-serif font-extrabold text-secondary mb-3">
+                    Tim Pengajar Kami
+                </h1>
+                <p class="text-xl text-white/80">
+                    Pendidik profesional yang berdedikasi tinggi pada ilmu pengetahuan dan akhlak.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-4 lg:px-12">
+                <h2 class="text-4xl font-serif font-bold text-primary mb-12 text-center">
+                    Dosen & Guru Mata Pelajaran
+                </h2>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+                    
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden text-center guru-card border-t-4 border-accent">
+                        <img class="w-full h-48 object-cover object-top" src="https://placehold.co/400x400/7C4E9C/FFFFFF/webp?text=GURU+1" alt="Foto Guru">
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold text-primary">Dr. Susi Anjani, M.Pd.</h3>
+                            <p class="text-accent text-sm font-semibold mb-2">Biologi & Riset Sains</p>
+                            <span class="text-xs text-gray-500"><i class="fas fa-envelope mr-1"></i> susi.a@yuppi.sch.id</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden text-center guru-card border-t-4 border-accent">
+                        <img class="w-full h-48 object-cover object-top" src="https://placehold.co/400x400/7C4E9C/FFFFFF/webp?text=GURU+2" alt="Foto Guru">
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold text-primary">Ust. Ahmad Syakir, Lc., M.A.</h3>
+                            <p class="text-accent text-sm font-semibold mb-2">Studi Islam & Tahfidz</p>
+                            <span class="text-xs text-gray-500"><i class="fas fa-envelope mr-1"></i> ahmad.s@yuppi.sch.id</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden text-center guru-card border-t-4 border-accent">
+                        <img class="w-full h-48 object-cover object-top" src="https://placehold.co/400x400/7C4E9C/FFFFFF/webp?text=GURU+3" alt="Foto Guru">
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold text-primary">Ms. Jane Foster, B.A.</h3>
+                            <p class="text-accent text-sm font-semibold mb-2">Bahasa Inggris & Global Studies</p>
+                            <span class="text-xs text-gray-500"><i class="fas fa-envelope mr-1"></i> jane.f@yuppi.sch.id</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden text-center guru-card border-t-4 border-accent">
+                        <img class="w-full h-48 object-cover object-top" src="https://placehold.co/400x400/7C4E9C/FFFFFF/webp?text=GURU+4" alt="Foto Guru">
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold text-primary">Bpk. Budi Santoso, S.Kom.</h3>
+                            <p class="text-accent text-sm font-semibold mb-2">Informatika & Robotik</p>
+                            <span class="text-xs text-gray-500"><i class="fas fa-envelope mr-1"></i> budi.s@yuppi.sch.id</span>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-primary/5">
+            <div class="container mx-auto px-4 lg:px-12">
+                <h2 class="text-4xl font-serif font-bold text-primary mb-12 text-center">
+                    Staf Administrasi & Pendukung
+                </h2>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                    
+                    <div class="p-5 bg-white rounded-lg shadow-md text-center border-b-4 border-primary guru-card">
+                        <i class="fas fa-user-tie text-4xl text-primary mb-3"></i>
+                        <h4 class="font-bold text-dark-gray">Ratih Ayu</h4>
+                        <p class="text-sm text-gray-500">Kepala Administrasi</p>
+                    </div>
+
+                    <div class="p-5 bg-white rounded-lg shadow-md text-center border-b-4 border-primary guru-card">
+                        <i class="fas fa-book-reader text-4xl text-primary mb-3"></i>
+                        <h4 class="font-bold text-dark-gray">Heri Widodo</h4>
+                        <p class="text-sm text-gray-500">Kepala Perpustakaan</p>
+                    </div>
+                    
+                    <div class="p-5 bg-white rounded-lg shadow-md text-center border-b-4 border-primary guru-card">
+                        <i class="fas fa-hand-holding-usd text-4xl text-primary mb-3"></i>
+                        <h4 class="font-bold text-dark-gray">Murniati, S.E.</h4>
+                        <p class="text-sm text-gray-500">Staf Keuangan</p>
+                    </div>
+                    
+                    <div class="p-5 bg-white rounded-lg shadow-md text-center border-b-4 border-primary guru-card">
+                        <i class="fas fa-users-cog text-4xl text-primary mb-3"></i>
+                        <h4 class="font-bold text-dark-gray">Joko Susilo</h4>
+                        <p class="text-sm text-gray-500">Staf Sarana & Prasarana</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer class="bg-dark-gray text-white pt-16 pb-10">
+        </footer>
+    
+    <script>
+      document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            var iconOpen = document.getElementById('icon-open');
+            var iconClose = document.getElementById('icon-close');
+            
+            menu.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+            
+            var isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+            this.setAttribute('aria-expanded', !isExpanded);
+        });
+        document.querySelectorAll('#mobile-menu a').forEach(item => {
+            item.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                document.getElementById('icon-open').classList.remove('hidden');
+                document.getElementById('icon-close').classList.add('hidden');
+                document.getElementById('mobile-menu-button').setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>
