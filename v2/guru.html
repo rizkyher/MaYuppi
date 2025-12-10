@@ -1,104 +1,664 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daftar Guru</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Pengajar & Staf - MA YUPPI</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': {
+                            DEFAULT: '#4A0E55',
+                            light: '#5C1A68',
+                            dark: '#3A0844'
+                        },
+                        'secondary': {
+                            DEFAULT: '#FFD700',
+                            light: '#FFE44D',
+                            dark: '#E6C300'
+                        },
+                        'accent': {
+                            DEFAULT: '#8B5FBF',
+                            light: '#9D77D9',
+                            dark: '#7348A6'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Custom Classes */
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -12px rgba(74, 14, 85, 0.15);
+        }
+        
+        .teacher-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .teacher-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--tw-gradient-stops));
+            --tw-gradient-from: #4A0E55;
+            --tw-gradient-to: #8B5FBF;
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .teacher-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Selection Color */
+        ::selection {
+            background-color: rgba(139, 95, 191, 0.3);
+        }
+    </style>
 </head>
+<body class="font-sans antialiased bg-gray-50 text-gray-800">
+    
+    <!-- Navigation (Sesuai dengan halaman utama) -->
+    <nav class="bg-white shadow-lg border-b border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center gap-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white"></i>
+                    </div>
+                    <span class="text-xl font-serif font-bold text-primary">MA YUPPI</span>
+                </a>
+                <a href="index.html" class="text-primary hover:text-accent transition-colors duration-300">
+                    <i class="fas fa-arrow-left mr-2"></i>Kembali ke Beranda
+                </a>
+            </div>
+        </div>
+    </nav>
 
-<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-primary via-primary/90 to-accent text-white py-16 lg:py-20 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-semibold mb-6">
+                    <i class="fas fa-users text-secondary"></i> TIM PENGABDI PENDIDIKAN
+                </span>
+                
+                <h1 class="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold mb-6">
+                    Tim Pengajar & Staf
+                    <span class="text-secondary block">MA YUPPI</span>
+                </h1>
+                
+                <p class="text-lg lg:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
+                    Dikenal oleh siswanya, dihormati oleh komunitasnya. Temui para pendidik berdedikasi yang membimbing generasi penerus menuju masa depan gemilang.
+                </p>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mt-12">
+                    <div class="glass-morphism p-4 rounded-xl">
+                        <p class="text-3xl font-bold mb-1">24+</p>
+                        <p class="text-white/70 text-sm">Guru Berpengalaman</p>
+                    </div>
+                    <div class="glass-morphism p-4 rounded-xl">
+                        <p class="text-3xl font-bold mb-1">85%</p>
+                        <p class="text-white/70 text-sm">Bergelar S2/S3</p>
+                    </div>
+                    <div class="glass-morphism p-4 rounded-xl">
+                        <p class="text-3xl font-bold mb-1">12+</p>
+                        <p class="text-white/70 text-sm">Bidang Studi</p>
+                    </div>
+                    <div class="glass-morphism p-4 rounded-xl">
+                        <p class="text-3xl font-bold mb-1">15+</p>
+                        <p class="text-white/70 text-sm">Tahun Pengalaman</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="py-20">
-  <div class="container mx-auto px-4 lg:px-12">
+    <!-- Main Content -->
+    <section class="py-16 lg:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <!-- Filter Section -->
+            <div class="max-w-6xl mx-auto mb-12" data-aos="fade-up">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4 p-6 bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-lg border border-gray-100">
+                    <div>
+                        <h2 class="text-2xl font-bold text-primary mb-2">Temukan Pengajar</h2>
+                        <p class="text-gray-600">Filter berdasarkan mata pelajaran</p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-filter text-gray-400"></i>
+                            </div>
+                            <select id="filterMapel" 
+                                    class="pl-10 pr-4 py-3 w-full sm:w-64 bg-white border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent appearance-none cursor-pointer">
+                                <option value="all">Semua Mata Pelajaran</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                        
+                        <button id="resetFilter" 
+                                class="px-5 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium transition-colors duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-redo"></i>
+                            Reset Filter
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-    <h1 class="text-4xl font-bold text-center text-primary mb-10">Daftar Guru & Staf</h1>
+            <!-- Teachers Grid -->
+            <div id="guruGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <!-- Cards akan di-generate oleh JavaScript -->
+            </div>
 
-    <!-- FILTER -->
-    <div class="flex justify-center mb-10">
-      <select id="filterMapel" class="px-4 py-2 border rounded-xl shadow-sm">
-        <option value="all">Semua Mapel</option>
-      </select>
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-12" data-aos="fade-up">
+                <div class="max-w-md mx-auto">
+                    <div class="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-user-slash text-gray-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-700 mb-3">Tidak Ditemukan</h3>
+                    <p class="text-gray-600 mb-6">Tidak ada guru yang ditemukan dengan filter yang dipilih. Coba filter lain atau reset filter.</p>
+                    <button id="resetFilterEmpty" 
+                            class="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300">
+                        Reset Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-gradient-to-r from-primary to-accent rounded-2xl p-8 lg:p-12 text-white text-center shadow-2xl" data-aos="zoom-in">
+                <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-chalkboard-teacher text-2xl"></i>
+                </div>
+                
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold mb-6">
+                    Ingin Bergabung dengan Tim Kami?
+                </h2>
+                
+                <p class="text-lg text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto">
+                    MA YUPPI selalu terbuka untuk pendidik berkualitas yang ingin berkontribusi dalam membentuk generasi unggul. Bergabunglah dengan kami untuk menciptakan dampak yang berarti.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" 
+                       class="px-8 py-3.5 bg-white text-primary rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3">
+                        <i class="fas fa-envelope"></i>
+                        Kirim Lamaran
+                    </a>
+                    
+                    <a href="contact.html" 
+                       class="px-8 py-3.5 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3">
+                        <i class="fas fa-phone"></i>
+                        Hubungi HRD
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Sederhana) -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-serif font-bold text-secondary">MA YUPPI</h4>
+                            <p class="text-sm text-gray-400">Madrasah Aliyah Unggulan</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-sm text-gray-400">
+                    © 2024 MA YUPPI. Hak cipta dilindungi.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Teacher Detail Modal -->
+    <div id="teacherModal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-fade-in">
+            <div class="p-6">
+                <!-- Modal Header -->
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 id="modalName" class="text-2xl font-bold text-primary"></h3>
+                        <p id="modalMapel" class="text-accent font-semibold"></p>
+                    </div>
+                    <button id="closeModal" class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors duration-300">
+                        <i class="fas fa-times text-gray-600"></i>
+                    </button>
+                </div>
+                
+                <!-- Modal Content -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Photo -->
+                    <div class="md:col-span-1">
+                        <div class="relative">
+                            <img id="modalPhoto" 
+                                 src="" 
+                                 alt=""
+                                 class="w-full aspect-square object-cover rounded-2xl shadow-lg">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+                        </div>
+                        
+                        <div class="mt-4 p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-100">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-gray-500">Status</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">
+                                    <i class="fas fa-circle text-xs mr-1"></i> Aktif
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-500">Bergabung</span>
+                                <span class="text-sm font-semibold text-primary">2019</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Details -->
+                    <div class="md:col-span-2">
+                        <div class="mb-6">
+                            <h4 class="text-lg font-bold text-primary mb-3">Profil Singkat</h4>
+                            <p id="modalBiodata" class="text-gray-600 leading-relaxed"></p>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="p-4 bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl">
+                                <p class="text-sm text-gray-500 mb-1">Pendidikan</p>
+                                <p id="modalGelar" class="font-semibold text-primary"></p>
+                            </div>
+                            <div class="p-4 bg-gradient-to-br from-secondary/5 to-accent/5 rounded-xl">
+                                <p class="text-sm text-gray-500 mb-1">Pengalaman</p>
+                                <p class="font-semibold text-primary">6+ Tahun</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-bold text-primary mb-3">Keahlian Khusus</h4>
+                            <div class="flex flex-wrap gap-2" id="modalKeahlian">
+                                <!-- Keahlian akan diisi oleh JS -->
+                            </div>
+                        </div>
+                        
+                        <div class="p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-100">
+                            <h4 class="text-lg font-bold text-primary mb-3">Pencapaian</h4>
+                            <ul class="space-y-2" id="modalPencapaian">
+                                <!-- Pencapaian akan diisi oleh JS -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modal Footer -->
+                <div class="mt-8 pt-6 border-t border-gray-100">
+                    <div class="flex justify-end">
+                        <a href="contact.html" 
+                           class="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-2">
+                            <i class="fas fa-envelope"></i>
+                            Hubungi Guru
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- GRID -->
-    <div id="guruGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 600,
+            once: true,
+            offset: 50
+        });
 
-  </div>
-</section>
+        // Teacher Data
+        const guruList = [
+            {
+                id: 1,
+                nama: "Fatimah Azzahra, S.Pd",
+                mapel: "Bahasa Arab",
+                foto: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=400&q=80",
+                gelar: "S1 Pendidikan Bahasa Arab",
+                biodata: "Guru Bahasa Arab berpengalaman 6 tahun dalam mengajar dan membimbing siswa. Spesialis dalam pengajaran bahasa Arab untuk pemula hingga tingkat lanjut dengan metode komunikatif yang menyenangkan.",
+                keahlian: ["Metode Komunikatif", "Linguistik Arab", "Budaya Arab"],
+                pencapaian: ["Pelatih Olimpiade Bahasa Arab Tingkat Kabupaten", "Penulis Buku Ajar Bahasa Arab Dasar", "Presenter Konferensi Pendidikan Bahasa"]
+            },
+            {
+                id: 2,
+                nama: "Ir. Khalid Musa, M.T",
+                mapel: "Fisika",
+                foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+                gelar: "S2 Teknik Fisika",
+                biodata: "Mengajar Fisika tingkat lanjut dengan pendekatan eksperimen dan aplikasi nyata. Berpengalaman 8 tahun dalam pendidikan sains dan penelitian.",
+                keahlian: ["Fisika Kuantum", "Eksperimen Laboratorium", "Penelitian Sains"],
+                pencapaian: ["Juara 1 Lomba Inovasi Pembelajaran Fisika", "Peneliti Bidang Energi Terbarukan", "Pembimbing Olimpiade Sains Nasional"]
+            },
+            {
+                id: 3,
+                nama: "Laila Andini, S.Si",
+                mapel: "Kimia",
+                foto: "https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=400&q=80",
+                gelar: "S1 Kimia Murni",
+                biodata: "Spesialisasi Kimia Organik dengan pengalaman 5 tahun mengajar. Fokus pada pembelajaran berbasis proyek dan eksperimen laboratorium.",
+                keahlian: ["Kimia Organik", "Analisis Laboratorium", "Kimia Material"],
+                pencapaian: ["Pengembang Kurikulum Kimia", "Pelatih Olimpiade Kimia Regional", "Peneliti Muda Terbaik 2022"]
+            },
+            {
+                id: 4,
+                nama: "Rahmat Hidayat, S.Kom",
+                mapel: "TIK",
+                foto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80",
+                gelar: "S1 Teknik Informatika",
+                biodata: "Ahli pemrograman & jaringan dengan sertifikasi internasional. Berpengalaman 7 tahun dalam industri teknologi dan pendidikan.",
+                keahlian: ["Web Development", "Jaringan Komputer", "Data Science"],
+                pencapaian: ["Sertifikasi Google IT Professional", "Pengembang Platform E-Learning Sekolah", "Juara Hackathon Nasional 2023"]
+            },
+            {
+                id: 5,
+                nama: "Dr. Ahmad Fauzi, M.Pd",
+                mapel: "Matematika",
+                foto: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
+                gelar: "S3 Pendidikan Matematika",
+                biodata: "Doktor Pendidikan Matematika dengan spesialisasi pembelajaran inovatif. Pengalaman mengajar 15 tahun.",
+                keahlian: ["Matematika Terapan", "Penelitian Pendidikan", "Kurikulum"],
+                pencapaian: ["Penulis Buku Matematika SMA", "Dosen Tamu Universitas", "Konsultan Kurikulum Nasional"]
+            },
+            {
+                id: 6,
+                nama: "Siti Aminah, S.Pd.I",
+                mapel: "Pendidikan Agama",
+                foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80",
+                gelar: "S1 Pendidikan Agama Islam",
+                biodata: "Guru Pendidikan Agama Islam dengan pendekatan karakter building. Berpengalaman 10 tahun dalam pendidikan agama.",
+                keahlian: ["Fiqih", "Akidah Akhlak", "Metodologi Pengajaran"],
+                pencapaian: ["Pelatih Tahfidz Quran", "Pembina Rohis Nasional", "Penulis Modul Pendidikan Karakter"]
+            },
+            {
+                id: 7,
+                nama: "Budi Santoso, M.Pd",
+                mapel: "Sejarah",
+                foto: "https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&w=400&q=80",
+                gelar: "S2 Pendidikan Sejarah",
+                biodata: "Spesialis sejarah Indonesia dengan metode storytelling yang menarik. Pengalaman mengajar 12 tahun.",
+                keahlian: ["Sejarah Indonesia", "Penelitian Sejarah", "Museum Studies"],
+                pencapaian: ["Pembicara Seminar Sejarah Nasional", "Penulis Buku Sejarah Lokal", "Kurator Pameran Sejarah"]
+            },
+            {
+                id: 8,
+                nama: "Dewi Sartika, S.Pd",
+                mapel: "Seni Budaya",
+                foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+                gelar: "S1 Pendidikan Seni",
+                biodata: "Seniman dan pendidik dengan spesialisasi seni rupa dan musik tradisional. Berpengalaman 9 tahun.",
+                keahlian: ["Seni Rupa", "Musik Tradisional", "Teater Pendidikan"],
+                pencapaian: ["Pemenang Lomba Seni Tingkat Nasional", "Pelatih Teater Sekolah", "Kurator Pameran Seni"]
+            }
+        ];
 
-<script>
-const guruList = [
-  {
-    id: 1,
-    nama: "Fatimah Azzahra, S.Pd",
-    mapel: "Bahasa Arab",
-    foto: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=200&q=80",
-    gelar: "S1 Pendidikan",
-    biodata: "Guru Bahasa Arab berpengalaman 6 tahun."
-  },
-  {
-    id: 2,
-    nama: "Ir. Khalid Musa, M.T",
-    mapel: "Fisika",
-    foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
-    gelar: "S2 Teknik",
-    biodata: "Mengajar Fisika tingkat lanjut."
-  },
-  {
-    id: 3,
-    nama: "Laila Andini, S.Si",
-    mapel: "Kimia",
-    foto: "https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=200&q=80",
-    gelar: "S1 Sains",
-    biodata: "Spesialisasi Kimia Organik."
-  },
-  {
-    id: 4,
-    nama: "Rahmat Hidayat, S.Kom",
-    mapel: "TIK",
-    foto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
-    gelar: "S1 Komputer",
-    biodata: "Ahli pemrograman & jaringan."
-  }
-];
+        // Initialize filter options
+        const mapelSet = new Set(guruList.map(g => g.mapel));
+        const filterSelect = document.getElementById("filterMapel");
+        
+        mapelSet.forEach(m => {
+            const option = document.createElement("option");
+            option.value = m;
+            option.textContent = m;
+            filterSelect.appendChild(option);
+        });
 
-// Generate filter (mapel unik)
-const mapelSet = new Set(guruList.map(g => g.mapel));
-mapelSet.forEach(m => {
-  document.getElementById("filterMapel").innerHTML += `<option value="${m}">${m}</option>`;
-});
+        // Render teacher cards
+        function renderGuru(filter = "all") {
+            const grid = document.getElementById("guruGrid");
+            const emptyState = document.getElementById("emptyState");
+            
+            // Clear grid
+            grid.innerHTML = "";
+            
+            // Filter teachers
+            const filteredGuru = guruList.filter(g => 
+                filter === "all" ? true : g.mapel === filter
+            );
+            
+            // Show empty state if no results
+            if (filteredGuru.length === 0) {
+                emptyState.classList.remove("hidden");
+                grid.classList.add("hidden");
+                return;
+            }
+            
+            // Hide empty state and show grid
+            emptyState.classList.add("hidden");
+            grid.classList.remove("hidden");
+            
+            // Render cards
+            filteredGuru.forEach(g => {
+                const card = document.createElement("div");
+                card.className = "teacher-card bg-white rounded-2xl shadow-lg overflow-hidden card-hover";
+                card.setAttribute("data-aos", "fade-up");
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${g.foto}" 
+                             alt="${g.nama}"
+                             class="w-full h-48 object-cover"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        <div class="absolute top-4 right-4">
+                            <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-primary">
+                                ${g.mapel}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-primary mb-1">${g.nama}</h3>
+                                <p class="text-gray-600 text-sm">${g.gelar}</p>
+                            </div>
+                            <div class="w-10 h-10 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-user-graduate text-primary"></i>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 text-sm mb-6 line-clamp-3">${g.biodata}</p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            ${g.keahlian.slice(0, 2).map(skill => `
+                                <span class="px-3 py-1 bg-gradient-to-r from-gray-50 to-white text-gray-700 rounded-full text-xs font-medium">
+                                    ${skill}
+                                </span>
+                            `).join('')}
+                            ${g.keahlian.length > 2 ? `
+                                <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
+                                    +${g.keahlian.length - 2} lainnya
+                                </span>
+                            ` : ''}
+                        </div>
+                        
+                        <button onclick="openTeacherDetail(${g.id})" 
+                                class="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group">
+                            <span>Lihat Profil</span>
+                            <i class="fas fa-arrow-right text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </button>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
 
-// Render grid
-function renderGuru(filter = "all") {
-  const grid = document.getElementById("guruGrid");
-  grid.innerHTML = "";
+        // Open teacher detail modal
+        function openTeacherDetail(id) {
+            const teacher = guruList.find(g => g.id === id);
+            if (!teacher) return;
+            
+            // Update modal content
+            document.getElementById('modalName').textContent = teacher.nama;
+            document.getElementById('modalMapel').textContent = teacher.mapel;
+            document.getElementById('modalPhoto').src = teacher.foto;
+            document.getElementById('modalPhoto').alt = teacher.nama;
+            document.getElementById('modalGelar').textContent = teacher.gelar;
+            document.getElementById('modalBiodata').textContent = teacher.biodata;
+            
+            // Update skills
+            const skillsContainer = document.getElementById('modalKeahlian');
+            skillsContainer.innerHTML = '';
+            teacher.keahlian.forEach(skill => {
+                const skillEl = document.createElement('span');
+                skillEl.className = 'px-3 py-1.5 bg-gradient-to-r from-primary/5 to-accent/5 text-primary rounded-lg text-sm font-medium';
+                skillEl.textContent = skill;
+                skillsContainer.appendChild(skillEl);
+            });
+            
+            // Update achievements
+            const achievementsContainer = document.getElementById('modalPencapaian');
+            achievementsContainer.innerHTML = '';
+            teacher.pencapaian.forEach(achievement => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start gap-3';
+                li.innerHTML = `
+                    <i class="fas fa-check-circle text-green-500 mt-1 flex-shrink-0"></i>
+                    <span class="text-gray-700">${achievement}</span>
+                `;
+                achievementsContainer.appendChild(li);
+            });
+            
+            // Show modal
+            const modal = document.getElementById('teacherModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
 
-  guruList
-    .filter(g => filter === "all" ? true : g.mapel === filter)
-    .forEach(g => {
-      grid.innerHTML += `
-        <div onclick="openDetail(${g.id})"
-            class="cursor-pointer bg-white p-6 rounded-2xl shadow hover:shadow-xl transition">
-          <img src="${g.foto}" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover">
-          <h3 class="text-center font-bold text-lg">${g.nama}</h3>
-          <p class="text-center text-gray-600 text-sm">${g.mapel}</p>
-        </div>
-      `;
-    });
-}
-renderGuru();
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('teacherModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
 
-// Filter change
-document.getElementById("filterMapel").addEventListener("change", (e) => {
-  renderGuru(e.target.value);
-});
+        // Event Listeners
+        document.getElementById('filterMapel').addEventListener('change', (e) => {
+            renderGuru(e.target.value);
+        });
 
-// Go to detail
-function openDetail(id) {
-  window.location.href = `guru-detail.html?id=${id}`;
-}
-</script>
+        document.getElementById('resetFilter').addEventListener('click', () => {
+            filterSelect.value = 'all';
+            renderGuru('all');
+        });
 
+        document.getElementById('resetFilterEmpty').addEventListener('click', () => {
+            filterSelect.value = 'all';
+            renderGuru('all');
+        });
+
+        document.getElementById('closeModal').addEventListener('click', closeModal);
+
+        document.getElementById('teacherModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('teacherModal')) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Initial render
+        renderGuru();
+    </script>
 </body>
 </html>
