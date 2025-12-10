@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Program & Ekskul - MA Yuppi</title>
+    <title>Program & Ekstrakurikuler - MA YUPPI</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Tailwind Config -->
     <script>
@@ -23,555 +23,656 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#550D61',
-                        'secondary': '#FFD700',
-                        'accent': '#7C4E9C',
-                        'dark-gray': '#1a1a1a',
+                        'primary': {
+                            DEFAULT: '#4A0E55',
+                            light: '#5C1A68',
+                            dark: '#3A0844'
+                        },
+                        'secondary': {
+                            DEFAULT: '#FFD700',
+                            light: '#FFE44D',
+                            dark: '#E6C300'
+                        },
+                        'accent': {
+                            DEFAULT: '#8B5FBF',
+                            light: '#9D77D9',
+                            dark: '#7348A6'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
-                        'slide-up': 'slideUp 0.8s ease-out',
-                        'fade-in': 'fadeIn 1s ease-out',
-                        'scale-in': 'scaleIn 0.6s ease-out',
-                        'pulse-slow': 'pulse 3s ease-in-out infinite',
-                    },
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                    }
                 }
             }
         }
     </script>
+    
+    <style>
+        /* Custom Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Custom Classes */
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -12px rgba(74, 14, 85, 0.15);
+        }
+        
+        .program-gradient {
+            background: linear-gradient(135deg, #4A0E55 0%, #8B5FBF 50%, #FFD700 100%);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Selection Color */
+        ::selection {
+            background-color: rgba(139, 95, 191, 0.3);
+        }
+        
+        /* Category Badge Colors */
+        .category-academik { background: linear-gradient(135deg, #4A0E55, #8B5FBF); }
+        .category-seni { background: linear-gradient(135deg, #9C27B0, #E91E63); }
+        .category-olahraga { background: linear-gradient(135deg, #00BCD4, #0097A7); }
+        .category-keterampilan { background: linear-gradient(135deg, #FF9800, #F57C00); }
+        .category-teknologi { background: linear-gradient(135deg, #2196F3, #0D47A1); }
+        .category-karakter { background: linear-gradient(135deg, #4CAF50, #2E7D32); }
+        
+        /* Program Card Styles */
+        .program-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: inherit;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .program-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        /* Achievement Badges */
+        .achievement-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .gold-badge { background: linear-gradient(135deg, #FFD700, #FFC107); color: #5D4037; }
+        .silver-badge { background: linear-gradient(135deg, #E0E0E0, #BDBDBD); color: #424242; }
+        .bronze-badge { background: linear-gradient(135deg, #D7CCC8, #8D6E63); color: #212121; }
+    </style>
 </head>
-<body class="font-sans antialiased bg-white text-dark-gray">
+<body class="font-sans antialiased bg-white text-gray-800">
     
     <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-md transition-all duration-300">
-        <div class="container mx-auto px-4 lg:px-12">
-            <div class="flex items-center justify-between h-20">
-                <a href="index.html" class="flex items-center group">
-                    <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+    <nav class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                        <i class="fas fa-school text-white"></i>
                     </div>
-                    <span class="text-2xl font-extrabold font-serif text-primary tracking-wider">MA YUPPI</span>
+                    <div>
+                        <span class="text-lg font-serif font-bold text-primary">MA YUPPI</span>
+                        <p class="text-xs text-gray-500">Madrasah Aliyah Unggulan</p>
+                    </div>
                 </a>
                 
-                <!-- Desktop Menu -->
-                <div class="hidden lg:block">
-                    <div class="flex items-center space-x-8 text-base font-medium">
-                        <a href="index.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Beranda</a>
-                        
-                        <div class="group relative">
-                            <button class="text-dark-gray hover:text-accent transition duration-200 flex items-center">
-                                Profil <i class="fas fa-chevron-down ml-2 text-xs opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
-                            </button>
-                            <div class="absolute hidden group-hover:block bg-white shadow-2xl rounded-xl mt-2 w-56 py-2 border-t-2 border-primary animate-slide-up">
-                                <a href="about.html" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-school mr-2 text-accent"></i>Profil Sekolah</a>
-                                <a href="about.html#visi-misi" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-bullseye mr-2 text-accent"></i>Visi & Misi</a>
-                                <a href="about.html#struktur" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-sitemap mr-2 text-accent"></i>Struktur Organisasi</a>
-                            </div>
-                        </div>
-                        
-                        <a href="programs.html" class="text-primary hover:text-accent transition duration-200 font-bold relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Program</a>
-                        <a href="about.html#guru-staf" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Guru & Staf</a>
-                        <a href="news.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Berita</a>
-                        <a href="contact.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Kontak</a>
-                        
-                        <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="bg-gradient-to-r from-primary to-accent text-white hover:from-accent hover:to-primary px-6 py-2.5 rounded-full shadow-lg transition-all duration-300 font-bold tracking-wide border-2 border-transparent hover:border-secondary transform hover:scale-105">
-                            PPDB <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
-                    </div>
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center gap-6">
+                    <a href="index.html" class="text-gray-600 hover:text-primary transition-colors duration-300 font-medium">
+                        Beranda
+                    </a>
+                    <a href="about.html" class="text-gray-600 hover:text-primary transition-colors duration-300 font-medium">
+                        Profil
+                    </a>
+                    <a href="programs.html" class="text-primary font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary">
+                        Program & Ekskul
+                    </a>
+                    <a href="guru.html" class="text-gray-600 hover:text-primary transition-colors duration-300 font-medium">
+                        Guru & Staf
+                    </a>
+                    <a href="contact.html" class="text-gray-600 hover:text-primary transition-colors duration-300 font-medium">
+                        Kontak
+                    </a>
+                    <a href="https://ppdb.mayuppi.sch.id" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="px-6 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-bold hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
+                        PPDB 2025
+                    </a>
                 </div>
-
+                
                 <!-- Mobile Menu Button -->
-                <div class="lg:hidden">
-                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-white hover:bg-primary transition-all duration-300">
-                        <i class="fas fa-bars text-2xl" id="icon-open"></i>
-                        <i class="fas fa-times text-2xl hidden" id="icon-close"></i>
-                    </button>
-                </div>
+                <button id="mobileMenuButton" class="lg:hidden w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-bars text-gray-600"></i>
+                </button>
             </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div class="lg:hidden hidden" id="mobile-menu">
-            <div class="px-5 pt-2 pb-3 space-y-1 bg-white shadow-inner border-t border-gray-100">
-                <a href="index.html" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Beranda</a>
-                <a href="about.html" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Profil Sekolah</a>
-                <a href="about.html#visi-misi" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Visi & Misi</a>
-                <a href="about.html#struktur" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Struktur Organisasi</a>
-                <a href="programs.html" class="text-primary block px-4 py-3 rounded-lg text-base font-medium bg-gray-50 hover:bg-gray-100 transition-colors duration-200">Program & Ekskul</a>
-                <a href="about.html#guru-staf" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Guru & Staf</a>
-                <a href="news.html" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Berita</a>
-                <a href="contact.html" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Kontak</a>
-                <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="bg-gradient-to-r from-primary to-accent text-white hover:from-accent hover:to-primary px-4 py-3 mt-2 rounded-lg shadow-md block font-bold text-center transition-all duration-300">PPDB</a>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="lg:hidden hidden bg-white border-t border-gray-100">
+                <div class="py-4 px-4 space-y-2">
+                    <a href="index.html" class="block py-3 px-4 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors duration-300">
+                        Beranda
+                    </a>
+                    <a href="about.html" class="block py-3 px-4 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors duration-300">
+                        Profil
+                    </a>
+                    <a href="programs.html" class="block py-3 px-4 text-primary bg-primary/5 rounded-lg font-semibold">
+                        Program & Ekskul
+                    </a>
+                    <a href="guru.html" class="block py-3 px-4 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors duration-300">
+                        Guru & Staf
+                    </a>
+                    <a href="contact.html" class="block py-3 px-4 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors duration-300">
+                        Kontak
+                    </a>
+                    <a href="https://ppdb.mayuppi.sch.id" 
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="block py-3 px-4 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-bold text-center mt-2">
+                        PPDB 2025
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Header -->
-    <section class="pt-32 pb-20 bg-gradient-to-br from-primary via-accent to-primary text-white relative overflow-hidden">
+    <!-- Hero Section -->
+    <section class="program-gradient text-white py-16 lg:py-20 overflow-hidden">
         <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-0 left-0 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
+            <div class="absolute top-0 left-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl"></div>
         </div>
         
-        <div class="container mx-auto px-4 lg:px-12 relative z-10">
-            <div class="max-w-4xl mx-auto text-center">
-                <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-6xl mx-auto text-center">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-semibold mb-6">
+                    <i class="fas fa-rocket text-secondary"></i>
+                    Kembangkan Potensi, Raih Prestasi
+                </div>
+                
+                <h1 class="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold mb-6 leading-tight">
                     Program & Ekstrakurikuler
+                    <span class="block text-secondary">MA YUPPI</span>
                 </h1>
-                <p class="text-xl text-white/90 leading-relaxed">
-                    Mengembangkan potensi akademik dan non-akademik siswa melalui beragam program unggulan
+                
+                <p class="text-lg lg:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
+                    Lebih dari 30 program unggulan untuk mengembangkan potensi akademik, karakter Islami, dan keterampilan abad 21.
+                    Temukan minat dan bakat Anda di sini.
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Program Unggulan -->
-    <section class="py-20 md:py-32 bg-white section-reveal">
-        <div class="container mx-auto px-4 lg:px-12">
-            <div class="max-w-4xl mx-auto text-center mb-16">
-                <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 inline-block">Fokus Kami</span>
-                <h2 class="text-4xl md:text-6xl font-serif font-bold text-primary mb-6">
-                    Program Unggulan
-                </h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Program cards -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:border-accent transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2">
-                    <div class="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-flask text-3xl text-white"></i>
+                
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mt-12">
+                    <div class="glass-morphism p-4 rounded-xl">
+                        <p class="text-2xl lg:text-3xl font-bold mb-1">30+</p>
+                        <p class="text-white/70 text-sm">Program Ekskul</p>
                     </div>
-                    <h3 class="text-2xl font-serif font-bold text-primary mb-4 text-center">co-kulikuler</h3>
-                    <p class="text-gray-600 text-center mb-6">Pengembangan kemampuan riset ilmiah dengan bimbingan dosen universitas mitra</p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-accent mr-2"></i>
-                            <span>Laboratorium lengkap</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-accent mr-2"></i>
-                            <span>Pembimbing ahli</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-accent mr-2"></i>
-                            <span>Kompetisi nasional</span>
-                        </li>
-                    </ul>
+                    <div class="glass-morphism p-4 rounded-xl">
+                        <p class="text-2xl lg:text-3xl font-bold mb-1">6</p>
+                        <p class="text-white/70 text-sm">Kategori Utama</p>
+                    </div>
+                    <div class="glass-morphism p-4 rounded-xl">
+                        <p class="text-2xl lg:text-3xl font-bold mb-1">98%</p>
+                        <p class="text-white/70 text-sm">Siswa Aktif</p>
+                    </div>
+                    <div class="glass-morphism p-4 rounded-xl">
+                        <p class="text-2xl lg:text-3xl font-bold mb-1">85+</p>
+                        <p class="text-white/70 text-sm">Prestasi Nasional</p>
+                    </div>
                 </div>
                 
-                <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:border-accent transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2">
-                    <div class="w-20 h-20 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-book-quran text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-serif font-bold text-primary mb-4 text-center">intra-kulikuler</h3>
-                    <p class="text-gray-600 text-center mb-6">Program menghafal Al-Quran dengan target hafalan 5-30 juz</p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-accent mr-2"></i>
-                            <span>Pembimbing tahfidz</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-accent mr-2"></i>
-                            <span>Metode mutqin</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-accent mr-2"></i>
-                            <span>Munaqosyah berkala</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:border-accent transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2">
-                    <div class="w-20 h-20 bg-gradient-to-br from-secondary to-yellow-400 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-globe text-3xl text-primary"></i>
-                    </div>
-                    <h3 class="text-2xl font-serif font-bold text-primary mb-4 text-center">Program Internasional</h3>
-                    <p class="text-gray-600 text-center mb-6">Student exchange dan kemitraan dengan sekolah luar negeri</p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-accent mr-2"></i>
-                            <span>Student exchange</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-accent mr-2"></i>
-                            <span>Bahasa asing intensif</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-accent mr-2"></i>
-                            <span>Sertifikasi internasional</span>
-                        </li>
-                    </ul>
+                <!-- Scroll Indicator -->
+                <div class="mt-12 animate-bounce">
+                    <a href="#programs" class="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors duration-300">
+                        <span class="text-sm font-medium">EXPLORE PROGRAMS</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Ekskul Section -->
-    <section class="py-20 md:py-32 bg-gray-50 section-reveal" id="ekskul">
-        <div class="container mx-auto px-4 lg:px-12">
-            <div class="max-w-4xl mx-auto text-center mb-16">
-                <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 inline-block">Pengembangan Diri</span>
-                <h2 class="text-4xl md:text-6xl font-serif font-bold text-primary mb-6">
-                    Ekstrakurikuler
+    <!-- Program Categories -->
+    <section id="categories" class="py-12 lg:py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl lg:text-3xl font-bold text-primary mb-8 text-center">
+                    Kategori Program
                 </h2>
-                <p class="text-lg text-gray-600 leading-relaxed">
-                    30+ program ekstrakurikuler untuk mengembangkan minat dan bakat siswa
-                </p>
-            </div>
-            
-            <!-- Filter Buttons -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button class="filter-btn active bg-primary text-white px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-accent" data-filter="all">
-                    Semua
-                </button>
-                <button class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-gray-300" data-filter="akademik">
-                    Akademik
-                </button>
-                <button class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-gray-300" data-filter="seni">
-                    Seni & Budaya
-                </button>
-                <button class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-gray-300" data-filter="olahraga">
-                    Olahraga
-                </button>
-                <button class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-gray-300" data-filter="keterampilan">
-                    Keterampilan
-                </button>
-            </div>
-            
-            <!-- Ekskul Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="ekskul-grid">
-                <!-- Ekskul cards -->
-                <div class="ekskul-card" data-category="akademik">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-book-open text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-primary">Tahfidz Quran</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Program menghafal Al-Quran dengan target minimal 5 juz dan maksimal 30 juz</p>
-                        <div class="flex items-center text-sm text-accent font-semibold">
-                            <i class="fas fa-users mr-2"></i>
-                            <span>45 Siswa Aktif</span>
-                        </div>
-                    </div>
-                </div>
                 
-                <div class="ekskul-card" data-category="akademik">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-flask text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-primary">Klub Sains</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Riset dan eksperimen sains untuk olimpiade dan kompetisi karya ilmiah</p>
-                        <div class="flex items-center text-sm text-accent font-semibold">
-                            <i class="fas fa-users mr-2"></i>
-                            <span>32 Siswa Aktif</span>
-                        </div>
-                    </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                    <button class="category-btn active px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] bg-gradient-to-br from-primary to-accent text-white shadow-lg"
+                            data-category="all">
+                        <i class="fas fa-th-large mr-2"></i>
+                        Semua
+                    </button>
+                    <button class="category-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] bg-white text-gray-700 shadow-sm hover:shadow-md"
+                            data-category="akademik">
+                        <i class="fas fa-graduation-cap mr-2"></i>
+                        Akademik
+                    </button>
+                    <button class="category-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] bg-white text-gray-700 shadow-sm hover:shadow-md"
+                            data-category="karakter">
+                        <i class="fas fa-heart mr-2"></i>
+                        Karakter
+                    </button>
+                    <button class="category-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] bg-white text-gray-700 shadow-sm hover:shadow-md"
+                            data-category="teknologi">
+                        <i class="fas fa-laptop-code mr-2"></i>
+                        Teknologi
+                    </button>
+                    <button class="category-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] bg-white text-gray-700 shadow-sm hover:shadow-md"
+                            data-category="seni">
+                        <i class="fas fa-palette mr-2"></i>
+                        Seni & Budaya
+                    </button>
+                    <button class="category-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] bg-white text-gray-700 shadow-sm hover:shadow-md"
+                            data-category="olahraga">
+                        <i class="fas fa-futbol mr-2"></i>
+                        Olahraga
+                    </button>
                 </div>
-                
-                <div class="ekskul-card" data-category="keterampilan">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-laptop-code text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-primary">Coding & Robotik</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Belajar pemrograman, web development, mobile app, dan robotika</p>
-                        <div class="flex items-center text-sm text-accent font-semibold">
-                            <i class="fas fa-users mr-2"></i>
-                            <span>38 Siswa Aktif</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="ekskul-card" data-category="akademik">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-comments text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-primary">English Debate</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Melatih kemampuan berbicara, berpikir kritis, dan argumentasi dalam bahasa Inggris</p>
-                        <div class="flex items-center text-sm text-accent font-semibold">
-                            <i class="fas fa-users mr-2"></i>
-                            <span>28 Siswa Aktif</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="ekskul-card" data-category="seni">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-palette text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-primary">Kaligrafi & Seni</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Seni kaligrafi Arab, desain grafis, dan seni lukis Islami</p>
-                        <div class="flex items-center text-sm text-accent font-semibold">
-                            <i class="fas fa-users mr-2"></i>
-                            <span>25 Siswa Aktif</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="ekskul-card" data-category="olahraga">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-futbol text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-primary">Futsal</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Tim futsal putra dan putri dengan prestasi tingkat kota dan provinsi</p>
-                        <div class="flex items-center text-sm text-accent font-semibold">
-                            <i class="fas fa-users mr-2"></i>
-                            <span>42 Siswa Aktif</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="ekskul-card" data-category="keterampilan">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-microphone text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-primary">Jurnalistik</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Majalah sekolah, fotografi, videografi, dan media sosial</p>
-                        <div class="flex items-center text-sm text-accent font-semibold">
-                            <i class="fas fa-users mr-2"></i>
-                            <span>30 Siswa Aktif</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="ekskul-card" data-category="seni">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-music text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-primary">Nasyid & Hadroh</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Seni musik Islami dengan alat musik tradisional dan modern</p>
-                        <div class="flex items-center text-sm text-accent font-semibold">
-                            <i class="fas fa-users mr-2"></i>
-                            <span>35 Siswa Aktif</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="ekskul-card" data-category="keterampilan">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-hands-helping text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-primary">PMR & Pramuka</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Kepedulian sosial, pertolongan pertama, dan kepramukaan</p>
-                        <div class="flex items-center text-sm text-accent font-semibold">
-                            <i class="fas fa-users mr-2"></i>
-                            <span>50 Siswa Aktif</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="ekskul-card" data-category="seni">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-theater-masks text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-primary">Teater Islami</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Seni peran dan drama dengan nilai-nilai Islam</p>
-                        <div class="flex items-center text-sm text-accent font-semibold">
-                            <i class="fas fa-users mr-2"></i>
-                            <span>20 Siswa Aktif</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="ekskul-card" data-category="akademik">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-calculator text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-primary">Olimpiade Matematika</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Persiapan kompetisi matematika tingkat nasional dan internasional</p>
-                        <div class="flex items-center text-sm text-accent font-semibold">
-                            <i class="fas fa-users mr-2"></i>
-                            <span>24 Siswa Aktif</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="ekskul-card" data-category="olahraga">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-swimming-pool text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-primary">Renang</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Olahraga renang untuk kesehatan dan kompetisi</p>
-                        <div class="flex items-center text-sm text-accent font-semibold">
-                            <i class="fas fa-users mr-2"></i>
-                            <span>18 Siswa Aktif</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- More Ekskul Button -->
-            <div class="text-center mt-12">
-                <button id="load-more" class="inline-block bg-primary hover:bg-accent text-white px-10 py-4 rounded-full text-lg font-bold shadow-xl transition-all duration-300 transform hover:scale-105">
-                    Muat Lebih Banyak <i class="fas fa-plus ml-2"></i>
-                </button>
             </div>
         </div>
     </section>
 
-    <!-- Prestasi Section -->
-    <section class="py-20 md:py-32 bg-white section-reveal" id="prestasi">
-        <div class="container mx-auto px-4 lg:px-12">
-            <div class="max-w-4xl mx-auto text-center mb-16">
-                <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 inline-block">Pencapaian</span>
-                <h2 class="text-4xl md:text-6xl font-serif font-bold text-primary mb-6">
-                    Prestasi Ekskul
-                </h2>
-                <p class="text-lg text-gray-600 leading-relaxed">
-                    Hasil karya dan pencapaian siswa dalam berbagai kompetisi
-                </p>
-            </div>
-            
-            <!-- Prestasi Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Prestasi cards -->
-                <div class="bg-white rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300 border border-gray-100">
-                    <div class="text-center mb-6">
-                        <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-secondary rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-                            <i class="fas fa-trophy text-3xl text-primary"></i>
-                        </div>
-                        <span class="achievement-badge">Juara 1</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-primary mb-2 text-center">Olimpiade Sains Nasional</h3>
-                    <p class="text-gray-600 text-center mb-4">Bidang Biologi - Tingkat Nasional</p>
-                    <div class="text-center">
-                        <span class="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">Klub Sains</span>
-                    </div>
+    <!-- Programs Grid -->
+    <section id="programs" class="py-12 lg:py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="programsGrid">
+                    <!-- Program cards will be generated by JavaScript -->
                 </div>
                 
-                <div class="bg-white rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300 border border-gray-100">
-                    <div class="text-center mb-6">
-                        <div class="w-20 h-20 bg-gradient-to-br from-gray-300 to-gray-400 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-                            <i class="fas fa-medal text-3xl text-white"></i>
+                <!-- Empty State -->
+                <div id="emptyState" class="hidden text-center py-16">
+                    <div class="max-w-md mx-auto">
+                        <div class="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-search text-gray-400 text-3xl"></i>
                         </div>
-                        <span class="achievement-badge">Juara 2</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-primary mb-2 text-center">Lomba Debat Bahasa Arab</h3>
-                    <p class="text-gray-600 text-center mb-4">Tingkat Provinsi Jawa Barat</p>
-                    <div class="text-center">
-                        <span class="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">English Debate</span>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300 border border-gray-100">
-                    <div class="text-center mb-6">
-                        <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-                            <i class="fas fa-award text-3xl text-white"></i>
-                        </div>
-                        <span class="achievement-badge">Juara 3</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-primary mb-2 text-center">Kompetisi Karya Tulis Ilmiah</h3>
-                    <p class="text-gray-600 text-center mb-4">Tingkat Nasional - ITB</p>
-                    <div class="text-center">
-                        <span class="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">Klub Sains</span>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300 border border-gray-100">
-                    <div class="text-center mb-6">
-                        <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-secondary rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-                            <i class="fas fa-trophy text-3xl text-primary"></i>
-                        </div>
-                        <span class="achievement-badge">Juara 1</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-primary mb-2 text-center">Tahfidz Quran Competition</h3>
-                    <p class="text-gray-600 text-center mb-4">30 Juz - Tingkat Kota</p>
-                    <div class="text-center">
-                        <span class="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">Tahfidz Quran</span>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300 border border-gray-100">
-                    <div class="text-center mb-6">
-                        <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-secondary rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-                            <i class="fas fa-star text-3xl text-primary"></i>
-                        </div>
-                        <span class="achievement-badge">Best Speaker</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-primary mb-2 text-center">English Debate Championship</h3>
-                    <p class="text-gray-600 text-center mb-4">Tingkat Regional Asia Tenggara</p>
-                    <div class="text-center">
-                        <span class="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">English Debate</span>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300 border border-gray-100">
-                    <div class="text-center mb-6">
-                        <div class="w-20 h-20 bg-gradient-to-br from-gray-300 to-gray-400 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-                            <i class="fas fa-code text-3xl text-white"></i>
-                        </div>
-                        <span class="achievement-badge">Juara 2</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-primary mb-2 text-center">Hackathon Programming</h3>
-                    <p class="text-gray-600 text-center mb-4">Kategori Mobile App Development</p>
-                    <div class="text-center">
-                        <span class="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">Coding & Robotik</span>
+                        <h3 class="text-xl font-bold text-gray-700 mb-3">Program Tidak Ditemukan</h3>
+                        <p class="text-gray-600 mb-6">Tidak ada program yang sesuai dengan kategori yang dipilih. Coba kategori lain.</p>
+                        <button id="resetFilter" 
+                                class="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300">
+                            Tampilkan Semua Program
+                        </button>
                     </div>
                 </div>
             </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="inline-block bg-secondary hover:bg-yellow-400 text-primary px-10 py-4 rounded-full text-lg font-bold shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    Lihat Semua Prestasi <i class="fas fa-trophy ml-2"></i>
-                </a>
+        </div>
+    </section>
+
+    <!-- Program Unggulan Section -->
+    <section class="py-16 lg:py-20 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-semibold text-primary mb-4">
+                        <i class="fas fa-crown text-secondary"></i>
+                        PROGRAM UNGGULAN
+                    </div>
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary mb-6">
+                        Flagship Programs
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Program khusus yang menjadi keunggulan MA YUPPI dalam membentuk siswa berkompetensi global
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Flagship 1 -->
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover" data-aos="fade-up">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary to-accent"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-book-quran text-white text-6xl opacity-20"></i>
+                            </div>
+                            <div class="absolute top-4 left-4">
+                                <span class="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-bold text-primary">
+                                    <i class="fas fa-star text-secondary mr-1"></i> Unggulan
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-2xl font-bold text-primary">Tahfidz Quran</h3>
+                                <div class="w-12 h-12 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-book-open text-primary"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Program intensif menghafal Al-Quran dengan target 5-30 juz. Metode sanad mutawatir dengan bimbingan hafiz bersertifikat.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-primary mb-1">45</p>
+                                    <p class="text-sm text-gray-500">Siswa Aktif</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-primary mb-1">5+</p>
+                                    <p class="text-sm text-gray-500">Hafiz Baru/Tahun</p>
+                                </div>
+                            </div>
+                            <a href="#" class="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group">
+                                <span>Detail Program</span>
+                                <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Flagship 2 -->
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-secondary to-accent"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-flask text-white text-6xl opacity-20"></i>
+                            </div>
+                            <div class="absolute top-4 left-4">
+                                <span class="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-bold text-primary">
+                                    <i class="fas fa-star text-secondary mr-1"></i> Unggulan
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-2xl font-bold text-primary">Klub Riset & Sains</h3>
+                                <div class="w-12 h-12 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-microscope text-primary"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Program penelitian ilmiah untuk olimpiade sains nasional dan internasional. Bimbingan langsung dari dosen universitas mitra.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-primary mb-1">32</p>
+                                    <p class="text-sm text-gray-500">Siswa Aktif</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-primary mb-1">12</p>
+                                    <p class="text-sm text-gray-500">Prestasi Nasional</p>
+                                </div>
+                            </div>
+                            <a href="#" class="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group">
+                                <span>Detail Program</span>
+                                <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Flagship 3 -->
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-accent to-primary"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-laptop-code text-white text-6xl opacity-20"></i>
+                            </div>
+                            <div class="absolute top-4 left-4">
+                                <span class="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-bold text-primary">
+                                    <i class="fas fa-star text-secondary mr-1"></i> Unggulan
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-2xl font-bold text-primary">Coding & Robotik</h3>
+                                <div class="w-12 h-12 bg-gradient-to-br from-accent/10 to-primary/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-robot text-primary"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Pembelajaran pemrograman, pengembangan aplikasi, dan robotika untuk menyiapkan talenta digital masa depan.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-primary mb-1">38</p>
+                                    <p class="text-sm text-gray-500">Siswa Aktif</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-primary mb-1">3</p>
+                                    <p class="text-sm text-gray-500">Juara Hackathon</p>
+                                </div>
+                            </div>
+                            <a href="#" class="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group">
+                                <span>Detail Program</span>
+                                <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="py-16 lg:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-full text-sm font-semibold text-primary mb-4">
+                        <i class="fas fa-trophy text-secondary"></i>
+                        PRESTASI & PENGHARGAAN
+                    </div>
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary mb-6">
+                        Pencapaian Siswa
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Hasil karya dan pencapaian siswa dalam berbagai kompetisi tingkat regional, nasional, dan internasional
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Achievement 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover" data-aos="fade-up">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-trophy text-yellow-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="gold-badge achievement-badge">Juara 1</span>
+                                <p class="text-sm text-gray-500 mt-1">Tingkat Nasional</p>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">Olimpiade Sains Nasional</h3>
+                        <p class="text-gray-600 mb-4">Bidang Biologi - Kompetisi Ilmiah Terbesar di Indonesia</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-semibold text-accent">Klub Sains</span>
+                            <span class="text-sm text-gray-500">2023</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-medal text-gray-500 text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="silver-badge achievement-badge">Juara 2</span>
+                                <p class="text-sm text-gray-500 mt-1">Tingkat Provinsi</p>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">Lomba Debat Bahasa Arab</h3>
+                        <p class="text-gray-600 mb-4">Kompetisi Debat Bahasa Arab Terbuka Jabar</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-semibold text-accent">English Debate</span>
+                            <span class="text-sm text-gray-500">2023</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 3 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-award text-orange-500 text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="bronze-badge achievement-badge">Juara 3</span>
+                                <p class="text-sm text-gray-500 mt-1">Tingkat Nasional</p>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">Kompetisi Karya Tulis Ilmiah</h3>
+                        <p class="text-gray-600 mb-4">ITB Scientific Paper Competition</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-semibold text-accent">Klub Sains</span>
+                            <span class="text-sm text-gray-500">2022</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 4 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover" data-aos="fade-up">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-star text-yellow-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="gold-badge achievement-badge">Best Speaker</span>
+                                <p class="text-sm text-gray-500 mt-1">Tingkat Regional</p>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">English Debate Championship</h3>
+                        <p class="text-gray-600 mb-4">Asia Southeast Debate Tournament</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-semibold text-accent">English Debate</span>
+                            <span class="text-sm text-gray-500">2023</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 5 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-book-quran text-primary text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="gold-badge achievement-badge">Hafiz 30 Juz</span>
+                                <p class="text-sm text-gray-500 mt-1">Tingkat Kota</p>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">Tahfidz Quran Competition</h3>
+                        <p class="text-gray-600 mb-4">Kompetisi Tahfidz Al-Quran 30 Juz</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-semibold text-accent">Tahfidz Quran</span>
+                            <span class="text-sm text-gray-500">2023</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 6 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-code text-blue-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="silver-badge achievement-badge">Juara 2</span>
+                                <p class="text-sm text-gray-500 mt-1">Hackathon Nasional</p>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">Mobile App Development</h3>
+                        <p class="text-gray-600 mb-4">National Student Hackathon 2023</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-semibold text-accent">Coding & Robotik</span>
+                            <span class="text-sm text-gray-500">2023</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- View All Achievements -->
+                <div class="text-center mt-12">
+                    <a href="#" 
+                       class="inline-flex items-center gap-3 px-8 py-3.5 bg-white border-2 border-primary text-primary rounded-xl font-bold hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-[1.02] group">
+                        <span>Lihat Semua Prestasi</span>
+                        <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 md:py-32 bg-gradient-to-br from-primary via-accent to-primary text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-0 left-0 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
-        </div>
-        
-        <div class="container mx-auto px-4 lg:px-12 relative z-10">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6">
-                    Tertarik dengan Program Kami?
+    <section class="py-16 lg:py-20 bg-gradient-to-br from-primary via-accent/90 to-primary text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-calendar-check text-3xl text-secondary"></i>
+                </div>
+                
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold mb-6">
+                    Bergabung dengan Program Kami
                 </h2>
-                <p class="text-xl text-white/90 mb-10 leading-relaxed">
-                    Daftarkan diri Anda untuk mendapatkan informasi lengkap tentang program dan ekskul yang tersedia
+                
+                <p class="text-lg text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
+                    Pilih program yang sesuai dengan minat dan bakat Anda. Daftarkan diri Anda sekarang untuk mengembangkan potensi maksimal.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                    <a href="contact.html" class="inline-block bg-secondary hover:bg-yellow-400 text-primary px-10 py-4 rounded-full text-lg font-bold shadow-2xl transition-all duration-300 transform hover:scale-105">
-                        Konsultasi Program <i class="fas fa-comments ml-2"></i>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://ppdb.mayuppi.sch.id" 
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="px-8 py-3.5 bg-secondary text-primary rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3">
+                        <i class="fas fa-user-plus"></i>
+                        Daftar Sekarang
                     </a>
-                    <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="inline-block glass-effect border-2 border-white/30 hover:border-white text-white px-10 py-4 rounded-full text-lg font-bold shadow-2xl transition-all duration-300 transform hover:scale-105">
-                        Daftar Sekarang <i class="fas fa-user-plus ml-2"></i>
+                    
+                    <a href="contact.html" 
+                       class="px-8 py-3.5 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3">
+                        <i class="fas fa-comments"></i>
+                        Konsultasi Program
                     </a>
                 </div>
             </div>
@@ -579,295 +680,446 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark-gray text-white pt-20 pb-10">
-        <div class="container mx-auto px-4 lg:px-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand -->
                 <div>
-                    <div class="flex items-center mb-6">
-                        <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-3">
-                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <h4 class="text-3xl font-serif font-bold text-secondary">MA YUPPI</h4>
+                        <div>
+                            <h4 class="text-lg font-serif font-bold text-secondary">MA YUPPI</h4>
+                            <p class="text-sm text-gray-400">Madrasah Aliyah Unggulan</p>
+                        </div>
                     </div>
-                    <p class="text-gray-400 mb-6 leading-relaxed">Madrasah Aliyah Unggulan Berbasis Riset yang berkomitmen pada keunggulan akademik dan karakter Islami.</p>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-facebook-f"></i>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Lembaga pendidikan Islam unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi.
+                    </p>
+                    <div class="flex gap-2">
+                        <a href="https://www.instagram.com/ma_yuppi.official/" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300">
+                            <i class="fab fa-instagram text-gray-400 hover:text-white"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://www.youtube.com/@MAYUPPISoreang557/featured" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300">
+                            <i class="fab fa-youtube text-gray-400 hover:text-white"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#" 
+                           class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300">
+                            <i class="fab fa-tiktok text-gray-400 hover:text-white"></i>
                         </a>
                     </div>
                 </div>
                 
+                <!-- Quick Links -->
                 <div>
-                    <h4 class="text-xl font-bold mb-6 text-secondary">Tautan Cepat</h4>
-                    <ul class="space-y-3">
-                        <li><a href="index.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Beranda</a></li>
-                        <li><a href="about.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Profil Sekolah</a></li>
-                        <li><a href="programs.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Program & Ekskul</a></li>
-                        <li><a href="news.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Berita</a></li>
+                    <h4 class="text-lg font-bold mb-4 text-secondary">Tautan Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Beranda</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Profil Sekolah</a></li>
+                        <li><a href="programs.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Program & Ekskul</a></li>
+                        <li><a href="guru.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Guru & Staf</a></li>
                     </ul>
                 </div>
                 
+                <!-- Information -->
                 <div>
-                    <h4 class="text-xl font-bold mb-6 text-secondary">Informasi</h4>
-                    <ul class="space-y-3">
-                        <li><a href="about.html#visi-misi" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Visi & Misi</a></li>
-                        <li><a href="about.html#struktur" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Struktur Organisasi</a></li>
-                        <li><a href="about.html#guru-staf" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Guru & Staf</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Kontak Kami</a></li>
+                    <h4 class="text-lg font-bold mb-4 text-secondary">Informasi</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html#visi-misi" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Visi & Misi</a></li>
+                        <li><a href="about.html#struktur" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Struktur Organisasi</a></li>
+                        <li><a href="news.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Berita & Artikel</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Kontak Kami</a></li>
                     </ul>
                 </div>
                 
+                <!-- Contact -->
                 <div>
-                    <h4 class="text-xl font-bold mb-6 text-secondary">Kontak</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-accent mt-1 mr-3"></i>
-                            <span class="text-gray-400">Jl. Pendidikan No. 123<br>Bandung, Jawa Barat 40123</span>
+                    <h4 class="text-lg font-bold mb-4 text-secondary">Kontak Kami</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-accent mt-1"></i>
+                            <span class="text-gray-400">
+                                Jl. Raya Soreang - Banjaran No.KM 02, Cingcin, Kec. Soreang, Kabupaten Bandung
+                            </span>
                         </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone text-accent mr-3"></i>
-                            <a href="tel:+62221234567" class="text-gray-400 hover:text-secondary transition-colors duration-200">(022) 123-4567</a>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone text-accent"></i>
+                            <a href="tel:+6281223240815" class="text-gray-400 hover:text-white transition-colors duration-300">
+                                +62 812-2324-0815
+                            </a>
                         </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope text-accent mr-3"></i>
-                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-secondary transition-colors duration-200">info@mayuppi.sch.id</a>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-globe text-accent mr-3"></i>
-                            <a href="https://www.mayuppi.sch.id" target="_blank" class="text-gray-400 hover:text-secondary transition-colors duration-200">www.mayuppi.sch.id</a>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-accent"></i>
+                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-white transition-colors duration-300">
+                                info@mayuppi.sch.id
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
             
+            <!-- Copyright -->
             <div class="border-t border-white/10 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <p class="text-gray-400 text-sm mb-4 md:mb-0">
-                        © <span id="current-year">2024</span> MA Yuppi. All rights reserved. Made with <i class="fas fa-heart text-red-500 mx-1"></i> for education.
+                        © 2024 <span class="text-secondary font-semibold">MA Yuppi</span>. Hak cipta dilindungi.
                     </p>
-                    <div class="flex gap-6 text-sm">
-                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-200">Kebijakan Privasi</a>
-                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-200">Syarat & Ketentuan</a>
-                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-200">Peta Situs</a>
+                    <div class="flex gap-4 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Kebijakan Privasi</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Syarat Layanan</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <a href="#" class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-br from-primary to-accent text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 z-50 opacity-0" id="backToTop">
+    <!-- Back to Top -->
+    <button id="backToTop" 
+            class="fixed bottom-6 right-6 w-12 h-12 bg-gradient-to-br from-primary to-accent text-white rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 active:scale-95 opacity-0 invisible">
         <i class="fas fa-arrow-up"></i>
-    </a>
+    </button>
 
-    <!-- Ekskul Filter & Load More Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const ekskulItems = document.querySelectorAll('.ekskul-card');
-            const loadMoreBtn = document.getElementById('load-more');
-            let visibleItems = 6;
-            
-            // Initially hide items beyond the first 6
-            ekskulItems.forEach((item, index) => {
-                if (index >= 6) {
-                    item.style.display = 'none';
-                }
-            });
-            
-            // Filter functionality
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => {
-                        btn.classList.remove('active', 'bg-primary', 'text-white');
-                        btn.classList.add('bg-gray-200', 'text-gray-700');
-                    });
-                    
-                    // Add active class to clicked button
-                    this.classList.remove('bg-gray-200', 'text-gray-700');
-                    this.classList.add('active', 'bg-primary', 'text-white');
-                    
-                    const filterValue = this.getAttribute('data-filter');
-                    
-                    ekskulItems.forEach((item, index) => {
-                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                            if (index < 6) {
-                                item.style.display = 'block';
-                            } else {
-                                item.style.display = 'none';
-                            }
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                    
-                    // Reset visible items and show load more button
-                    visibleItems = 6;
-                    if (loadMoreBtn) {
-                        loadMoreBtn.style.display = 'inline-block';
-                    }
-                });
-            });
-            
-            // Load more functionality
-            if (loadMoreBtn) {
-                loadMoreBtn.addEventListener('click', function() {
-                    const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
-                    const allItems = Array.from(ekskulItems);
-                    
-                    let itemsToShow = allItems.filter(item => {
-                        if (activeFilter === 'all') {
-                            return item.getAttribute('data-category');
-                        } else {
-                            return item.getAttribute('data-category') === activeFilter;
-                        }
-                    });
-                    
-                    // Show next 3 items
-                    for (let i = visibleItems; i < visibleItems + 3 && i < itemsToShow.length; i++) {
-                        itemsToShow[i].style.display = 'block';
-                    }
-                    visibleItems += 3;
-                    
-                    // Hide button if all items are shown
-                    if (visibleItems >= itemsToShow.length) {
-                        loadMoreBtn.style.display = 'none';
-                    }
-                });
-            }
-        });
-    </script>
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- Main JavaScript -->
+    <!-- Custom JavaScript -->
     <script>
-        // DOM Elements
-        const navbar = document.getElementById('navbar');
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const iconOpen = document.getElementById('icon-open');
-        const iconClose = document.getElementById('icon-close');
-        const backToTop = document.getElementById('backToTop');
-        const currentYear = document.getElementById('current-year');
+        // Initialize AOS
+        AOS.init({
+            duration: 600,
+            once: true,
+            offset: 50
+        });
 
-        // Set current year
-        if (currentYear) {
-            currentYear.textContent = new Date().getFullYear();
+        // Programs Data
+        const programsData = [
+            {
+                id: 1,
+                name: "Tahfidz Quran",
+                category: "karakter",
+                description: "Program menghafal Al-Quran dengan target 5-30 juz. Metode sanad mutawatir dengan bimbingan hafiz bersertifikat.",
+                icon: "fas fa-book-quran",
+                color: "category-karakter",
+                students: 45,
+                achievements: "5+ Hafiz Baru/Tahun",
+                featured: true
+            },
+            {
+                id: 2,
+                name: "Klub Sains & Riset",
+                category: "akademik",
+                description: "Riset dan eksperimen sains untuk olimpiade dan kompetisi karya ilmiah nasional.",
+                icon: "fas fa-flask",
+                color: "category-academik",
+                students: 32,
+                achievements: "12 Prestasi Nasional",
+                featured: true
+            },
+            {
+                id: 3,
+                name: "Coding & Robotik",
+                category: "teknologi",
+                description: "Pembelajaran pemrograman, pengembangan aplikasi, dan robotika untuk talenta digital masa depan.",
+                icon: "fas fa-laptop-code",
+                color: "category-teknologi",
+                students: 38,
+                achievements: "3 Juara Hackathon",
+                featured: true
+            },
+            {
+                id: 4,
+                name: "English Debate Club",
+                category: "akademik",
+                description: "Melatih kemampuan berbicara, berpikir kritis, dan argumentasi dalam bahasa Inggris.",
+                icon: "fas fa-comments",
+                color: "category-academik",
+                students: 28,
+                achievements: "2 Best Speaker Awards"
+            },
+            {
+                id: 5,
+                name: "Kaligrafi & Seni Islami",
+                category: "seni",
+                description: "Seni kaligrafi Arab, desain grafis, dan seni lukis dengan nilai-nilai Islam.",
+                icon: "fas fa-pen-nib",
+                color: "category-seni",
+                students: 25,
+                achievements: "Pameran Nasional"
+            },
+            {
+                id: 6,
+                name: "Futsal Team",
+                category: "olahraga",
+                description: "Tim futsal putra dan putri dengan prestasi tingkat kota dan provinsi.",
+                icon: "fas fa-futbol",
+                color: "category-olahraga",
+                students: 42,
+                achievements: "Juara 2 Turnamen Kota"
+            },
+            {
+                id: 7,
+                name: "Jurnalistik & Multimedia",
+                category: "keterampilan",
+                description: "Majalah sekolah, fotografi, videografi, dan pengelolaan media sosial.",
+                icon: "fas fa-newspaper",
+                color: "category-keterampilan",
+                students: 30,
+                achievements: "Majalah Terbaik Jabar"
+            },
+            {
+                id: 8,
+                name: "Nasyid & Hadroh",
+                category: "seni",
+                description: "Seni musik Islami dengan alat musik tradisional dan modern.",
+                icon: "fas fa-music",
+                color: "category-seni",
+                students: 35,
+                achievements: "Penampilan Nasional"
+            },
+            {
+                id: 9,
+                name: "PMR & Pramuka",
+                category: "karakter",
+                description: "Kepedulian sosial, pertolongan pertama, dan kegiatan kepramukaan.",
+                icon: "fas fa-hands-helping",
+                color: "category-karakter",
+                students: 50,
+                achievements: "Pramuka Garuda"
+            },
+            {
+                id: 10,
+                name: "Teater Islami",
+                category: "seni",
+                description: "Seni peran dan drama dengan nilai-nilai Islam dan budaya lokal.",
+                icon: "fas fa-theater-masks",
+                color: "category-seni",
+                students: 20,
+                achievements: "Festival Teater Pelajar"
+            },
+            {
+                id: 11,
+                name: "Olimpiade Matematika",
+                category: "akademik",
+                description: "Persiapan kompetisi matematika tingkat nasional dan internasional.",
+                icon: "fas fa-calculator",
+                color: "category-academik",
+                students: 24,
+                achievements: "Medali Perunggu Nasional"
+            },
+            {
+                id: 12,
+                name: "Renang",
+                category: "olahraga",
+                description: "Olahraga renang untuk kesehatan dan kompetisi tingkat regional.",
+                icon: "fas fa-swimmer",
+                color: "category-olahraga",
+                students: 18,
+                achievements: "Peraih Medali Provinsi"
+            },
+            {
+                id: 13,
+                name: "Kewirausahaan",
+                category: "keterampilan",
+                description: "Pelatihan bisnis, pemasaran digital, dan pengembangan produk kreatif.",
+                icon: "fas fa-chart-line",
+                color: "category-keterampilan",
+                students: 22,
+                achievements: "Business Plan Competition"
+            },
+            {
+                id: 14,
+                name: "Bahasa Asing (Arab & Inggris)",
+                category: "akademik",
+                description: "Penguasaan bahasa Arab dan Inggris untuk komunikasi global.",
+                icon: "fas fa-language",
+                color: "category-academik",
+                students: 40,
+                achievements: "TOEFL/TOAFL Certification"
+            },
+            {
+                id: 15,
+                name: "Marching Band",
+                category: "seni",
+                description: "Paduan suara dan musik dengan instrumen marching band.",
+                icon: "fas fa-drum",
+                color: "category-seni",
+                students: 32,
+                achievements: "Juara 3 Nasional"
+            }
+        ];
+
+        // Render programs
+        function renderPrograms(category = 'all') {
+            const grid = document.getElementById('programsGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            // Clear grid
+            grid.innerHTML = '';
+            
+            // Filter programs
+            const filteredPrograms = programsData.filter(program => 
+                category === 'all' ? true : program.category === category
+            );
+            
+            // Show empty state if no results
+            if (filteredPrograms.length === 0) {
+                emptyState.classList.remove('hidden');
+                grid.classList.add('hidden');
+                return;
+            }
+            
+            // Hide empty state and show grid
+            emptyState.classList.add('hidden');
+            grid.classList.remove('hidden');
+            
+            // Render programs
+            filteredPrograms.forEach(program => {
+                const programCard = document.createElement('div');
+                programCard.className = 'program-card bg-white rounded-2xl shadow-lg overflow-hidden';
+                programCard.setAttribute('data-aos', 'fade-up');
+                programCard.innerHTML = `
+                    <div class="relative">
+                        <div class="${program.color} h-2"></div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <div class="w-12 h-12 ${program.color} rounded-lg flex items-center justify-center">
+                                            <i class="${program.icon} text-white text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold text-primary">${program.name}</h3>
+                                            <div class="flex items-center gap-2 mt-1">
+                                                <span class="px-3 py-1 ${program.color} text-white text-xs font-semibold rounded-full">
+                                                    ${program.category.charAt(0).toUpperCase() + program.category.slice(1)}
+                                                </span>
+                                                ${program.featured ? `
+                                                    <span class="px-3 py-1 bg-secondary text-primary text-xs font-semibold rounded-full">
+                                                        <i class="fas fa-star text-xs mr-1"></i> Unggulan
+                                                    </span>
+                                                ` : ''}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">
+                                        ${program.description}
+                                    </p>
+                                    
+                                    <div class="grid grid-cols-2 gap-4 mb-6">
+                                        <div class="text-center">
+                                            <p class="text-2xl font-bold text-primary mb-1">${program.students}</p>
+                                            <p class="text-xs text-gray-500">Siswa Aktif</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <p class="text-lg font-bold text-primary mb-1">${program.achievements}</p>
+                                            <p class="text-xs text-gray-500">Pencapaian</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <button onclick="openProgramDetail(${program.id})" 
+                                            class="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group">
+                                        <span>Detail Program</span>
+                                        <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(programCard);
+            });
+            
+            // Re-initialize AOS for dynamically loaded content
+            AOS.refresh();
         }
 
-        // Scroll Effects
-        window.addEventListener('scroll', () => {
-            // Navbar background on scroll
-            if (window.scrollY > 50) {
-                navbar.classList.add('nav-scrolled');
-            } else {
-                navbar.classList.remove('nav-scrolled');
-            }
-            
-            // Back to top button
-            if (window.scrollY > 300) {
-                backToTop.style.opacity = '1';
-                backToTop.style.pointerEvents = 'auto';
-            } else {
-                backToTop.style.opacity = '0';
-                backToTop.style.pointerEvents = 'none';
-            }
-            
-            // Section reveal animation
-            const reveals = document.querySelectorAll('.section-reveal');
-            reveals.forEach(reveal => {
-                const windowHeight = window.innerHeight;
-                const revealTop = reveal.getBoundingClientRect().top;
-                const revealPoint = 150;
+        // Category filter
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active', 'bg-gradient-to-br', 'from-primary', 'to-accent', 'text-white', 'shadow-lg');
+                    btn.classList.add('bg-white', 'text-gray-700', 'shadow-sm');
+                });
                 
-                if (revealTop < windowHeight - revealPoint) {
-                    reveal.classList.add('visible');
-                }
+                // Add active class to clicked button
+                this.classList.remove('bg-white', 'text-gray-700', 'shadow-sm');
+                this.classList.add('active', 'bg-gradient-to-br', 'from-primary', 'to-accent', 'text-white', 'shadow-lg');
+                
+                // Filter programs
+                const category = this.getAttribute('data-category');
+                renderPrograms(category);
             });
         });
 
-        // Mobile Menu Toggle
-        mobileMenuButton.addEventListener('click', () => {
+        // Reset filter button
+        document.getElementById('resetFilter').addEventListener('click', function() {
+            const allBtn = document.querySelector('[data-category="all"]');
+            allBtn.click();
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', function() {
             mobileMenu.classList.toggle('hidden');
-            iconOpen.classList.toggle('hidden');
-            iconClose.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         });
 
         // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                    iconOpen.classList.remove('hidden');
-                    iconClose.classList.add('hidden');
-                }
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+                const icon = mobileMenuButton.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
         });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href') === '#') return;
-                
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Close mobile menu after click
-                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                        iconOpen.classList.remove('hidden');
-                        iconClose.classList.add('hidden');
-                    }
-                }
-            });
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                backToTop.classList.remove('opacity-100', 'visible');
+                backToTop.classList.add('opacity-0', 'invisible');
+            }
         });
 
-        // Back to top functionality
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
+        backToTop.addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+        // Open program detail (placeholder function)
+        function openProgramDetail(id) {
+            const program = programsData.find(p => p.id === id);
+            if (program) {
+                alert(`Detail program: ${program.name}\n\n${program.description}\n\nFitur ini akan diimplementasikan pada versi selanjutnya.`);
+                // In production, this would open a modal or navigate to program detail page
+            }
+        }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.querySelectorAll('.section-reveal').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Initialize animations on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Trigger initial scroll check
-            window.dispatchEvent(new Event('scroll'));
+        // Initial render
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPrograms();
         });
     </script>
 </body>

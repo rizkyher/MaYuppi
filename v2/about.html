@@ -42,66 +42,170 @@
 </head>
 <body class="font-sans antialiased bg-white text-dark-gray">
     
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-md transition-all duration-300">
-        <div class="container mx-auto px-4 lg:px-12">
-            <div class="flex items-center justify-between h-20">
-                <a href="index.html" class="flex items-center group">
-                    <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+  <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100 transition-all duration-300">
+        <div class="container mx-auto px-4 lg:px-8 xl:px-16">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="#hero" class="flex items-center gap-3 group" aria-label="MA YUPPI Home">
+                    <div class="relative w-12 h-12 lg:w-14 lg:h-14">
+                        <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-xl lg:rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden">
+                            <img src="images/logo-MA.png" alt="Logo MA YUPPI" 
+                                 class="w-10 h-10 lg:w-12 lg:h-12 object-contain"
+                                 loading="lazy">
+                        </div>
+                        <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-accent rounded-xl lg:rounded-2xl blur opacity-30 group-hover:opacity-40 transition-opacity duration-500 -z-10"></div>
                     </div>
-                    <span class="text-2xl font-extrabold font-serif text-primary tracking-wider">MA YUPPI</span>
+                    <div>
+                        <h1 class="text-xl lg:text-2xl font-black font-serif text-primary leading-tight">MA YUPPI</h1>
+                        <p class="text-xs text-gray-500 font-medium tracking-wide">Madrasah Aliyah Unggulan</p>
+                    </div>
                 </a>
                 
-                <!-- Desktop Menu -->
-                <div class="hidden lg:block">
-                    <div class="flex items-center space-x-8 text-base font-medium">
-                        <a href="index.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Beranda</a>
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-1">
+                    <nav class="flex items-center space-x-1" aria-label="Main navigation">
+                        <a href="index.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                            Beranda
+                        </a>
                         
-                        <div class="group relative">
-                            <button class="text-primary hover:text-accent transition duration-200 flex items-center font-bold">
-                                Profil <i class="fas fa-chevron-down ml-2 text-xs opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
+                        <div class="relative group" x-data="{ open: false }">
+                            <button class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg flex items-center gap-1"
+                                    @click="open = !open"
+                                    aria-expanded="false"
+                                    aria-haspopup="true">
+                                Profil
+                                <i class="fas fa-chevron-down text-xs transition-transform duration-300" :class="{'rotate-180': open}"></i>
                             </button>
-                            <div class="absolute hidden group-hover:block bg-white shadow-2xl rounded-xl mt-2 w-56 py-2 border-t-2 border-primary animate-slide-up">
-                                <a href="about.html" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-school mr-2 text-accent"></i>Profil Sekolah</a>
-                                <a href="#visi-misi" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-bullseye mr-2 text-accent"></i>Visi & Misi</a>
-                                <a href="#struktur" class="block px-5 py-3 text-sm text-dark-gray hover:bg-gray-50 hover:text-primary transition-colors duration-200"><i class="fas fa-sitemap mr-2 text-accent"></i>Struktur Organisasi</a>
+                            <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2"
+                                 role="menu"
+                                 aria-label="Profil submenu">
+                                <a href="about.html" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors duration-300 group/item"
+                                   role="menuitem">
+                                    <div class="w-8 h-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-school text-primary text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-sm text-gray-800">Profil Sekolah</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">Visi, Misi & Sejarah</p>
+                                    </div>
+                                </a>
+                                <a href="about.html#struktur" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors duration-300 group/item"
+                                   role="menuitem">
+                                    <div class="w-8 h-8 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-sitemap text-primary text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-sm text-gray-800">Struktur Organisasi</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">Tim Kepemimpinan</p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         
-                        <a href="programs.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Program</a>
-                        <a href="#guru-staf" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Guru & Staf</a>
-                        <a href="news.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Berita</a>
-                        <a href="contact.html" class="text-dark-gray hover:text-accent transition duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">Kontak</a>
-                        
-                        <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="bg-gradient-to-r from-primary to-accent text-white hover:from-accent hover:to-primary px-6 py-2.5 rounded-full shadow-lg transition-all duration-300 font-bold tracking-wide border-2 border-transparent hover:border-secondary transform hover:scale-105">
-                            PPDB <i class="fas fa-arrow-right ml-1"></i>
+                        <a href="programs.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                            Program
                         </a>
-                    </div>
+                        
+                        <a href="guru.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                            Guru
+                        </a>
+                        
+                        <a href="news.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                            Berita
+                        </a>
+                        
+                        <a href="contact.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                            Kontak
+                        </a>
+                    </nav>
+                    
+                    <!-- CTA Button -->
+                    <a href="https://bit.ly/Mayuppi" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden group"
+                       aria-label="Daftar PPDB 2025">
+                        <span class="relative z-10 flex items-center gap-2">
+                            PPDB 2025
+                            <i class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <div class="lg:hidden">
-                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-white hover:bg-primary transition-all duration-300">
-                        <i class="fas fa-bars text-2xl" id="icon-open"></i>
-                        <i class="fas fa-times text-2xl hidden" id="icon-close"></i>
-                    </button>
-                </div>
+                <button id="mobile-menu-button" 
+                        class="lg:hidden w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 active:scale-95"
+                        aria-label="Toggle mobile menu"
+                        aria-expanded="false">
+                    <i class="fas fa-bars text-white text-lg" id="icon-open"></i>
+                    <i class="fas fa-times text-white text-lg hidden" id="icon-close"></i>
+                </button>
             </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div class="lg:hidden hidden" id="mobile-menu">
-            <div class="px-5 pt-2 pb-3 space-y-1 bg-white shadow-inner border-t border-gray-100">
-                <a href="index.html" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Beranda</a>
-                <a href="about.html" class="text-primary block px-4 py-3 rounded-lg text-base font-medium bg-gray-50 hover:bg-gray-100 transition-colors duration-200">Profil Sekolah</a>
-                <a href="#visi-misi" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Visi & Misi</a>
-                <a href="#struktur" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Struktur Organisasi</a>
-                <a href="#guru-staf" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Guru & Staf</a>
-                <a href="programs.html" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Program & Ekskul</a>
-                <a href="news.html" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Berita</a>
-                <a href="contact.html" class="text-dark-gray hover:bg-gray-50 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200">Kontak</a>
-                <a href="https://ppdb.mayuppi.sch.id" target="_blank" class="bg-gradient-to-r from-primary to-accent text-white hover:from-accent hover:to-primary px-4 py-3 mt-2 rounded-lg shadow-md block font-bold text-center transition-all duration-300">PPDB</a>
+        <div id="mobile-menu" class="lg:hidden bg-white border-t border-gray-100 shadow-2xl hidden" role="menu">
+            <div class="container mx-auto px-4 py-4">
+                <div class="space-y-1">
+                    <a href="index.html" class="flex items-center justify-between py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                        <span class="font-medium">Beranda</span>
+                        <i class="fas fa-home text-gray-400 group-hover:text-primary"></i>
+                    </a>
+                    
+                    <div class="border-t border-gray-100 pt-2 mt-2">
+                        <p class="px-4 py-2 text-sm font-semibold text-gray-500">PROFIL</p>
+                        <a href="about.html" class="flex items-center gap-3 py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300">
+                            <div class="w-8 h-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-school text-primary text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Profil Sekolah</p>
+                                <p class="text-xs text-gray-500">Visi, Misi & Sejarah</p>
+                            </div>
+                        </a>
+                        <a href="about.html#struktur" class="flex items-center gap-3 py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300">
+                            <div class="w-8 h-8 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-sitemap text-primary text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Struktur Organisasi</p>
+                                <p class="text-xs text-gray-500">Tim Kepemimpinan</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <a href="programs.html" class="flex items-center justify-between py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                        <span class="font-medium">Program</span>
+                        <i class="fas fa-rocket text-gray-400 group-hover:text-primary"></i>
+                    </a>
+                    
+                    <a href="guru.html" class="flex items-center justify-between py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                        <span class="font-medium">Guru</span>
+                        <i class="fas fa-building text-gray-400 group-hover:text-primary"></i>
+                    </a>
+                    
+                    <a href="news.html" class="flex items-center justify-between py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                        <span class="font-medium">Berita</span>
+                        <i class="fas fa-newspaper text-gray-400 group-hover:text-primary"></i>
+                    </a>
+                    
+                    <a href="contact.html" class="flex items-center justify-between py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                        <span class="font-medium">Kontak</span>
+                        <i class="fas fa-phone text-gray-400 group-hover:text-primary"></i>
+                    </a>
+                    
+                    <div class="pt-4 border-t border-gray-100">
+                        <a href="https://bit.ly/Mayuppi" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="flex items-center justify-center gap-2 w-full py-3.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.98]">
+                            <span>PPDB 2025</span>
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
