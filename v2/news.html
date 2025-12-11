@@ -2,20 +2,20 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita & Acara - MA Yuppi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Berita & Acara - MA YUPPI</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Tailwind Config -->
     <script>
@@ -23,43 +23,273 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#550D61',
-                        'secondary': '#FFD700',
-                        'accent': '#7C4E9C',
-                        'dark-gray': '#1a1a1a',
+                        'primary': {
+                            DEFAULT: '#4A0E55',
+                            light: '#5C1A68',
+                            dark: '#3A0844'
+                        },
+                        'secondary': {
+                            DEFAULT: '#FFD700',
+                            light: '#FFE44D',
+                            dark: '#E6C300'
+                        },
+                        'accent': {
+                            DEFAULT: '#8B5FBF',
+                            light: '#9D77D9',
+                            dark: '#7348A6'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
                     },
                     animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'slide-up': 'slideUp 0.8s ease-out',
-                        'fade-in': 'fadeIn 1s ease-out',
-                        'scale-in': 'scaleIn 0.6s ease-out',
-                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
+                    screens: {
+                        'xs': '375px',
+                        '3xl': '1920px',
+                    }
                 }
             }
         }
     </script>
+    
+    <style>
+        /* Custom Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Custom Classes */
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -12px rgba(74, 14, 85, 0.15);
+        }
+        
+        .news-gradient {
+            background: linear-gradient(135deg, #4A0E55 0%, #8B5FBF 50%, #FFD700 100%);
+            background-size: 400% 400%;
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Selection Color */
+        ::selection {
+            background-color: rgba(139, 95, 191, 0.3);
+        }
+        
+        /* Category Badges */
+        .category-prestasi { background: linear-gradient(135deg, #4A0E55, #8B5FBF); }
+        .category-kegiatan { background: linear-gradient(135deg, #2196F3, #0D47A1); }
+        .category-pengumuman { background: linear-gradient(135deg, #4CAF50, #2E7D32); }
+        .category-akademik { background: linear-gradient(135deg, #9C27B0, #6A1B9A); }
+        
+        /* News Card Styles */
+        .news-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: inherit;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        /* Event Date Styling - Responsive */
+        .event-date {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+        
+        @media (min-width: 640px) {
+            .event-date {
+                width: 80px;
+                height: 80px;
+                border-radius: 12px;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: currentColor;
+            margin: 0 2px;
+            animation: loadingDot 1.4s ease-in-out infinite both;
+        }
+        
+        .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes loadingDot {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 640px) {
+            .mobile-tap-target {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .mobile-text-lg {
+                font-size: 1.125rem;
+                line-height: 1.75rem;
+            }
+            
+            .mobile-padding {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            /* Improve touch scrolling */
+            .overflow-touch {
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* Optimize images for mobile */
+            .news-image {
+                height: 200px;
+                object-fit: cover;
+            }
+            
+            .featured-news-image {
+                height: 300px;
+            }
+        }
+        
+        /* Prevent horizontal scroll */
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+        
+        /* Better mobile typography */
+        h1, h2, h3, h4, h5, h6 {
+            word-wrap: break-word;
+        }
+        
+        /* Image optimization */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Tap highlight color */
+        a, button {
+            -webkit-tap-highlight-color: rgba(139, 95, 191, 0.3);
+        }
+        
+        /* Line clamp utility for text truncation */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* Calendar Styling */
+        .calendar-day {
+            position: relative;
+        }
+        
+        .calendar-day.has-event::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+        }
+        
+        .calendar-day.has-event.primary::after {
+            background-color: #4A0E55;
+        }
+        
+        .calendar-day.has-event.accent::after {
+            background-color: #8B5FBF;
+        }
+        
+        .calendar-day.has-event.secondary::after {
+            background-color: #FFD700;
+        }
+    </style>
 </head>
-<body class="font-sans antialiased bg-white text-dark-gray">
+<body class="font-sans antialiased bg-white text-gray-800">
     
     <!-- Navigation -->
-  <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100 transition-all duration-300">
-        <div class="container mx-auto px-4 lg:px-8 xl:px-16">
-            <div class="flex items-center justify-between h-16 lg:h-20">
-                <!-- Logo -->
-                <a href="#hero" class="flex items-center gap-3 group" aria-label="MA YUPPI Home">
-                    <div class="relative w-12 h-12 lg:w-14 lg:h-14">
-                        <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-xl lg:rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14 sm:h-16 lg:h-20">
+                <!-- Logo - Simplified for mobile -->
+                <a href="index.html" class="flex items-center gap-2 group mobile-tap-target" aria-label="MA YUPPI Home">
+                    <div class="relative w-10 h-10 sm:w-12 sm:h-12">
+                        <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-lg sm:rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden">
                             <img src="images/logo-MA.png" alt="Logo MA YUPPI" 
-                                 class="w-10 h-10 lg:w-12 lg:h-12 object-contain"
+                                 class="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                                  loading="lazy">
                         </div>
-                        <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-accent rounded-xl lg:rounded-2xl blur opacity-30 group-hover:opacity-40 transition-opacity duration-500 -z-10"></div>
                     </div>
-                    <div>
-                        <h1 class="text-xl lg:text-2xl font-black font-serif text-primary leading-tight">MA YUPPI</h1>
-                        <p class="text-xs text-gray-500 font-medium tracking-wide">Madrasah Aliyah Unggulan</p>
+                    <div class="hidden xs:block">
+                        <h1 class="text-lg sm:text-xl font-black font-serif text-primary leading-tight">MA YUPPI</h1>
+                        <p class="text-xs text-gray-500 font-medium">Madrasah Aliyah</p>
                     </div>
                 </a>
                 
@@ -125,7 +355,7 @@
                     <a href="https://bit.ly/Mayuppi" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden group"
+                       class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden group mobile-tap-target"
                        aria-label="Daftar PPDB 2025">
                         <span class="relative z-10 flex items-center gap-2">
                             PPDB 2025
@@ -137,71 +367,71 @@
 
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-button" 
-                        class="lg:hidden w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 active:scale-95"
+                        class="lg:hidden w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 mobile-tap-target"
                         aria-label="Toggle mobile menu"
                         aria-expanded="false">
-                    <i class="fas fa-bars text-white text-lg" id="icon-open"></i>
-                    <i class="fas fa-times text-white text-lg hidden" id="icon-close"></i>
+                    <i class="fas fa-bars text-white text-base sm:text-lg" id="icon-open"></i>
+                    <i class="fas fa-times text-white text-base sm:text-lg hidden" id="icon-close"></i>
                 </button>
             </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="lg:hidden bg-white border-t border-gray-100 shadow-2xl hidden" role="menu">
-            <div class="container mx-auto px-4 py-4">
-                <div class="space-y-1">
-                    <a href="index.html" class="flex items-center justify-between py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+        <div id="mobile-menu" class="lg:hidden bg-white border-t border-gray-100 shadow-2xl hidden overflow-y-auto overflow-touch max-h-[80vh]" role="menu">
+            <div class="container mx-auto px-4 py-3">
+                <div class="space-y-0.5">
+                    <a href="index.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
                         <span class="font-medium">Beranda</span>
-                        <i class="fas fa-home text-gray-400 group-hover:text-primary"></i>
+                        <i class="fas fa-home text-gray-400 group-hover:text-primary text-sm"></i>
                     </a>
                     
                     <div class="border-t border-gray-100 pt-2 mt-2">
-                        <p class="px-4 py-2 text-sm font-semibold text-gray-500">PROFIL</p>
-                        <a href="about.html" class="flex items-center gap-3 py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300">
-                            <div class="w-8 h-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center">
+                        <p class="px-3 py-1.5 text-sm font-semibold text-gray-500">PROFIL</p>
+                        <a href="about.html" class="flex items-center gap-3 py-2.5 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 mobile-tap-target">
+                            <div class="w-8 h-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <i class="fas fa-school text-primary text-sm"></i>
                             </div>
-                            <div>
-                                <p class="font-medium text-gray-800">Profil Sekolah</p>
-                                <p class="text-xs text-gray-500">Visi, Misi & Sejarah</p>
+                            <div class="min-w-0">
+                                <p class="font-medium text-gray-800 truncate">Profil Sekolah</p>
+                                <p class="text-xs text-gray-500 truncate">Visi, Misi & Sejarah</p>
                             </div>
                         </a>
-                        <a href="about.html#struktur" class="flex items-center gap-3 py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300">
-                            <div class="w-8 h-8 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-lg flex items-center justify-center">
+                        <a href="about.html#struktur" class="flex items-center gap-3 py-2.5 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 mobile-tap-target">
+                            <div class="w-8 h-8 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <i class="fas fa-sitemap text-primary text-sm"></i>
                             </div>
-                            <div>
-                                <p class="font-medium text-gray-800">Struktur Organisasi</p>
-                                <p class="text-xs text-gray-500">Tim Kepemimpinan</p>
+                            <div class="min-w-0">
+                                <p class="font-medium text-gray-800 truncate">Struktur Organisasi</p>
+                                <p class="text-xs text-gray-500 truncate">Tim Kepemimpinan</p>
                             </div>
                         </a>
                     </div>
                     
-                    <a href="programs.html" class="flex items-center justify-between py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                    <a href="programs.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
                         <span class="font-medium">Program</span>
-                        <i class="fas fa-rocket text-gray-400 group-hover:text-primary"></i>
+                        <i class="fas fa-rocket text-gray-400 group-hover:text-primary text-sm"></i>
                     </a>
                     
-                    <a href="guru.html" class="flex items-center justify-between py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                    <a href="guru.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
                         <span class="font-medium">Guru</span>
-                        <i class="fas fa-building text-gray-400 group-hover:text-primary"></i>
+                        <i class="fas fa-chalkboard-teacher text-gray-400 group-hover:text-primary text-sm"></i>
                     </a>
                     
-                    <a href="news.html" class="flex items-center justify-between py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                    <a href="news.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
                         <span class="font-medium">Berita</span>
-                        <i class="fas fa-newspaper text-gray-400 group-hover:text-primary"></i>
+                        <i class="fas fa-newspaper text-gray-400 group-hover:text-primary text-sm"></i>
                     </a>
                     
-                    <a href="contact.html" class="flex items-center justify-between py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                    <a href="contact.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
                         <span class="font-medium">Kontak</span>
-                        <i class="fas fa-phone text-gray-400 group-hover:text-primary"></i>
+                        <i class="fas fa-phone text-gray-400 group-hover:text-primary text-sm"></i>
                     </a>
                     
-                    <div class="pt-4 border-t border-gray-100">
+                    <div class="pt-4 border-t border-gray-100 mt-2">
                         <a href="https://bit.ly/Mayuppi" 
                            target="_blank"
                            rel="noopener noreferrer"
-                           class="flex items-center justify-center gap-2 w-full py-3.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.98]">
+                           class="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.98] mobile-tap-target">
                             <span>PPDB 2025</span>
                             <i class="fas fa-external-link-alt text-sm"></i>
                         </a>
@@ -211,716 +441,1139 @@
         </div>
     </nav>
 
-
-    <!-- Header -->
-    <section class="pt-32 pb-20 bg-gradient-to-br from-primary via-accent to-primary text-white relative overflow-hidden">
+    <!-- Hero Section -->
+    <section class="news-gradient text-white pt-20 pb-12 sm:pt-24 sm:pb-16 lg:py-20 overflow-hidden">
         <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-0 left-0 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
+            <div class="absolute top-0 left-0 w-32 h-32 sm:w-64 sm:h-64 bg-secondary/20 rounded-full blur-2xl sm:blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-32 h-32 sm:w-64 sm:h-64 bg-accent/20 rounded-full blur-2xl sm:blur-3xl"></div>
         </div>
         
-        <div class="container mx-auto px-4 lg:px-12 relative z-10">
-            <div class="max-w-4xl mx-auto text-center">
-                <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-6xl mx-auto text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
+                    <i class="fas fa-newspaper text-secondary"></i>
+                    INFORMASI TERKINI
+                </div>
+                
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold mb-4 sm:mb-6 leading-tight px-2">
                     Berita & Acara
+                    <span class="block text-secondary mt-1 sm:mt-2">MA YUPPI</span>
                 </h1>
-                <p class="text-xl text-white/90 leading-relaxed">
-                    Informasi terkini tentang kegiatan, prestasi, dan perkembangan MA Yuppi
+                
+                <p class="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed max-w-3xl mx-auto px-2">
+                    Informasi terkini tentang kegiatan, prestasi, pengumuman, dan perkembangan terbaru di Madrasah Aliyah Yuppi.
+                    Tetap terupdate dengan semua kegiatan kami.
                 </p>
+                
+                <!-- Stats - Responsive -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 max-w-2xl mx-auto mt-8 sm:mt-12">
+                    <div class="glass-morphism p-3 sm:p-4 rounded-lg sm:rounded-xl">
+                        <p class="text-xl sm:text-2xl lg:text-3xl font-bold mb-0.5 sm:mb-1">24+</p>
+                        <p class="text-white/70 text-xs sm:text-sm">Berita/Tahun</p>
+                    </div>
+                    <div class="glass-morphism p-3 sm:p-4 rounded-lg sm:rounded-xl">
+                        <p class="text-xl sm:text-2xl lg:text-3xl font-bold mb-0.5 sm:mb-1">15+</p>
+                        <p class="text-white/70 text-xs sm:text-sm">Acara/Tahun</p>
+                    </div>
+                    <div class="glass-morphism p-3 sm:p-4 rounded-lg sm:rounded-xl">
+                        <p class="text-xl sm:text-2xl lg:text-3xl font-bold mb-0.5 sm:mb-1">85+</p>
+                        <p class="text-white/70 text-xs sm:text-sm">Prestasi Dilaporkan</p>
+                    </div>
+                    <div class="glass-morphism p-3 sm:p-4 rounded-lg sm:rounded-xl">
+                        <p class="text-xl sm:text-2xl lg:text-3xl font-bold mb-0.5 sm:mb-1">3.5K+</p>
+                        <p class="text-white/70 text-xs sm:text-sm">Pembaca/Bulan</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- News Section -->
-    <section class="py-20 md:py-32 bg-white section-reveal">
-        <div class="container mx-auto px-4 lg:px-12">
-            <!-- Search and Filter -->
-            <div class="mb-12">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div class="relative w-full md:w-auto">
-                        <input type="text" 
-                               placeholder="Cari berita..." 
-                               class="w-full md:w-80 px-6 py-3 pl-12 rounded-full border border-gray-300 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all duration-300"
-                               id="search-input">
-                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+    <section class="py-8 sm:py-12 lg:py-16 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Filter & Search - Mobile Optimized -->
+            <div class="max-w-6xl mx-auto mb-8 sm:mb-12">
+                <div class="flex flex-col gap-4 sm:gap-6 p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl shadow-lg">
+                    <div class="text-center sm:text-left">
+                        <h2 class="text-xl sm:text-2xl font-bold text-primary mb-1 sm:mb-2">Temukan Berita</h2>
+                        <p class="text-gray-600 text-sm sm:text-base">Filter berdasarkan kategori atau cari artikel tertentu</p>
                     </div>
                     
-                    <div class="flex flex-wrap gap-4">
-                        <button class="filter-news active bg-primary text-white px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-accent" data-category="all">
-                            Semua
-                        </button>
-                        <button class="filter-news bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-gray-300" data-category="prestasi">
-                            Prestasi
-                        </button>
-                        <button class="filter-news bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-gray-300" data-category="kegiatan">
-                            Kegiatan
-                        </button>
-                        <button class="filter-news bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-gray-300" data-category="pengumuman">
-                            Pengumuman
-                        </button>
+                    <div class="flex flex-col gap-3 sm:flex-row sm:gap-4 w-full">
+                        <!-- Search -->
+                        <div class="relative flex-1">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-search text-gray-400 text-sm sm:text-base"></i>
+                            </div>
+                            <input type="text" 
+                                   id="searchInput"
+                                   placeholder="Cari berita..." 
+                                   class="pl-10 pr-4 py-2.5 sm:py-3 w-full bg-white border border-gray-200 rounded-lg sm:rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-sm sm:text-base"
+                                   aria-label="Search news">
+                        </div>
+                        
+                        <!-- Category Filter -->
+                        <div class="relative flex-shrink-0">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-filter text-gray-400 text-sm sm:text-base"></i>
+                            </div>
+                            <select id="categoryFilter" 
+                                    class="pl-10 pr-8 py-2.5 sm:py-3 bg-white border border-gray-200 rounded-lg sm:rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent appearance-none cursor-pointer text-sm sm:text-base w-full"
+                                    aria-label="Filter by category">
+                                <option value="all">Semua Kategori</option>
+                                <option value="prestasi">Prestasi</option>
+                                <option value="kegiatan">Kegiatan</option>
+                                <option value="pengumuman">Pengumuman</option>
+                                <option value="akademik">Akademik</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <i class="fas fa-chevron-down text-gray-400 text-sm"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <!-- News Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" id="news-grid">
-                <!-- News articles -->
-                <article class="news-card" data-category="prestasi">
-                    <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Juara Debat">
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-primary text-white px-4 py-2 rounded-full text-xs font-bold uppercase">Prestasi</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2 text-accent"></i>
-                            <span>20 November 2024</span>
-                        </div>
-                        <h3 class="text-xl font-serif font-bold text-primary mb-3 hover:text-accent transition-colors duration-300 cursor-pointer">
-                            Tim Debat Bahasa Arab Raih Juara 1 Provinsi
-                        </h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Prestasi membanggakan diraih tim debat MA Yuppi dengan mengalahkan 45 sekolah lainnya di tingkat provinsi...
-                        </p>
-                        <a href="#" class="inline-flex items-center text-primary font-bold hover:text-accent transition-colors duration-300 group">
-                            Baca Selengkapnya
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
-                        </a>
-                    </div>
-                </article>
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="newsGrid">
+                    <!-- News cards will be generated by JavaScript -->
+                </div>
                 
-                <article class="news-card" data-category="kegiatan">
-                    <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Kunjungan ITB">
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-accent text-white px-4 py-2 rounded-full text-xs font-bold uppercase">Kegiatan</span>
-                        </div>
+                <!-- Loading State -->
+                <div id="loadingNews" class="text-center py-8 sm:py-12">
+                    <div class="loading-dots text-primary text-lg sm:text-xl mb-3 sm:mb-4">
+                        <span></span><span></span><span></span>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2 text-accent"></i>
-                            <span>28 November 2024</span>
-                        </div>
-                        <h3 class="text-xl font-serif font-bold text-primary mb-3 hover:text-accent transition-colors duration-300 cursor-pointer">
-                            Kunjungan Edukatif ke Institut Teknologi Bandung
-                        </h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Siswa kelas XI mengunjungi berbagai laboratorium riset di ITB untuk menambah wawasan sains dan teknologi...
-                        </p>
-                        <a href="#" class="inline-flex items-center text-primary font-bold hover:text-accent transition-colors duration-300 group">
-                            Baca Selengkapnya
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
-                        </a>
-                    </div>
-                </article>
+                    <p class="text-gray-600 text-sm sm:text-base">Memuat berita...</p>
+                </div>
                 
-                <article class="news-card" data-category="pengumuman">
-                    <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Persiapan UTBK">
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-secondary text-primary px-4 py-2 rounded-full text-xs font-bold uppercase">Pengumuman</span>
+                <!-- Empty State -->
+                <div id="emptyNews" class="hidden text-center py-8 sm:py-12">
+                    <div class="max-w-md mx-auto">
+                        <div class="w-16 h-16 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                            <i class="fas fa-newspaper text-gray-400 text-xl sm:text-3xl"></i>
                         </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-700 mb-2 sm:mb-3">Tidak Ditemukan</h3>
+                        <p class="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6 px-2">Tidak ada berita yang sesuai dengan filter atau pencarian Anda.</p>
+                        <button id="resetFilters" 
+                                class="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg sm:rounded-xl font-semibold hover:shadow-lg transition-all duration-300 mobile-tap-target text-sm sm:text-base">
+                            Reset Filter
+                        </button>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2 text-accent"></i>
-                            <span>5 Desember 2024</span>
-                        </div>
-                        <h3 class="text-xl font-serif font-bold text-primary mb-3 hover:text-accent transition-colors duration-300 cursor-pointer">
-                            Program Intensif Persiapan UTBK 2025
-                        </h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Siswa kelas XII mengikuti program bimbingan intensif untuk menghadapi UTBK dengan target 95% lolos PTN favorit...
-                        </p>
-                        <a href="#" class="inline-flex items-center text-primary font-bold hover:text-accent transition-colors duration-300 group">
-                            Baca Selengkapnya
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
-                        </a>
-                    </div>
-                </article>
+                </div>
                 
-                <article class="news-card" data-category="prestasi">
-                    <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Olimpiade Sains">
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-primary text-white px-4 py-2 rounded-full text-xs font-bold uppercase">Prestasi</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2 text-accent"></i>
-                            <span>10 November 2024</span>
-                        </div>
-                        <h3 class="text-xl font-serif font-bold text-primary mb-3 hover:text-accent transition-colors duration-300 cursor-pointer">
-                            Siswa MA Yuppi Juara 1 Olimpiade Matematika Nasional
-                        </h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Ahmad Fauzi meraih medali emas dalam Olimpiade Matematika Nasional yang diikuti oleh 500 peserta...
-                        </p>
-                        <a href="#" class="inline-flex items-center text-primary font-bold hover:text-accent transition-colors duration-300 group">
-                            Baca Selengkapnya
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
-                        </a>
-                    </div>
-                </article>
-                
-                <article class="news-card" data-category="kegiatan">
-                    <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Ramadan Fair">
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-accent text-white px-4 py-2 rounded-full text-xs font-bold uppercase">Kegiatan</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2 text-accent"></i>
-                            <span>15 November 2024</span>
-                        </div>
-                        <h3 class="text-xl font-serif font-bold text-primary mb-3 hover:text-accent transition-colors duration-300 cursor-pointer">
-                            Persiapan Ramadan Fair & Bazar Amal 2025
-                        </h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            OSIS MA Yuppi memulai persiapan acara tahunan Ramadan Fair dengan berbagai kegiatan edukatif dan sosial...
-                        </p>
-                        <a href="#" class="inline-flex items-center text-primary font-bold hover:text-accent transition-colors duration-300 group">
-                            Baca Selengkapnya
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
-                        </a>
-                    </div>
-                </article>
-                
-                <article class="news-card" data-category="pengumuman">
-                    <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Workshop AI">
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-secondary text-primary px-4 py-2 rounded-full text-xs font-bold uppercase">Pengumuman</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2 text-accent"></i>
-                            <span>10 November 2024</span>
-                        </div>
-                        <h3 class="text-xl font-serif font-bold text-primary mb-3 hover:text-accent transition-colors duration-300 cursor-pointer">
-                            Workshop AI & Machine Learning untuk Siswa
-                        </h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Menghadirkan praktisi dari industri teknologi untuk memberikan workshop tentang kecerdasan buatan...
-                        </p>
-                        <a href="#" class="inline-flex items-center text-primary font-bold hover:text-accent transition-colors duration-300 group">
-                            Baca Selengkapnya
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
-                        </a>
-                    </div>
-                </article>
-            </div>
-            
-            <!-- Pagination -->
-            <div class="flex justify-center">
-                <nav class="flex items-center space-x-2">
-                    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-colors duration-300">
-                        <i class="fas fa-chevron-left"></i>
+                <!-- Load More Button -->
+                <div class="text-center mt-8 sm:mt-12">
+                    <button id="loadMore" 
+                            class="px-6 sm:px-8 py-2.5 sm:py-3 bg-white border-2 border-primary text-primary rounded-lg sm:rounded-xl font-bold hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-[1.02] group mobile-tap-target text-sm sm:text-base">
+                        <span>Muat Lebih Banyak</span>
+                        <i class="fas fa-arrow-down ml-2 text-xs sm:text-sm group-hover:translate-y-1 transition-transform duration-300"></i>
                     </button>
-                    
-                    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white">1</button>
-                    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-300">2</button>
-                    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-300">3</button>
-                    
-                    <span class="px-2">...</span>
-                    
-                    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-300">8</button>
-                    
-                    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-colors duration-300">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </nav>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Upcoming Events -->
-    <section class="py-20 md:py-32 bg-gray-50 section-reveal">
-        <div class="container mx-auto px-4 lg:px-12">
-            <div class="max-w-4xl mx-auto text-center mb-16">
-                <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 inline-block">Kalender</span>
-                <h2 class="text-4xl md:text-6xl font-serif font-bold text-primary mb-6">
-                    Acara Mendatang
-                </h2>
-                <p class="text-lg text-gray-600 leading-relaxed">
-                    Jadwal kegiatan dan acara penting di MA Yuppi
-                </p>
+    <!-- Featured News Section -->
+    <section class="py-8 sm:py-12 lg:py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-8 sm:mb-12" data-aos="fade-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-full text-xs sm:text-sm font-semibold text-primary mb-3 sm:mb-4">
+                        <i class="fas fa-star text-secondary"></i>
+                        BERITA UTAMA
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-primary mb-4 sm:mb-6">
+                        Featured Stories
+                    </h2>
+                    <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-2">
+                        Cerita inspiratif dan pencapaian terbaru dari keluarga besar MA YUPPI
+                    </p>
+                </div>
+                
+                <!-- Featured News Slider - Mobile Optimized -->
+                <div class="relative overflow-hidden rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-xl sm:shadow-2xl" data-aos="fade-up">
+                    <div class="relative h-[300px] sm:h-[350px] lg:h-[500px]">
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/60 to-transparent z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" 
+                             alt="Featured News" 
+                             class="w-full h-full object-cover featured-news-image"
+                             loading="lazy">
+                        <div class="absolute inset-0 z-20 flex items-end p-4 sm:p-6 lg:p-8 lg:p-12">
+                            <div class="max-w-2xl">
+                                <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                                    <span class="category-prestasi text-white px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold">
+                                        Prestasi
+                                    </span>
+                                    <span class="text-white/80 text-xs sm:text-sm">
+                                        <i class="far fa-calendar-alt mr-1"></i>
+                                        20 November 2024
+                                    </span>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-white mb-3 sm:mb-4">
+                                    Tim Debat Bahasa Arab Raih Juara 1 Tingkat Provinsi
+                                </h3>
+                                <p class="text-white/90 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base line-clamp-3">
+                                    Prestasi membanggakan diraih tim debat MA Yuppi dengan mengalahkan 45 sekolah lainnya di tingkat provinsi Jawa Barat.
+                                </p>
+                                <a href="#" 
+                                   class="inline-flex items-center gap-2 bg-secondary text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl font-bold hover:shadow-lg transition-all duration-300 group mobile-tap-target text-sm sm:text-base">
+                                    <span>Baca Selengkapnya</span>
+                                    <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1 text-xs sm:text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Featured News Navigation -->
+                    <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-30 flex gap-2">
+                        <button class="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-300 mobile-tap-target">
+                            <i class="fas fa-chevron-left text-xs sm:text-sm"></i>
+                        </button>
+                        <button class="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-300 mobile-tap-target">
+                            <i class="fas fa-chevron-right text-xs sm:text-sm"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-            
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-8 sm:mb-12" data-aos="fade-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white rounded-full text-xs sm:text-sm font-semibold text-primary mb-3 sm:mb-4">
+                        <i class="fas fa-calendar-alt text-accent"></i>
+                        KALENDER ACARA
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-primary mb-4 sm:mb-6">
+                        Acara Mendatang
+                    </h2>
+                    <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-2">
+                        Jadwal kegiatan dan acara penting yang akan datang di MA YUPPI
+                    </p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-6 sm:gap-8">
+                    <!-- Upcoming Events List - Mobile Optimized -->
+                    <div class="space-y-4 sm:space-y-6" id="eventsList">
+                        <!-- Events will be generated by JavaScript -->
+                    </div>
+                    
+                    <!-- Calendar Preview - Hidden on small mobile -->
+                    <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl p-4 sm:p-6 lg:p-8 hidden sm:block" data-aos="fade-left">
+                        <div class="flex items-center justify-between mb-4 sm:mb-6">
+                            <h3 class="text-xl sm:text-2xl font-bold text-primary">Kalender Desember 2024</h3>
+                            <div class="flex gap-1 sm:gap-2">
+                                <button class="w-7 h-7 sm:w-8 sm:h-8 bg-gray-100 rounded-lg flex items-center justify-center mobile-tap-target">
+                                    <i class="fas fa-chevron-left text-gray-600 text-xs sm:text-sm"></i>
+                                </button>
+                                <button class="w-7 h-7 sm:w-8 sm:h-8 bg-gray-100 rounded-lg flex items-center justify-center mobile-tap-target">
+                                    <i class="fas fa-chevron-right text-gray-600 text-xs sm:text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-7 gap-1 sm:gap-2 mb-3 sm:mb-4" id="calendarDays">
+                            <!-- Calendar days will be generated by JavaScript -->
+                        </div>
+                        
+                        <!-- Event Legend -->
+                        <div class="border-t border-gray-100 pt-4 sm:pt-6">
+                            <h4 class="text-base sm:text-lg font-semibold text-primary mb-2 sm:mb-4">Legenda Acara</h4>
+                            <div class="space-y-1 sm:space-y-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-primary rounded-full"></div>
+                                    <span class="text-xs sm:text-sm text-gray-600">Ujian & Tes</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full"></div>
+                                    <span class="text-xs sm:text-sm text-gray-600">Kegiatan Sekolah</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-secondary rounded-full"></div>
+                                    <span class="text-xs sm:text-sm text-gray-600">Acara Khusus</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- View All Events -->
+                <div class="text-center mt-8 sm:mt-12">
+                    <a href="#" 
+                       class="inline-flex items-center gap-2 sm:gap-3 px-6 py-2.5 sm:px-8 sm:py-3.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg sm:rounded-xl font-bold hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] group mobile-tap-target text-sm sm:text-base">
+                        <i class="fas fa-calendar-check text-sm"></i>
+                        <span>Lihat Kalender Lengkap</span>
+                        <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1 text-xs sm:text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-primary via-primary/90 to-accent text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-4xl mx-auto">
-                <!-- Event cards -->
-                <div class="bg-white rounded-2xl shadow-lg p-6 mb-6 hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                        <div class="bg-primary text-white rounded-xl p-4 text-center min-w-[100px]">
-                            <p class="text-2xl font-bold">15</p>
-                            <p class="text-sm">Des</p>
-                            <p class="text-xs mt-1">2024</p>
-                        </div>
-                        
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-primary mb-2">Workshop Kepenulisan Ilmiah</h3>
-                            <p class="text-gray-600 mb-2">Pelatihan penulisan karya ilmiah untuk persiapan kompetisi nasional</p>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <i class="fas fa-clock mr-2"></i>
-                                <span>08:00 - 15:00 WIB</span>
-                                <i class="fas fa-map-marker-alt ml-4 mr-2"></i>
-                                <span>Aula Utama MA Yuppi</span>
-                            </div>
-                        </div>
-                        
-                        <a href="#" class="bg-primary hover:bg-accent text-white px-6 py-2 rounded-full font-medium transition-all duration-300 whitespace-nowrap">
-                            Detail Acara
-                        </a>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 lg:p-12 text-center">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fas fa-envelope-open-text text-xl sm:text-2xl text-secondary"></i>
                     </div>
-                </div>
-                
-                <div class="bg-white rounded-2xl shadow-lg p-6 mb-6 hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                        <div class="bg-accent text-white rounded-xl p-4 text-center min-w-[100px]">
-                            <p class="text-2xl font-bold">20</p>
-                            <p class="text-sm">Des</p>
-                            <p class="text-xs mt-1">2024</p>
-                        </div>
-                        
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-primary mb-2">Ujian Akhir Semester Ganjil</h3>
-                            <p class="text-gray-600 mb-2">Ujian akhir semester untuk semua kelas X, XI, dan XII</p>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <i class="fas fa-clock mr-2"></i>
-                                <span>07:00 - 14:00 WIB</span>
-                                <i class="fas fa-map-marker-alt ml-4 mr-2"></i>
-                                <span>Seluruh Ruang Kelas</span>
+                    
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold mb-4 sm:mb-6">
+                        Tetap Terupdate
+                    </h2>
+                    
+                    <p class="text-base sm:text-lg text-white/90 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto px-2">
+                        Dapatkan informasi terbaru tentang kegiatan, prestasi, dan pengumuman MA YUPPI langsung di email Anda.
+                    </p>
+                    
+                    <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-lg mx-auto">
+                        <div class="flex-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-envelope text-gray-400 text-sm"></i>
                             </div>
+                            <input type="email" 
+                                   placeholder="Email Anda" 
+                                   class="pl-10 pr-4 py-2.5 sm:py-3 w-full bg-white text-gray-800 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary text-sm sm:text-base"
+                                   required
+                                   aria-label="Email address for newsletter">
                         </div>
-                        
-                        <a href="#" class="bg-primary hover:bg-accent text-white px-6 py-2 rounded-full font-medium transition-all duration-300 whitespace-nowrap">
-                            Detail Acara
-                        </a>
-                    </div>
+                        <button type="submit" 
+                                class="px-6 py-2.5 sm:px-8 sm:py-3 bg-secondary text-primary rounded-lg sm:rounded-xl font-bold hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 mobile-tap-target text-sm sm:text-base">
+                            <i class="fas fa-paper-plane text-sm"></i>
+                            Berlangganan
+                        </button>
+                    </form>
+                    
+                    <p class="text-xs sm:text-sm text-white/70 mt-3 sm:mt-4">
+                        Dengan berlangganan, Anda menyetujui <a href="#" class="underline hover:text-white text-xs sm:text-sm">Kebijakan Privasi</a> kami
+                    </p>
                 </div>
-                
-                <div class="bg-white rounded-2xl shadow-lg p-6 mb-6 hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                        <div class="bg-secondary text-primary rounded-xl p-4 text-center min-w-[100px]">
-                            <p class="text-2xl font-bold">25</p>
-                            <p class="text-sm">Des</p>
-                            <p class="text-xs mt-1">2024</p>
-                        </div>
-                        
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-primary mb-2">Pembagian Raport Semester Ganjil</h3>
-                            <p class="text-gray-600 mb-2">Pengambilan raport dan pembahasan perkembangan siswa dengan orang tua</p>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <i class="fas fa-clock mr-2"></i>
-                                <span>08:00 - 12:00 WIB</span>
-                                <i class="fas fa-map-marker-alt ml-4 mr-2"></i>
-                                <span>Aula Serbaguna</span>
-                            </div>
-                        </div>
-                        
-                        <a href="#" class="bg-primary hover:bg-accent text-white px-6 py-2 rounded-full font-medium transition-all duration-300 whitespace-nowrap">
-                            Detail Acara
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-2xl shadow-lg p-6 mb-6 hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                        <div class="bg-primary text-white rounded-xl p-4 text-center min-w-[100px]">
-                            <p class="text-2xl font-bold">10</p>
-                            <p class="text-sm">Jan</p>
-                            <p class="text-xs mt-1">2025</p>
-                        </div>
-                        
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-primary mb-2">Kegiatan MPLS Semester Genap</h3>
-                            <p class="text-gray-600 mb-2">Masa Pengenalan Lingkungan Sekolah untuk semester genap</p>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <i class="fas fa-clock mr-2"></i>
-                                <span>07:30 - 13:00 WIB</span>
-                                <i class="fas fa-map-marker-alt ml-4 mr-2"></i>
-                                <span>Lapangan dan Aula Utama</span>
-                            </div>
-                        </div>
-                        
-                        <a href="#" class="bg-primary hover:bg-accent text-white px-6 py-2 rounded-full font-medium transition-all duration-300 whitespace-nowrap">
-                            Detail Acara
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="inline-block bg-primary hover:bg-accent text-white px-8 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Lihat Kalender Lengkap <i class="fas fa-calendar-alt ml-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="py-20 md:py-32 bg-gradient-to-br from-primary via-accent to-primary text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-0 left-0 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
-        </div>
-        
-        <div class="container mx-auto px-4 lg:px-12 relative z-10">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6">
-                    Tetap Terupdate
-                </h2>
-                <p class="text-xl text-white/90 mb-10 leading-relaxed">
-                    Dapatkan informasi terbaru tentang kegiatan dan prestasi MA Yuppi langsung di email Anda
-                </p>
-                
-                <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
-                    <input type="email" 
-                           placeholder="Email Anda" 
-                           class="flex-1 px-6 py-4 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-secondary"
-                           required>
-                    <button type="submit" class="bg-secondary hover:bg-yellow-400 text-primary px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:scale-105 whitespace-nowrap">
-                        Berlangganan <i class="fas fa-paper-plane ml-2"></i>
-                    </button>
-                </form>
-                
-                <p class="text-sm text-white/70 mt-4">
-                    Dengan berlangganan, Anda menyetujui kebijakan privasi kami
-                </p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark-gray text-white pt-20 pb-10">
-        <div class="container mx-auto px-4 lg:px-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    <footer class="bg-dark text-white py-8 sm:py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
+                <!-- Brand -->
                 <div>
-                    <div class="flex items-center mb-6">
-                        <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-3">
-                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                    <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <h4 class="text-3xl font-serif font-bold text-secondary">MA YUPPI</h4>
+                        <div>
+                            <h4 class="text-base sm:text-lg font-serif font-bold text-secondary">MA YUPPI</h4>
+                            <p class="text-xs sm:text-sm text-gray-400">Madrasah Aliyah Unggulan</p>
+                        </div>
                     </div>
-                    <p class="text-gray-400 mb-6 leading-relaxed">Madrasah Aliyah Unggulan Berbasis Riset yang berkomitmen pada keunggulan akademik dan karakter Islami.</p>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-facebook-f"></i>
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
+                        Lembaga pendidikan Islam unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi.
+                    </p>
+                    <div class="flex gap-1 sm:gap-2">
+                        <a href="https://www.instagram.com/ma_yuppi.official/" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 mobile-tap-target">
+                            <i class="fab fa-instagram text-gray-400 hover:text-white text-sm sm:text-base"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://www.youtube.com/@MAYUPPISoreang557/featured" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 mobile-tap-target">
+                            <i class="fab fa-youtube text-gray-400 hover:text-white text-sm sm:text-base"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#" 
+                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 mobile-tap-target">
+                            <i class="fab fa-facebook-f text-gray-400 hover:text-white text-sm sm:text-base"></i>
                         </a>
                     </div>
                 </div>
                 
+                <!-- Quick Links -->
                 <div>
-                    <h4 class="text-xl font-bold mb-6 text-secondary">Tautan Cepat</h4>
-                    <ul class="space-y-3">
-                        <li><a href="index.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Beranda</a></li>
-                        <li><a href="about.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Profil Sekolah</a></li>
-                        <li><a href="programs.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Program & Ekskul</a></li>
-                        <li><a href="news.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Berita</a></li>
+                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-secondary">Tautan Cepat</h4>
+                    <ul class="space-y-1 sm:space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm">Beranda</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm">Profil Sekolah</a></li>
+                        <li><a href="programs.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm">Program & Ekskul</a></li>
+                        <li><a href="news.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm">Berita & Acara</a></li>
                     </ul>
                 </div>
                 
+                <!-- Information -->
                 <div>
-                    <h4 class="text-xl font-bold mb-6 text-secondary">Informasi</h4>
-                    <ul class="space-y-3">
-                        <li><a href="about.html#visi-misi" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Visi & Misi</a></li>
-                        <li><a href="about.html#struktur" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Struktur Organisasi</a></li>
-                        <li><a href="about.html#guru-staf" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Guru & Staf</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-secondary transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs group-hover:translate-x-1 transition-transform duration-200"></i>Kontak Kami</a></li>
+                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-secondary">Informasi</h4>
+                    <ul class="space-y-1 sm:space-y-2">
+                        <li><a href="about.html#visi-misi" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm">Visi & Misi</a></li>
+                        <li><a href="about.html#struktur" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm">Struktur Organisasi</a></li>
+                        <li><a href="guru.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm">Guru & Staf</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm">Kontak Kami</a></li>
                     </ul>
                 </div>
                 
+                <!-- Contact -->
                 <div>
-                    <h4 class="text-xl font-bold mb-6 text-secondary">Kontak</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-accent mt-1 mr-3"></i>
-                            <span class="text-gray-400">Jl. Pendidikan No. 123<br>Bandung, Jawa Barat 40123</span>
+                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-secondary">Kontak Kami</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-map-marker-alt text-accent mt-0.5 flex-shrink-0"></i>
+                            <span class="text-gray-400">
+                                Jl. Raya Soreang - Banjaran No.KM 02, Cingcin, Kec. Soreang, Kabupaten Bandung
+                            </span>
                         </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone text-accent mr-3"></i>
-                            <a href="tel:+62221234567" class="text-gray-400 hover:text-secondary transition-colors duration-200">(022) 123-4567</a>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-phone text-accent flex-shrink-0"></i>
+                            <a href="tel:+6281223240815" class="text-gray-400 hover:text-white transition-colors duration-300 break-words">
+                                +62 812-2324-0815
+                            </a>
                         </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope text-accent mr-3"></i>
-                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-secondary transition-colors duration-200">info@mayuppi.sch.id</a>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-globe text-accent mr-3"></i>
-                            <a href="https://www.mayuppi.sch.id" target="_blank" class="text-gray-400 hover:text-secondary transition-colors duration-200">www.mayuppi.sch.id</a>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-envelope text-accent flex-shrink-0"></i>
+                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-white transition-colors duration-300 break-words">
+                                info@mayuppi.sch.id
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-white/10 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
-                        © <span id="current-year">2024</span> MA Yuppi. All rights reserved. Made with <i class="fas fa-heart text-red-500 mx-1"></i> for education.
+            <!-- Copyright -->
+            <div class="border-t border-white/10 pt-4 sm:pt-6">
+                <div class="flex flex-col sm:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-0">
+                        © 2024 <span class="text-secondary font-semibold">MA Yuppi</span>. Hak cipta dilindungi.
                     </p>
-                    <div class="flex gap-6 text-sm">
-                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-200">Kebijakan Privasi</a>
-                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-200">Syarat & Ketentuan</a>
-                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-200">Peta Situs</a>
+                    <div class="flex gap-3 sm:gap-4 text-xs sm:text-sm">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Kebijakan Privasi</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Syarat Layanan</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <a href="#" class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-br from-primary to-accent text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 z-50 opacity-0" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+    <!-- Back to Top -->
+    <button id="backToTop" 
+            class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-accent text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 active:scale-95 opacity-0 invisible z-40 mobile-tap-target"
+            aria-label="Back to top">
+        <i class="fas fa-arrow-up text-sm sm:text-base"></i>
+    </button>
 
-    <!-- News Filter Script -->
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-news');
-            const newsItems = document.querySelectorAll('.news-card');
-            const searchInput = document.getElementById('search-input');
-            const newsletterForm = document.getElementById('newsletter-form');
+        // Initialize AOS with mobile-friendly settings
+        AOS.init({
+            duration: 500,
+            once: true,
+            offset: 100,
+            delay: 0,
+            easing: 'ease-out',
+            disable: window.innerWidth < 640
+        });
+
+        // Re-enable AOS on resize for mobile
+        window.addEventListener('resize', function() {
+            AOS.refresh();
+        });
+
+        // News Data
+        const newsData = [
+            {
+                id: 1,
+                title: "Tim Debat Bahasa Arab Raih Juara 1 Provinsi",
+                category: "prestasi",
+                date: "20 November 2024",
+                excerpt: "Prestasi membanggakan diraih tim debat MA Yuppi dengan mengalahkan 45 sekolah lainnya di tingkat provinsi Jawa Barat.",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+                featured: true,
+                readTime: "3 min read"
+            },
+            {
+                id: 2,
+                title: "Kunjungan Edukatif ke Institut Teknologi Bandung",
+                category: "kegiatan",
+                date: "28 November 2024",
+                excerpt: "Siswa kelas XI mengunjungi berbagai laboratorium riset di ITB untuk menambah wawasan sains dan teknologi.",
+                image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=800&q=80",
+                featured: false,
+                readTime: "4 min read"
+            },
+            {
+                id: 3,
+                title: "Program Intensif Persiapan UTBK 2025",
+                category: "pengumuman",
+                date: "5 Desember 2024",
+                excerpt: "Siswa kelas XII mengikuti program bimbingan intensif untuk menghadapi UTBK dengan target 95% lolos PTN favorit.",
+                image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80",
+                featured: false,
+                readTime: "5 min read"
+            },
+            {
+                id: 4,
+                title: "Siswa MA Yuppi Juara 1 Olimpiade Matematika Nasional",
+                category: "prestasi",
+                date: "10 November 2024",
+                excerpt: "Ahmad Fauzi meraih medali emas dalam Olimpiade Matematika Nasional yang diikuti oleh 500 peserta.",
+                image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80",
+                featured: false,
+                readTime: "4 min read"
+            },
+            {
+                id: 5,
+                title: "Persiapan Ramadan Fair & Bazar Amal 2025",
+                category: "kegiatan",
+                date: "15 November 2024",
+                excerpt: "OSIS MA Yuppi memulai persiapan acara tahunan Ramadan Fair dengan berbagai kegiatan edukatif dan sosial.",
+                image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80",
+                featured: false,
+                readTime: "3 min read"
+            },
+            {
+                id: 6,
+                title: "Workshop AI & Machine Learning untuk Siswa",
+                category: "akademik",
+                date: "10 November 2024",
+                excerpt: "Menghadirkan praktisi dari industri teknologi untuk memberikan workshop tentang kecerdasan buatan.",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
+                featured: false,
+                readTime: "6 min read"
+            },
+            {
+                id: 7,
+                title: "Hafiz Baru: 5 Siswa Selesai 30 Juz",
+                category: "prestasi",
+                date: "8 November 2024",
+                excerpt: "Lima siswa MA Yuppi berhasil menyelesaikan hafalan 30 juz Al-Quran dengan mutqin.",
+                image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=800&q=80",
+                featured: false,
+                readTime: "3 min read"
+            },
+            {
+                id: 8,
+                title: "Peluncuran Platform E-Learning Terbaru",
+                category: "akademik",
+                date: "5 November 2024",
+                excerpt: "MA Yuppi meluncurkan platform e-learning baru dengan fitur pembelajaran adaptif dan AI.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+                featured: false,
+                readTime: "5 min read"
+            }
+        ];
+
+        // Events Data
+        const eventsData = [
+            {
+                id: 1,
+                title: "Workshop Kepenulisan Ilmiah",
+                date: "15 Desember 2024",
+                time: "08:00 - 15:00 WIB",
+                location: "Aula Utama MA Yuppi",
+                description: "Pelatihan penulisan karya ilmiah untuk persiapan kompetisi nasional",
+                type: "kegiatan"
+            },
+            {
+                id: 2,
+                title: "Ujian Akhir Semester Ganjil",
+                date: "20 Desember 2024",
+                time: "07:00 - 14:00 WIB",
+                location: "Seluruh Ruang Kelas",
+                description: "Ujian akhir semester untuk semua kelas X, XI, dan XII",
+                type: "akademik"
+            },
+            {
+                id: 3,
+                title: "Pembagian Raport Semester Ganjil",
+                date: "25 Desember 2024",
+                time: "08:00 - 12:00 WIB",
+                location: "Aula Serbaguna",
+                description: "Pengambilan raport dan pembahasan perkembangan siswa dengan orang tua",
+                type: "akademik"
+            },
+            {
+                id: 4,
+                title: "Kegiatan MPLS Semester Genap",
+                date: "10 Januari 2025",
+                time: "07:30 - 13:00 WIB",
+                location: "Lapangan dan Aula Utama",
+                description: "Masa Pengenalan Lingkungan Sekolah untuk semester genap",
+                type: "kegiatan"
+            },
+            {
+                id: 5,
+                title: "Seminar Pendidikan Karakter",
+                date: "15 Januari 2025",
+                time: "09:00 - 12:00 WIB",
+                location: "Aula Utama MA Yuppi",
+                description: "Seminar tentang penguatan karakter siswa untuk menghadapi era digital",
+                type: "kegiatan"
+            }
+        ];
+
+        // Render news with responsive design
+        function renderNews(category = 'all', searchTerm = '') {
+            const grid = document.getElementById('newsGrid');
+            const loading = document.getElementById('loadingNews');
+            const empty = document.getElementById('emptyNews');
             
-            // Filter functionality
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => {
-                        btn.classList.remove('active', 'bg-primary', 'text-white');
-                        btn.classList.add('bg-gray-200', 'text-gray-700');
-                    });
-                    
-                    // Add active class to clicked button
-                    this.classList.remove('bg-gray-200', 'text-gray-700');
-                    this.classList.add('active', 'bg-primary', 'text-white');
-                    
-                    const category = this.getAttribute('data-category');
-                    
-                    newsItems.forEach(item => {
-                        if (category === 'all' || item.getAttribute('data-category') === category) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
+            // Hide loading
+            if (loading) loading.style.display = 'none';
+            
+            // Filter news
+            let filteredNews = newsData.filter(news => {
+                const matchesCategory = category === 'all' || news.category === category;
+                const matchesSearch = searchTerm === '' || 
+                    news.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    news.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchesCategory && matchesSearch;
             });
             
-            // Search functionality
-            if (searchInput) {
-                searchInput.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase();
-                    
-                    newsItems.forEach(item => {
-                        const title = item.querySelector('h3').textContent.toLowerCase();
-                        const excerpt = item.querySelector('p').textContent.toLowerCase();
+            // Show empty state if no results
+            if (filteredNews.length === 0) {
+                if (empty) empty.classList.remove('hidden');
+                if (grid) grid.innerHTML = '';
+                return;
+            }
+            
+            // Hide empty state
+            if (empty) empty.classList.add('hidden');
+            
+            // Clear grid
+            if (grid) grid.innerHTML = '';
+            
+            // Render news with responsive classes
+            filteredNews.forEach(news => {
+                const newsCard = document.createElement('article');
+                newsCard.className = 'news-card bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg overflow-hidden card-hover';
+                newsCard.setAttribute('data-aos', 'fade-up');
+                newsCard.innerHTML = `
+                    <div class="relative">
+                        <div class="${getCategoryClass(news.category)} h-2"></div>
+                        <div class="relative h-40 sm:h-48 overflow-hidden news-image">
+                            <img src="${news.image}" 
+                                 alt="${news.title}"
+                                 class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                                 loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                            <div class="absolute top-3 left-3 sm:top-4 sm:left-4">
+                                <span class="category-${news.category} text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold">
+                                    ${getCategoryLabel(news.category)}
+                                </span>
+                            </div>
+                        </div>
                         
-                        if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
+                        <div class="p-4 sm:p-6">
+                            <div class="flex flex-wrap items-center justify-between text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">
+                                <div class="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-0">
+                                    <i class="far fa-calendar-alt text-xs"></i>
+                                    <span>${news.date}</span>
+                                </div>
+                                <div class="flex items-center gap-1 sm:gap-2">
+                                    <i class="far fa-clock text-xs"></i>
+                                    <span>${news.readTime}</span>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-lg sm:text-xl font-bold text-primary mb-2 sm:mb-3 line-clamp-2">
+                                ${news.title}
+                            </h3>
+                            
+                            <p class="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-xs sm:text-sm line-clamp-3">
+                                ${news.excerpt}
+                            </p>
+                            
+                            <button onclick="openNewsDetail(${news.id})" 
+                                    class="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg sm:rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group mobile-tap-target text-sm">
+                                <span>Baca Selengkapnya</span>
+                                <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                if (grid) grid.appendChild(newsCard);
+            });
+            
+            // Re-initialize AOS for dynamically loaded content
+            AOS.refresh();
+        }
+
+        // Render events with responsive design
+        function renderEvents() {
+            const eventsList = document.getElementById('eventsList');
+            if (!eventsList) return;
+            
+            eventsList.innerHTML = '';
+            
+            eventsData.forEach(event => {
+                const eventItem = document.createElement('div');
+                eventItem.className = 'bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg p-4 sm:p-6 card-hover';
+                eventItem.setAttribute('data-aos', 'fade-right');
+                eventItem.innerHTML = `
+                    <div class="flex items-start gap-3 sm:gap-4">
+                        <div class="event-date ${getEventTypeClass(event.type)} text-white">
+                            <div class="text-xl sm:text-2xl font-bold">${event.date.split(' ')[0]}</div>
+                            <div class="text-xs sm:text-sm">${event.date.split(' ')[1]}</div>
+                        </div>
+                        
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-base sm:text-lg lg:text-xl font-bold text-primary mb-1 sm:mb-2 line-clamp-2">${event.title}</h3>
+                            <p class="text-gray-600 mb-2 sm:mb-3 text-xs sm:text-sm line-clamp-2">${event.description}</p>
+                            
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 lg:gap-4 text-xs sm:text-sm text-gray-500">
+                                <div class="flex items-center gap-1">
+                                    <i class="fas fa-clock text-xs"></i>
+                                    <span>${event.time}</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <i class="fas fa-map-marker-alt text-xs"></i>
+                                    <span class="truncate">${event.location}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button onclick="openEventDetail(${event.id})" 
+                                class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 hover:bg-primary rounded-lg flex items-center justify-center transition-colors duration-300 group flex-shrink-0 mobile-tap-target">
+                            <i class="fas fa-chevron-right text-gray-600 group-hover:text-white text-xs sm:text-sm"></i>
+                        </button>
+                    </div>
+                `;
+                
+                eventsList.appendChild(eventItem);
+            });
+        }
+
+        // Render calendar
+        function renderCalendar() {
+            const calendarDays = document.getElementById('calendarDays');
+            if (!calendarDays) return;
+            
+            calendarDays.innerHTML = '';
+            
+            // Day headers
+            const days = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+            days.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'text-center font-semibold text-gray-500 text-xs sm:text-sm py-1 sm:py-2';
+                dayHeader.textContent = day;
+                calendarDays.appendChild(dayHeader);
+            });
+            
+            // Generate days for December 2024
+            const totalDays = 31;
+            const startDay = 0; // December 1, 2024 is Sunday
+            
+            // Add empty cells for days before the 1st
+            for (let i = 0; i < startDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'text-center py-1 sm:py-2';
+                calendarDays.appendChild(emptyDay);
+            }
+            
+            // Add actual days
+            for (let day = 1; day <= totalDays; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'text-center py-1 sm:py-2 calendar-day';
+                
+                // Add event indicators
+                if (day === 15) {
+                    dayElement.classList.add('has-event', 'accent'); // Workshop
+                } else if (day === 20) {
+                    dayElement.classList.add('has-event', 'primary'); // Ujian
+                } else if (day === 25) {
+                    dayElement.classList.add('has-event', 'primary'); // Pembagian Raport
+                }
+                
+                const daySpan = document.createElement('span');
+                daySpan.className = 'w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center mx-auto rounded-full hover:bg-gray-100 cursor-pointer text-xs sm:text-sm';
+                daySpan.textContent = day;
+                
+                dayElement.appendChild(daySpan);
+                calendarDays.appendChild(dayElement);
+            }
+        }
+
+        // Helper functions
+        function getCategoryClass(category) {
+            switch(category) {
+                case 'prestasi': return 'category-prestasi';
+                case 'kegiatan': return 'category-kegiatan';
+                case 'pengumuman': return 'category-pengumuman';
+                case 'akademik': return 'category-akademik';
+                default: return 'category-prestasi';
+            }
+        }
+
+        function getCategoryLabel(category) {
+            switch(category) {
+                case 'prestasi': return 'Prestasi';
+                case 'kegiatan': return 'Kegiatan';
+                case 'pengumuman': return 'Pengumuman';
+                case 'akademik': return 'Akademik';
+                default: return 'Berita';
+            }
+        }
+
+        function getEventTypeClass(type) {
+            switch(type) {
+                case 'akademik': return 'bg-primary';
+                case 'kegiatan': return 'bg-accent';
+                default: return 'bg-secondary';
+            }
+        }
+
+        // Open news detail (placeholder)
+        function openNewsDetail(id) {
+            const news = newsData.find(n => n.id === id);
+            if (news) {
+                // Show a modal instead of alert for better mobile experience
+                showModal('news', news);
+            }
+        }
+
+        // Open event detail (placeholder)
+        function openEventDetail(id) {
+            const event = eventsData.find(e => e.id === id);
+            if (event) {
+                showModal('event', event);
+            }
+        }
+
+        // Show modal function for better mobile experience
+        function showModal(type, data) {
+            // Create modal container
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl sm:rounded-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto">
+                    <div class="p-4 sm:p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-primary">${data.title}</h3>
+                            <button onclick="this.closest('.fixed').remove()" 
+                                    class="text-gray-500 hover:text-gray-700 text-xl mobile-tap-target">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="space-y-4">
+                            <p class="text-gray-600">${data.description || data.excerpt}</p>
+                            ${type === 'event' ? `
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-calendar-alt text-accent"></i>
+                                        <span class="text-gray-700">${data.date}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-clock text-accent"></i>
+                                        <span class="text-gray-700">${data.time}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 sm:col-span-2">
+                                        <i class="fas fa-map-marker-alt text-accent"></i>
+                                        <span class="text-gray-700">${data.location}</span>
+                                    </div>
+                                </div>
+                            ` : `
+                                <div class="flex items-center gap-4 text-sm text-gray-500">
+                                    <span class="flex items-center gap-1">
+                                        <i class="far fa-calendar-alt"></i>
+                                        ${data.date}
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <i class="far fa-clock"></i>
+                                        ${data.readTime}
+                                    </span>
+                                </div>
+                            `}
+                        </div>
+                        <div class="mt-6 flex justify-end">
+                            <button onclick="this.closest('.fixed').remove()" 
+                                    class="px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-semibold mobile-tap-target">
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Prevent body scroll when modal is open
+            document.body.style.overflow = 'hidden';
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.remove();
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Close modal with escape key
+            document.addEventListener('keydown', function closeModal(e) {
+                if (e.key === 'Escape') {
+                    modal.remove();
+                    document.body.style.overflow = 'auto';
+                    document.removeEventListener('keydown', closeModal);
+                }
+            });
+        }
+
+        // Event Listeners with mobile optimizations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all components
+            renderNews();
+            renderEvents();
+            renderCalendar();
+            updateBackToTop();
+            
+            // Add event listeners after DOM is loaded
+            const categoryFilter = document.getElementById('categoryFilter');
+            const searchInput = document.getElementById('searchInput');
+            const resetFilters = document.getElementById('resetFilters');
+            const loadMore = document.getElementById('loadMore');
+            const newsletterForm = document.getElementById('newsletterForm');
+            
+            if (categoryFilter) {
+                categoryFilter.addEventListener('change', function() {
+                    const category = this.value;
+                    const searchTerm = searchInput ? searchInput.value : '';
+                    renderNews(category, searchTerm);
                 });
             }
             
-            // Newsletter form submission
+            // Debounce search input for better mobile performance
+            let searchTimeout;
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        const searchTerm = this.value;
+                        const category = categoryFilter ? categoryFilter.value : 'all';
+                        renderNews(category, searchTerm);
+                    }, 300);
+                });
+            }
+            
+            if (resetFilters) {
+                resetFilters.addEventListener('click', function() {
+                    if (categoryFilter) categoryFilter.value = 'all';
+                    if (searchInput) searchInput.value = '';
+                    renderNews();
+                });
+            }
+            
+            if (loadMore) {
+                loadMore.addEventListener('click', function() {
+                    const btn = this;
+                    const originalText = btn.innerHTML;
+                    
+                    btn.innerHTML = '<span>Memuat...</span>';
+                    btn.disabled = true;
+                    
+                    // Simulate loading more news
+                    setTimeout(() => {
+                        alert('Fitur "Muat Lebih Banyak" akan diimplementasikan dengan API pada versi production.');
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                    }, 1000);
+                });
+            }
+            
+            // Newsletter form with mobile optimizations
             if (newsletterForm) {
                 newsletterForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    const emailInput = newsletterForm.querySelector('input[type="email"]');
-                    const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+                    const emailInput = this.querySelector('input[type="email"]');
+                    const submitBtn = this.querySelector('button[type="submit"]');
                     
                     if (!emailInput.value.trim()) {
-                        alert('Harap masukkan email Anda!');
+                        showToast('Harap masukkan email Anda!', 'warning');
                         return;
                     }
                     
                     if (!validateEmail(emailInput.value)) {
-                        alert('Email tidak valid!');
+                        showToast('Email tidak valid!', 'warning');
                         return;
                     }
                     
                     const originalText = submitBtn.innerHTML;
                     
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
                     submitBtn.disabled = true;
                     
                     // Simulate API call
                     setTimeout(() => {
-                        alert('Terima kasih! Anda telah berhasil berlangganan newsletter MA Yuppi.');
-                        newsletterForm.reset();
+                        showToast('Terima kasih! Anda telah berhasil berlangganan newsletter MA YUPPI.', 'success');
+                        emailInput.value = '';
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
                     }, 1500);
                 });
             }
             
-            // Email validation helper
-            function validateEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(email);
-            }
-            
-            // Pagination functionality
-            const paginationButtons = document.querySelectorAll('nav button');
-            paginationButtons.forEach(button => {
+            // Featured news slider navigation
+            document.querySelectorAll('.featured-news-nav button').forEach(button => {
                 button.addEventListener('click', function() {
-                    if (this.querySelector('i.fa-chevron-left')) {
-                        // Previous page logic
-                        alert('Navigasi ke halaman sebelumnya');
-                    } else if (this.querySelector('i.fa-chevron-right')) {
-                        // Next page logic
-                        alert('Navigasi ke halaman berikutnya');
-                    } else {
-                        // Page number click
-                        const pageNum = this.textContent;
-                        alert(`Navigasi ke halaman ${pageNum}`);
-                    }
+                    showToast('Slider navigation akan diimplementasikan dengan library seperti Swiper.js pada versi production.', 'info');
                 });
             });
         });
-    </script>
-    
-    <!-- Main JavaScript -->
-    <script>
-        // DOM Elements
-        const navbar = document.getElementById('navbar');
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const iconOpen = document.getElementById('icon-open');
-        const iconClose = document.getElementById('icon-close');
-        const backToTop = document.getElementById('backToTop');
-        const currentYear = document.getElementById('current-year');
 
-        // Set current year
-        if (currentYear) {
-            currentYear.textContent = new Date().getFullYear();
+        // Toast notification for better mobile experience
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            const colors = {
+                success: 'bg-green-500',
+                warning: 'bg-yellow-500',
+                error: 'bg-red-500',
+                info: 'bg-blue-500'
+            };
+            
+            toast.className = `fixed top-4 right-4 z-50 ${colors[type] || 'bg-blue-500'} text-white px-4 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300`;
+            toast.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-info-circle"></i>
+                    <span class="text-sm">${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => {
+                toast.classList.remove('translate-x-full');
+                toast.classList.add('translate-x-0');
+            }, 10);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('translate-x-0');
+                toast.classList.add('translate-x-full');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
         }
 
-        // Scroll Effects
-        window.addEventListener('scroll', () => {
-            // Navbar background on scroll
-            if (window.scrollY > 50) {
-                navbar.classList.add('nav-scrolled');
-            } else {
-                navbar.classList.remove('nav-scrolled');
-            }
-            
-            // Back to top button
-            if (window.scrollY > 300) {
-                backToTop.style.opacity = '1';
-                backToTop.style.pointerEvents = 'auto';
-            } else {
-                backToTop.style.opacity = '0';
-                backToTop.style.pointerEvents = 'none';
-            }
-            
-            // Section reveal animation
-            const reveals = document.querySelectorAll('.section-reveal');
-            reveals.forEach(reveal => {
-                const windowHeight = window.innerHeight;
-                const revealTop = reveal.getBoundingClientRect().top;
-                const revealPoint = 150;
-                
-                if (revealTop < windowHeight - revealPoint) {
-                    reveal.classList.add('visible');
-                }
-            });
-        });
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
 
         // Mobile Menu Toggle
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            iconOpen.classList.toggle('hidden');
-            iconClose.classList.toggle('hidden');
-        });
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const body = document.body;
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                    iconOpen.classList.remove('hidden');
-                    iconClose.classList.add('hidden');
+        if (mobileMenuButton) {
+            function toggleMobileMenu() {
+                const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                
+                // Toggle icons
+                if (iconOpen) iconOpen.classList.toggle('hidden');
+                if (iconClose) iconClose.classList.toggle('hidden');
+                
+                // Toggle menu visibility
+                if (mobileMenu) {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenu.classList.toggle('block');
+                }
+                
+                // Update aria-expanded
+                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                
+                // Prevent body scroll when menu is open
+                body.style.overflow = !isExpanded ? 'hidden' : 'auto';
+                
+                // Add/remove class to body for better mobile experience
+                if (!isExpanded) {
+                    body.classList.add('overflow-hidden');
+                } else {
+                    body.classList.remove('overflow-hidden');
                 }
             }
-        });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href') === '#') return;
-                
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Close mobile menu after click
-                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+            // Close mobile menu when clicking on links
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileMenu) {
                         mobileMenu.classList.add('hidden');
-                        iconOpen.classList.remove('hidden');
-                        iconClose.classList.add('hidden');
+                        mobileMenu.classList.remove('block');
                     }
+                    if (iconOpen) iconOpen.classList.remove('hidden');
+                    if (iconClose) iconClose.classList.add('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    body.style.overflow = 'auto';
+                    body.classList.remove('overflow-hidden');
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInside = mobileMenu && (mobileMenu.contains(event.target) || mobileMenuButton.contains(event.target));
+                if (!isClickInside && mobileMenu && mobileMenu.classList.contains('block')) {
+                    toggleMobileMenu();
                 }
             });
-        });
+        }
 
-        // Back to top functionality
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        
+        function updateBackToTop() {
+            if (backToTop && window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else if (backToTop) {
+                backToTop.classList.remove('opacity-100', 'visible');
+                backToTop.classList.add('opacity-0', 'invisible');
+            }
+        }
+        
+        window.addEventListener('scroll', updateBackToTop);
+        window.addEventListener('load', updateBackToTop);
+
+        if (backToTop) {
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
-        });
+        }
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+        // Prevent zoom on double tap (iOS)
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+        // Improve touch responsiveness
+        document.addEventListener('touchstart', function() {}, {passive: true});
 
-        // Observe elements for animation
-        document.querySelectorAll('.section-reveal').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Initialize animations on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Trigger initial scroll check
-            window.dispatchEvent(new Event('scroll'));
+        // Add keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('block')) {
+                if (mobileMenuButton) mobileMenuButton.click();
+            }
         });
     </script>
 </body>
