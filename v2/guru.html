@@ -120,6 +120,21 @@
         ::selection {
             background-color: rgba(139, 95, 191, 0.3);
         }
+        
+        /* Custom utilities */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="font-sans antialiased bg-gray-50 text-gray-800">
@@ -190,54 +205,98 @@
     <!-- Main Content -->
     <section class="py-16 lg:py-20 bg-white">
         <div class="container mx-auto px-4">
-            <!-- Filter Section -->
+            <!-- Filter & Search Section -->
             <div class="max-w-6xl mx-auto mb-12" data-aos="fade-up">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-4 p-6 bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-lg border border-gray-100">
-                    <div>
-                        <h2 class="text-2xl font-bold text-primary mb-2">Temukan Pengajar</h2>
-                        <p class="text-gray-600">Filter berdasarkan mata pelajaran</p>
+                <div class="flex flex-col lg:flex-row gap-6 p-6 bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-lg border border-gray-100">
+                    <!-- Search Section -->
+                    <div class="lg:w-1/2">
+                        <h2 class="text-2xl font-bold text-primary mb-4">Cari Guru</h2>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i class="fas fa-search text-gray-400"></i>
+                            </div>
+                            <input type="text" 
+                                   id="searchInput"
+                                   placeholder="Cari berdasarkan nama atau mata pelajaran..."
+                                   class="w-full pl-12 pr-4 py-3.5 bg-white border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300"
+                                   autocomplete="off">
+                            <button id="clearSearch" 
+                                    class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors duration-300 hidden">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">Ketik minimal 2 karakter untuk mulai mencari</p>
                     </div>
                     
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-filter text-gray-400"></i>
+                    <!-- Filter Section -->
+                    <div class="lg:w-1/2">
+                        <h2 class="text-2xl font-bold text-primary mb-4">Filter Lanjutan</h2>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <div class="relative flex-1">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-filter text-gray-400"></i>
+                                </div>
+                                <select id="filterMapel" 
+                                        class="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent appearance-none cursor-pointer">
+                                    <option value="all">Semua Mata Pelajaran</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-chevron-down text-gray-400"></i>
+                                </div>
                             </div>
-                            <select id="filterMapel" 
-                                    class="pl-10 pr-4 py-3 w-full sm:w-64 bg-white border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent appearance-none cursor-pointer">
-                                <option value="all">Semua Mata Pelajaran</option>
-                            </select>
-                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                <i class="fas fa-chevron-down text-gray-400"></i>
-                            </div>
+                            
+                            <button id="resetFilter" 
+                                    class="px-5 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium transition-colors duration-300 flex items-center justify-center gap-2 whitespace-nowrap">
+                                <i class="fas fa-redo"></i>
+                                Reset
+                            </button>
                         </div>
-                        
-                        <button id="resetFilter" 
-                                class="px-5 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium transition-colors duration-300 flex items-center justify-center gap-2">
-                            <i class="fas fa-redo"></i>
-                            Reset Filter
+                    </div>
+                </div>
+                
+                <!-- Search Results Info -->
+                <div id="searchResults" class="mt-4 hidden">
+                    <div class="flex items-center justify-between bg-primary/5 rounded-xl p-4">
+                        <div>
+                            <p class="font-medium text-primary" id="searchResultsText"></p>
+                            <p class="text-sm text-gray-600">Hasil pencarian akan diperbarui secara real-time</p>
+                        </div>
+                        <button id="clearAll" 
+                                class="px-4 py-2 bg-white text-primary border border-primary hover:bg-primary hover:text-white rounded-lg text-sm font-medium transition-all duration-300">
+                            Clear All
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Teachers Grid -->
-            <div id="guruGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <!-- Teachers Grid - DIUBAH: FOTO BULAT -->
+            <div id="guruGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto" data-aos="fade-up" data-aos-delay="100">
                 <!-- Cards akan di-generate oleh JavaScript -->
             </div>
 
             <!-- Empty State -->
-            <div id="emptyState" class="hidden text-center py-12" data-aos="fade-up">
+            <div id="emptyState" class="hidden text-center py-16" data-aos="fade-up">
                 <div class="max-w-md mx-auto">
-                    <div class="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-user-slash text-gray-400 text-3xl"></i>
+                    <div class="w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-user-slash text-gray-400 text-4xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-700 mb-3">Tidak Ditemukan</h3>
-                    <p class="text-gray-600 mb-6">Tidak ada guru yang ditemukan dengan filter yang dipilih. Coba filter lain atau reset filter.</p>
+                    <h3 class="text-2xl font-bold text-gray-700 mb-3">Tidak Ditemukan</h3>
+                    <p class="text-gray-600 mb-6" id="emptyStateMessage">
+                        Tidak ada guru yang ditemukan dengan filter yang dipilih.
+                    </p>
                     <button id="resetFilterEmpty" 
-                            class="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300">
-                        Reset Filter
+                            class="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 mx-auto">
+                        <i class="fas fa-redo"></i>
+                        Reset Semua Filter
                     </button>
+                </div>
+            </div>
+            
+            <!-- Loading State -->
+            <div id="loadingState" class="hidden text-center py-12">
+                <div class="inline-block">
+                    <div class="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin mb-4"></div>
+                    <p class="text-gray-600">Mencari data...</p>
                 </div>
             </div>
         </div>
@@ -316,14 +375,14 @@
                 
                 <!-- Modal Content -->
                 <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Photo -->
+                    <!-- Photo - DIUBAH: BULAT -->
                     <div class="md:col-span-1">
                         <div class="relative">
                             <img id="modalPhoto" 
                                  src="" 
                                  alt=""
-                                 class="w-full aspect-square object-cover rounded-2xl shadow-lg">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+                                 class="w-full aspect-square object-cover rounded-full shadow-xl border-4 border-white">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 to-transparent"></div>
                         </div>
                         
                         <div class="mt-4 p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-100">
@@ -408,86 +467,140 @@
                 mapel: "Bahasa Arab",
                 foto: "images/guru (1).png",
                 gelar: "S1 Pendidikan Bahasa Arab",
-                biodata: " dalam pengajaran bahasa Arab untuk pemula hingga tingkat lanjut dengan metode komunikatif yang menyenangkan.",
-                keahlian: ["Metode Komunikatif", "Linguistik Arab", "Budaya Arab"],
+                biodata: "Ahli dalam pengajaran bahasa Arab untuk pemula hingga tingkat lanjut dengan metode komunikatif yang menyenangkan. Berpengalaman 5 tahun dalam mengajar bahasa Arab dan budaya Islam.",
+                keahlian: ["Metode Komunikatif", "Linguistik Arab", "Budaya Arab", "Tahfidz Al-Quran"],
                 pencapaian: ["Pelatih Olimpiade Bahasa Arab Tingkat Kabupaten", "Penulis Buku Ajar Bahasa Arab Dasar", "Presenter Konferensi Pendidikan Bahasa"]
             },
             {
                 id: 2,
                 nama: "Ir. Khalid Musa, M.T",
                 mapel: "Fisika",
-                foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+                foto: "images/guru (2).png",
                 gelar: "S2 Teknik Fisika",
                 biodata: "Mengajar Fisika tingkat lanjut dengan pendekatan eksperimen dan aplikasi nyata. Berpengalaman 8 tahun dalam pendidikan sains dan penelitian.",
-                keahlian: ["Fisika Kuantum", "Eksperimen Laboratorium", "Penelitian Sains"],
+                keahlian: ["Fisika Kuantum", "Eksperimen Laboratorium", "Penelitian Sains", "Robotics"],
                 pencapaian: ["Juara 1 Lomba Inovasi Pembelajaran Fisika", "Peneliti Bidang Energi Terbarukan", "Pembimbing Olimpiade Sains Nasional"]
             },
             {
                 id: 3,
                 nama: "Laila Andini, S.Si",
                 mapel: "Kimia",
-                foto: "https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=400&q=80",
+                foto: "images/guru (3).png",
                 gelar: "S1 Kimia Murni",
                 biodata: "Spesialisasi Kimia Organik dengan pengalaman 5 tahun mengajar. Fokus pada pembelajaran berbasis proyek dan eksperimen laboratorium.",
-                keahlian: ["Kimia Organik", "Analisis Laboratorium", "Kimia Material"],
+                keahlian: ["Kimia Organik", "Analisis Laboratorium", "Kimia Material", "Kimia Lingkungan"],
                 pencapaian: ["Pengembang Kurikulum Kimia", "Pelatih Olimpiade Kimia Regional", "Peneliti Muda Terbaik 2022"]
             },
             {
                 id: 4,
                 nama: "Rahmat Hidayat, S.Kom",
                 mapel: "TIK",
-                foto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80",
+                foto: "images/guru (4).png",
                 gelar: "S1 Teknik Informatika",
                 biodata: "Ahli pemrograman & jaringan dengan sertifikasi internasional. Berpengalaman 7 tahun dalam industri teknologi dan pendidikan.",
-                keahlian: ["Web Development", "Jaringan Komputer", "Data Science"],
+                keahlian: ["Web Development", "Jaringan Komputer", "Data Science", "AI & Machine Learning"],
                 pencapaian: ["Sertifikasi Google IT Professional", "Pengembang Platform E-Learning Sekolah", "Juara Hackathon Nasional 2023"]
             },
             {
                 id: 5,
                 nama: "Dr. Ahmad Fauzi, M.Pd",
                 mapel: "Matematika",
-                foto: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
+                foto: "images/guru (5).png",
                 gelar: "S3 Pendidikan Matematika",
-                biodata: "Doktor Pendidikan Matematika dengan spesialisasi pembelajaran inovatif. Pengalaman mengajar 15 tahun.",
-                keahlian: ["Matematika Terapan", "Penelitian Pendidikan", "Kurikulum"],
-                pencapaian: ["Penulis Buku Matematika SMA", "Dosen Tamu Universitas", "Konsultan Kurikulum Nasional"]
+                biodata: "Doktor Pendidikan Matematika dengan spesialisasi pembelajaran inovatif. Pengalaman mengajar 15 tahun di berbagai sekolah unggulan.",
+                keahlian: ["Matematika Terapan", "Penelitian Pendidikan", "Kurikulum Matematika", "Statistika"],
+                pencapaian: ["Penulis Buku Matematika SMA Best Seller", "Dosen Tamu Universitas Negeri", "Konsultan Kurikulum Nasional"]
             },
             {
                 id: 6,
                 nama: "Siti Aminah, S.Pd.I",
                 mapel: "Pendidikan Agama",
-                foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80",
+                foto: "images/guru (6).png",
                 gelar: "S1 Pendidikan Agama Islam",
-                biodata: "Guru Pendidikan Agama Islam dengan pendekatan karakter building. Berpengalaman 10 tahun dalam pendidikan agama.",
-                keahlian: ["Fiqih", "Akidah Akhlak", "Metodologi Pengajaran"],
-                pencapaian: ["Pelatih Tahfidz Quran", "Pembina Rohis Nasional", "Penulis Modul Pendidikan Karakter"]
+                biodata: "Guru Pendidikan Agama Islam dengan pendekatan karakter building yang menyenangkan. Berpengalaman 10 tahun dalam pendidikan agama dan moral.",
+                keahlian: ["Fiqih", "Akidah Akhlak", "Metodologi Pengajaran", "Tahfidz Quran"],
+                pencapaian: ["Pelatih Tahfidz Quran Tingkat Nasional", "Pembina Rohis Berprestasi", "Penulis Modul Pendidikan Karakter Islami"]
             },
             {
                 id: 7,
                 nama: "Budi Santoso, M.Pd",
                 mapel: "Sejarah",
-                foto: "https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&w=400&q=80",
+                foto: "images/guru (7).png",
                 gelar: "S2 Pendidikan Sejarah",
-                biodata: "Spesialis sejarah Indonesia dengan metode storytelling yang menarik. Pengalaman mengajar 12 tahun.",
-                keahlian: ["Sejarah Indonesia", "Penelitian Sejarah", "Museum Studies"],
-                pencapaian: ["Pembicara Seminar Sejarah Nasional", "Penulis Buku Sejarah Lokal", "Kurator Pameran Sejarah"]
+                biodata: "Spesialis sejarah Indonesia dengan metode storytelling yang menarik. Pengalaman mengajar 12 tahun dan aktif sebagai peneliti sejarah.",
+                keahlian: ["Sejarah Indonesia", "Penelitian Sejarah", "Museum Studies", "Historiografi"],
+                pencapaian: ["Pembicara Seminar Sejarah Nasional", "Penulis Buku Sejarah Lokal Best Seller", "Kurator Pameran Sejarah Nasional"]
             },
             {
                 id: 8,
                 nama: "Dewi Sartika, S.Pd",
                 mapel: "Seni Budaya",
-                foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+                foto: "images/guru (8).png",
                 gelar: "S1 Pendidikan Seni",
-                biodata: "Seniman dan pendidik dengan spesialisasi seni rupa dan musik tradisional. Berpengalaman 9 tahun.",
-                keahlian: ["Seni Rupa", "Musik Tradisional", "Teater Pendidikan"],
-                pencapaian: ["Pemenang Lomba Seni Tingkat Nasional", "Pelatih Teater Sekolah", "Kurator Pameran Seni"]
+                biodata: "Seniman dan pendidik dengan spesialisasi seni rupa dan musik tradisional. Berpengalaman 9 tahun mengajar seni budaya.",
+                keahlian: ["Seni Rupa", "Musik Tradisional", "Teater Pendidikan", "Kriya"],
+                pencapaian: ["Pemenang Lomba Seni Tingkat Nasional", "Pelatih Teater Sekolah Juara", "Kurator Pameran Seni Siswa"]
+            },
+            {
+                id: 9,
+                nama: "Maya Indah, S.Pd",
+                mapel: "Bahasa Inggris",
+                foto: "images/guru (5).png",
+                gelar: "S1 Pendidikan Bahasa Inggris",
+                biodata: "Guru bahasa Inggris dengan sertifikasi TOEFL dan IELTS. Mengajar dengan metode komunikatif yang interaktif.",
+                keahlian: ["English Conversation", "TOEFL Preparation", "Academic Writing", "Public Speaking"],
+                pencapaian: ["Sertifikat IELTS Trainer", "Pembimbing Olimpiade Bahasa Inggris", "Pengajar Program Pertukaran Pelajar"]
+            },
+            {
+                id: 10,
+                nama: "Rudi Hartono, M.Pd",
+                mapel: "Olahraga",
+                foto: "images/guru (2).png",
+                gelar: "S2 Pendidikan Olahraga",
+                biodata: "Pelatih olahraga berpengalaman dengan spesialisasi atletik dan bola basket. Fokus pada pengembangan fisik dan karakter siswa.",
+                keahlian: ["Atletik", "Bola Basket", "Fisioterapi Dasar", "Manajemen Tim"],
+                pencapaian: ["Pelatih Tim Basket Juara Provinsi", "Wasit Nasional Atletik", "Pembina UKS Berprestasi"]
+            },
+            {
+                id: 11,
+                nama: "Sri Wahyuni, S.Pd",
+                mapel: "Bahasa Indonesia",
+                foto: "images/guru (6).png",
+                gelar: "S1 Pendidikan Bahasa Indonesia",
+                biodata: "Ahli sastra Indonesia dan penulisan kreatif. Berpengalaman 8 tahun dalam mengajar bahasa dan sastra Indonesia.",
+                keahlian: ["Sastra Indonesia", "Menulis Kreatif", "Drama", "Jurnalistik"],
+                pencapaian: ["Penulis Buku Kumpulan Puisi", "Pembina Teater Juara", "Juri Lomba Pidato Nasional"]
+            },
+            {
+                id: 12,
+                nama: "Agus Salim, M.Pd",
+                mapel: "Ekonomi",
+                foto: "images/guru (7).png",
+                gelar: "S2 Pendidikan Ekonomi",
+                biodata: "Guru ekonomi dengan pendekatan praktis dan aplikatif. Berpengalaman dalam kewirausahaan dan manajemen bisnis.",
+                keahlian: ["Ekonomi Mikro", "Kewirausahaan", "Manajemen Bisnis", "Akuntansi"],
+                pencapaian: ["Konsultan UKM Lokal", "Pembimbing Kompetisi Kewirausahaan", "Penulis Modul Ekonomi Praktis"]
             }
         ];
 
+        // State management
+        let currentFilter = "all";
+        let currentSearch = "";
+        let debounceTimer;
+
+        // DOM Elements
+        const searchInput = document.getElementById("searchInput");
+        const clearSearchBtn = document.getElementById("clearSearch");
+        const filterSelect = document.getElementById("filterMapel");
+        const searchResultsDiv = document.getElementById("searchResults");
+        const searchResultsText = document.getElementById("searchResultsText");
+        const clearAllBtn = document.getElementById("clearAll");
+        const emptyState = document.getElementById("emptyState");
+        const emptyStateMessage = document.getElementById("emptyStateMessage");
+        const loadingState = document.getElementById("loadingState");
+
         // Initialize filter options
         const mapelSet = new Set(guruList.map(g => g.mapel));
-        const filterSelect = document.getElementById("filterMapel");
-        
         mapelSet.forEach(m => {
             const option = document.createElement("option");
             option.value = m;
@@ -495,23 +608,60 @@
             filterSelect.appendChild(option);
         });
 
-        // Render teacher cards
-        function renderGuru(filter = "all") {
+        // Search function with debounce
+        function performSearch() {
+            const searchTerm = currentSearch.toLowerCase().trim();
+            const filterValue = currentFilter;
+            
+            if (searchTerm.length >= 2 || filterValue !== "all") {
+                showLoading();
+                
+                // Simulate API delay
+                setTimeout(() => {
+                    const filteredGuru = guruList.filter(g => {
+                        const matchesSearch = searchTerm === "" || 
+                            g.nama.toLowerCase().includes(searchTerm) ||
+                            g.mapel.toLowerCase().includes(searchTerm) ||
+                            g.gelar.toLowerCase().includes(searchTerm);
+                        
+                        const matchesFilter = filterValue === "all" || g.mapel === filterValue;
+                        
+                        return matchesSearch && matchesFilter;
+                    });
+                    
+                    hideLoading();
+                    renderGuru(filteredGuru);
+                    updateSearchResultsInfo(filteredGuru.length, searchTerm, filterValue);
+                }, 300);
+            } else {
+                renderGuru(guruList);
+                hideSearchResults();
+            }
+        }
+
+        // Render teacher cards with BULAT photo
+        function renderGuru(teachers) {
             const grid = document.getElementById("guruGrid");
-            const emptyState = document.getElementById("emptyState");
             
             // Clear grid
             grid.innerHTML = "";
             
-            // Filter teachers
-            const filteredGuru = guruList.filter(g => 
-                filter === "all" ? true : g.mapel === filter
-            );
-            
             // Show empty state if no results
-            if (filteredGuru.length === 0) {
+            if (teachers.length === 0) {
                 emptyState.classList.remove("hidden");
                 grid.classList.add("hidden");
+                
+                let message = "Tidak ada guru yang ditemukan";
+                if (currentSearch) {
+                    message += ` dengan kata kunci "${currentSearch}"`;
+                }
+                if (currentFilter !== "all") {
+                    message += currentSearch ? " dan " : " dengan ";
+                    message += `mata pelajaran ${currentFilter}`;
+                }
+                message += ".";
+                
+                emptyStateMessage.textContent = message;
                 return;
             }
             
@@ -520,53 +670,45 @@
             grid.classList.remove("hidden");
             
             // Render cards
-            filteredGuru.forEach(g => {
+            teachers.forEach(g => {
                 const card = document.createElement("div");
-                card.className = "teacher-card bg-white rounded-2xl shadow-lg overflow-hidden card-hover";
+                card.className = "bg-white rounded-2xl shadow-lg overflow-hidden card-hover teacher-card";
                 card.setAttribute("data-aos", "fade-up");
                 card.innerHTML = `
-                    <div class="relative">
-                        <img src="${g.foto}" 
-                             alt="${g.nama}"
-                             class="w-full h-48 object-cover"
-                             loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                        <div class="absolute top-4 right-4">
-                            <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-primary">
-                                ${g.mapel}
-                            </span>
-                        </div>
-                    </div>
-                    
                     <div class="p-6">
-                        <div class="flex items-start justify-between mb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-primary mb-1">${g.nama}</h3>
-                                <p class="text-gray-600 text-sm">${g.gelar}</p>
+                        <!-- Photo - BULAT -->
+                        <div class="flex flex-col items-center mb-6">
+                            <div class="w-32 h-32 rounded-full overflow-hidden mb-4 ring-4 ring-accent/20 group-hover:ring-accent transition-all duration-300">
+                                <img src="${g.foto}" 
+                                     alt="${g.nama}"
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                     loading="lazy">
                             </div>
-                            <div class="w-10 h-10 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-user-graduate text-primary"></i>
+                            <div class="text-center">
+                                <h3 class="text-xl font-bold text-primary mb-1">${g.nama}</h3>
+                                <p class="text-accent font-semibold mb-2">${g.mapel}</p>
+                                <p class="text-gray-600 text-sm">${g.gelar}</p>
                             </div>
                         </div>
                         
                         <p class="text-gray-600 text-sm mb-6 line-clamp-3">${g.biodata}</p>
                         
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            ${g.keahlian.slice(0, 2).map(skill => `
-                                <span class="px-3 py-1 bg-gradient-to-r from-gray-50 to-white text-gray-700 rounded-full text-xs font-medium">
+                        <div class="flex flex-wrap gap-2 mb-6 justify-center">
+                            ${g.keahlian.slice(0, 3).map(skill => `
+                                <span class="px-3 py-1.5 bg-gradient-to-r from-primary/5 to-accent/5 text-primary rounded-lg text-xs font-medium">
                                     ${skill}
                                 </span>
                             `).join('')}
-                            ${g.keahlian.length > 2 ? `
-                                <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
-                                    +${g.keahlian.length - 2} lainnya
+                            ${g.keahlian.length > 3 ? `
+                                <span class="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-medium">
+                                    +${g.keahlian.length - 3} lainnya
                                 </span>
                             ` : ''}
                         </div>
                         
                         <button onclick="openTeacherDetail(${g.id})" 
                                 class="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group">
-                            <span>Lihat Profil</span>
+                            <span>Lihat Profil Lengkap</span>
                             <i class="fas fa-arrow-right text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
                         </button>
                     </div>
@@ -574,6 +716,51 @@
                 
                 grid.appendChild(card);
             });
+        }
+
+        // Update search results info
+        function updateSearchResultsInfo(count, searchTerm, filterValue) {
+            if (count === 0 || (searchTerm === "" && filterValue === "all")) {
+                hideSearchResults();
+                return;
+            }
+            
+            let text = `Ditemukan ${count} guru`;
+            
+            if (searchTerm) {
+                text += ` dengan kata kunci "${searchTerm}"`;
+            }
+            
+            if (filterValue !== "all") {
+                text += searchTerm ? " dan " : " dengan ";
+                text += `mata pelajaran ${filterValue}`;
+            }
+            
+            searchResultsText.textContent = text;
+            searchResultsDiv.classList.remove("hidden");
+        }
+
+        // Show/hide search results info
+        function hideSearchResults() {
+            searchResultsDiv.classList.add("hidden");
+        }
+
+        // Show/hide loading state
+        function showLoading() {
+            loadingState.classList.remove("hidden");
+        }
+
+        function hideLoading() {
+            loadingState.classList.add("hidden");
+        }
+
+        // Update clear search button visibility
+        function updateClearSearchButton() {
+            if (currentSearch.length > 0) {
+                clearSearchBtn.classList.remove("hidden");
+            } else {
+                clearSearchBtn.classList.add("hidden");
+            }
         }
 
         // Open teacher detail modal
@@ -628,18 +815,53 @@
         }
 
         // Event Listeners
-        document.getElementById('filterMapel').addEventListener('change', (e) => {
-            renderGuru(e.target.value);
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            updateClearSearchButton();
+            
+            // Clear previous timer
+            clearTimeout(debounceTimer);
+            
+            // Set new timer for debounce
+            debounceTimer = setTimeout(() => {
+                performSearch();
+            }, 500);
+        });
+
+        clearSearchBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            currentSearch = '';
+            updateClearSearchButton();
+            performSearch();
+        });
+
+        filterSelect.addEventListener('change', (e) => {
+            currentFilter = e.target.value;
+            performSearch();
         });
 
         document.getElementById('resetFilter').addEventListener('click', () => {
             filterSelect.value = 'all';
-            renderGuru('all');
+            currentFilter = 'all';
+            performSearch();
         });
 
         document.getElementById('resetFilterEmpty').addEventListener('click', () => {
+            searchInput.value = '';
+            currentSearch = '';
             filterSelect.value = 'all';
-            renderGuru('all');
+            currentFilter = 'all';
+            updateClearSearchButton();
+            performSearch();
+        });
+
+        clearAllBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            currentSearch = '';
+            filterSelect.value = 'all';
+            currentFilter = 'all';
+            updateClearSearchButton();
+            performSearch();
         });
 
         document.getElementById('closeModal').addEventListener('click', closeModal);
@@ -658,7 +880,7 @@
         });
 
         // Initial render
-        renderGuru();
+        renderGuru(guruList);
     </script>
 </body>
 </html>
