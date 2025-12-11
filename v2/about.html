@@ -804,111 +804,167 @@
         </div>
     </section>
 
-    <!-- Guru & Staf -->
-    <section class="py-12 sm:py-16 lg:py-24 bg-gray-50 section-reveal" id="guru-staf" data-aos="fade-up">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-6xl mx-auto">
-                <!-- Section Header -->
-                <div class="text-center mb-8 sm:mb-12 lg:mb-16">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white rounded-full text-xs sm:text-sm font-semibold text-primary mb-3 sm:mb-4">
-                        <i class="fas fa-chalkboard-teacher text-accent"></i>
-                        TIM PENGAJAR
+  <!-- Guru & Staf -->
+<section class="py-12 sm:py-16 lg:py-24 bg-gray-50 section-reveal" id="guru-staf" data-aos="fade-up">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-8 sm:mb-12 lg:mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white rounded-full text-xs sm:text-sm font-semibold text-primary mb-3 sm:mb-4">
+                    <i class="fas fa-chalkboard-teacher text-accent"></i>
+                    TIM PENGAJAR
+                </div>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-primary mb-4 sm:mb-6">
+                    Guru & Staf Pengajar
+                </h2>
+                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+                    Tenaga pendidik profesional dan berpengalaman yang berdedikasi tinggi
+                </p>
+            </div>
+            
+            <!-- Guru Cards - DIUBAH MENJADI BULAT -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Guru 1 -->
+                <div class="profile-card text-center group cursor-pointer" onclick="openTeacherDetail(1)">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden ring-4 ring-accent/20 group-hover:ring-accent transition-all duration-300">
+                        <img src="images/guru (1).png" 
+                             alt="Fatimah Azzahra"
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                             loading="lazy">
                     </div>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-primary mb-4 sm:mb-6">
-                        Guru & Staf Pengajar
-                    </h2>
-                    <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
-                        Tenaga pendidik profesional dan berpengalaman yang berdedikasi tinggi
-                    </p>
+                    <h4 class="text-base sm:text-lg font-bold text-primary mb-1 line-clamp-1">Fatimah Azzahra, S.Pd</h4>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-2">Guru Bahasa Arab</p>
+                    <span class="inline-flex items-center gap-1 text-xs text-accent font-semibold group-hover:gap-2 transition-all duration-300">
+                        Lihat Profil
+                        <i class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
                 </div>
                 
-                <!-- Guru Cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                    <!-- Guru 1 -->
-                    <div class="card-hover bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden group cursor-pointer transform hover:scale-[1.02] transition-all duration-300 teacher-card" onclick="openTeacherDetail(1)">
-                        <div class="aspect-square overflow-hidden">
-                            <img src="images/guru (1).png" 
-                                 alt="Fatimah Azzahra"
-                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                 loading="lazy">
-                        </div>
-                        <div class="p-4 sm:p-6">
-                            <h4 class="text-base sm:text-lg font-bold text-primary mb-1">Fatimah Azzahra, S.Pd</h4>
-                            <p class="text-xs sm:text-sm text-gray-600 mb-2">Guru Bahasa Arab</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs text-accent font-semibold">Lihat Profil</span>
-                                <i class="fas fa-arrow-right text-accent text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                            </div>
-                        </div>
+                <!-- Guru 2 -->
+                <div class="profile-card text-center group cursor-pointer" onclick="openTeacherDetail(2)">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden ring-4 ring-accent/20 group-hover:ring-accent transition-all duration-300">
+                        <img src="images/guru (2).png" 
+                             alt="Ir. Khalid Musa"
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                             loading="lazy">
                     </div>
-                    
-                    <!-- Guru 2 -->
-                    <div class="card-hover bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden group cursor-pointer transform hover:scale-[1.02] transition-all duration-300 teacher-card" onclick="openTeacherDetail(2)">
-                        <div class="aspect-square overflow-hidden">
-                            <img src="images/guru (2).png" 
-                                 alt="Ir. Khalid Musa"
-                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                 loading="lazy">
-                        </div>
-                        <div class="p-4 sm:p-6">
-                            <h4 class="text-base sm:text-lg font-bold text-primary mb-1">Ir. Khalid Musa, M.T</h4>
-                            <p class="text-xs sm:text-sm text-gray-600 mb-2">Guru Fisika</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs text-accent font-semibold">Lihat Profil</span>
-                                <i class="fas fa-arrow-right text-accent text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Guru 3 -->
-                    <div class="card-hover bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden group cursor-pointer transform hover:scale-[1.02] transition-all duration-300 teacher-card" onclick="openTeacherDetail(3)">
-                        <div class="aspect-square overflow-hidden">
-                            <img src="images/guru (3).png" 
-                                 alt="Laila Andini"
-                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                 loading="lazy">
-                        </div>
-                        <div class="p-4 sm:p-6">
-                            <h4 class="text-base sm:text-lg font-bold text-primary mb-1">Laila Andini, S.Si</h4>
-                            <p class="text-xs sm:text-sm text-gray-600 mb-2">Guru Kimia</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs text-accent font-semibold">Lihat Profil</span>
-                                <i class="fas fa-arrow-right text-accent text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Guru 4 -->
-                    <div class="card-hover bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden group cursor-pointer transform hover:scale-[1.02] transition-all duration-300 teacher-card" onclick="openTeacherDetail(4)">
-                        <div class="aspect-square overflow-hidden">
-                            <img src="images/guru (4).png" 
-                                 alt="Rahmat Hidayat"
-                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                 loading="lazy">
-                        </div>
-                        <div class="p-4 sm:p-6">
-                            <h4 class="text-base sm:text-lg font-bold text-primary mb-1">Rahmat Hidayat, S.Kom</h4>
-                            <p class="text-xs sm:text-sm text-gray-600 mb-2">Guru TIK</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs text-accent font-semibold">Lihat Profil</span>
-                                <i class="fas fa-arrow-right text-accent text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                            </div>
-                        </div>
-                    </div>
+                    <h4 class="text-base sm:text-lg font-bold text-primary mb-1 line-clamp-1">Ir. Khalid Musa, M.T</h4>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-2">Guru Fisika</p>
+                    <span class="inline-flex items-center gap-1 text-xs text-accent font-semibold group-hover:gap-2 transition-all duration-300">
+                        Lihat Profil
+                        <i class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
                 </div>
                 
-                <!-- View All Button -->
-                <div class="text-center mt-8 sm:mt-12">
-                    <a href="guru.html" 
-                       class="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-3.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg sm:rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] group mobile-tap-target text-sm sm:text-base">
-                        <i class="fas fa-users text-sm"></i>
-                        <span>Lihat Semua Guru & Staf</span>
-                        <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1 text-xs sm:text-sm"></i>
-                    </a>
+                <!-- Guru 3 -->
+                <div class="profile-card text-center group cursor-pointer" onclick="openTeacherDetail(3)">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden ring-4 ring-accent/20 group-hover:ring-accent transition-all duration-300">
+                        <img src="images/guru (3).png" 
+                             alt="Laila Andini"
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                             loading="lazy">
+                    </div>
+                    <h4 class="text-base sm:text-lg font-bold text-primary mb-1 line-clamp-1">Laila Andini, S.Si</h4>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-2">Guru Kimia</p>
+                    <span class="inline-flex items-center gap-1 text-xs text-accent font-semibold group-hover:gap-2 transition-all duration-300">
+                        Lihat Profil
+                        <i class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                </div>
+                
+                <!-- Guru 4 -->
+                <div class="profile-card text-center group cursor-pointer" onclick="openTeacherDetail(4)">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden ring-4 ring-accent/20 group-hover:ring-accent transition-all duration-300">
+                        <img src="images/guru (4).png" 
+                             alt="Rahmat Hidayat"
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                             loading="lazy">
+                    </div>
+                    <h4 class="text-base sm:text-lg font-bold text-primary mb-1 line-clamp-1">Rahmat Hidayat, S.Kom</h4>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-2">Guru TIK</p>
+                    <span class="inline-flex items-center gap-1 text-xs text-accent font-semibold group-hover:gap-2 transition-all duration-300">
+                        Lihat Profil
+                        <i class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                </div>
+                
+                <!-- Guru 5 -->
+                <div class="profile-card text-center group cursor-pointer" onclick="openTeacherDetail(5)">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden ring-4 ring-accent/20 group-hover:ring-accent transition-all duration-300">
+                        <img src="images/guru (5).png" 
+                             alt="Nama Guru 5"
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                             loading="lazy">
+                    </div>
+                    <h4 class="text-base sm:text-lg font-bold text-primary mb-1 line-clamp-1">Nama Guru 5</h4>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-2">Guru Matematika</p>
+                    <span class="inline-flex items-center gap-1 text-xs text-accent font-semibold group-hover:gap-2 transition-all duration-300">
+                        Lihat Profil
+                        <i class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                </div>
+                
+                <!-- Guru 6 -->
+                <div class="profile-card text-center group cursor-pointer" onclick="openTeacherDetail(6)">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden ring-4 ring-accent/20 group-hover:ring-accent transition-all duration-300">
+                        <img src="images/guru (6).png" 
+                             alt="Nama Guru 6"
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                             loading="lazy">
+                    </div>
+                    <h4 class="text-base sm:text-lg font-bold text-primary mb-1 line-clamp-1">Nama Guru 6</h4>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-2">Guru Bahasa Inggris</p>
+                    <span class="inline-flex items-center gap-1 text-xs text-accent font-semibold group-hover:gap-2 transition-all duration-300">
+                        Lihat Profil
+                        <i class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                </div>
+                
+                <!-- Guru 7 -->
+                <div class="profile-card text-center group cursor-pointer" onclick="openTeacherDetail(7)">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden ring-4 ring-accent/20 group-hover:ring-accent transition-all duration-300">
+                        <img src="images/guru (7).png" 
+                             alt="Nama Guru 7"
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                             loading="lazy">
+                    </div>
+                    <h4 class="text-base sm:text-lg font-bold text-primary mb-1 line-clamp-1">Nama Guru 7</h4>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-2">Guru Biologi</p>
+                    <span class="inline-flex items-center gap-1 text-xs text-accent font-semibold group-hover:gap-2 transition-all duration-300">
+                        Lihat Profil
+                        <i class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                </div>
+                
+                <!-- Guru 8 -->
+                <div class="profile-card text-center group cursor-pointer" onclick="openTeacherDetail(8)">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden ring-4 ring-accent/20 group-hover:ring-accent transition-all duration-300">
+                        <img src="images/guru (8).png" 
+                             alt="Nama Guru 8"
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                             loading="lazy">
+                    </div>
+                    <h4 class="text-base sm:text-lg font-bold text-primary mb-1 line-clamp-1">Nama Guru 8</h4>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-2">Guru Sejarah</p>
+                    <span class="inline-flex items-center gap-1 text-xs text-accent font-semibold group-hover:gap-2 transition-all duration-300">
+                        Lihat Profil
+                        <i class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
                 </div>
             </div>
+            
+            <!-- View All Button -->
+            <div class="text-center mt-8 sm:mt-12">
+                <a href="guru.html" 
+                   class="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-3.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg sm:rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] group mobile-tap-target text-sm sm:text-base">
+                    <i class="fas fa-users text-sm"></i>
+                    <span>Lihat Semua Guru & Staf</span>
+                    <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1 text-xs sm:text-sm"></i>
+                </a>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- CTA Section -->
     <section class="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-primary via-primary/90 to-accent text-white">
