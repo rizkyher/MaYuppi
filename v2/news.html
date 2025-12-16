@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Berita & Acara - MA YUPPI</title>
+    <title>Galeri Foto & Seragam - MA YUPPI</title>
+    
+    <!-- Preconnect untuk performa lebih baik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Font Awesome (versi lebih ringan) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     
     <!-- Tailwind Config -->
     <script>
@@ -47,6 +55,19 @@
                         'fade-in': 'fadeIn 0.5s ease-out',
                         'slide-up': 'slideUp 0.6s ease-out',
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'progress': 'progress 3s linear forwards',
+                        'shimmer': 'shimmer 2s infinite'
+                    },
+                    keyframes: {
+                        progress: {
+                            '0%': { width: '100%' },
+                            '100%': { width: '0%' }
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200px 0' },
+                            '100%': { backgroundPosition: '200px 0' }
+                        }
                     },
                     screens: {
                         'xs': '375px',
@@ -69,6 +90,16 @@
             to { transform: translateY(0); opacity: 1; }
         }
         
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes progress {
+            0% { width: 100%; }
+            100% { width: 0%; }
+        }
+        
         /* Custom Classes */
         .glass-morphism {
             background: rgba(255, 255, 255, 0.1);
@@ -77,17 +108,24 @@
         }
         
         .card-hover {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .card-hover:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px -12px rgba(74, 14, 85, 0.15);
+            box-shadow: 0 20px 40px -12px rgba(74, 14, 85, 0.25);
         }
         
-        .news-gradient {
-            background: linear-gradient(135deg, #4A0E55 0%, #8B5FBF 50%, #FFD700 100%);
+        .gallery-gradient {
+            background: linear-gradient(135deg, #4A0E55 0%, #5C1A68 25%, #8B5FBF 50%, #FFD700 100%);
             background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         /* Smooth Scroll */
@@ -98,55 +136,41 @@
         /* Selection Color */
         ::selection {
             background-color: rgba(139, 95, 191, 0.3);
+            color: white;
         }
         
-        /* Category Badges */
-        .category-prestasi { background: linear-gradient(135deg, #4A0E55, #8B5FBF); }
-        .category-kegiatan { background: linear-gradient(135deg, #2196F3, #0D47A1); }
-        .category-pengumuman { background: linear-gradient(135deg, #4CAF50, #2E7D32); }
-        .category-akademik { background: linear-gradient(135deg, #9C27B0, #6A1B9A); }
-        
-        /* News Card Styles */
-        .news-card {
+        /* Gallery Image Hover Effect */
+        .gallery-item {
             position: relative;
             overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
         }
         
-        .news-card::before {
-            content: '';
+        .gallery-item img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: inherit;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-        
-        .news-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        /* Event Date Styling - Responsive */
-        .event-date {
-            width: 70px;
-            height: 70px;
+            inset: 0;
+            background: linear-gradient(to top, rgba(74, 14, 85, 0.9), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-            flex-shrink: 0;
+            align-items: flex-end;
+            padding: 1.5rem;
         }
         
-        @media (min-width: 640px) {
-            .event-date {
-                width: 80px;
-                height: 80px;
-                border-radius: 12px;
-            }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
         }
         
         /* Loading Animation */
@@ -172,6 +196,82 @@
             40% { transform: scale(1); }
         }
         
+        /* Skeleton Loading */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200px 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        /* Modal Styling */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            max-width: 1200px;
+            width: 100%;
+            max-height: 90vh;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        
+        /* Uniform Card Styling */
+        .uniform-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .uniform-card img {
+            transition: transform 0.5s ease;
+        }
+        
+        .uniform-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .uniform-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(74, 14, 85, 0.8), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .uniform-card:hover::after {
+            opacity: 1;
+        }
+        
         /* Mobile Optimizations */
         @media (max-width: 640px) {
             .mobile-tap-target {
@@ -184,24 +284,38 @@
                 line-height: 1.75rem;
             }
             
-            .mobile-padding {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            
             /* Improve touch scrolling */
             .overflow-touch {
                 -webkit-overflow-scrolling: touch;
             }
             
-            /* Optimize images for mobile */
-            .news-image {
-                height: 200px;
-                object-fit: cover;
+            /* Gallery grid for mobile */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
             }
             
-            .featured-news-image {
-                height: 300px;
+            .gallery-item {
+                aspect-ratio: 1/1;
+            }
+            
+            .modal-content {
+                margin: 0.5rem;
+                max-height: calc(100vh - 1rem);
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+        }
+        
+        @media (min-width: 1025px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
             }
         }
         
@@ -228,57 +342,36 @@
             -webkit-tap-highlight-color: rgba(139, 95, 191, 0.3);
         }
         
-        /* Line clamp utility for text truncation */
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        /* Touch feedback */
+        .gallery-item:active {
+            transform: scale(0.98);
+            transition: transform 0.1s;
         }
         
-        .line-clamp-3 {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        /* Toast styling */
+        .custom-toast {
+            z-index: 9999;
         }
         
-        /* Calendar Styling */
-        .calendar-day {
-            position: relative;
+        /* Zoom effect untuk modal image */
+        .zoomable-image {
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
         }
         
-        .calendar-day.has-event::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-        }
-        
-        .calendar-day.has-event.primary::after {
-            background-color: #4A0E55;
-        }
-        
-        .calendar-day.has-event.accent::after {
-            background-color: #8B5FBF;
-        }
-        
-        .calendar-day.has-event.secondary::after {
-            background-color: #FFD700;
+        .zoomable-image.zoomed {
+            cursor: zoom-out;
+            transform: scale(2);
         }
     </style>
 </head>
 <body class="font-sans antialiased bg-white text-gray-800">
     
     <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100 transition-all duration-300">
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100 transition-all duration-300 shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-14 sm:h-16 lg:h-20">
-                <!-- Logo - Simplified for mobile -->
+                <!-- Logo -->
                 <a href="index.html" class="flex items-center gap-2 group mobile-tap-target" aria-label="MA YUPPI Home">
                     <div class="relative w-10 h-10 sm:w-12 sm:h-12">
                         <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-lg sm:rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden">
@@ -300,39 +393,9 @@
                             Beranda
                         </a>
                         
-                        <div class="relative group" x-data="{ open: false }">
-                            <button class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg flex items-center gap-1"
-                                    @click="open = !open"
-                                    aria-expanded="false"
-                                    aria-haspopup="true">
-                                Profil
-                                <i class="fas fa-chevron-down text-xs transition-transform duration-300" :class="{'rotate-180': open}"></i>
-                            </button>
-                            <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2"
-                                 role="menu"
-                                 aria-label="Profil submenu">
-                                <a href="about.html" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors duration-300 group/item"
-                                   role="menuitem">
-                                    <div class="w-8 h-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-school text-primary text-sm"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-sm text-gray-800">Profil Sekolah</p>
-                                        <p class="text-xs text-gray-500 mt-0.5">Visi, Misi & Sejarah</p>
-                                    </div>
-                                </a>
-                                <a href="about.html#struktur" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors duration-300 group/item"
-                                   role="menuitem">
-                                    <div class="w-8 h-8 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-sitemap text-primary text-sm"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-sm text-gray-800">Struktur Organisasi</p>
-                                        <p class="text-xs text-gray-500 mt-0.5">Tim Kepemimpinan</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                        <a href="about.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                            Profil
+                        </a>
                         
                         <a href="programs.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
                             Program
@@ -344,6 +407,10 @@
                         
                         <a href="news.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
                             Berita
+                        </a>
+                        
+                        <a href="gallery.html" class="px-5 py-2.5 text-sm font-semibold text-primary border-b-2 border-primary transition-colors duration-300 rounded-lg">
+                            Galeri
                         </a>
                         
                         <a href="contact.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
@@ -385,27 +452,10 @@
                         <i class="fas fa-home text-gray-400 group-hover:text-primary text-sm"></i>
                     </a>
                     
-                    <div class="border-t border-gray-100 pt-2 mt-2">
-                        <p class="px-3 py-1.5 text-sm font-semibold text-gray-500">PROFIL</p>
-                        <a href="about.html" class="flex items-center gap-3 py-2.5 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 mobile-tap-target">
-                            <div class="w-8 h-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-school text-primary text-sm"></i>
-                            </div>
-                            <div class="min-w-0">
-                                <p class="font-medium text-gray-800 truncate">Profil Sekolah</p>
-                                <p class="text-xs text-gray-500 truncate">Visi, Misi & Sejarah</p>
-                            </div>
-                        </a>
-                        <a href="about.html#struktur" class="flex items-center gap-3 py-2.5 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 mobile-tap-target">
-                            <div class="w-8 h-8 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-sitemap text-primary text-sm"></i>
-                            </div>
-                            <div class="min-w-0">
-                                <p class="font-medium text-gray-800 truncate">Struktur Organisasi</p>
-                                <p class="text-xs text-gray-500 truncate">Tim Kepemimpinan</p>
-                            </div>
-                        </a>
-                    </div>
+                    <a href="about.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
+                        <span class="font-medium">Profil</span>
+                        <i class="fas fa-school text-gray-400 group-hover:text-primary text-sm"></i>
+                    </a>
                     
                     <a href="programs.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
                         <span class="font-medium">Program</span>
@@ -420,6 +470,11 @@
                     <a href="news.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
                         <span class="font-medium">Berita</span>
                         <i class="fas fa-newspaper text-gray-400 group-hover:text-primary text-sm"></i>
+                    </a>
+                    
+                    <a href="gallery.html" class="flex items-center justify-between py-3 px-3 text-primary bg-primary/5 rounded-lg group mobile-tap-target">
+                        <span class="font-medium">Galeri</span>
+                        <i class="fas fa-images text-primary text-sm"></i>
                     </a>
                     
                     <a href="contact.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
@@ -442,321 +497,335 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="news-gradient text-white pt-20 pb-12 sm:pt-24 sm:pb-16 lg:py-20 overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-0 left-0 w-32 h-32 sm:w-64 sm:h-64 bg-secondary/20 rounded-full blur-2xl sm:blur-3xl"></div>
-            <div class="absolute bottom-0 right-0 w-32 h-32 sm:w-64 sm:h-64 bg-accent/20 rounded-full blur-2xl sm:blur-3xl"></div>
+    <section class="gallery-gradient text-white pt-20 pb-12 sm:pt-24 sm:pb-16 lg:py-20 overflow-hidden relative">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-10 left-10 w-24 h-24 sm:w-32 sm:h-32 bg-secondary/10 rounded-full blur-xl animate-pulse"></div>
+            <div class="absolute bottom-10 right-10 w-32 h-32 sm:w-48 sm:h-48 bg-accent/10 rounded-full blur-xl animate-pulse"></div>
+            <div class="absolute top-1/2 left-1/4 w-16 h-16 sm:w-24 sm:h-24 bg-white/5 rounded-full blur-lg animate-float"></div>
         </div>
         
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-6xl mx-auto text-center">
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
-                    <i class="fas fa-newspaper text-secondary"></i>
-                    INFORMASI TERKINI
+                    <i class="fas fa-camera text-secondary"></i>
+                    GALERI VISUAL
                 </div>
                 
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold mb-4 sm:mb-6 leading-tight px-2">
-                    Berita & Acara
+                    Galeri Foto Sekolah
                     <span class="block text-secondary mt-1 sm:mt-2">MA YUPPI</span>
                 </h1>
                 
                 <p class="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed max-w-3xl mx-auto px-2">
-                    Informasi terkini tentang kegiatan, prestasi, pengumuman, dan perkembangan terbaru di Madrasah Aliyah Yuppi.
-                    Tetap terupdate dengan semua kegiatan kami.
+                    Jelajahi momen-momen terbaik, aktivitas pembelajaran, fasilitas sekolah, dan seragam khas MA YUPPI melalui koleksi foto kami.
                 </p>
                 
-                <!-- Stats - Responsive -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 max-w-2xl mx-auto mt-8 sm:mt-12">
-                    <div class="glass-morphism p-3 sm:p-4 rounded-lg sm:rounded-xl">
-                        <p class="text-xl sm:text-2xl lg:text-3xl font-bold mb-0.5 sm:mb-1">24+</p>
-                        <p class="text-white/70 text-xs sm:text-sm">Berita/Tahun</p>
-                    </div>
-                    <div class="glass-morphism p-3 sm:p-4 rounded-lg sm:rounded-xl">
-                        <p class="text-xl sm:text-2xl lg:text-3xl font-bold mb-0.5 sm:mb-1">15+</p>
-                        <p class="text-white/70 text-xs sm:text-sm">Acara/Tahun</p>
-                    </div>
-                    <div class="glass-morphism p-3 sm:p-4 rounded-lg sm:rounded-xl">
-                        <p class="text-xl sm:text-2xl lg:text-3xl font-bold mb-0.5 sm:mb-1">85+</p>
-                        <p class="text-white/70 text-xs sm:text-sm">Prestasi Dilaporkan</p>
-                    </div>
-                    <div class="glass-morphism p-3 sm:p-4 rounded-lg sm:rounded-xl">
-                        <p class="text-xl sm:text-2xl lg:text-3xl font-bold mb-0.5 sm:mb-1">3.5K+</p>
-                        <p class="text-white/70 text-xs sm:text-sm">Pembaca/Bulan</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- News Section -->
-    <section class="py-8 sm:py-12 lg:py-16 bg-gray-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Filter & Search - Mobile Optimized -->
-            <div class="max-w-6xl mx-auto mb-8 sm:mb-12">
-                <div class="flex flex-col gap-4 sm:gap-6 p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl shadow-lg">
-                    <div class="text-center sm:text-left">
-                        <h2 class="text-xl sm:text-2xl font-bold text-primary mb-1 sm:mb-2">Temukan Berita</h2>
-                        <p class="text-gray-600 text-sm sm:text-base">Filter berdasarkan kategori atau cari artikel tertentu</p>
-                    </div>
-                    
-                    <div class="flex flex-col gap-3 sm:flex-row sm:gap-4 w-full">
-                        <!-- Search -->
-                        <div class="relative flex-1">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-search text-gray-400 text-sm sm:text-base"></i>
-                            </div>
-                            <input type="text" 
-                                   id="searchInput"
-                                   placeholder="Cari berita..." 
-                                   class="pl-10 pr-4 py-2.5 sm:py-3 w-full bg-white border border-gray-200 rounded-lg sm:rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-sm sm:text-base"
-                                   aria-label="Search news">
-                        </div>
-                        
-                        <!-- Category Filter -->
-                        <div class="relative flex-shrink-0">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-filter text-gray-400 text-sm sm:text-base"></i>
-                            </div>
-                            <select id="categoryFilter" 
-                                    class="pl-10 pr-8 py-2.5 sm:py-3 bg-white border border-gray-200 rounded-lg sm:rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent appearance-none cursor-pointer text-sm sm:text-base w-full"
-                                    aria-label="Filter by category">
-                                <option value="all">Semua Kategori</option>
-                                <option value="prestasi">Prestasi</option>
-                                <option value="kegiatan">Kegiatan</option>
-                                <option value="pengumuman">Pengumuman</option>
-                                <option value="akademik">Akademik</option>
-                            </select>
-                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                <i class="fas fa-chevron-down text-gray-400 text-sm"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- News Grid -->
-            <div class="max-w-6xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="newsGrid">
-                    <!-- News cards will be generated by JavaScript -->
-                </div>
-                
-                <!-- Loading State -->
-                <div id="loadingNews" class="text-center py-8 sm:py-12">
-                    <div class="loading-dots text-primary text-lg sm:text-xl mb-3 sm:mb-4">
-                        <span></span><span></span><span></span>
-                    </div>
-                    <p class="text-gray-600 text-sm sm:text-base">Memuat berita...</p>
-                </div>
-                
-                <!-- Empty State -->
-                <div id="emptyNews" class="hidden text-center py-8 sm:py-12">
-                    <div class="max-w-md mx-auto">
-                        <div class="w-16 h-16 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                            <i class="fas fa-newspaper text-gray-400 text-xl sm:text-3xl"></i>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-700 mb-2 sm:mb-3">Tidak Ditemukan</h3>
-                        <p class="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6 px-2">Tidak ada berita yang sesuai dengan filter atau pencarian Anda.</p>
-                        <button id="resetFilters" 
-                                class="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg sm:rounded-xl font-semibold hover:shadow-lg transition-all duration-300 mobile-tap-target text-sm sm:text-base">
-                            Reset Filter
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Load More Button -->
-                <div class="text-center mt-8 sm:mt-12">
-                    <button id="loadMore" 
-                            class="px-6 sm:px-8 py-2.5 sm:py-3 bg-white border-2 border-primary text-primary rounded-lg sm:rounded-xl font-bold hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-[1.02] group mobile-tap-target text-sm sm:text-base">
-                        <span>Muat Lebih Banyak</span>
-                        <i class="fas fa-arrow-down ml-2 text-xs sm:text-sm group-hover:translate-y-1 transition-transform duration-300"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured News Section -->
-    <section class="py-8 sm:py-12 lg:py-16 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-8 sm:mb-12" data-aos="fade-up">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-full text-xs sm:text-sm font-semibold text-primary mb-3 sm:mb-4">
-                        <i class="fas fa-star text-secondary"></i>
-                        BERITA UTAMA
-                    </div>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-primary mb-4 sm:mb-6">
-                        Featured Stories
-                    </h2>
-                    <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-2">
-                        Cerita inspiratif dan pencapaian terbaru dari keluarga besar MA YUPPI
-                    </p>
-                </div>
-                
-                <!-- Featured News Slider - Mobile Optimized -->
-                <div class="relative overflow-hidden rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-xl sm:shadow-2xl" data-aos="fade-up">
-                    <div class="relative h-[300px] sm:h-[350px] lg:h-[500px]">
-                        <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/60 to-transparent z-10"></div>
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" 
-                             alt="Featured News" 
-                             class="w-full h-full object-cover featured-news-image"
-                             loading="lazy">
-                        <div class="absolute inset-0 z-20 flex items-end p-4 sm:p-6 lg:p-8 lg:p-12">
-                            <div class="max-w-2xl">
-                                <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                                    <span class="category-prestasi text-white px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold">
-                                        Prestasi
-                                    </span>
-                                    <span class="text-white/80 text-xs sm:text-sm">
-                                        <i class="far fa-calendar-alt mr-1"></i>
-                                        20 November 2024
-                                    </span>
-                                </div>
-                                <h3 class="text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-white mb-3 sm:mb-4">
-                                    Tim Debat Bahasa Arab Raih Juara 1 Tingkat Provinsi
-                                </h3>
-                                <p class="text-white/90 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base line-clamp-3">
-                                    Prestasi membanggakan diraih tim debat MA Yuppi dengan mengalahkan 45 sekolah lainnya di tingkat provinsi Jawa Barat.
-                                </p>
-                                <a href="#" 
-                                   class="inline-flex items-center gap-2 bg-secondary text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl font-bold hover:shadow-lg transition-all duration-300 group mobile-tap-target text-sm sm:text-base">
-                                    <span>Baca Selengkapnya</span>
-                                    <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1 text-xs sm:text-sm"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Featured News Navigation -->
-                    <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-30 flex gap-2">
-                        <button class="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-300 mobile-tap-target">
-                            <i class="fas fa-chevron-left text-xs sm:text-sm"></i>
-                        </button>
-                        <button class="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-300 mobile-tap-target">
-                            <i class="fas fa-chevron-right text-xs sm:text-sm"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section class="py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-8 sm:mb-12" data-aos="fade-up">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white rounded-full text-xs sm:text-sm font-semibold text-primary mb-3 sm:mb-4">
-                        <i class="fas fa-calendar-alt text-accent"></i>
-                        KALENDER ACARA
-                    </div>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-primary mb-4 sm:mb-6">
-                        Acara Mendatang
-                    </h2>
-                    <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-2">
-                        Jadwal kegiatan dan acara penting yang akan datang di MA YUPPI
-                    </p>
-                </div>
-                
-                <div class="grid lg:grid-cols-2 gap-6 sm:gap-8">
-                    <!-- Upcoming Events List - Mobile Optimized -->
-                    <div class="space-y-4 sm:space-y-6" id="eventsList">
-                        <!-- Events will be generated by JavaScript -->
-                    </div>
-                    
-                    <!-- Calendar Preview - Hidden on small mobile -->
-                    <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl p-4 sm:p-6 lg:p-8 hidden sm:block" data-aos="fade-left">
-                        <div class="flex items-center justify-between mb-4 sm:mb-6">
-                            <h3 class="text-xl sm:text-2xl font-bold text-primary">Kalender Desember 2024</h3>
-                            <div class="flex gap-1 sm:gap-2">
-                                <button class="w-7 h-7 sm:w-8 sm:h-8 bg-gray-100 rounded-lg flex items-center justify-center mobile-tap-target">
-                                    <i class="fas fa-chevron-left text-gray-600 text-xs sm:text-sm"></i>
-                                </button>
-                                <button class="w-7 h-7 sm:w-8 sm:h-8 bg-gray-100 rounded-lg flex items-center justify-center mobile-tap-target">
-                                    <i class="fas fa-chevron-right text-gray-600 text-xs sm:text-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-7 gap-1 sm:gap-2 mb-3 sm:mb-4" id="calendarDays">
-                            <!-- Calendar days will be generated by JavaScript -->
-                        </div>
-                        
-                        <!-- Event Legend -->
-                        <div class="border-t border-gray-100 pt-4 sm:pt-6">
-                            <h4 class="text-base sm:text-lg font-semibold text-primary mb-2 sm:mb-4">Legenda Acara</h4>
-                            <div class="space-y-1 sm:space-y-2">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-primary rounded-full"></div>
-                                    <span class="text-xs sm:text-sm text-gray-600">Ujian & Tes</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full"></div>
-                                    <span class="text-xs sm:text-sm text-gray-600">Kegiatan Sekolah</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-secondary rounded-full"></div>
-                                    <span class="text-xs sm:text-sm text-gray-600">Acara Khusus</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- View All Events -->
-                <div class="text-center mt-8 sm:mt-12">
-                    <a href="#" 
-                       class="inline-flex items-center gap-2 sm:gap-3 px-6 py-2.5 sm:px-8 sm:py-3.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg sm:rounded-xl font-bold hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] group mobile-tap-target text-sm sm:text-base">
-                        <i class="fas fa-calendar-check text-sm"></i>
-                        <span>Lihat Kalender Lengkap</span>
-                        <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1 text-xs sm:text-sm"></i>
+                <!-- Quick Navigation -->
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mt-8 sm:mt-12">
+                    <a href="#school-gallery" 
+                       class="px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-semibold hover:bg-white/20 transition-all duration-300 mobile-tap-target">
+                        <i class="fas fa-school mr-2"></i>Foto Sekolah
+                    </a>
+                    <a href="#activities-gallery" 
+                       class="px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-semibold hover:bg-white/20 transition-all duration-300 mobile-tap-target">
+                        <i class="fas fa-running mr-2"></i>Aktivitas
+                    </a>
+                    <a href="#facilities-gallery" 
+                       class="px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-semibold hover:bg-white/20 transition-all duration-300 mobile-tap-target">
+                        <i class="fas fa-building mr-2"></i>Fasilitas
+                    </a>
+                    <a href="#uniforms-section" 
+                       class="px-4 sm:px-6 py-2 sm:py-3 bg-secondary text-primary rounded-full text-sm font-semibold hover:bg-secondary/90 transition-all duration-300 mobile-tap-target">
+                        <i class="fas fa-tshirt mr-2"></i>Seragam
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-primary via-primary/90 to-accent text-white">
+    <!-- School Photos Gallery Section -->
+    <section id="school-gallery" class="py-12 sm:py-16 lg:py-20 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 lg:p-12 text-center">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                        <i class="fas fa-envelope-open-text text-xl sm:text-2xl text-secondary"></i>
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-8 sm:mb-12 lg:mb-16" data-aos="fade-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-primary/5 rounded-full text-xs sm:text-sm font-semibold text-primary mb-3 sm:mb-4">
+                        <i class="fas fa-school text-accent"></i>
+                        FOTO SEKOLAH
                     </div>
-                    
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold mb-4 sm:mb-6">
-                        Tetap Terupdate
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-primary mb-4 sm:mb-6">
+                        MA YUPPI dalam Gambar
                     </h2>
-                    
-                    <p class="text-base sm:text-lg text-white/90 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto px-2">
-                        Dapatkan informasi terbaru tentang kegiatan, prestasi, dan pengumuman MA YUPPI langsung di email Anda.
+                    <p class="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto px-2">
+                        Dokumentasi visual lingkungan sekolah, gedung, dan suasana pembelajaran di MA YUPPI.
                     </p>
-                    
-                    <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-lg mx-auto">
-                        <div class="flex-1 relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-envelope text-gray-400 text-sm"></i>
-                            </div>
-                            <input type="email" 
-                                   placeholder="Email Anda" 
-                                   class="pl-10 pr-4 py-2.5 sm:py-3 w-full bg-white text-gray-800 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary text-sm sm:text-base"
-                                   required
-                                   aria-label="Email address for newsletter">
+                </div>
+                
+                <!-- Search and Filter -->
+                <div class="mb-8 sm:mb-12" data-aos="fade-up">
+                    <div class="flex flex-col sm:flex-row gap-4 items-center justify-between">
+                        <!-- Search Box -->
+                        <div class="relative w-full sm:w-auto sm:flex-1 max-w-md">
+                            <input type="text" 
+                                   id="searchGallery" 
+                                   placeholder="Cari foto berdasarkan judul atau deskripsi..."
+                                   class="w-full px-6 py-3 pl-12 bg-white border border-gray-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                         </div>
-                        <button type="submit" 
-                                class="px-6 py-2.5 sm:px-8 sm:py-3 bg-secondary text-primary rounded-lg sm:rounded-xl font-bold hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 mobile-tap-target text-sm sm:text-base">
-                            <i class="fas fa-paper-plane text-sm"></i>
-                            Berlangganan
-                        </button>
-                    </form>
-                    
-                    <p class="text-xs sm:text-sm text-white/70 mt-3 sm:mt-4">
-                        Dengan berlangganan, Anda menyetujui <a href="#" class="underline hover:text-white text-xs sm:text-sm">Kebijakan Privasi</a> kami
-                    </p>
+                        
+                        <!-- Sort Options -->
+                        <div class="flex gap-2 w-full sm:w-auto">
+                            <select id="sortGallery" 
+                                    class="px-4 py-2.5 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary w-full sm:w-auto">
+                                <option value="newest">Terbaru</option>
+                                <option value="oldest">Terlama</option>
+                                <option value="title-asc">Judul A-Z</option>
+                                <option value="title-desc">Judul Z-A</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Filter -->
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12" data-aos="fade-up">
+                    <button class="px-4 py-2 bg-primary text-white rounded-full text-sm font-semibold transition-all duration-300 hover:shadow-lg active:scale-95 mobile-tap-target gallery-filter active" data-filter="all">
+                        Semua Foto
+                    </button>
+                    <button class="px-4 py-2 bg-white text-primary border border-primary/20 rounded-full text-sm font-semibold transition-all duration-300 hover:bg-primary/5 hover:shadow-md active:scale-95 mobile-tap-target gallery-filter" data-filter="building">
+                        Gedung Sekolah
+                    </button>
+                    <button class="px-4 py-2 bg-white text-primary border border-primary/20 rounded-full text-sm font-semibold transition-all duration-300 hover:bg-primary/5 hover:shadow-md active:scale-95 mobile-tap-target gallery-filter" data-filter="classroom">
+                        Ruang Kelas
+                    </button>
+                    <button class="px-4 py-2 bg-white text-primary border border-primary/20 rounded-full text-sm font-semibold transition-all duration-300 hover:bg-primary/5 hover:shadow-md active:scale-95 mobile-tap-target gallery-filter" data-filter="environment">
+                        Lingkungan
+                    </button>
+                </div>
+                
+                <!-- Loading Skeleton -->
+                <div id="loadingSkeleton" class="gallery-grid hidden">
+                    <div class="space-y-2" v-for="i in 8">
+                        <div class="skeleton h-48 sm:h-56 rounded-xl"></div>
+                        <div class="space-y-2">
+                            <div class="skeleton h-4 rounded w-3/4"></div>
+                            <div class="skeleton h-3 rounded w-1/2"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Grid -->
+                <div class="gallery-grid" id="schoolGallery">
+                    <!-- School photos will be loaded by JavaScript -->
+                </div>
+                
+                <!-- View More Button -->
+                <div class="text-center mt-8 sm:mt-12" data-aos="fade-up">
+                    <button id="loadMoreSchool" 
+                            class="px-6 sm:px-8 py-2.5 sm:py-3.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg sm:rounded-xl font-bold hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 mx-auto group mobile-tap-target">
+                        <i class="fas fa-plus text-sm"></i>
+                        <span>Muat Lebih Banyak</span>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Activities Gallery Section -->
+    <section id="activities-gallery" class="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-8 sm:mb-12 lg:mb-16" data-aos="fade-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white rounded-full text-xs sm:text-sm font-semibold text-primary mb-3 sm:mb-4">
+                        <i class="fas fa-running text-accent"></i>
+                        AKTIVITAS SISWA
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-primary mb-4 sm:mb-6">
+                        Momen Kegiatan Belajar
+                    </h2>
+                    <p class="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto px-2">
+                        Dokumentasi berbagai kegiatan pembelajaran, ekskul, dan acara sekolah yang melibatkan siswa MA YUPPI.
+                    </p>
+                </div>
+                
+                <!-- Activities Gallery Grid -->
+                <div class="gallery-grid" id="activitiesGallery">
+                    <!-- Activities photos will be loaded by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Gallery Section -->
+    <section id="facilities-gallery" class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-8 sm:mb-12 lg:mb-16" data-aos="fade-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-primary/5 rounded-full text-xs sm:text-sm font-semibold text-primary mb-3 sm:mb-4">
+                        <i class="fas fa-building text-accent"></i>
+                        FASILITAS SEKOLAH
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-primary mb-4 sm:mb-6">
+                        Sarana & Prasarana
+                    </h2>
+                    <p class="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto px-2">
+                        Fasilitas lengkap yang mendukung proses pembelajaran dan pengembangan potensi siswa.
+                    </p>
+                </div>
+                
+                <!-- Facilities Gallery Grid -->
+                <div class="gallery-grid" id="facilitiesGallery">
+                    <!-- Facilities photos will be loaded by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Uniforms Section -->
+    <section id="uniforms-section" class="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-primary/5 via-accent/5 to-primary/5">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-8 sm:mb-12 lg:mb-16" data-aos="fade-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white rounded-full text-xs sm:text-sm font-semibold text-primary mb-3 sm:mb-4">
+                        <i class="fas fa-tshirt text-accent"></i>
+                        SERAGAM SEKOLAH
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-primary mb-4 sm:mb-6">
+                        Seragam Khas MA YUPPI
+                    </h2>
+                    <p class="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto px-2">
+                        Kenali berbagai jenis seragam yang digunakan siswa MA YUPPI dalam berbagai kegiatan.
+                    </p>
+                </div>
+                
+                <!-- Uniforms Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="uniformsGallery">
+                    <!-- Uniform cards will be loaded by JavaScript -->
+                </div>
+                
+                <!-- Uniform Details -->
+                <div class="mt-12 sm:mt-16 bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden" data-aos="fade-up">
+                    <div class="grid lg:grid-cols-2">
+                        <div class="p-6 sm:p-8 lg:p-12">
+                            <h3 class="text-2xl sm:text-3xl font-serif font-bold text-primary mb-4 sm:mb-6">
+                                Tentang Seragam MA YUPPI
+                            </h3>
+                            <div class="space-y-4 sm:space-y-6">
+                                <div>
+                                    <h4 class="text-lg sm:text-xl font-bold text-primary mb-2">Filosofi Warna</h4>
+                                    <p class="text-gray-600">
+                                        Warna ungu melambangkan kebijaksanaan dan spiritualitas, emas melambangkan kecemerlangan akademik, 
+                                        dan putih melambangkan kesucian dan ketulusan dalam menuntut ilmu.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg sm:text-xl font-bold text-primary mb-2">Bahan Berkualitas</h4>
+                                    <p class="text-gray-600">
+                                        Menggunakan bahan katun oxford yang nyaman, menyerap keringat, dan tahan lama. 
+                                        Desain ergonomis untuk mendukung aktivitas belajar seharian.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg sm:text-xl font-bold text-primary mb-2">Aturan Pemakaian</h4>
+                                    <ul class="space-y-2 text-gray-600">
+                                        <li class="flex items-start gap-2">
+                                            <i class="fas fa-check text-accent mt-1"></i>
+                                            <span>Seragam harus rapi dan bersih setiap hari</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <i class="fas fa-check text-accent mt-1"></i>
+                                            <span>Logo dan atribut harus lengkap</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <i class="fas fa-check text-accent mt-1"></i>
+                                            <span>Ukuran sesuai dengan ketentuan sekolah</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Seragam MA YUPPI" 
+                                 class="w-full h-full object-cover"
+                                 loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary/40 to-transparent lg:hidden"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Modal -->
+    <div id="photoModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="relative">
+                <div class="absolute top-4 right-4 z-10 flex gap-2">
+                    <button onclick="downloadCurrentPhoto()" 
+                            class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white mobile-tap-target"
+                            title="Unduh Foto">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button onclick="shareCurrentPhoto()" 
+                            class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white mobile-tap-target"
+                            title="Bagikan">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    <button id="closeModal" 
+                            class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white mobile-tap-target"
+                            title="Tutup">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-2/3 relative">
+                        <img id="modalImage" src="" alt="" class="w-full h-[50vh] lg:h-[80vh] object-contain bg-gray-900 zoomable-image">
+                        <!-- Navigation Arrows -->
+                        <button onclick="navigateGallery(-1)" 
+                                class="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-gray-800 hover:bg-white mobile-tap-target">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button onclick="navigateGallery(1)" 
+                                class="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-gray-800 hover:bg-white mobile-tap-target">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="lg:w-1/3 p-4 sm:p-6 lg:p-8">
+                        <h3 id="modalTitle" class="text-xl sm:text-2xl font-bold text-primary mb-3"></h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">Kategori</h4>
+                                <div id="modalCategory" class="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"></div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">Deskripsi</h4>
+                                <p id="modalDescription" class="text-gray-600"></p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">Tanggal</h4>
+                                <p id="modalDate" class="text-gray-600"></p>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Sharing Buttons -->
+                        <div class="mt-6 space-y-3">
+                            <h4 class="font-semibold text-gray-700 mb-1">Bagikan</h4>
+                            <div class="flex gap-2">
+                                <button onclick="sharePhoto('whatsapp')" 
+                                        class="flex-1 py-2 bg-green-500 text-white rounded-lg flex items-center justify-center gap-2 hover:bg-green-600 transition-colors mobile-tap-target">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp
+                                </button>
+                                <button onclick="sharePhoto('facebook')" 
+                                        class="flex-1 py-2 bg-blue-600 text-white rounded-lg flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors mobile-tap-target">
+                                    <i class="fab fa-facebook"></i> Facebook
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
    <!-- Footer -->
     <footer class="bg-black text-white py-8 sm:py-12">
@@ -819,13 +888,13 @@
                     </h4>
                     <ul class="space-y-2 sm:space-y-3">
                         <li>
-                            <a href="#hero" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                            <a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
                                 Beranda
                             </a>
                         </li>
                         <li>
-                            <a href="about.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
-                                Profil Sekolah
+                            <a href="gallery.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Galeri Foto
                             </a>
                         </li>
                         <li>
@@ -928,7 +997,6 @@
         </div>
     </footer>
 
-
     <!-- Back to Top -->
     <button id="backToTop" 
             class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-accent text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 active:scale-95 opacity-0 invisible z-40 mobile-tap-target"
@@ -941,6 +1009,354 @@
     
     <!-- Custom JavaScript -->
     <script>
+        // State management
+        let galleryState = {
+            currentPhotoIndex: 0,
+            currentPhotoData: null,
+            activeFilter: 'all',
+            currentPage: 1,
+            itemsPerPage: 8,
+            currentGallery: [],
+            allPhotos: []
+        };
+
+        // Photo Gallery Data
+        const schoolPhotos = [
+            {
+                id: 1,
+                title: "Gedung Utama MA YUPPI",
+                category: "building",
+                description: "Gedung utama sekolah dengan arsitektur modern dan fasilitas lengkap untuk mendukung proses pembelajaran yang optimal.",
+                image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
+                date: "Januari 2024",
+                location: "Gedung Utama",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 2,
+                title: "Pintu Gerbang Sekolah",
+                category: "building",
+                description: "Pintu gerbang utama dengan logo MA YUPPI yang megah, menyambut siswa dengan hangat setiap harinya.",
+                image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80",
+                date: "Februari 2024",
+                location: "Pintu Gerbang",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 3,
+                title: "Taman Sekolah",
+                category: "environment",
+                description: "Area taman hijau yang nyaman untuk belajar dan beristirahat, dilengkapi dengan tempat duduk yang teduh.",
+                image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=800&q=80",
+                date: "Maret 2024",
+                location: "Taman Sekolah",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 4,
+                title: "Laboratorium Komputer",
+                category: "classroom",
+                description: "Laboratorium komputer dengan spesifikasi tinggi untuk pembelajaran IT dan pemrograman.",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80",
+                date: "April 2024",
+                location: "Lab Komputer",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 5,
+                title: "Perpustakaan Digital",
+                category: "classroom",
+                description: "Perpustakaan modern dengan koleksi buku lengkap dan fasilitas digital untuk penelitian.",
+                image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=800&q=80",
+                date: "Mei 2024",
+                location: "Perpustakaan",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 6,
+                title: "Masjid Sekolah",
+                category: "building",
+                description: "Masjid yang nyaman untuk ibadah dan kegiatan keagamaan, dengan kapasitas 200 jamaah.",
+                image: "https://images.unsplash.com/photo-1542884748-2b87b36c6b88?auto=format&fit=crop&w=800&q=80",
+                date: "Juni 2024",
+                location: "Masjid Al-Ikhlas",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 7,
+                title: "Koridor Kelas",
+                category: "environment",
+                description: "Koridor kelas yang bersih dan tertata rapi, menciptakan lingkungan belajar yang kondusif.",
+                image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=800&q=80",
+                date: "Juli 2024",
+                location: "Koridor Utama",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 8,
+                title: "Ruang Guru",
+                category: "classroom",
+                description: "Ruang kerja guru yang nyaman dan profesional, dilengkapi dengan fasilitas pendukung.",
+                image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80",
+                date: "Agustus 2024",
+                location: "Ruang Guru",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 9,
+                title: "Aula Serbaguna",
+                category: "building",
+                description: "Aula besar untuk berbagai kegiatan sekolah seperti seminar, workshop, dan pertemuan.",
+                image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80",
+                date: "September 2024",
+                location: "Aula Utama",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 10,
+                title: "Laboratorium Kimia",
+                category: "classroom",
+                description: "Laboratorium kimia dengan peralatan lengkap untuk praktikum siswa.",
+                image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80",
+                date: "Oktober 2024",
+                location: "Lab Kimia",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 11,
+                title: "Kantin Sehat",
+                category: "environment",
+                description: "Kantin dengan menu sehat dan bergizi untuk memenuhi kebutuhan nutrisi siswa.",
+                image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
+                date: "November 2024",
+                location: "Kantin Sekolah",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 12,
+                title: "Lapangan Basket",
+                category: "environment",
+                description: "Lapangan basket standar nasional untuk mengembangkan bakat olahraga siswa.",
+                image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80",
+                date: "Desember 2024",
+                location: "Lapangan Olahraga",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            }
+        ];
+
+        const activitiesPhotos = [
+            {
+                id: 13,
+                title: "Kegiatan Belajar di Kelas",
+                category: "learning",
+                description: "Siswa aktif berdiskusi dalam proses pembelajaran interaktif dengan guru.",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
+                date: "November 2024",
+                location: "Kelas XII IPA",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 14,
+                title: "Praktikum Laboratorium",
+                category: "science",
+                description: "Siswa melakukan eksperimen kimia di lab sains dengan pengawasan guru.",
+                image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80",
+                date: "Oktober 2024",
+                location: "Laboratorium Kimia",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 15,
+                title: "Kegiatan Olahraga",
+                category: "sports",
+                description: "Siswa berpartisipasi dalam kegiatan olahraga untuk menjaga kesehatan jasmani.",
+                image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80",
+                date: "September 2024",
+                location: "Lapangan Sekolah",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 16,
+                title: "Upacara Bendera",
+                category: "ceremony",
+                description: "Upacara bendera hari Senin dilaksanakan dengan khidmat oleh seluruh siswa.",
+                image: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=800&q=80",
+                date: "Oktober 2024",
+                location: "Lapangan Upacara",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 17,
+                title: "Kegiatan Ekstrakurikuler",
+                category: "extracurricular",
+                description: "Siswa aktif dalam berbagai kegiatan ekskul seperti pramuka dan paskibra.",
+                image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&w=800&q=80",
+                date: "November 2024",
+                location: "Aula Sekolah",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 18,
+                title: "Workshop Kepenulisan",
+                category: "workshop",
+                description: "Pelatihan menulis kreatif untuk pengembangan bakat literasi siswa.",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+                date: "Oktober 2024",
+                location: "Perpustakaan",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 19,
+                title: "Kegiatan Keagamaan",
+                category: "religious",
+                description: "Kegiatan pembinaan keagamaan untuk memperkuat iman dan takwa siswa.",
+                image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80",
+                date: "September 2024",
+                location: "Masjid Sekolah",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 20,
+                title: "Presentasi Kelompok",
+                category: "learning",
+                description: "Siswa mempresentasikan hasil diskusi kelompok di depan kelas.",
+                image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80",
+                date: "November 2024",
+                location: "Kelas XI IPS",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            }
+        ];
+
+        const facilitiesPhotos = [
+            {
+                id: 21,
+                title: "Laboratorium Bahasa",
+                category: "lab",
+                description: "Lab bahasa dengan peralatan audio-visual lengkap untuk pembelajaran bahasa asing.",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80",
+                date: "2024",
+                location: "Lab Bahasa",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 22,
+                title: "Lapangan Olahraga",
+                category: "sports",
+                description: "Lapangan multifungsi untuk berbagai cabang olahraga seperti sepak bola, basket, dan voli.",
+                image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80",
+                date: "2024",
+                location: "Lapangan Utama",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 23,
+                title: "Kantin Sekolah",
+                category: "canteen",
+                description: "Kantin sehat dengan menu bergizi seimbang yang dikelola secara profesional.",
+                image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
+                date: "2024",
+                location: "Kantin Sehat",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 24,
+                title: "Ruang Multimedia",
+                category: "multimedia",
+                description: "Ruang dengan peralatan multimedia modern untuk presentasi dan pembelajaran digital.",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80",
+                date: "2024",
+                location: "Ruang Multimedia",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 25,
+                title: "Ruang UKS",
+                category: "health",
+                description: "Unit Kesehatan Sekolah dengan fasilitas lengkap untuk penanganan pertama.",
+                image: "https://images.unsplash.com/photo-1516549655669-df6654e435de?auto=format&fit=crop&w=800&q=80",
+                date: "2024",
+                location: "Ruang UKS",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            },
+            {
+                id: 26,
+                title: "Studio Musik",
+                category: "music",
+                description: "Studio musik modern untuk pengembangan bakat seni dan musik siswa.",
+                image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=80",
+                date: "2024",
+                location: "Studio Musik",
+                photographer: "Tim Dokumentasi MA YUPPI"
+            }
+        ];
+
+        const uniformsData = [
+            {
+                id: 1,
+                title: "Seragam Harian Putra",
+                type: "daily",
+                description: "Kemeja putih lengan panjang dengan celana abu-abu, dilengkapi dasi dan badge sekolah.",
+                image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80",
+                details: "Untuk hari Senin-Kamis"
+            },
+            {
+                id: 2,
+                title: "Seragam Harian Putri",
+                type: "daily",
+                description: "Kemeja putih dengan rok abu-abu dan jilbab putih, dilengkapi badge sekolah.",
+                image: "https://images.unsplash.com/photo-1590682680385-1b65e78bf28a?auto=format&fit=crop&w=800&q=80",
+                details: "Untuk hari Senin-Kamis"
+            },
+            {
+                id: 3,
+                title: "Seragam Olahraga",
+                type: "sports",
+                description: "Kaos olahraga warna ungu dengan celana training, untuk kegiatan olahraga.",
+                image: "https://images.unsplash.com/photo-1536922246289-88c42f957773?auto=format&fit=crop&w=800&q=80",
+                details: "Hari Jumat dan kegiatan olahraga"
+            },
+            {
+                id: 4,
+                title: "Seragam Pramuka",
+                type: "scout",
+                description: "Seragam pramuka lengkap dengan atribut, untuk kegiatan kepramukaan.",
+                image: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=800&q=80",
+                details: "Hari Sabtu"
+            },
+            {
+                id: 5,
+                title: "Seragam Upacara",
+                type: "ceremony",
+                description: "Seragam lengkap dengan topi untuk upacara bendera dan acara resmi.",
+                image: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=800&q=80",
+                details: "Upacara hari Senin"
+            },
+            {
+                id: 6,
+                title: "Jaket Almamater",
+                type: "jacket",
+                description: "Jaket almamater warna ungu khas MA YUPPI dengan logo bordir.",
+                image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80",
+                details: "Untuk kegiatan di luar sekolah"
+            },
+            {
+                id: 7,
+                title: "Seragam Lab",
+                type: "lab",
+                description: "Jas lab putih untuk praktikum sains di laboratorium.",
+                image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80",
+                details: "Untuk praktikum"
+            },
+            {
+                id: 8,
+                title: "Atribut Lengkap",
+                type: "accessories",
+                description: "Atribut dan aksesoris seragam sekolah seperti dasi, badge, dan name tag.",
+                image: "https://images.unsplash.com/photo-1590682680323-9d5c24d5f20d?auto=format&fit=crop&w=800&q=80",
+                details: "Wajib dipakai lengkap"
+            }
+        ];
+
         // Initialize AOS with mobile-friendly settings
         AOS.init({
             duration: 500,
@@ -956,563 +1372,335 @@
             AOS.refresh();
         });
 
-        // News Data
-        const newsData = [
-            {
-                id: 1,
-                title: "Tim Debat Bahasa Arab Raih Juara 1 Provinsi",
-                category: "prestasi",
-                date: "20 November 2024",
-                excerpt: "Prestasi membanggakan diraih tim debat MA Yuppi dengan mengalahkan 45 sekolah lainnya di tingkat provinsi Jawa Barat.",
-                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
-                featured: true,
-                readTime: "3 min read"
-            },
-            {
-                id: 2,
-                title: "Kunjungan Edukatif ke Institut Teknologi Bandung",
-                category: "kegiatan",
-                date: "28 November 2024",
-                excerpt: "Siswa kelas XI mengunjungi berbagai laboratorium riset di ITB untuk menambah wawasan sains dan teknologi.",
-                image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=800&q=80",
-                featured: false,
-                readTime: "4 min read"
-            },
-            {
-                id: 3,
-                title: "Program Intensif Persiapan UTBK 2025",
-                category: "pengumuman",
-                date: "5 Desember 2024",
-                excerpt: "Siswa kelas XII mengikuti program bimbingan intensif untuk menghadapi UTBK dengan target 95% lolos PTN favorit.",
-                image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80",
-                featured: false,
-                readTime: "5 min read"
-            },
-            {
-                id: 4,
-                title: "Siswa MA Yuppi Juara 1 Olimpiade Matematika Nasional",
-                category: "prestasi",
-                date: "10 November 2024",
-                excerpt: "Ahmad Fauzi meraih medali emas dalam Olimpiade Matematika Nasional yang diikuti oleh 500 peserta.",
-                image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80",
-                featured: false,
-                readTime: "4 min read"
-            },
-            {
-                id: 5,
-                title: "Persiapan Ramadan Fair & Bazar Amal 2025",
-                category: "kegiatan",
-                date: "15 November 2024",
-                excerpt: "OSIS MA Yuppi memulai persiapan acara tahunan Ramadan Fair dengan berbagai kegiatan edukatif dan sosial.",
-                image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80",
-                featured: false,
-                readTime: "3 min read"
-            },
-            {
-                id: 6,
-                title: "Workshop AI & Machine Learning untuk Siswa",
-                category: "akademik",
-                date: "10 November 2024",
-                excerpt: "Menghadirkan praktisi dari industri teknologi untuk memberikan workshop tentang kecerdasan buatan.",
-                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
-                featured: false,
-                readTime: "6 min read"
-            },
-            {
-                id: 7,
-                title: "Hafiz Baru: 5 Siswa Selesai 30 Juz",
-                category: "prestasi",
-                date: "8 November 2024",
-                excerpt: "Lima siswa MA Yuppi berhasil menyelesaikan hafalan 30 juz Al-Quran dengan mutqin.",
-                image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=800&q=80",
-                featured: false,
-                readTime: "3 min read"
-            },
-            {
-                id: 8,
-                title: "Peluncuran Platform E-Learning Terbaru",
-                category: "akademik",
-                date: "5 November 2024",
-                excerpt: "MA Yuppi meluncurkan platform e-learning baru dengan fitur pembelajaran adaptif dan AI.",
-                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-                featured: false,
-                readTime: "5 min read"
-            }
-        ];
-
-        // Events Data
-        const eventsData = [
-            {
-                id: 1,
-                title: "Workshop Kepenulisan Ilmiah",
-                date: "15 Desember 2024",
-                time: "08:00 - 15:00 WIB",
-                location: "Aula Utama MA Yuppi",
-                description: "Pelatihan penulisan karya ilmiah untuk persiapan kompetisi nasional",
-                type: "kegiatan"
-            },
-            {
-                id: 2,
-                title: "Ujian Akhir Semester Ganjil",
-                date: "20 Desember 2024",
-                time: "07:00 - 14:00 WIB",
-                location: "Seluruh Ruang Kelas",
-                description: "Ujian akhir semester untuk semua kelas X, XI, dan XII",
-                type: "akademik"
-            },
-            {
-                id: 3,
-                title: "Pembagian Raport Semester Ganjil",
-                date: "25 Desember 2024",
-                time: "08:00 - 12:00 WIB",
-                location: "Aula Serbaguna",
-                description: "Pengambilan raport dan pembahasan perkembangan siswa dengan orang tua",
-                type: "akademik"
-            },
-            {
-                id: 4,
-                title: "Kegiatan MPLS Semester Genap",
-                date: "10 Januari 2025",
-                time: "07:30 - 13:00 WIB",
-                location: "Lapangan dan Aula Utama",
-                description: "Masa Pengenalan Lingkungan Sekolah untuk semester genap",
-                type: "kegiatan"
-            },
-            {
-                id: 5,
-                title: "Seminar Pendidikan Karakter",
-                date: "15 Januari 2025",
-                time: "09:00 - 12:00 WIB",
-                location: "Aula Utama MA Yuppi",
-                description: "Seminar tentang penguatan karakter siswa untuk menghadapi era digital",
-                type: "kegiatan"
-            }
-        ];
-
-        // Render news with responsive design
-        function renderNews(category = 'all', searchTerm = '') {
-            const grid = document.getElementById('newsGrid');
-            const loading = document.getElementById('loadingNews');
-            const empty = document.getElementById('emptyNews');
+        // Render gallery function dengan lazy loading
+        function renderGallery(containerId, photos, limit = null) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
             
-            // Hide loading
-            if (loading) loading.style.display = 'none';
-            
-            // Filter news
-            let filteredNews = newsData.filter(news => {
-                const matchesCategory = category === 'all' || news.category === category;
-                const matchesSearch = searchTerm === '' || 
-                    news.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    news.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-                return matchesCategory && matchesSearch;
-            });
-            
-            // Show empty state if no results
-            if (filteredNews.length === 0) {
-                if (empty) empty.classList.remove('hidden');
-                if (grid) grid.innerHTML = '';
-                return;
+            // Show skeleton loading
+            const skeleton = document.getElementById('loadingSkeleton');
+            if (skeleton && photos.length > 0) {
+                skeleton.style.display = 'grid';
             }
             
-            // Hide empty state
-            if (empty) empty.classList.add('hidden');
-            
-            // Clear grid
-            if (grid) grid.innerHTML = '';
-            
-            // Render news with responsive classes
-            filteredNews.forEach(news => {
-                const newsCard = document.createElement('article');
-                newsCard.className = 'news-card bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg overflow-hidden card-hover';
-                newsCard.setAttribute('data-aos', 'fade-up');
-                newsCard.innerHTML = `
-                    <div class="relative">
-                        <div class="${getCategoryClass(news.category)} h-2"></div>
-                        <div class="relative h-40 sm:h-48 overflow-hidden news-image">
-                            <img src="${news.image}" 
-                                 alt="${news.title}"
-                                 class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+            setTimeout(() => {
+                const itemsToRender = limit ? photos.slice(0, limit) : photos;
+                
+                container.innerHTML = itemsToRender.map((photo, index) => {
+                    // Create unique ID untuk setiap image
+                    const imageId = `gallery-img-${photo.id}-${index}`;
+                    
+                    return `
+                    <div class="gallery-item cursor-pointer" 
+                         data-aos="fade-up" 
+                         data-aos-delay="${(index % 4) * 100}"
+                         data-photo-id="${photo.id}"
+                         onclick="openPhotoModal(${JSON.stringify(photo).replace(/"/g, '&quot;')})">
+                        <div class="relative h-48 sm:h-56 overflow-hidden rounded-xl">
+                            <img id="${imageId}"
+                                 data-src="${photo.image}" 
+                                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f3f4f6'/%3E%3C/svg%3E"
+                                 alt="${photo.title}" 
+                                 class="w-full h-full object-cover lazy"
                                  loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                            <div class="absolute top-3 left-3 sm:top-4 sm:left-4">
-                                <span class="category-${news.category} text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold">
-                                    ${getCategoryLabel(news.category)}
-                                </span>
-                            </div>
-                        </div>
-                        
-                        <div class="p-4 sm:p-6">
-                            <div class="flex flex-wrap items-center justify-between text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">
-                                <div class="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-0">
-                                    <i class="far fa-calendar-alt text-xs"></i>
-                                    <span>${news.date}</span>
-                                </div>
-                                <div class="flex items-center gap-1 sm:gap-2">
-                                    <i class="far fa-clock text-xs"></i>
-                                    <span>${news.readTime}</span>
+                            <div class="gallery-overlay">
+                                <div class="text-white">
+                                    <h4 class="font-bold text-sm sm:text-base mb-1">${photo.title}</h4>
+                                    <p class="text-white/80 text-xs">${getCategoryLabel(photo.category)} • ${photo.date}</p>
                                 </div>
                             </div>
-                            
-                            <h3 class="text-lg sm:text-xl font-bold text-primary mb-2 sm:mb-3 line-clamp-2">
-                                ${news.title}
-                            </h3>
-                            
-                            <p class="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-xs sm:text-sm line-clamp-3">
-                                ${news.excerpt}
-                            </p>
-                            
-                            <button onclick="openNewsDetail(${news.id})" 
-                                    class="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg sm:rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group mobile-tap-target text-sm">
-                                <span>Baca Selengkapnya</span>
-                                <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1 text-xs"></i>
-                            </button>
                         </div>
                     </div>
-                `;
+                `}).join('');
                 
-                if (grid) grid.appendChild(newsCard);
-            });
-            
-            // Re-initialize AOS for dynamically loaded content
-            AOS.refresh();
-        }
-
-        // Render events with responsive design
-        function renderEvents() {
-            const eventsList = document.getElementById('eventsList');
-            if (!eventsList) return;
-            
-            eventsList.innerHTML = '';
-            
-            eventsData.forEach(event => {
-                const eventItem = document.createElement('div');
-                eventItem.className = 'bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg p-4 sm:p-6 card-hover';
-                eventItem.setAttribute('data-aos', 'fade-right');
-                eventItem.innerHTML = `
-                    <div class="flex items-start gap-3 sm:gap-4">
-                        <div class="event-date ${getEventTypeClass(event.type)} text-white">
-                            <div class="text-xl sm:text-2xl font-bold">${event.date.split(' ')[0]}</div>
-                            <div class="text-xs sm:text-sm">${event.date.split(' ')[1]}</div>
-                        </div>
-                        
-                        <div class="flex-1 min-w-0">
-                            <h3 class="text-base sm:text-lg lg:text-xl font-bold text-primary mb-1 sm:mb-2 line-clamp-2">${event.title}</h3>
-                            <p class="text-gray-600 mb-2 sm:mb-3 text-xs sm:text-sm line-clamp-2">${event.description}</p>
-                            
-                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 lg:gap-4 text-xs sm:text-sm text-gray-500">
-                                <div class="flex items-center gap-1">
-                                    <i class="fas fa-clock text-xs"></i>
-                                    <span>${event.time}</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fas fa-map-marker-alt text-xs"></i>
-                                    <span class="truncate">${event.location}</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button onclick="openEventDetail(${event.id})" 
-                                class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 hover:bg-primary rounded-lg flex items-center justify-center transition-colors duration-300 group flex-shrink-0 mobile-tap-target">
-                            <i class="fas fa-chevron-right text-gray-600 group-hover:text-white text-xs sm:text-sm"></i>
-                        </button>
-                    </div>
-                `;
-                
-                eventsList.appendChild(eventItem);
-            });
-        }
-
-        // Render calendar
-        function renderCalendar() {
-            const calendarDays = document.getElementById('calendarDays');
-            if (!calendarDays) return;
-            
-            calendarDays.innerHTML = '';
-            
-            // Day headers
-            const days = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
-            days.forEach(day => {
-                const dayHeader = document.createElement('div');
-                dayHeader.className = 'text-center font-semibold text-gray-500 text-xs sm:text-sm py-1 sm:py-2';
-                dayHeader.textContent = day;
-                calendarDays.appendChild(dayHeader);
-            });
-            
-            // Generate days for December 2024
-            const totalDays = 31;
-            const startDay = 0; // December 1, 2024 is Sunday
-            
-            // Add empty cells for days before the 1st
-            for (let i = 0; i < startDay; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'text-center py-1 sm:py-2';
-                calendarDays.appendChild(emptyDay);
-            }
-            
-            // Add actual days
-            for (let day = 1; day <= totalDays; day++) {
-                const dayElement = document.createElement('div');
-                dayElement.className = 'text-center py-1 sm:py-2 calendar-day';
-                
-                // Add event indicators
-                if (day === 15) {
-                    dayElement.classList.add('has-event', 'accent'); // Workshop
-                } else if (day === 20) {
-                    dayElement.classList.add('has-event', 'primary'); // Ujian
-                } else if (day === 25) {
-                    dayElement.classList.add('has-event', 'primary'); // Pembagian Raport
+                // Hide skeleton
+                if (skeleton) {
+                    skeleton.style.display = 'none';
                 }
                 
-                const daySpan = document.createElement('span');
-                daySpan.className = 'w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center mx-auto rounded-full hover:bg-gray-100 cursor-pointer text-xs sm:text-sm';
-                daySpan.textContent = day;
+                // Initialize lazy loading
+                initializeLazyLoading();
                 
-                dayElement.appendChild(daySpan);
-                calendarDays.appendChild(dayElement);
+            }, 300);
+        }
+
+        // Initialize lazy loading dengan Intersection Observer
+        function initializeLazyLoading() {
+            const lazyImages = document.querySelectorAll('img.lazy');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            observer.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.1
+                });
+                
+                lazyImages.forEach(img => imageObserver.observe(img));
+            } else {
+                // Fallback untuk browser lama
+                lazyImages.forEach(img => {
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                });
             }
         }
 
-        // Helper functions
-        function getCategoryClass(category) {
-            switch(category) {
-                case 'prestasi': return 'category-prestasi';
-                case 'kegiatan': return 'category-kegiatan';
-                case 'pengumuman': return 'category-pengumuman';
-                case 'akademik': return 'category-akademik';
-                default: return 'category-prestasi';
-            }
-        }
-
-        function getCategoryLabel(category) {
-            switch(category) {
-                case 'prestasi': return 'Prestasi';
-                case 'kegiatan': return 'Kegiatan';
-                case 'pengumuman': return 'Pengumuman';
-                case 'akademik': return 'Akademik';
-                default: return 'Berita';
-            }
-        }
-
-        function getEventTypeClass(type) {
-            switch(type) {
-                case 'akademik': return 'bg-primary';
-                case 'kegiatan': return 'bg-accent';
-                default: return 'bg-secondary';
-            }
-        }
-
-        // Open news detail (placeholder)
-        function openNewsDetail(id) {
-            const news = newsData.find(n => n.id === id);
-            if (news) {
-                // Show a modal instead of alert for better mobile experience
-                showModal('news', news);
-            }
-        }
-
-        // Open event detail (placeholder)
-        function openEventDetail(id) {
-            const event = eventsData.find(e => e.id === id);
-            if (event) {
-                showModal('event', event);
-            }
-        }
-
-        // Show modal function for better mobile experience
-        function showModal(type, data) {
-            // Create modal container
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50';
-            modal.innerHTML = `
-                <div class="bg-white rounded-xl sm:rounded-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto">
-                    <div class="p-4 sm:p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold text-primary">${data.title}</h3>
-                            <button onclick="this.closest('.fixed').remove()" 
-                                    class="text-gray-500 hover:text-gray-700 text-xl mobile-tap-target">
-                                <i class="fas fa-times"></i>
-                            </button>
+        // Render uniforms function
+        function renderUniforms() {
+            const container = document.getElementById('uniformsGallery');
+            if (!container) return;
+            
+            container.innerHTML = uniformsData.map((uniform, index) => `
+                <div class="uniform-card overflow-hidden rounded-xl cursor-pointer" 
+                     data-aos="fade-up" 
+                     data-aos-delay="${(index % 4) * 100}"
+                     onclick="showUniformDetail(${JSON.stringify(uniform).replace(/"/g, '&quot;')})">
+                    <div class="relative h-48 sm:h-56 overflow-hidden">
+                        <img src="${uniform.image}" 
+                             alt="${uniform.title}"
+                             class="w-full h-full object-cover lazy"
+                             loading="lazy"
+                             data-src="${uniform.image}">
+                        <div class="absolute top-3 left-3">
+                            <span class="inline-block px-2 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-primary">
+                                ${getUniformTypeLabel(uniform.type)}
+                            </span>
                         </div>
-                        <div class="space-y-4">
-                            <p class="text-gray-600">${data.description || data.excerpt}</p>
-                            ${type === 'event' ? `
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-                                    <div class="flex items-center gap-2">
-                                        <i class="fas fa-calendar-alt text-accent"></i>
-                                        <span class="text-gray-700">${data.date}</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <i class="fas fa-clock text-accent"></i>
-                                        <span class="text-gray-700">${data.time}</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 sm:col-span-2">
-                                        <i class="fas fa-map-marker-alt text-accent"></i>
-                                        <span class="text-gray-700">${data.location}</span>
-                                    </div>
-                                </div>
-                            ` : `
-                                <div class="flex items-center gap-4 text-sm text-gray-500">
-                                    <span class="flex items-center gap-1">
-                                        <i class="far fa-calendar-alt"></i>
-                                        ${data.date}
-                                    </span>
-                                    <span class="flex items-center gap-1">
-                                        <i class="far fa-clock"></i>
-                                        ${data.readTime}
-                                    </span>
-                                </div>
-                            `}
-                        </div>
-                        <div class="mt-6 flex justify-end">
-                            <button onclick="this.closest('.fixed').remove()" 
-                                    class="px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-semibold mobile-tap-target">
-                                Tutup
-                            </button>
-                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-primary mb-2">${uniform.title}</h4>
+                        <p class="text-gray-600 text-sm">${uniform.description}</p>
                     </div>
                 </div>
-            `;
+            `).join('');
             
-            document.body.appendChild(modal);
-            
-            // Prevent body scroll when modal is open
-            document.body.style.overflow = 'hidden';
-            
-            // Close modal when clicking outside
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.remove();
-                    document.body.style.overflow = 'auto';
-                }
-            });
-            
-            // Close modal with escape key
-            document.addEventListener('keydown', function closeModal(e) {
-                if (e.key === 'Escape') {
-                    modal.remove();
-                    document.body.style.overflow = 'auto';
-                    document.removeEventListener('keydown', closeModal);
-                }
-            });
+            // Initialize lazy loading untuk uniform images
+            initializeLazyLoading();
         }
 
-        // Event Listeners with mobile optimizations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize all components
-            renderNews();
-            renderEvents();
-            renderCalendar();
-            updateBackToTop();
-            
-            // Add event listeners after DOM is loaded
-            const categoryFilter = document.getElementById('categoryFilter');
-            const searchInput = document.getElementById('searchInput');
-            const resetFilters = document.getElementById('resetFilters');
-            const loadMore = document.getElementById('loadMore');
-            const newsletterForm = document.getElementById('newsletterForm');
-            
-            if (categoryFilter) {
-                categoryFilter.addEventListener('change', function() {
-                    const category = this.value;
-                    const searchTerm = searchInput ? searchInput.value : '';
-                    renderNews(category, searchTerm);
-                });
-            }
-            
-            // Debounce search input for better mobile performance
-            let searchTimeout;
-            if (searchInput) {
-                searchInput.addEventListener('input', function() {
-                    clearTimeout(searchTimeout);
-                    searchTimeout = setTimeout(() => {
-                        const searchTerm = this.value;
-                        const category = categoryFilter ? categoryFilter.value : 'all';
-                        renderNews(category, searchTerm);
-                    }, 300);
-                });
-            }
-            
-            if (resetFilters) {
-                resetFilters.addEventListener('click', function() {
-                    if (categoryFilter) categoryFilter.value = 'all';
-                    if (searchInput) searchInput.value = '';
-                    renderNews();
-                });
-            }
-            
-            if (loadMore) {
-                loadMore.addEventListener('click', function() {
-                    const btn = this;
-                    const originalText = btn.innerHTML;
-                    
-                    btn.innerHTML = '<span>Memuat...</span>';
-                    btn.disabled = true;
-                    
-                    // Simulate loading more news
-                    setTimeout(() => {
-                        alert('Fitur "Muat Lebih Banyak" akan diimplementasikan dengan API pada versi production.');
-                        btn.innerHTML = originalText;
-                        btn.disabled = false;
-                    }, 1000);
-                });
-            }
-            
-            // Newsletter form with mobile optimizations
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const emailInput = this.querySelector('input[type="email"]');
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    
-                    if (!emailInput.value.trim()) {
-                        showToast('Harap masukkan email Anda!', 'warning');
-                        return;
-                    }
-                    
-                    if (!validateEmail(emailInput.value)) {
-                        showToast('Email tidak valid!', 'warning');
-                        return;
-                    }
-                    
-                    const originalText = submitBtn.innerHTML;
-                    
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-                    submitBtn.disabled = true;
-                    
-                    // Simulate API call
-                    setTimeout(() => {
-                        showToast('Terima kasih! Anda telah berhasil berlangganan newsletter MA YUPPI.', 'success');
-                        emailInput.value = '';
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    }, 1500);
-                });
-            }
-            
-            // Featured news slider navigation
-            document.querySelectorAll('.featured-news-nav button').forEach(button => {
-                button.addEventListener('click', function() {
-                    showToast('Slider navigation akan diimplementasikan dengan library seperti Swiper.js pada versi production.', 'info');
-                });
-            });
-        });
+        // Get category label
+        function getCategoryLabel(category) {
+            const labels = {
+                'building': '🏢 Gedung',
+                'classroom': '🏫 Ruang Kelas',
+                'environment': '🌳 Lingkungan',
+                'learning': '📚 Pembelajaran',
+                'science': '🔬 Sains',
+                'sports': '⚽ Olahraga',
+                'ceremony': '🎖️ Upacara',
+                'extracurricular': '🎨 Ekskul',
+                'workshop': '💡 Workshop',
+                'religious': '🕌 Keagamaan',
+                'lab': '🧪 Laboratorium',
+                'canteen': '🍽️ Kantin',
+                'multimedia': '💻 Multimedia',
+                'health': '🏥 Kesehatan',
+                'music': '🎵 Musik'
+            };
+            return labels[category] || category;
+        }
 
-        // Toast notification for better mobile experience
-        function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            const colors = {
-                success: 'bg-green-500',
-                warning: 'bg-yellow-500',
-                error: 'bg-red-500',
-                info: 'bg-blue-500'
+        // Get uniform type label
+        function getUniformTypeLabel(type) {
+            const labels = {
+                'daily': '👔 Harian',
+                'sports': '⚽ Olahraga',
+                'scout': '🎖️ Pramuka',
+                'ceremony': '🎖️ Upacara',
+                'jacket': '🧥 Jaket',
+                'lab': '🥼 Lab',
+                'accessories': '📿 Atribut'
+            };
+            return labels[type] || type;
+        }
+
+        // Open photo modal
+        function openPhotoModal(photoData) {
+            galleryState.currentPhotoData = photoData;
+            galleryState.currentGallery = schoolPhotos.concat(activitiesPhotos, facilitiesPhotos);
+            galleryState.currentPhotoIndex = galleryState.currentGallery.findIndex(p => p.id === photoData.id);
+            
+            const modal = document.getElementById('photoModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalDate = document.getElementById('modalDate');
+            
+            modalImage.src = photoData.image;
+            modalImage.alt = photoData.title;
+            modalTitle.textContent = photoData.title;
+            modalDescription.textContent = photoData.description;
+            modalCategory.textContent = getCategoryLabel(photoData.category);
+            modalDate.textContent = photoData.date;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Track analytics
+            trackGalleryInteraction('view', photoData.id);
+        }
+
+        // Show uniform detail
+        function showUniformDetail(uniformData) {
+            showToast(`${uniformData.title} - ${uniformData.details}`, 'info');
+        }
+
+        // Navigate gallery in modal
+        function navigateGallery(direction) {
+            if (!galleryState.currentGallery.length) return;
+            
+            galleryState.currentPhotoIndex += direction;
+            
+            if (galleryState.currentPhotoIndex < 0) {
+                galleryState.currentPhotoIndex = galleryState.currentGallery.length - 1;
+            } else if (galleryState.currentPhotoIndex >= galleryState.currentGallery.length) {
+                galleryState.currentPhotoIndex = 0;
+            }
+            
+            const nextPhoto = galleryState.currentGallery[galleryState.currentPhotoIndex];
+            openPhotoModal(nextPhoto);
+        }
+
+        // Download current photo
+        function downloadCurrentPhoto() {
+            if (!galleryState.currentPhotoData) return;
+            
+            const link = document.createElement('a');
+            link.href = galleryState.currentPhotoData.image;
+            link.download = `MA-YUPPI-${galleryState.currentPhotoData.title.replace(/\s+/g, '-')}.jpg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showToast('Foto berhasil diunduh', 'success');
+            trackGalleryInteraction('download', galleryState.currentPhotoData.id);
+        }
+
+        // Share current photo
+        function shareCurrentPhoto() {
+            if (!galleryState.currentPhotoData) return;
+            
+            const shareData = {
+                title: galleryState.currentPhotoData.title,
+                text: `Lihat foto ${galleryState.currentPhotoData.title} dari MA YUPPI`,
+                url: window.location.href
             };
             
-            toast.className = `fixed top-4 right-4 z-50 ${colors[type] || 'bg-blue-500'} text-white px-4 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300`;
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .then(() => showToast('Berhasil dibagikan', 'success'))
+                    .catch(err => console.log('Error sharing:', err));
+            } else {
+                // Fallback untuk browser yang tidak support Web Share API
+                showToast('Salin tautan untuk membagikan', 'info');
+            }
+        }
+
+        // Share via specific platform
+        function sharePhoto(platform) {
+            if (!galleryState.currentPhotoData) return;
+            
+            const text = encodeURIComponent(`Lihat foto ${galleryState.currentPhotoData.title} dari MA YUPPI`);
+            const url = encodeURIComponent(window.location.href);
+            
+            let shareUrl = '';
+            switch(platform) {
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${text}%20${url}`;
+                    break;
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'noopener,noreferrer');
+                showToast(`Membagikan ke ${platform}`, 'success');
+            }
+        }
+
+        // Search gallery
+        function searchGallery() {
+            const searchTerm = document.getElementById('searchGallery').value.toLowerCase();
+            const activeFilter = galleryState.activeFilter;
+            
+            let filteredPhotos = activeFilter === 'all' 
+                ? schoolPhotos 
+                : schoolPhotos.filter(photo => photo.category === activeFilter);
+            
+            if (searchTerm) {
+                filteredPhotos = filteredPhotos.filter(photo => 
+                    photo.title.toLowerCase().includes(searchTerm) || 
+                    photo.description.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            // Apply sorting
+            const sortBy = document.getElementById('sortGallery').value;
+            filteredPhotos = sortPhotos(filteredPhotos, sortBy);
+            
+            renderGallery('schoolGallery', filteredPhotos, galleryState.itemsPerPage);
+            
+            // Update load more button
+            const loadMoreBtn = document.getElementById('loadMoreSchool');
+            if (loadMoreBtn) {
+                loadMoreBtn.style.display = filteredPhotos.length > galleryState.itemsPerPage ? 'flex' : 'none';
+            }
+        }
+
+        // Sort photos
+        function sortPhotos(photos, sortBy) {
+            switch(sortBy) {
+                case 'newest':
+                    return [...photos].sort((a, b) => new Date(b.date) - new Date(a.date));
+                case 'oldest':
+                    return [...photos].sort((a, b) => new Date(a.date) - new Date(b.date));
+                case 'title-asc':
+                    return [...photos].sort((a, b) => a.title.localeCompare(b.title));
+                case 'title-desc':
+                    return [...photos].sort((a, b) => b.title.localeCompare(a.title));
+                default:
+                    return photos;
+            }
+        }
+
+        // Toast notification dengan animasi yang lebih baik
+        function showToast(message, type = 'info') {
+            // Remove existing toasts
+            document.querySelectorAll('.custom-toast').forEach(toast => toast.remove());
+            
+            const toast = document.createElement('div');
+            const colors = {
+                success: 'bg-gradient-to-r from-green-500 to-emerald-600',
+                warning: 'bg-gradient-to-r from-yellow-500 to-amber-600',
+                error: 'bg-gradient-to-r from-red-500 to-rose-600',
+                info: 'bg-gradient-to-r from-blue-500 to-primary'
+            };
+            
+            toast.className = `custom-toast fixed top-4 right-4 z-50 ${colors[type]} text-white px-4 py-3 rounded-lg shadow-xl transform translate-x-full transition-all duration-500 backdrop-blur-sm max-w-sm`;
+            
             toast.innerHTML = `
                 <div class="flex items-center gap-3">
-                    <i class="fas fa-info-circle"></i>
-                    <span class="text-sm">${message}</span>
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'} text-lg"></i>
+                    <span class="text-sm font-medium flex-1">${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" class="text-white/80 hover:text-white">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 h-1 bg-white/30 rounded-full overflow-hidden mt-2">
+                    <div class="h-full bg-white animate-progress"></div>
                 </div>
             `;
             
@@ -1524,20 +1712,194 @@
                 toast.classList.add('translate-x-0');
             }, 10);
             
-            // Remove after 3 seconds
+            // Auto remove after 3 seconds
             setTimeout(() => {
                 toast.classList.remove('translate-x-0');
                 toast.classList.add('translate-x-full');
-                setTimeout(() => {
-                    toast.remove();
-                }, 300);
+                setTimeout(() => toast.remove(), 500);
             }, 3000);
+            
+            // Click to dismiss
+            toast.addEventListener('click', function() {
+                this.classList.remove('translate-x-0');
+                this.classList.add('translate-x-full');
+                setTimeout(() => this.remove(), 500);
+            });
         }
 
-        // Email validation
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
+        // Track gallery interactions
+        function trackGalleryInteraction(action, photoId) {
+            // Simulasi tracking - dalam implementasi nyata, ini akan mengirim data ke analytics
+            console.log(`Gallery ${action}: ${photoId}`);
+            
+            // Simpan di localStorage untuk analytics offline
+            const analyticsData = JSON.parse(localStorage.getItem('gallery_analytics') || '[]');
+            analyticsData.push({
+                action,
+                photoId,
+                timestamp: new Date().toISOString(),
+                page: window.location.pathname
+            });
+            localStorage.setItem('gallery_analytics', JSON.stringify(analyticsData.slice(-100))); // Simpan 100 terakhir
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize galleries
+            galleryState.allPhotos = [...schoolPhotos];
+            renderGallery('schoolGallery', schoolPhotos, galleryState.itemsPerPage);
+            renderGallery('activitiesGallery', activitiesPhotos, 8);
+            renderGallery('facilitiesGallery', facilitiesPhotos, 6);
+            renderUniforms();
+            updateBackToTop();
+            
+            // Gallery filter functionality
+            document.querySelectorAll('.gallery-filter').forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    galleryState.activeFilter = filter;
+                    galleryState.currentPage = 1;
+                    
+                    // Update active state
+                    document.querySelectorAll('.gallery-filter').forEach(btn => {
+                        btn.classList.remove('active', 'bg-primary', 'text-white');
+                        btn.classList.add('bg-white', 'text-primary', 'border');
+                    });
+                    
+                    this.classList.remove('bg-white', 'text-primary', 'border');
+                    this.classList.add('active', 'bg-primary', 'text-white');
+                    
+                    // Apply search and filter
+                    searchGallery();
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.getElementById('searchGallery');
+            if (searchInput) {
+                searchInput.addEventListener('input', debounce(searchGallery, 300));
+            }
+            
+            // Sort functionality
+            const sortSelect = document.getElementById('sortGallery');
+            if (sortSelect) {
+                sortSelect.addEventListener('change', searchGallery);
+            }
+            
+            // Load more school photos
+            const loadMoreBtn = document.getElementById('loadMoreSchool');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    galleryState.currentPage++;
+                    const activeFilter = galleryState.activeFilter;
+                    const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+                    
+                    let filteredPhotos = activeFilter === 'all' 
+                        ? schoolPhotos 
+                        : schoolPhotos.filter(photo => photo.category === activeFilter);
+                    
+                    if (searchTerm) {
+                        filteredPhotos = filteredPhotos.filter(photo => 
+                            photo.title.toLowerCase().includes(searchTerm) || 
+                            photo.description.toLowerCase().includes(searchTerm)
+                        );
+                    }
+                    
+                    const sortBy = sortSelect ? sortSelect.value : 'newest';
+                    filteredPhotos = sortPhotos(filteredPhotos, sortBy);
+                    
+                    const totalItems = galleryState.currentPage * galleryState.itemsPerPage;
+                    const morePhotos = filteredPhotos.slice(0, totalItems);
+                    
+                    renderGallery('schoolGallery', morePhotos);
+                    
+                    // Hide button jika sudah semua
+                    if (totalItems >= filteredPhotos.length) {
+                        this.style.display = 'none';
+                        showToast('Semua foto sekolah telah dimuat', 'success');
+                    }
+                });
+            }
+            
+            // Close modal
+            const closeModalBtn = document.getElementById('closeModal');
+            const modal = document.getElementById('photoModal');
+            
+            if (closeModalBtn && modal) {
+                closeModalBtn.addEventListener('click', function() {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+                
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+                
+                // Zoom image on click
+                const modalImage = document.getElementById('modalImage');
+                if (modalImage) {
+                    modalImage.addEventListener('click', function(e) {
+                        if (e.target === this) {
+                            this.classList.toggle('zoomed');
+                        }
+                    });
+                }
+                
+                // Close modal with escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && modal.classList.contains('active')) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                    
+                    // Keyboard navigation in modal
+                    if (modal.classList.contains('active')) {
+                        if (e.key === 'ArrowLeft') navigateGallery(-1);
+                        if (e.key === 'ArrowRight') navigateGallery(1);
+                    }
+                });
+            }
+            
+            // Smooth scroll for quick navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Image error handling
+            document.querySelectorAll('img').forEach(img => {
+                img.onerror = function() {
+                    this.src = 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80';
+                    this.alt = 'Gambar tidak tersedia';
+                };
+            });
+        });
+
+        // Debounce function untuk search
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
         }
 
         // Mobile Menu Toggle
@@ -1567,12 +1929,8 @@
                 // Prevent body scroll when menu is open
                 body.style.overflow = !isExpanded ? 'hidden' : 'auto';
                 
-                // Add/remove class to body for better mobile experience
-                if (!isExpanded) {
-                    body.classList.add('overflow-hidden');
-                } else {
-                    body.classList.remove('overflow-hidden');
-                }
+                // Track menu interaction
+                trackGalleryInteraction('mobile_menu', isExpanded ? 'close' : 'open');
             }
 
             mobileMenuButton.addEventListener('click', toggleMobileMenu);
@@ -1588,16 +1946,7 @@
                     if (iconClose) iconClose.classList.add('hidden');
                     mobileMenuButton.setAttribute('aria-expanded', 'false');
                     body.style.overflow = 'auto';
-                    body.classList.remove('overflow-hidden');
                 });
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                const isClickInside = mobileMenu && (mobileMenu.contains(event.target) || mobileMenuButton.contains(event.target));
-                if (!isClickInside && mobileMenu && mobileMenu.classList.contains('block')) {
-                    toggleMobileMenu();
-                }
             });
         }
 
@@ -1623,6 +1972,7 @@
                     top: 0,
                     behavior: 'smooth'
                 });
+                trackGalleryInteraction('back_to_top', 'clicked');
             });
         }
 
@@ -1639,10 +1989,50 @@
         // Improve touch responsiveness
         document.addEventListener('touchstart', function() {}, {passive: true});
 
-        // Add keyboard navigation support
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('block')) {
-                if (mobileMenuButton) mobileMenuButton.click();
+        // Offline detection
+        window.addEventListener('online', function() {
+            showToast('Anda kembali online', 'success');
+        });
+
+        window.addEventListener('offline', function() {
+            showToast('Anda sedang offline, beberapa gambar mungkin tidak tersedia', 'warning');
+        });
+
+        // Service Worker registration untuk PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(
+                    function(registration) {
+                        console.log('ServiceWorker registration successful');
+                    },
+                    function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    }
+                );
+            });
+        }
+
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            // Report page load time
+            const perfData = window.performance.timing;
+            const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+            console.log(`Page loaded in ${pageLoadTime}ms`);
+            
+            if (pageLoadTime > 3000) {
+                // Page load terlalu lama, beri saran
+                console.warn('Page load time is high. Consider optimizing images.');
+            }
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            // Save any pending analytics
+            const analyticsData = JSON.parse(localStorage.getItem('gallery_analytics') || '[]');
+            if (analyticsData.length > 0) {
+                // Di sini Anda bisa mengirim data analytics ke server
+                console.log('Sending analytics data:', analyticsData.length, 'events');
+                localStorage.setItem('gallery_analytics', '[]'); // Clear setelah dikirim
             }
         });
     </script>
