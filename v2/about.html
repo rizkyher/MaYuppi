@@ -534,7 +534,7 @@
                 <!-- Stats -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-2xl mx-auto">
                     <div class="glass-morphism p-3 sm:p-4 rounded-lg sm:rounded-xl">
-                        <p class="text-xl sm:text-2xl font-bold mb-1">18+</p>
+                        <p class="text-xl sm:text-2xl font-bold mb-1">20+</p>
                         <p class="text-white/70 text-xs sm:text-sm">Tahun Pengalaman</p>
                     </div>
                     <div class="glass-morphism p-3 sm:p-4 rounded-lg sm:rounded-xl">
@@ -542,7 +542,7 @@
                         <p class="text-white/70 text-xs sm:text-sm">Akreditasi</p>
                     </div>
                     <div class="glass-morphism p-3 sm:p-4 rounded-lg sm:rounded-xl">
-                        <p class="text-xl sm:text-2xl font-bold mb-1">50+</p>
+                        <p class="text-xl sm:text-2xl font-bold mb-1">20+</p>
                         <p class="text-white/70 text-xs sm:text-sm">Guru & Staf</p>
                     </div>
                     <div class="glass-morphism p-3 sm:p-4 rounded-lg sm:rounded-xl">
@@ -570,16 +570,16 @@
                     <!-- Content -->
                     <div>
                         <!-- Section Badge -->
-                        <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full text-xs sm:text-sm font-semibold text-primary mb-4 sm:mb-6">
+                       <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full text-xs sm:text-sm font-semibold text-primary mb-4 sm:mb-6">
                             <i class="fas fa-history text-primary"></i>
                             SEJARAH & IDENTITAS
                         </div>
-                        
+
                         <!-- Title -->
                         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-primary mb-4 sm:mb-6">
                             <span class="text-gradient">MA Yuppi:</span> Madrasah Unggulan Berbasis Islam
                         </h2>
-                        
+
                         <!-- Description -->
                         <div class="space-y-4 mb-6 sm:mb-8">
                             <p class="text-gray-600 leading-relaxed">
@@ -589,7 +589,82 @@
                                 Dengan pendekatan pembelajaran berbasis riset dan integrasi nilai-nilai Islam, kami mempersiapkan siswa untuk menjadi pemimpin masa depan yang berakhlak mulia, berwawasan luas, dan berdaya saing global.
                             </p>
                         </div>
+
+                          <button 
+                            onclick="toggleProfilDetail()"
+                            class="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:opacity-80 transition mb-8"
+                        >
+                            <span id="profilBtnText">Selengkapnya</span>
+                            <i id="profilBtnIcon" class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+
+
+                     <!-- Additional Description (Toggle) -->
+                        <div id="profilDetail" class="hidden space-y-4 mb-6">
+
+                            <p class="text-gray-600 leading-relaxed">
+                                <strong class="text-primary">Madrasah Aliyah YUPPI (MA YUPPI)</strong> adalah lembaga pendidikan menengah berbasis Islam yang berada di bawah naungan 
+                                <strong class="text-primary">Yayasan Upaya Pembinaan Pendidikan Islam (YUPPI)</strong>.
+                                Berdiri dengan visi menghadirkan generasi muslim yang unggul dalam prestasi, teladan dalam bertindak, serta berwawasan global dan lingkungan.
+                            </p>
+
+                            <p class="text-gray-600 leading-relaxed">
+                                Dengan dukungan tenaga pendidik profesional serta lingkungan belajar yang kondusif, MA YUPPI menyelenggarakan pendidikan yang memadukan kurikulum nasional 
+                                dengan penguatan keislaman dan kekhasan madrasah. Sekolah ini juga menekankan pengembangan minat, bakat, dan keterampilan abad ke-21 agar lulusan mampu 
+                                berkontribusi dalam kehidupan bermasyarakat, berbangsa, dan beragama.
+                            </p>
+
+                            <p class="text-gray-600 leading-relaxed font-medium text-primary">
+                                Dengan semboyan <em>“Mencetak Generasi Religius, Cerdas, dan Berdaya Saing”</em>, MA YUPPI berkomitmen untuk terus berkembang menjadi madrasah unggulan 
+                                yang memberikan kontribusi nyata dalam pembangunan pendidikan di Indonesia.
+                            </p>
+
                         
+
+                        <!-- Nilai Dasar Pendidikan -->
+                        <div>
+                            <h4 class="text-lg font-serif font-bold text-primary mb-3">
+                                Nilai Dasar Pendidikan
+                            </h4>
+
+                            <p class="text-gray-600 mb-4">
+                                Dalam menjalankan pendidikan, MA YUPPI memegang teguh nilai-nilai dasar berikut:
+                            </p>
+
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-accent font-bold">1.</span>
+                                    <p class="text-gray-600"><strong>Tauhid</strong> – Menjadikan iman dan ketaqwaan kepada Allah SWT sebagai landasan utama dalam setiap aktivitas pendidikan.</p>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-accent font-bold">2.</span>
+                                    <p class="text-gray-600"><strong>Ilmu</strong> – Menumbuhkan semangat belajar sepanjang hayat dan menguasai ilmu pengetahuan sebagai bekal kehidupan.</p>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-accent font-bold">3.</span>
+                                    <p class="text-gray-600"><strong>Akhlak Mulia</strong> – Membentuk kepribadian siswa yang santun, jujur, disiplin, dan bertanggung jawab.</p>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-accent font-bold">4.</span>
+                                    <p class="text-gray-600"><strong>Kebersamaan</strong> – Menanamkan semangat ukhuwah, saling menghargai, dan bekerja sama dalam kebaikan.</p>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-accent font-bold">5.</span>
+                                    <p class="text-gray-600"><strong>Kemandirian</strong> – Melatih siswa untuk percaya diri, kreatif, dan mampu mengambil keputusan yang bijak.</p>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-accent font-bold">6.</span>
+                                    <p class="text-gray-600"><strong>Keunggulan</strong> – Mendorong prestasi, inovasi, dan daya saing di tingkat lokal, nasional, maupun global.</p>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-accent font-bold">7.</span>
+                                    <p class="text-gray-600"><strong>Pengabdian</strong> – Membiasakan kepedulian sosial dan kontribusi nyata kepada masyarakat.</p>
+                                </li>
+                            </ul>
+                            <div class="border-t border-gray-200 pt-4"></div>
+                        </div>
+                 </div>  
+                                      
                         <!-- Features -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div class="bg-gray-50 rounded-xl p-4 border border-gray-200 hover:border-accent transition-all duration-300">
@@ -681,33 +756,100 @@
                     </div>
                     
                     <!-- Misi Card -->
-                    <div class="card-hover bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl p-6 sm:p-8 lg:p-10 border-l-4 border-accent transform hover:scale-[1.02] transition-all duration-300">
+                   <div class="card-hover bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl p-6 sm:p-8 lg:p-10 border-l-4 border-accent transform hover:scale-[1.02] transition-all duration-300">
+
+                        <!-- Header -->
                         <div class="flex items-center mb-4 sm:mb-6">
                             <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-accent to-primary rounded-lg sm:rounded-xl flex items-center justify-center mr-4">
                                 <i class="fas fa-bullseye text-white text-lg sm:text-xl"></i>
                             </div>
-                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-primary">Misi</h3>
+                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-primary">
+                                Misi
+                            </h3>
                         </div>
-                        <ul class="space-y-3 sm:space-y-4">
+
+                        <!-- Misi Awal -->
+                        <ul class="space-y-3 sm:space-y-4 mb-8">
                             <li class="flex items-start">
                                 <i class="fas fa-check-circle text-accent mt-1 mr-3 text-sm"></i>
-                                <span class="text-gray-700 text-base sm:text-lg">Menyelenggarakan pendidikan Islam yang berkualitas dan berbasis riset</span>
+                                <span class="text-gray-700 text-base sm:text-lg">
+                                    Menyelenggarakan pendidikan Islam yang berkualitas dan berbasis riset
+                                </span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-check-circle text-accent mt-1 mr-3 text-sm"></i>
-                                <span class="text-gray-700 text-base sm:text-lg">Membentuk karakter siswa yang berakhlakul karimah</span>
+                                <span class="text-gray-700 text-base sm:text-lg">
+                                    Membentuk karakter siswa yang berakhlakul karimah
+                                </span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-check-circle text-accent mt-1 mr-3 text-sm"></i>
-                                <span class="text-gray-700 text-base sm:text-lg">Mengembangkan potensi akademik dan non-akademik siswa</span>
+                                <span class="text-gray-700 text-base sm:text-lg">
+                                    Mengembangkan potensi akademik dan non-akademik siswa
+                                </span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-check-circle text-accent mt-1 mr-3 text-sm"></i>
-                                <span class="text-gray-700 text-base sm:text-lg">Membangun networking global melalui kemitraan internasional</span>
+                                <span class="text-gray-700 text-base sm:text-lg">
+                                    Membangun networking global melalui kemitraan internasional
+                                </span>
                             </li>
                         </ul>
+
+                    <!-- BUTTON SELENGKAPNYA -->
+                    <button 
+                        onclick="toggleMisiDetail()"
+                        class="mt-6 inline-flex items-center gap-2 text-primary font-semibold text-sm hover:opacity-80 transition"
+                    >
+                        <span id="misiBtnText">Selengkapnya</span>
+                        <i id="misiBtnIcon" class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+
+                    <!-- KONTEN TAMBAHAN (TERSEMBUNYI) -->
+                    <div id="misiDetail" class="hidden mt-6 space-y-6">
+
+                        <!-- UNGGUL DALAM PRESTASI -->
+                        <div>
+                            <h4 class="text-lg font-bold text-primary mb-3">
+                                Unggul dalam Prestasi
+                            </h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                                <li>Mewujudkan lulusan yang siap berperan aktif dalam kehidupan beragama, sosial, budaya, IPTEK, serta berbangsa dan bernegara.</li>
+                                <li>Proses pembelajaran aktif, kreatif, inovatif berbasis indoor, outdoor, dan daring.</li>
+                                <li>Pengembangan minat dan bakat siswa berbasis prestasi.</li>
+                                <li>SDM berjiwa kepemimpinan dan kewirausahaan sesuai tuntutan zaman.</li>
+                            </ol>
+                        </div>
+
+                        <!-- TELADAN -->
+                        <div>
+                            <h4 class="text-lg font-bold text-primary mb-3">
+                                Teladan dalam Bertindak
+                            </h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                                <li>Pengembangan kurikulum yang adaptif dan proaktif.</li>
+                                <li>Sistem pelayanan mutu pendidikan berbasis manajemen madrasah.</li>
+                                <li>Pengembangan karier PTK dan siswa secara profesional.</li>
+                            </ol>
+                        </div>
+
+                        <!-- GLOBAL -->
+                        <div>
+                            <h4 class="text-lg font-bold text-primary mb-3">
+                                Berwawasan Global dan Lingkungan
+                            </h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                                <li>Madrasah berdaya saing global.</li>
+                                <li>Madrasah berwawasan lingkungan.</li>
+                                <li>Budaya BERITA & BERSEKA.</li>
+                                <li>Jejaring kerja kreatif dan inovatif.</li>
+                            </ol>
+                        </div>
+
                     </div>
-                </div>
+
+                    </div>
+
                 
                 <!-- Value Proposition -->
                 <div class="mt-12 sm:mt-16 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 rounded-xl sm:rounded-2xl p-6 sm:p-8">
@@ -1597,5 +1739,43 @@
             }, 500);
         });
     </script>
+    <!-- selengkapnya (misi) -->
+    <script>
+function toggleMisiDetail() {
+    const content = document.getElementById('misiDetail');
+    const text = document.getElementById('misiBtnText');
+    const icon = document.getElementById('misiBtnIcon');
+
+    content.classList.toggle('hidden');
+
+    if (content.classList.contains('hidden')) {
+        text.textContent = 'Selengkapnya';
+        icon.classList.remove('rotate-180');
+    } else {
+        text.textContent = 'Sembunyikan';
+        icon.classList.add('rotate-180');
+    }
+}
+</script>
+<!-- selengkapnya (profil) -->
+<script>
+function toggleProfilDetail() {
+    const content = document.getElementById('profilDetail');
+    const text = document.getElementById('profilBtnText');
+    const icon = document.getElementById('profilBtnIcon');
+
+    content.classList.toggle('hidden');
+
+    if (content.classList.contains('hidden')) {
+        text.textContent = 'Selengkapnya';
+        icon.classList.remove('rotate-180');
+    } else {
+        text.textContent = 'Sembunyikan';
+        icon.classList.add('rotate-180');
+    }
+}
+</script>
+
+
 </body>
 </html>
