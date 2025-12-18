@@ -259,8 +259,8 @@
                             Guru
                         </a> -->
                         
-                        <a href="news.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
-                            Berita
+                        <a href="galeri.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                            Galeri
                         </a>
                         
                         <a href="contact.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
@@ -334,8 +334,8 @@
                         <i class="fas fa-chalkboard-teacher text-gray-400 group-hover:text-primary text-sm"></i>
                     </a>
                      -->
-                    <a href="news.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
-                        <span class="font-medium">Berita</span>
+                    <a href="galeri.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
+                        <span class="font-medium">Galeri</span>
                         <i class="fas fa-newspaper text-gray-400 group-hover:text-primary text-sm"></i>
                     </a>
                     
@@ -357,6 +357,117 @@
             </div>
         </div>
     </nav>
+
+    <!-- PPDB Popup Modal -->
+<div id="ppdbPopup"
+     data-popup
+     class="fixed inset-0 z-50 flex items-center justify-center p-4
+            opacity-0 invisible transition-opacity duration-300">
+        <!-- Backdrop -->
+        <div  class="absolute inset-0 bg-black/60 backdrop-blur-sm pointer-events-auto" id="popupBackdrop"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-md sm:max-w-lg w-full transform scale-95 transition-transform duration-300 overflow-hidden pointer-events-auto" id="popupContent">
+            <!-- Close Button -->
+            <button id="closePopup"
+    class="absolute top-3 right-3 sm:top-4 sm:right-4
+           w-8 h-8 sm:w-10 sm:h-10
+           bg-white/90 hover:bg-white
+           rounded-full flex items-center justify-center
+           shadow-lg transition-all duration-300
+           hover:scale-110 z-50 mobile-tap-target"
+    aria-label="Close popup">
+
+                <i class="fas fa-times text-gray-700 text-sm sm:text-base"></i>
+            </button>
+            
+            <!-- Header with Gradient -->
+            <div class="relative bg-gradient-to-br from-primary via-accent to-secondary p-6 sm:p-8 text-center overflow-hidden">
+                <div class="absolute inset-0 opacity-20">
+                    <div class="absolute top-0 left-1/4 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+                    <div class="absolute bottom-0 right-1/4 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-sm rounded-2xl mb-4">
+                        <i class="fas fa-graduation-cap text-3xl sm:text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white mb-2">
+                        PPDB 2025
+                    </h3>
+                    <p class="text-white/90 text-sm sm:text-base">
+                        Pendaftaran Peserta Didik Baru
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Body -->
+            <div class="p-6 sm:p-8">
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-full mb-4">
+                        <div class="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
+                        <span class="text-sm font-semibold text-primary">Dibuka Sekarang!</span>
+                    </div>
+                    
+                    <h4 class="text-xl sm:text-2xl font-bold text-primary mb-3">
+                        Raih Masa Depan Cemerlang Bersama MA Yuppi
+                    </h4>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-6">
+                        Bergabunglah dengan madrasah unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi untuk mencetak generasi pemimpin masa depan.
+                    </p>
+                </div>
+                
+                <!-- Benefits -->
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
+                        <div class="w-8 h-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-check text-primary text-sm"></i>
+                        </div>
+                        <span class="text-xs sm:text-sm font-medium text-gray-700">Kurikulum Modern</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
+                        <div class="w-8 h-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-check text-primary text-sm"></i>
+                        </div>
+                        <span class="text-xs sm:text-sm font-medium text-gray-700">Fasilitas Lengkap</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
+                        <div class="w-8 h-8 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-check text-primary text-sm"></i>
+                        </div>
+                        <span class="text-xs sm:text-sm font-medium text-gray-700">Guru Profesional</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
+                        <div class="w-8 h-8 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-check text-primary text-sm"></i>
+                        </div>
+                        <span class="text-xs sm:text-sm font-medium text-gray-700">Beasiswa Tersedia</span>
+                    </div>
+                </div>
+                
+                <!-- CTA Button -->
+                <a href="https://bit.ly/Mayuppi" 
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="group relative w-full bg-gradient-to-r from-primary to-accent text-white px-6 py-4 rounded-xl text-base sm:text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 overflow-hidden mobile-tap-target">
+                    <span class="relative z-10">Daftar Sekarang</span>
+                    <i class="fas fa-arrow-right relative z-10 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+                    <div class="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+                
+                <p class="text-center text-xs text-gray-500 mt-4">
+                    * Kuota terbatas. Daftar sekarang sebelum terlambat!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" 
+            class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-8 lg:right-8 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-accent text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 z-40 opacity-0 mobile-tap-target"
+            aria-label="Back to top">
+        <i class="fas fa-arrow-up text-sm sm:text-base"></i>
+    </button>
 
     <!-- Hero Section -->
     <section id="hero" class="hero-gradient relative min-h-screen flex items-center justify-center overflow-hidden pt-14 sm:pt-16 lg:pt-20">
@@ -886,8 +997,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="news.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
-                                Berita & Artikel
+                            <a href="galeri.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Galeri & Artikel
                             </a>
                         </li>
                     </ul>
@@ -1118,5 +1229,80 @@
         // Improve touch responsiveness
         document.addEventListener('touchstart', function() {}, {passive: true});
     </script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('ppdbPopup');
+    const popupContent = document.getElementById('popupContent');
+    const closeBtn = document.getElementById('closePopup');
+    const backdrop = document.getElementById('popupBackdrop');
+
+    if (!popup) return;
+
+    /* =============================
+       CONFIG
+    ============================== */
+    const STORAGE_KEY = 'ppdb_popup_seen_2025';
+    const SHOW_DELAY = 1500; // ms (UX friendly)
+    const MOBILE_ONLY = false;   // true = hanya mobile
+    const DESKTOP_ONLY = false;  // true = hanya desktop
+
+    /* =============================
+       DEVICE DETECTION
+    ============================== */
+    const isMobile = window.innerWidth < 640;
+
+    if (MOBILE_ONLY && !isMobile) return;
+    if (DESKTOP_ONLY && isMobile) return;
+
+    /* =============================
+       SHOW LOGIC (1x ONLY)
+    ============================== */
+    if (localStorage.getItem(STORAGE_KEY)) return;
+
+    setTimeout(showPopup, SHOW_DELAY);
+
+    function showPopup() {
+        popup.classList.remove('opacity-0', 'invisible');
+        popup.classList.add('opacity-100', 'visible');
+
+        popupContent.classList.remove('scale-95');
+        popupContent.classList.add('scale-100');
+
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function hidePopup() {
+        popup.classList.add('opacity-0', 'invisible');
+        popup.classList.remove('opacity-100', 'visible');
+
+        popupContent.classList.add('scale-95');
+        popupContent.classList.remove('scale-100');
+
+        document.body.classList.remove('overflow-hidden');
+
+        localStorage.setItem(STORAGE_KEY, 'true');
+    }
+
+    /* =============================
+       EVENTS
+    ============================== */
+    closeBtn?.addEventListener('click', hidePopup);
+    backdrop?.addEventListener('click', hidePopup);
+
+    // ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') hidePopup();
+    });
+
+    // Jika user klik CTA → jangan tampilkan lagi
+    popup.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            localStorage.setItem(STORAGE_KEY, 'true');
+        });
+    });
+});
+</script>
+
+
 </body>
 </html>

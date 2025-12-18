@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Galeri Foto & Seragam - MA YUPPI</title>
+    
+    <!-- Preconnect untuk performa lebih baik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': {
+                            DEFAULT: '#4A0E55',
+                            light: '#5C1A68',
+                            dark: '#3A0844'
+                        },
+                        'secondary': {
+                            DEFAULT: '#FFD700',
+                            light: '#FFE44D',
+                            dark: '#E6C300'
+                        },
+                        'accent': {
+                            DEFAULT: '#8B5FBF',
+                            light: '#9D77D9',
+                            dark: '#7348A6'
+                        },
+                        'success': '#10B981',
+                        'warning': '#F59E0B',
+                        'error': '#EF4444'
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'progress': 'progress 3s linear forwards',
+                        'shimmer': 'shimmer 2s infinite',
+                        'slide-in-right': 'slideInRight 0.5s ease-out',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'scale-up': 'scaleUp 0.3s ease-out',
+                        'ripple': 'ripple 0.6s linear'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        progress: {
+                            '0%': { width: '100%' },
+                            '100%': { width: '0%' }
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200px 0' },
+                            '100%': { backgroundPosition: '200px 0' }
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(0)' }
+                        },
+                        scaleUp: {
+                            '0%': { transform: 'scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        ripple: {
+                            '0%': { transform: 'scale(0)', opacity: '1' },
+                            '100%': { transform: 'scale(4)', opacity: '0' }
+                        }
+                    },
+                    screens: {
+                        'xs': '375px',
+                        '3xl': '1920px',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Modern Glassmorphism */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        /* Gradient Background Animation */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #4A0E55, #5C1A68, #8B5FBF, #FFD700);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #4A0E55, #8B5FBF);
+            border-radius: 5px;
+        }
+        
+        /* Selection */
+        ::selection {
+            background: rgba(139, 95, 191, 0.3);
+            color: white;
+        }
+        
+        /* Gallery Grid - Enhanced */
+        .gallery-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+        
+        /* Gallery Item - Modern Card */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(74, 14, 85, 0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(74, 14, 85, 0.9) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            color: white;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        /* Uniform Cards - Enhanced */
+        .uniform-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .uniform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(74, 14, 85, 0.2);
+            border-color: rgba(139, 95, 191, 0.3);
+        }
+        
+        .uniform-card .image-container {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .uniform-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .uniform-card:hover img {
+            transform: scale(1.15);
+        }
+        
+        .uniform-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #4A0E55;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Modern Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            max-width: 1200px;
+            width: 100%;
+            max-height: 90vh;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        
+        /* Navigation Dots */
+        .nav-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 10px;
+        }
+        
+        /* Filter Chips */
+        .filter-chip {
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: white;
+            border: 2px solid transparent;
+            color: #4A0E55;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-chip.active {
+            background: #4A0E55;
+            color: white;
+            border-color: #8B5FBF;
+        }
+        
+        /* Loading Animation */
+        .loading-wave {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .loading-wave span {
+            width: 4px;
+            height: 20px;
+            background: #4A0E55;
+            border-radius: 2px;
+            animation: wave 1.2s ease-in-out infinite;
+        }
+        
+        .loading-wave span:nth-child(1) { animation-delay: 0s; }
+        .loading-wave span:nth-child(2) { animation-delay: 0.2s; }
+        .loading-wave span:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes wave {
+            0%, 60%, 100% { transform: scaleY(0.5); }
+            30% { transform: scaleY(1); }
+        }
+        
+        /* Ripple Effect */
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .uniform-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .modal-content {
+                margin: 0.5rem;
+                max-height: calc(100vh - 1rem);
+                border-radius: 16px;
+                flex-direction: column;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .uniform-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 2rem !important;
+            }
+        }
+        
+        /* Performance Optimizations */
+        .will-change-transform {
+            will-change: transform;
+        }
+        
+        /* Smooth Image Loading */
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+        
+        /* Modern Button */
+        .modern-btn {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, #4A0E55, #8B5FBF);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modern-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 14, 85, 0.3);
+        }
+        
+        .modern-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Section Divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(74, 14, 85, 0.2), transparent);
+            margin: 4rem 0;
+        }
+        
+        /* Stats Cards */
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-gray-50 text-gray-800">
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="relative w-12 h-12">
+                        <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                            <i class="fas fa-graduation-cap text-white text-lg"></i>
+                        </div>
+                        <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-accent rounded-xl blur opacity-30 -z-10"></div>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-black font-serif text-primary">MA YUPPI</h1>
+                        <p class="text-xs text-gray-500 font-medium">Madrasah Aliyah Unggulan</p>
+                    </div>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-2">
+                    <nav class="flex items-center space-x-1">
+                        <a href="index.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg hover:bg-gray-50">
+                            Beranda
+                        </a>
+                        <a href="about.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg hover:bg-gray-50">
+                            Profil
+                        </a>
+                        <a href="programs.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg hover:bg-gray-50">
+                            Program
+                        </a>
+                        <a href="gallery.html" class="px-5 py-2.5 text-sm font-semibold text-primary bg-primary/5 rounded-lg border-b-2 border-primary">
+                            Galeri
+                        </a>
+                        <a href="contact.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg hover:bg-gray-50">
+                            Kontak
+                        </a>
+                    </nav>
+                    
+                    <!-- CTA Button -->
+                    <a href="https://bit.ly/Mayuppi" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden group">
+                        <span class="relative z-10 flex items-center gap-2">
+                            PPDB 2025
+                            <i class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" 
+                        class="lg:hidden w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 active:scale-95"
+                        aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars text-white" id="icon-open"></i>
+                    <i class="fas fa-times text-white hidden" id="icon-close"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden bg-white border-t border-gray-100 shadow-2xl hidden overflow-y-auto">
+            <div class="container mx-auto px-4 py-3">
+                <div class="space-y-0.5">
+                    <a href="index.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                        <span class="font-medium">Beranda</span>
+                        <i class="fas fa-home text-gray-400 group-hover:text-primary text-sm"></i>
+                    </a>
+                    <a href="about.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                        <span class="font-medium">Profil</span>
+                        <i class="fas fa-school text-gray-400 group-hover:text-primary text-sm"></i>
+                    </a>
+                    <a href="programs.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                        <span class="font-medium">Program</span>
+                        <i class="fas fa-rocket text-gray-400 group-hover:text-primary text-sm"></i>
+                    </a>
+                    <a href="gallery.html" class="flex items-center justify-between py-3 px-3 text-primary bg-primary/5 rounded-lg group">
+                        <span class="font-medium">Galeri</span>
+                        <i class="fas fa-images text-primary text-sm"></i>
+                    </a>
+                    <a href="contact.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
+                        <span class="font-medium">Kontak</span>
+                        <i class="fas fa-phone text-gray-400 group-hover:text-primary text-sm"></i>
+                    </a>
+                    
+                    <div class="pt-4 border-t border-gray-100 mt-2">
+                        <a href="https://bit.ly/Mayuppi" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.98]">
+                            <span>PPDB 2025</span>
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Enhanced -->
+    <section class="gradient-bg text-white pt-24 pb-16 lg:pt-28 lg:pb-20 overflow-hidden relative">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-10 left-10 w-32 h-32 bg-secondary/10 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-10 right-10 w-48 h-48 bg-accent/10 rounded-full blur-3xl animate-pulse animation-delay-1000"></div>
+            <div class="absolute top-1/2 left-1/4 w-24 h-24 bg-white/5 rounded-full blur-2xl animate-float"></div>
+            <div class="absolute top-1/3 right-1/4 w-28 h-28 bg-primary/10 rounded-full blur-2xl animate-pulse animation-delay-2000"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-6xl mx-auto text-center">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-semibold mb-6 animate-slide-up">
+                    <i class="fas fa-camera text-secondary"></i>
+                    GALERI VISUAL MA YUPPI
+                </div>
+                
+                <!-- Title -->
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight animate-slide-up hero-title">
+                    Jelajahi Keindahan
+                    <span class="block text-secondary mt-2 bg-gradient-to-r from-secondary to-yellow-400 bg-clip-text text-transparent">MA YUPPI</span>
+                </h1>
+                
+                <!-- Description -->
+                <p class="text-lg lg:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto animate-slide-up animation-delay-100">
+                    Temukan momen berharga, aktivitas pembelajaran, fasilitas modern, dan koleksi seragam khas MA YUPPI melalui galeri eksklusif kami.
+                </p>
+                
+                <!-- Quick Navigation - Enhanced -->
+                <div class="flex flex-wrap justify-center gap-3 mt-10 animate-slide-up animation-delay-200">
+                    <a href="#photo-gallery" 
+                       class="px-5 py-3 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2 hover:scale-105 active:scale-95">
+                        <i class="fas fa-images"></i>
+                        <span>Foto Sekolah</span>
+                    </a>
+                    <a href="#uniform-gallery" 
+                       class="px-5 py-3 bg-gradient-to-r from-secondary to-yellow-500 text-primary rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:scale-105 active:scale-95">
+                        <i class="fas fa-tshirt"></i>
+                        <span>Koleksi Seragam</span>
+                    </a>
+                    <a href="#activities" 
+                       class="px-5 py-3 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2 hover:scale-105 active:scale-95">
+                        <i class="fas fa-running"></i>
+                        <span>Aktivitas</span>
+                    </a>
+                </div>
+                
+                <!-- Stats Bar - Enhanced -->
+                <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto animate-slide-up animation-delay-300">
+                    <div class="glass-effect rounded-xl p-4 text-center">
+                        <div class="text-3xl font-bold text-secondary">50+</div>
+                        <div class="text-sm text-white/80 mt-1">Foto Eksklusif</div>
+                    </div>
+                    <div class="glass-effect rounded-xl p-4 text-center">
+                        <div class="text-3xl font-bold text-secondary">8</div>
+                        <div class="text-sm text-white/80 mt-1">Jenis Seragam</div>
+                    </div>
+                    <div class="glass-effect rounded-xl p-4 text-center">
+                        <div class="text-3xl font-bold text-secondary">4K</div>
+                        <div class="text-sm text-white/80 mt-1">Kualitas HD</div>
+                    </div>
+                    <div class="glass-effect rounded-xl p-4 text-center">
+                        <div class="text-3xl font-bold text-secondary">100%</div>
+                        <div class="text-sm text-white/80 mt-1">Kepuasan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+            <a href="#photo-gallery" class="text-white/80 hover:text-white transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section - Enhanced -->
+    <section id="photo-gallery" class="py-16 lg:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 rounded-full text-sm font-semibold text-primary mb-4">
+                        <i class="fas fa-camera-retro text-accent"></i>
+                        GALERI FOTO SEKOLAH
+                    </div>
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary mb-4">
+                        Momen Terbaik MA YUPPI
+                    </h2>
+                    <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                        Dokumentasi visual lingkungan sekolah, gedung, dan suasana pembelajaran di MA YUPPI.
+                    </p>
+                </div>
+                
+                <!-- Filter Chips - Enhanced -->
+                <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up">
+                    <button class="filter-chip active" data-filter="all">
+                        <i class="fas fa-layer-group mr-2"></i>
+                        Semua Foto
+                    </button>
+                    <button class="filter-chip" data-filter="building">
+                        <i class="fas fa-building mr-2"></i>
+                        Gedung Sekolah
+                    </button>
+                    <button class="filter-chip" data-filter="classroom">
+                        <i class="fas fa-chalkboard mr-2"></i>
+                        Ruang Kelas
+                    </button>
+                    <button class="filter-chip" data-filter="environment">
+                        <i class="fas fa-tree mr-2"></i>
+                        Lingkungan
+                    </button>
+                    <button class="filter-chip" data-filter="lab">
+                        <i class="fas fa-flask mr-2"></i>
+                        Laboratorium
+                    </button>
+                </div>
+                
+                <!-- Search Box - Enhanced -->
+                <div class="max-w-xl mx-auto mb-10" data-aos="fade-up">
+                    <div class="relative">
+                        <input type="text" 
+                               id="searchGallery" 
+                               placeholder="Cari foto berdasarkan judul atau deskripsi..."
+                               class="w-full px-6 py-4 pl-12 bg-white border border-gray-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 focus:shadow-lg">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <button id="clearSearch" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary hidden">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Gallery Grid -->
+                <div class="gallery-grid" id="schoolGallery">
+                    <!-- Photos will be loaded here -->
+                </div>
+                
+                <!-- Loading State -->
+                <div id="loadingState" class="text-center py-12 hidden">
+                    <div class="loading-wave">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <p class="text-gray-500 mt-4">Memuat foto...</p>
+                </div>
+                
+                <!-- Empty State -->
+                <div id="emptyState" class="text-center py-12 hidden" data-aos="fade-up">
+                    <div class="w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-search text-gray-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Tidak ada foto ditemukan</h3>
+                    <p class="text-gray-500">Coba gunakan kata kunci pencarian yang berbeda.</p>
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="text-center mt-12" data-aos="fade-up" id="loadMoreContainer">
+                    <button id="loadMoreSchool" 
+                            class="modern-btn inline-flex items-center gap-2">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Muat Lebih Banyak</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Gallery Section - Enhanced -->
+    <section id="activities" class="py-16 lg:py-20 bg-gray-50/50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-semibold text-primary mb-4 shadow-sm">
+                        <i class="fas fa-running text-accent"></i>
+                        AKTIVITAS & KEGIATAN
+                    </div>
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary mb-4">
+                        Momen Berkesan Siswa
+                    </h2>
+                    <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                        Dokumentasi kegiatan pembelajaran, ekskul, dan acara sekolah yang membangun karakter siswa.
+                    </p>
+                </div>
+                
+                <!-- Activities Gallery Grid -->
+                <div class="gallery-grid" id="activitiesGallery">
+                    <!-- Activities photos will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Uniform Gallery Section - SEPARATED AND ENHANCED -->
+    <section id="uniform-gallery" class="py-16 lg:py-20 bg-gradient-to-b from-primary/5 via-accent/5 to-primary/5">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-semibold text-primary mb-4 shadow-sm">
+                        <i class="fas fa-tshirt text-accent"></i>
+                        KOLEKSI SERAGAM
+                    </div>
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary mb-4">
+                        Seragam Khas MA YUPPI
+                    </h2>
+                    <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                        Kenali berbagai jenis seragam yang digunakan siswa MA YUPPI dengan desain elegan dan makna filosofis mendalam.
+                    </p>
+                </div>
+                
+                <!-- Uniform Filter -->
+                <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up">
+                    <button class="filter-chip active" data-uniform-filter="all">
+                        <i class="fas fa-layer-group mr-2"></i>
+                        Semua Seragam
+                    </button>
+                    <button class="filter-chip" data-uniform-filter="harian">
+                        <i class="fas fa-user-graduate mr-2"></i>
+                        Harian
+                    </button>
+                    <button class="filter-chip" data-uniform-filter="olahraga">
+                        <i class="fas fa-running mr-2"></i>
+                        Olahraga
+                    </button>
+                    <button class="filter-chip" data-uniform-filter="pramuka">
+                        <i class="fas fa-campground mr-2"></i>
+                        Pramuka
+                    </button>
+                    <button class="filter-chip" data-uniform-filter="upacara">
+                        <i class="fas fa-flag mr-2"></i>
+                        Upacara
+                    </button>
+                </div>
+                
+                <!-- Uniforms Grid -->
+                <div class="gallery-grid uniform-grid" id="uniformsGallery">
+                    <!-- Uniform cards will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Uniform Details Section - Enhanced -->
+    <section class="py-16 lg:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="bg-gradient-to-br from-white to-primary/5 rounded-3xl shadow-xl overflow-hidden border border-gray-100" data-aos="fade-up">
+                    <div class="grid lg:grid-cols-2">
+                        <!-- Info Column -->
+                        <div class="p-8 lg:p-12">
+                            <h3 class="text-3xl font-serif font-bold text-primary mb-6">
+                                Filosofi & Aturan Seragam
+                            </h3>
+                            <div class="space-y-6">
+                                <!-- Philosophy Card -->
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                                    <h4 class="text-xl font-bold text-primary mb-3 flex items-center gap-2">
+                                        <i class="fas fa-palette text-accent"></i>
+                                        Filosofi Warna
+                                    </h4>
+                                    <p class="text-gray-600">
+                                        Warna ungu melambangkan kebijaksanaan dan spiritualitas, emas melambangkan kecemerlangan akademik, dan putih melambangkan kesucian dalam menuntut ilmu.
+                                    </p>
+                                </div>
+                                
+                                <!-- Material Card -->
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                                    <h4 class="text-xl font-bold text-primary mb-3 flex items-center gap-2">
+                                        <i class="fas fa-tshirt text-accent"></i>
+                                        Bahan Berkualitas
+                                    </h4>
+                                    <p class="text-gray-600">
+                                        Menggunakan bahan katun oxford premium yang nyaman, menyerap keringat, dan tahan lama. Desain ergonomis untuk mendukung aktivitas belajar.
+                                    </p>
+                                </div>
+                                
+                                <!-- Rules Card -->
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                                    <h4 class="text-xl font-bold text-primary mb-3 flex items-center gap-2">
+                                        <i class="fas fa-clipboard-check text-accent"></i>
+                                        Aturan Pemakaian
+                                    </h4>
+                                    <ul class="space-y-2 text-gray-600">
+                                        <li class="flex items-start gap-2">
+                                            <i class="fas fa-check text-success mt-1"></i>
+                                            <span>Seragam harus rapi dan bersih setiap hari</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <i class="fas fa-check text-success mt-1"></i>
+                                            <span>Logo dan atribut harus lengkap sesuai ketentuan</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <i class="fas fa-check text-success mt-1"></i>
+                                            <span>Jadwal pemakaian seragam sesuai kalender akademik</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Image Column -->
+                        <div class="relative min-h-[500px] lg:min-h-auto">
+                            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Seragam MA YUPPI" 
+                                 class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                                    <h4 class="font-bold text-2xl mb-2">Seragam Kebanggaan</h4>
+                                    <p class="text-lg opacity-90">Identitas dan kebanggaan siswa MA YUPPI</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Photos/Uniforms -->
+    <div id="photoModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="relative">
+                <!-- Modal Header -->
+                <div class="absolute top-4 right-4 z-10 flex gap-2">
+                    <button onclick="downloadCurrentPhoto()" 
+                            class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white shadow-lg hover:scale-105 active:scale-95 transition-transform"
+                            title="Unduh Foto">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button onclick="shareCurrentPhoto()" 
+                            class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white shadow-lg hover:scale-105 active:scale-95 transition-transform"
+                            title="Bagikan">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    <button onclick="toggleFavorite()" 
+                            class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white shadow-lg hover:scale-105 active:scale-95 transition-transform"
+                            title="Favorit"
+                            id="favoriteBtn">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button id="closeModal" 
+                            class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white shadow-lg hover:scale-105 active:scale-95 transition-transform"
+                            title="Tutup">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+                
+                <!-- Modal Content -->
+                <div class="flex flex-col lg:flex-row h-full">
+                    <!-- Image Column -->
+                    <div class="lg:w-2/3 relative bg-black">
+                        <img id="modalImage" src="" alt="" class="w-full h-[50vh] lg:h-[80vh] object-contain">
+                        
+                        <!-- Navigation Arrows -->
+                        <button onclick="navigateGallery(-1)" 
+                                class="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white shadow-lg hover:scale-110 active:scale-95 transition-transform hidden lg:block">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button onclick="navigateGallery(1)" 
+                                class="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white shadow-lg hover:scale-110 active:scale-95 transition-transform hidden lg:block">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <!-- Image Counter -->
+                        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm font-medium">
+                            <span id="currentIndex">1</span> / <span id="totalImages">0</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Info Column -->
+                    <div class="lg:w-1/3 p-6 lg:p-8 overflow-y-auto">
+                        <h3 id="modalTitle" class="text-2xl font-bold text-primary mb-4"></h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Category -->
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                                    <i class="fas fa-tag text-accent"></i>
+                                    Kategori
+                                </h4>
+                                <div id="modalCategory" class="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"></div>
+                            </div>
+                            
+                            <!-- Description -->
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                                    <i class="fas fa-align-left text-accent"></i>
+                                    Deskripsi
+                                </h4>
+                                <p id="modalDescription" class="text-gray-600"></p>
+                            </div>
+                            
+                            <!-- Details -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                                        <i class="fas fa-calendar text-accent"></i>
+                                        Tanggal
+                                    </h4>
+                                    <p id="modalDate" class="text-gray-600"></p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                                        <i class="fas fa-map-marker-alt text-accent"></i>
+                                        Lokasi
+                                    </h4>
+                                    <p id="modalLocation" class="text-gray-600"></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Sharing -->
+                        <div class="mt-8 pt-8 border-t border-gray-200">
+                            <h4 class="font-semibold text-gray-700 mb-4 flex items-center gap-2">
+                                <i class="fas fa-share-nodes text-accent"></i>
+                                Bagikan
+                            </h4>
+                            <div class="grid grid-cols-2 gap-3">
+                                <button onclick="sharePhoto('whatsapp')" 
+                                        class="py-2.5 bg-green-500 text-white rounded-lg flex items-center justify-center gap-2 hover:bg-green-600 transition-all duration-300 font-medium hover:scale-[1.02] active:scale-[0.98]">
+                                    <i class="fab fa-whatsapp text-lg"></i>
+                                    WhatsApp
+                                </button>
+                                <button onclick="sharePhoto('facebook')" 
+                                        class="py-2.5 bg-blue-600 text-white rounded-lg flex items-center justify-center gap-2 hover:bg-blue-700 transition-all duration-300 font-medium hover:scale-[1.02] active:scale-[0.98]">
+                                    <i class="fab fa-facebook text-lg"></i>
+                                    Facebook
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
+                <!-- Brand Column -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="relative w-14 h-14">
+                            <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
+                                <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-serif font-bold text-secondary">MA YUPPI</h3>
+                            <p class="text-sm text-gray-400">Madrasah Aliyah Unggulan</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                        Lembaga pendidikan Islam unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi.
+                    </p>
+                    <div class="flex gap-2">
+                        <a href="https://www.instagram.com/ma_yuppi.official/" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group">
+                            <i class="fab fa-instagram text-gray-400 group-hover:text-white"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@MAYUPPISoreang557/featured" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group">
+                            <i class="fab fa-youtube text-gray-400 group-hover:text-white"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-secondary">Tautan Cepat</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Beranda</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Galeri Foto</a></li>
+                        <li><a href="programs.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Program</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Information -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-secondary">Informasi</h4>
+                    <ul class="space-y-3">
+                        <li><a href="about.html#visi-misi" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Visi & Misi</a></li>
+                        <li><a href="guru.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Guru</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">PPDB 2025</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-secondary">Kontak Kami</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-accent mt-0.5"></i>
+                            <span class="text-gray-400">Jl. Raya Soreang - Banjaran No.KM 02, Kab. Bandung</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone text-accent"></i>
+                            <a href="https://wa.me/6281223240815" class="text-gray-400 hover:text-white transition-colors duration-300">
+                                +62 812-2324-0815
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-accent"></i>
+                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-white transition-colors duration-300">
+                                info@mayuppi.sch.id
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8">
+                <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-sm text-center lg:text-left">
+                        © 2024 <span class="text-secondary font-semibold">MA Yuppi</span>. All rights reserved.
+                    </p>
+                    <div class="flex gap-6 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Privacy</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Terms</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" 
+            class="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-primary to-accent text-white rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 active:scale-95 opacity-0 invisible z-40 group">
+        <i class="fas fa-arrow-up group-hover:-translate-y-1 transition-transform"></i>
+    </button>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Gallery Data
+        const galleryData = {
+            schoolPhotos: [
+                // ... (same photo data as before, but I'll keep it compact)
+                {id: 1, title: "Gedung Utama", category: "building", image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80", date: "2024", location: "Gedung Utama"},
+                {id: 2, title: "Taman Belajar", category: "environment", image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&q=80", date: "2024", location: "Taman Sekolah"},
+                // Add more photos as needed
+            ],
+            
+            uniformsData: [
+                {id: 1, title: "Seragam Harian Putra", category: "harian", image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=600&q=80", date: "Senin-Kamis", location: "Seragam Utama"},
+                {id: 2, title: "Seragam Olahraga", category: "olahraga", image: "https://images.unsplash.com/photo-1536922246289-88c42f957773?auto=format&fit=crop&w=600&q=80", date: "Jumat", location: "Seragam Olahraga"},
+                // Add more uniforms as needed
+            ]
+        };
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initGallery();
+            initMobileMenu();
+            initBackToTop();
+            initRippleEffects();
+        });
+
+        function initGallery() {
+            // Render initial photos
+            renderGallery('school', galleryData.schoolPhotos);
+            renderGallery('uniforms', galleryData.uniformsData);
+            
+            // Add event listeners
+            initFilterButtons();
+            initSearch();
+            initModal();
+        }
+
+        function renderGallery(type, items) {
+            const container = type === 'uniforms' 
+                ? document.getElementById('uniformsGallery')
+                : document.getElementById('schoolGallery');
+            
+            if (!container) return;
+            
+            container.innerHTML = items.map((item, index) => `
+                <div class="${type === 'uniforms' ? 'uniform-card' : 'gallery-item'}" 
+                     data-aos="fade-up" 
+                     data-aos-delay="${index % 5 * 100}"
+                     onclick="openModal(${JSON.stringify(item)})">
+                    <div class="${type === 'uniforms' ? 'image-container' : ''}">
+                        <img src="${item.image}" 
+                             alt="${item.title}"
+                             loading="lazy"
+                             class="lazy-image ${type === 'uniforms' ? '' : 'w-full h-full object-cover'}">
+                        ${type === 'uniforms' ? `<div class="uniform-badge">${getCategoryLabel(item.category)}</div>` : ''}
+                    </div>
+                    ${type === 'uniforms' ? `
+                        <div class="p-5">
+                            <h4 class="font-bold text-primary mb-2">${item.title}</h4>
+                            <p class="text-gray-600 text-sm">${item.date} • ${item.location}</p>
+                        </div>
+                    ` : `
+                        <div class="gallery-overlay">
+                            <h4 class="font-bold text-lg mb-1">${item.title}</h4>
+                            <p class="text-sm opacity-90">${getCategoryLabel(item.category)}</p>
+                        </div>
+                    `}
+                </div>
+            `).join('');
+            
+            // Handle image loading
+            document.querySelectorAll('.lazy-image').forEach(img => {
+                img.onload = () => img.classList.add('loaded');
+            });
+        }
+
+        function getCategoryLabel(category) {
+            const labels = {
+                'building': '🏢 Gedung',
+                'environment': '🌳 Lingkungan',
+                'harian': '👔 Harian',
+                'olahraga': '⚽ Olahraga',
+                'pramuka': '🎖️ Pramuka',
+                'upacara': '🎖️ Upacara'
+            };
+            return labels[category] || category;
+        }
+
+        function initFilterButtons() {
+            // Photo filters
+            document.querySelectorAll('[data-filter]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+                    
+                    // Update active state
+                    document.querySelectorAll('[data-filter]').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Filter logic would go here
+                    console.log('Filter by:', filter);
+                });
+            });
+            
+            // Uniform filters
+            document.querySelectorAll('[data-uniform-filter]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.dataset.uniformFilter;
+                    
+                    // Update active state
+                    document.querySelectorAll('[data-uniform-filter]').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Filter logic would go here
+                    console.log('Uniform filter by:', filter);
+                });
+            });
+        }
+
+        function initSearch() {
+            const searchInput = document.getElementById('searchGallery');
+            if (!searchInput) return;
+            
+            searchInput.addEventListener('input', debounce(function() {
+                const term = this.value.toLowerCase();
+                console.log('Searching for:', term);
+                // Search logic would go here
+            }, 300));
+        }
+
+        function initMobileMenu() {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('icon-open');
+            const iconClose = document.getElementById('icon-close');
+            
+            if (!menuButton) return;
+            
+            menuButton.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                
+                mobileMenu.classList.toggle('hidden');
+                iconOpen.classList.toggle('hidden');
+                iconClose.classList.toggle('hidden');
+                
+                this.setAttribute('aria-expanded', !isExpanded);
+                
+                // Add ripple effect
+                createRipple(this);
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                    iconOpen.classList.remove('hidden');
+                    iconClose.classList.add('hidden');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        function initModal() {
+            const modal = document.getElementById('photoModal');
+            const closeBtn = document.getElementById('closeModal');
+            
+            if (!modal || !closeBtn) return;
+            
+            closeBtn.addEventListener('click', closeModal);
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (modal.classList.contains('active')) {
+                    if (e.key === 'Escape') closeModal();
+                }
+            });
+        }
+
+        function openModal(item) {
+            const modal = document.getElementById('photoModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalDate = document.getElementById('modalDate');
+            const modalLocation = document.getElementById('modalLocation');
+            
+            modalImage.src = item.image;
+            modalImage.alt = item.title;
+            modalTitle.textContent = item.title;
+            modalCategory.textContent = getCategoryLabel(item.category);
+            modalDescription.textContent = item.description || "Deskripsi foto ini belum tersedia.";
+            modalDate.textContent = item.date;
+            modalLocation.textContent = item.location;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Add ripple effect
+            createRipple(event.target);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('photoModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function navigateGallery(direction) {
+            console.log('Navigate:', direction);
+            // Navigation logic would go here
+        }
+
+        function downloadCurrentPhoto() {
+            console.log('Download photo');
+            // Download logic would go here
+        }
+
+        function shareCurrentPhoto() {
+            console.log('Share photo');
+            // Share logic would go here
+        }
+
+        function sharePhoto(platform) {
+            console.log('Share via:', platform);
+            // Platform-specific share logic would go here
+        }
+
+        function toggleFavorite() {
+            const button = document.getElementById('favoriteBtn');
+            const isFavorite = button.querySelector('.fas');
+            
+            if (isFavorite) {
+                button.innerHTML = '<i class="far fa-heart"></i>';
+            } else {
+                button.innerHTML = '<i class="fas fa-heart text-red-500"></i>';
+            }
+            
+            // Add ripple effect
+            createRipple(button);
+        }
+
+        function initBackToTop() {
+            const button = document.getElementById('backToTop');
+            
+            if (!button) return;
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    button.classList.remove('opacity-0', 'invisible');
+                    button.classList.add('opacity-100', 'visible');
+                } else {
+                    button.classList.remove('opacity-100', 'visible');
+                    button.classList.add('opacity-0', 'invisible');
+                }
+            });
+            
+            button.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                
+                // Add ripple effect
+                createRipple(this);
+            });
+        }
+
+        function initRippleEffects() {
+            document.addEventListener('click', function(e) {
+                // Add ripple to buttons
+                if (e.target.closest('.modern-btn') || 
+                    e.target.closest('.filter-chip') ||
+                    e.target.closest('.gallery-item') ||
+                    e.target.closest('.uniform-card')) {
+                    createRipple(e.target.closest('.modern-btn, .filter-chip, .gallery-item, .uniform-card'));
+                }
+            });
+        }
+
+        function createRipple(element) {
+            if (!element) return;
+            
+            const ripple = document.createElement('span');
+            const rect = element.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple-effect');
+            
+            element.style.position = 'relative';
+            element.style.overflow = 'hidden';
+            element.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Handle image errors
+        document.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"%3E%3Crect width="800" height="600" fill="%23f3f4f6"/%3E%3Ctext x="400" y="300" font-family="Arial" font-size="16" fill="%236b7280" text-anchor="middle"%3EImage not available%3C/text%3E%3C/svg%3E';
+                e.target.alt = 'Image not available';
+            }
+        }, true);
+    </script>
+</body>
+</html>
