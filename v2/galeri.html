@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -28,31 +28,59 @@
     <!-- Tailwind Config -->
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         'primary': {
                             DEFAULT: '#4A0E55',
-                            light: '#5C1A68',
-                            dark: '#3A0844'
+                            50: '#F8F5FA',
+                            100: '#F1EAF5',
+                            200: '#E3D5EB',
+                            300: '#D5C0E1',
+                            400: '#C7ABD7',
+                            500: '#B996CD',
+                            600: '#AB81C3',
+                            700: '#9D6CB9',
+                            800: '#8F57AF',
+                            900: '#4A0E55'
                         },
                         'secondary': {
                             DEFAULT: '#FFD700',
-                            light: '#FFE44D',
-                            dark: '#E6C300'
+                            50: '#FFFEF2',
+                            100: '#FFFDDD',
+                            200: '#FFFBB8',
+                            300: '#FFF993',
+                            400: '#FFF76E',
+                            500: '#FFF549',
+                            600: '#FFF324',
+                            700: '#FFE600',
+                            800: '#D9C300',
+                            900: '#B3A100'
                         },
                         'accent': {
                             DEFAULT: '#8B5FBF',
-                            light: '#9D77D9',
-                            dark: '#7348A6'
+                            50: '#F9F6FC',
+                            100: '#F3EDF9',
+                            200: '#E7DBF3',
+                            300: '#DBC9ED',
+                            400: '#CFB7E7',
+                            500: '#C3A5E1',
+                            600: '#B793DB',
+                            700: '#AB81D5',
+                            800: '#9F6FCF',
+                            900: '#8B5FBF'
                         },
                         'success': '#10B981',
                         'warning': '#F59E0B',
-                        'error': '#EF4444'
+                        'error': '#EF4444',
+                        'info': '#3B82F6'
                     },
                     fontFamily: {
                         'serif': ['Playfair Display', 'serif'],
-                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif']
                     },
                     animation: {
                         'fade-in': 'fadeIn 0.5s ease-out',
@@ -64,7 +92,22 @@
                         'slide-in-right': 'slideInRight 0.5s ease-out',
                         'bounce-slow': 'bounce 3s infinite',
                         'scale-up': 'scaleUp 0.3s ease-out',
-                        'ripple': 'ripple 0.6s linear'
+                        'ripple': 'ripple 0.6s linear',
+                        'gradient': 'gradient 8s ease infinite',
+                        'wave': 'wave 2s linear infinite',
+                        'blob': 'blob 10s infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                        'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+                        'slide-down': 'slideDown 0.3s ease-out',
+                        'fade-in-up': 'fadeInUp 0.5s ease-out',
+                        'float-3d': 'float3d 8s ease-in-out infinite',
+                        'parallax': 'parallax 20s linear infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'text-shimmer': 'textShimmer 2s linear infinite',
+                        'neon-glow': 'neonGlow 1.5s ease-in-out infinite alternate',
+                        'card-flip': 'cardFlip 1s ease-in-out',
+                        'zoom-in': 'zoomIn 0.5s ease-out',
+                        'slide-in-blurred': 'slideInBlurred 0.6s cubic-bezier(0.23, 1, 0.32, 1)'
                     },
                     keyframes: {
                         fadeIn: {
@@ -72,7 +115,7 @@
                             '100%': { opacity: '1' }
                         },
                         slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
                             '100%': { transform: 'translateY(0)', opacity: '1' }
                         },
                         float: {
@@ -98,11 +141,90 @@
                         ripple: {
                             '0%': { transform: 'scale(0)', opacity: '1' },
                             '100%': { transform: 'scale(4)', opacity: '0' }
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' }
+                        },
+                        wave: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' }
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        fadeInUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        float3d: {
+                            '0%, 100%': { transform: 'translateY(0px) rotateX(0deg) rotateY(0deg)' },
+                            '25%': { transform: 'translateY(-20px) rotateX(5deg) rotateY(5deg)' },
+                            '50%': { transform: 'translateY(-10px) rotateX(0deg) rotateY(10deg)' },
+                            '75%': { transform: 'translateY(-15px) rotateX(-5deg) rotateY(5deg)' }
+                        },
+                        parallax: {
+                            '0%': { transform: 'translateX(0%) translateY(0%)' },
+                            '100%': { transform: 'translateX(-50%) translateY(-50%)' }
+                        },
+                        glow: {
+                            'from': { 
+                                filter: 'drop-shadow(0 0 5px rgba(139, 95, 191, 0.7)) drop-shadow(0 0 10px rgba(139, 95, 191, 0.5))'
+                            },
+                            'to': { 
+                                filter: 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))'
+                            }
+                        },
+                        textShimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' }
+                        },
+                        neonGlow: {
+                            'from': { 
+                                textShadow: '0 0 5px #fff, 0 0 10px #fff, 0 0 15px #8B5FBF, 0 0 20px #8B5FBF'
+                            },
+                            'to': { 
+                                textShadow: '0 0 10px #fff, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700'
+                            }
+                        },
+                        cardFlip: {
+                            '0%': { transform: 'rotateY(0deg)' },
+                            '100%': { transform: 'rotateY(180deg)' }
+                        },
+                        zoomIn: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        slideInBlurred: {
+                            '0%': { 
+                                transform: 'translateY(30px) scale(0.9)',
+                                opacity: '0',
+                                filter: 'blur(10px)'
+                            },
+                            '100%': { 
+                                transform: 'translateY(0) scale(1)',
+                                opacity: '1',
+                                filter: 'blur(0)'
+                            }
                         }
                     },
                     screens: {
                         'xs': '375px',
                         '3xl': '1920px',
+                        '4xl': '2560px',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+                        'gradient-diagonal': 'linear-gradient(135deg, var(--tw-gradient-stops))',
+                        'gradient-mesh': 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%234A0E55\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
                     }
                 }
             }
@@ -110,471 +232,1011 @@
     </script>
     
     <style>
-        /* Modern Glassmorphism */
+        /* Modern Glassmorphism with Gradient Border */
         .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(31, 38, 135, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
         
-        /* Gradient Background Animation */
-        .gradient-bg {
-            background: linear-gradient(-45deg, #4A0E55, #5C1A68, #8B5FBF, #FFD700);
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(24px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        
+        .glass-gradient {
+            position: relative;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 255, 255, 0.85) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        
+        .glass-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 24px;
+            padding: 2px;
+            background: linear-gradient(135deg, 
+                rgba(74, 14, 85, 0.2) 0%,
+                rgba(139, 95, 191, 0.2) 25%,
+                rgba(255, 215, 0, 0.2) 50%,
+                rgba(139, 95, 191, 0.2) 75%,
+                rgba(74, 14, 85, 0.2) 100%);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        
+        /* Advanced Gradient Backgrounds */
+        .gradient-bg-supreme {
+            background: linear-gradient(135deg, 
+                #4A0E55 0%, 
+                #5C1A68 25%, 
+                #8B5FBF 50%, 
+                #B496D9 75%, 
+                #FFD700 100%);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
         }
         
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .gradient-bg-mesh {
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(74, 14, 85, 0.05) 0px, transparent 50%),
+                radial-gradient(at 90% 10%, rgba(139, 95, 191, 0.05) 0px, transparent 50%),
+                radial-gradient(at 50% 90%, rgba(255, 215, 0, 0.05) 0px, transparent 50%),
+                radial-gradient(at 10% 80%, rgba(74, 14, 85, 0.05) 0px, transparent 50%);
         }
         
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
+        .gradient-text-animated {
+            background: linear-gradient(90deg, 
+                #4A0E55 0%, 
+                #8B5FBF 25%, 
+                #FFD700 50%, 
+                #8B5FBF 75%, 
+                #4A0E55 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 3s linear infinite;
         }
         
-        /* Custom Scrollbar */
+        /* 3D Effects */
+        .card-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg) translateY(-10px);
+        }
+        
+        .floating-3d {
+            animation: float3d 8s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+        
+        /* Custom Scrollbar Enhanced */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 14px;
         }
         
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 5px;
+            background: linear-gradient(180deg, #f1f1f1 0%, #e9e9e9 100%);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
         }
         
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #4A0E55, #8B5FBF);
-            border-radius: 5px;
+            background: linear-gradient(180deg, 
+                #4A0E55 0%, 
+                #8B5FBF 50%, 
+                #FFD700 100%);
+            border-radius: 10px;
+            border: 3px solid #f1f1f1;
+            background-clip: padding-box;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, 
+                #5C1A68 0%, 
+                #9D77D9 50%, 
+                #FFE44D 100%);
         }
         
         /* Selection */
         ::selection {
-            background: rgba(139, 95, 191, 0.3);
+            background: linear-gradient(90deg, 
+                rgba(74, 14, 85, 0.3) 0%, 
+                rgba(139, 95, 191, 0.3) 100%);
             color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
         
-        /* Gallery Grid - Enhanced */
-        .gallery-grid {
+        /* Advanced Gallery Grid */
+        .gallery-grid-advanced {
             display: grid;
-            gap: 1.5rem;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-auto-rows: 280px;
+            grid-auto-flow: dense;
         }
         
-        /* Gallery Item - Modern Card */
-        .gallery-item {
+        .gallery-item-advanced {
             position: relative;
             overflow: hidden;
-            border-radius: 16px;
+            border-radius: 20px;
             background: white;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
-            aspect-ratio: 4/3;
+            transform-style: preserve-3d;
         }
         
-        .gallery-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(74, 14, 85, 0.15);
+        .gallery-item-advanced:hover {
+            transform: 
+                translateY(-15px) 
+                scale(1.03) 
+                rotateX(5deg) 
+                rotateY(2deg);
+            box-shadow: 
+                0 25px 60px rgba(74, 14, 85, 0.25),
+                0 10px 20px rgba(74, 14, 85, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
         
-        .gallery-item img {
+        .gallery-item-advanced.wide {
+            grid-column: span 2;
+        }
+        
+        .gallery-item-advanced.tall {
+            grid-row: span 2;
+        }
+        
+        .gallery-item-advanced.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        
+        .gallery-item-advanced img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: 
+                transform 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                filter 0.4s ease;
+            filter: brightness(0.92) contrast(1.1);
         }
         
-        .gallery-item:hover img {
-            transform: scale(1.1);
+        .gallery-item-advanced:hover img {
+            transform: scale(1.2) rotate(2deg);
+            filter: brightness(1.05) contrast(1.2);
         }
         
-        .gallery-overlay {
+        .gallery-overlay-advanced {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(74, 14, 85, 0.9) 0%, transparent 50%);
+            background: linear-gradient(
+                to top,
+                rgba(74, 14, 85, 0.95) 0%,
+                rgba(74, 14, 85, 0.7) 50%,
+                transparent 100%
+            );
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 1.5rem;
+            padding: 2rem;
             color: white;
+            transform: translateY(30px);
         }
         
-        .gallery-item:hover .gallery-overlay {
+        .gallery-item-advanced:hover .gallery-overlay-advanced {
             opacity: 1;
+            transform: translateY(0);
         }
         
-        /* Uniform Cards - Enhanced */
-        .uniform-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            height: 100%;
-            cursor: pointer;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .uniform-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(74, 14, 85, 0.2);
-            border-color: rgba(139, 95, 191, 0.3);
-        }
-        
-        .uniform-card .image-container {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .uniform-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .uniform-card:hover img {
-            transform: scale(1.15);
-        }
-        
-        .uniform-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #4A0E55;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Modern Modal */
-        .modal-overlay {
+        /* Modern Modal Ultra */
+        .modal-overlay-ultra {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.96);
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+            padding: 2rem;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(20px) saturate(180%);
         }
         
-        .modal-overlay.active {
+        .modal-overlay-ultra.active {
             opacity: 1;
             visibility: visible;
         }
         
-        .modal-content {
-            max-width: 1200px;
+        .modal-content-ultra {
+            max-width: 1500px;
             width: 100%;
-            max-height: 90vh;
-            background: white;
-            border-radius: 24px;
+            max-height: 95vh;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.98) 0%,
+                rgba(255, 255, 255, 0.95) 100%);
+            border-radius: 32px;
             overflow: hidden;
-            transform: scale(0.9);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-        }
-        
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
-        }
-        
-        /* Navigation Dots */
-        .nav-dots {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            transform: scale(0.7) translateY(100px) rotateX(15deg);
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 
+                0 50px 100px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
             display: flex;
-            gap: 8px;
-            z-index: 10;
+            flex-direction: column;
         }
         
-        .nav-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .modal-overlay-ultra.active .modal-content-ultra {
+            transform: scale(1) translateY(0) rotateX(0);
         }
         
-        .nav-dot.active {
-            background: white;
-            width: 24px;
-            border-radius: 10px;
-        }
-        
-        /* Filter Chips */
-        .filter-chip {
-            padding: 10px 20px;
-            border-radius: 25px;
-            background: white;
+        /* Advanced Filter Chips */
+        .filter-chip-advanced {
+            padding: 14px 28px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 255, 255, 0.85) 100%);
             border: 2px solid transparent;
             color: #4A0E55;
-            font-weight: 600;
-            font-size: 0.875rem;
+            font-weight: 700;
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
         }
         
-        .filter-chip:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .filter-chip.active {
-            background: #4A0E55;
-            color: white;
-            border-color: #8B5FBF;
-        }
-        
-        /* Loading Animation */
-        .loading-wave {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
-        }
-        
-        .loading-wave span {
-            width: 4px;
-            height: 20px;
-            background: #4A0E55;
-            border-radius: 2px;
-            animation: wave 1.2s ease-in-out infinite;
-        }
-        
-        .loading-wave span:nth-child(1) { animation-delay: 0s; }
-        .loading-wave span:nth-child(2) { animation-delay: 0.2s; }
-        .loading-wave span:nth-child(3) { animation-delay: 0.4s; }
-        
-        @keyframes wave {
-            0%, 60%, 100% { transform: scaleY(0.5); }
-            30% { transform: scaleY(1); }
-        }
-        
-        /* Ripple Effect */
-        .ripple-effect {
+        .filter-chip-advanced::before {
+            content: '';
             position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50px;
+            padding: 2px;
+            background: linear-gradient(135deg, 
+                #4A0E55 0%, 
+                #8B5FBF 50%, 
+                #FFD700 100%);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .filter-chip-advanced:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 
+                0 12px 30px rgba(74, 14, 85, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+        
+        .filter-chip-advanced.active {
+            background: linear-gradient(135deg, 
+                #4A0E55 0%, 
+                #8B5FBF 50%, 
+                #FFD700 100%);
+            color: white;
+            box-shadow: 
+                0 10px 35px rgba(74, 14, 85, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .filter-chip-advanced.active::before {
+            opacity: 1;
+        }
+        
+        /* Floating Elements */
+        .floating-element-3d {
+            animation: float3d 8s ease-in-out infinite;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        
+        /* Loading Animation Advanced */
+        .loading-spiral {
+            width: 60px;
+            height: 60px;
+            border: 4px solid transparent;
+            border-top: 4px solid #4A0E55;
+            border-right: 4px solid #8B5FBF;
+            border-bottom: 4px solid #FFD700;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
+            animation: spin 1.2s linear infinite;
+            position: relative;
+        }
+        
+        .loading-spiral::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 4px solid transparent;
+            border-left: 4px solid #4A0E55;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite reverse;
+        }
+        
+        /* Modern Button Pro */
+        .modern-btn-pro {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                #4A0E55 0%, 
+                #8B5FBF 50%, 
+                #FFD700 100%);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            padding: 16px 36px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 
+                0 10px 30px rgba(74, 14, 85, 0.3),
+                0 4px 10px rgba(0, 0, 0, 0.1);
+            transform-style: preserve-3d;
+            perspective: 500px;
+        }
+        
+        .modern-btn-pro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                #FFD700 0%, 
+                #8B5FBF 50%, 
+                #4A0E55 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+        
+        .modern-btn-pro::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                transparent 100%);
+            transition: left 0.6s ease;
+        }
+        
+        .modern-btn-pro:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 20px 50px rgba(74, 14, 85, 0.4),
+                0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .modern-btn-pro:hover::before {
+            opacity: 1;
+        }
+        
+        .modern-btn-pro:hover::after {
+            left: 100%;
+        }
+        
+        .modern-btn-pro span {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Stats Cards Pro */
+        .stat-card-pro {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 255, 255, 0.85) 100%);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-card-pro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(74, 14, 85, 0.05) 0%,
+                rgba(139, 95, 191, 0.05) 100%);
+            z-index: 0;
+        }
+        
+        .stat-card-pro:hover {
+            transform: translateY(-12px) scale(1.04);
+            box-shadow: 
+                0 25px 60px rgba(74, 14, 85, 0.2),
+                0 10px 30px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Parallax Scrolling */
+        .parallax-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234A0E55' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            animation: parallax 20s linear infinite;
+            z-index: 0;
+        }
+        
+        /* Advanced Navigation */
+        .nav-advanced {
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.98) 0%,
+                rgba(255, 255, 255, 0.95) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 4px 30px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .nav-link-advanced {
+            position: relative;
+            padding: 12px 20px;
+            color: #4A0E55;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .nav-link-advanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(74, 14, 85, 0.1) 0%,
+                rgba(139, 95, 191, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 12px;
+        }
+        
+        .nav-link-advanced:hover::before {
+            opacity: 1;
+        }
+        
+        .nav-link-advanced.active {
+            background: linear-gradient(135deg, 
+                #4A0E55 0%, 
+                #8B5FBF 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(74, 14, 85, 0.3);
         }
         
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .gallery-grid-advanced {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .gallery-item-advanced.wide,
+            .gallery-item-advanced.tall,
+            .gallery-item-advanced.large {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 1rem;
+            .modal-content-ultra {
+                margin: 1rem;
+                max-height: calc(100vh - 2rem);
+                border-radius: 24px;
             }
             
-            .uniform-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 1rem;
+            .stat-card-pro {
+                padding: 1.5rem;
             }
             
-            .modal-content {
-                margin: 0.5rem;
-                max-height: calc(100vh - 1rem);
-                border-radius: 16px;
-                flex-direction: column;
+            .filter-chip-advanced {
+                padding: 12px 20px;
+                font-size: 0.875rem;
             }
             
-            .hero-title {
-                font-size: 2.5rem !important;
+            .modern-btn-pro {
+                padding: 14px 28px;
+                font-size: 0.95rem;
             }
         }
         
         @media (max-width: 640px) {
-            .gallery-grid {
+            .gallery-grid-advanced {
                 grid-template-columns: 1fr;
             }
             
-            .uniform-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-title {
-                font-size: 2rem !important;
+            .modal-overlay-ultra {
+                padding: 1rem;
             }
         }
         
-        /* Performance Optimizations */
-        .will-change-transform {
-            will-change: transform;
+        /* Image Loading Animation */
+        .image-loading {
+            position: relative;
+            background: linear-gradient(90deg, 
+                #f0f0f0 25%, 
+                #e0e0e0 50%, 
+                #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+            border-radius: inherit;
         }
         
-        /* Smooth Image Loading */
-        .lazy-image {
+        /* Tooltip Advanced */
+        .tooltip-advanced {
+            position: relative;
+        }
+        
+        .tooltip-advanced:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            background: linear-gradient(135deg, 
+                #4A0E55 0%, 
+                #8B5FBF 100%);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            animation: slideUp 0.3s ease forwards;
+            box-shadow: 0 8px 25px rgba(74, 14, 85, 0.3);
+        }
+        
+        /* Progress Loader */
+        .progress-loader {
+            height: 6px;
+            background: rgba(74, 14, 85, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-loader::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, 
+                #4A0E55 0%, 
+                #8B5FBF 50%, 
+                #FFD700 100%);
+            animation: progress 2s ease-in-out infinite;
+        }
+        
+        /* Card Hover Effects */
+        .hover-glow {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .hover-glow:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 20px 50px rgba(74, 14, 85, 0.25),
+                0 0 30px rgba(139, 95, 191, 0.3);
+        }
+        
+        /* Interactive Background */
+        .interactive-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .interactive-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
+                rgba(139, 95, 191, 0.1) 0%, 
+                transparent 50%);
             opacity: 0;
             transition: opacity 0.3s ease;
+            pointer-events: none;
         }
         
-        .lazy-image.loaded {
+        .interactive-bg:hover::before {
             opacity: 1;
         }
         
-        /* Modern Button */
-        .modern-btn {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(45deg, #4A0E55, #8B5FBF);
+        /* Dark Mode Adjustments */
+        .dark .glass-effect {
+            background: rgba(15, 23, 42, 0.92);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .dark .gradient-bg-mesh {
+            background-color: #0f172a;
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(74, 14, 85, 0.1) 0px, transparent 50%),
+                radial-gradient(at 90% 10%, rgba(139, 95, 191, 0.1) 0px, transparent 50%),
+                radial-gradient(at 50% 90%, rgba(255, 215, 0, 0.1) 0px, transparent 50%),
+                radial-gradient(at 10% 80%, rgba(74, 14, 85, 0.1) 0px, transparent 50%);
+        }
+        
+        .dark .gallery-item-advanced {
+            background: rgba(30, 41, 59, 0.8);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        
+        .dark .stat-card-pro {
+            background: linear-gradient(135deg, 
+                rgba(30, 41, 59, 0.9) 0%,
+                rgba(15, 23, 42, 0.8) 100%);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .dark .filter-chip-advanced {
+            background: linear-gradient(135deg, 
+                rgba(30, 41, 59, 0.9) 0%,
+                rgba(15, 23, 42, 0.8) 100%);
+            color: #e2e8f0;
+        }
+        
+        /* Floating Action Button Pro */
+        .fab-pro {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, 
+                #4A0E55 0%, 
+                #8B5FBF 50%, 
+                #FFD700 100%);
             color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 12px 24px;
-            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 10px 30px rgba(74, 14, 85, 0.4),
+                0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
-            transition: all 0.3s ease;
+            position: fixed;
+            z-index: 100;
+            transform-style: preserve-3d;
+            perspective: 500px;
         }
         
-        .modern-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(74, 14, 85, 0.3);
+        .fab-pro:hover {
+            transform: scale(1.15) rotate(180deg);
+            box-shadow: 
+                0 20px 50px rgba(74, 14, 85, 0.5),
+                0 8px 25px rgba(0, 0, 0, 0.3);
         }
         
-        .modern-btn:active {
-            transform: translateY(0);
+        /* Notification System */
+        .notification-system {
+            position: fixed;
+            top: 100px;
+            right: 2rem;
+            z-index: 9998;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 400px;
         }
         
-        /* Section Divider */
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(74, 14, 85, 0.2), transparent);
-            margin: 4rem 0;
-        }
-        
-        /* Stats Cards */
-        .stat-card {
-            background: white;
+        .notification-item {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.98) 0%,
+                rgba(255, 255, 255, 0.95) 100%);
             border-radius: 16px;
             padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            transform: translateX(100%);
+            opacity: 0;
+            animation: slideInRight 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            backdrop-filter: blur(20px);
         }
         
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        .dark .notification-item {
+            background: linear-gradient(135deg, 
+                rgba(30, 41, 59, 0.98) 0%,
+                rgba(15, 23, 42, 0.95) 100%);
+        }
+        
+        /* Advanced Search */
+        .search-advanced {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-advanced input {
+            width: 100%;
+            padding: 18px 24px 18px 60px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 255, 255, 0.85) 100%);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-advanced input:focus {
+            outline: none;
+            border-color: #8B5FBF;
+            box-shadow: 
+                0 15px 50px rgba(74, 14, 85, 0.2),
+                0 0 0 3px rgba(139, 95, 191, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        .search-advanced .search-icon {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8B5FBF;
+            font-size: 1.2rem;
+        }
+        
+        /* Smooth Page Transitions */
+        .page-transition {
+            animation: fadeInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        /* Advanced Form Elements */
+        .form-control-advanced {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 255, 255, 0.85) 100%);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 16px 20px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-control-advanced:focus {
+            outline: none;
+            border-color: #8B5FBF;
+            box-shadow: 
+                0 0 0 3px rgba(139, 95, 191, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
     </style>
 </head>
-<body class="font-sans antialiased bg-gray-50 text-gray-800">
+<body class="font-sans antialiased gradient-bg-mesh text-gray-900 dark:bg-gray-900 dark:text-white transition-all duration-300 page-transition">
     
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100 shadow-sm transition-all duration-300">
+    <!-- Theme Toggle Advanced -->
+    <div class="fixed top-28 right-4 z-50 flex flex-col gap-4">
+        <button class="fab-pro tooltip-advanced group" 
+                id="themeToggleBtn" 
+                data-tooltip="Ubah Tema">
+            <i class="fas fa-moon dark:hidden text-xl group-hover:rotate-45 transition-transform"></i>
+            <i class="fas fa-sun hidden dark:block text-xl group-hover:rotate-45 transition-transform"></i>
+        </button>
+        <button class="fab-pro tooltip-advanced" 
+                id="favoritesBtn" 
+                data-tooltip="Favorit">
+            <i class="fas fa-heart text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Advanced Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 nav-advanced dark:bg-gray-900/90 dark:backdrop-blur-2xl transition-all duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 lg:h-20">
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-3 group">
-                    <div class="relative w-12 h-12">
-                        <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                            <i class="fas fa-graduation-cap text-white text-lg"></i>
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo with 3D Animation -->
+                <a href="index.html" class="flex items-center gap-4 group">
+                    <div class="relative w-14 h-14 floating-3d">
+                        <div class="w-full h-full bg-gradient-to-br from-primary via-accent to-secondary rounded-2xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
                         </div>
-                        <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-accent rounded-xl blur opacity-30 -z-10"></div>
+                        <div class="absolute -inset-2 bg-gradient-to-r from-primary to-accent rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
                     </div>
-                    <div>
-                        <h1 class="text-xl font-black font-serif text-primary">MA YUPPI</h1>
-                        <p class="text-xs text-gray-500 font-medium">Madrasah Aliyah Unggulan</p>
+                    <div class="transition-all duration-500 group-hover:translate-x-2">
+                        <h1 class="text-2xl font-black font-montserrat gradient-text-animated">MA YUPPI</h1>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 font-medium tracking-wide">Madrasah Aliyah Unggulan</p>
                     </div>
                 </a>
                 
-                <!-- Desktop Navigation -->
-                <div class="hidden lg:flex items-center space-x-2">
-                    <nav class="flex items-center space-x-1">
-                        <a href="index.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg hover:bg-gray-50">
-                            Beranda
+                <!-- Desktop Navigation Advanced -->
+                <div class="hidden lg:flex items-center space-x-1">
+                    <nav class="flex items-center space-x-2">
+                        <a href="index.html" class="nav-link-advanced group">
+                            <span class="relative z-10 flex items-center gap-2">
+                                <i class="fas fa-home text-sm"></i>
+                                Beranda
+                            </span>
                         </a>
-                        <a href="about.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg hover:bg-gray-50">
-                            Profil
+                        <a href="about.html" class="nav-link-advanced group">
+                            <span class="relative z-10 flex items-center gap-2">
+                                <i class="fas fa-school text-sm"></i>
+                                Profil
+                            </span>
                         </a>
-                        <a href="programs.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg hover:bg-gray-50">
-                            Program
+                        <a href="programs.html" class="nav-link-advanced group">
+                            <span class="relative z-10 flex items-center gap-2">
+                                <i class="fas fa-rocket text-sm"></i>
+                                Program
+                            </span>
                         </a>
-                        <a href="gallery.html" class="px-5 py-2.5 text-sm font-semibold text-primary bg-primary/5 rounded-lg border-b-2 border-primary">
-                            Galeri
+                        <a href="gallery.html" class="nav-link-advanced active group">
+                            <span class="relative z-10 flex items-center gap-2">
+                                <i class="fas fa-images text-sm"></i>
+                                Galeri
+                                <span class="w-2 h-2 bg-secondary rounded-full animate-ping-slow"></span>
+                            </span>
                         </a>
-                        <a href="contact.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg hover:bg-gray-50">
-                            Kontak
+                        <a href="contact.html" class="nav-link-advanced group">
+                            <span class="relative z-10 flex items-center gap-2">
+                                <i class="fas fa-phone text-sm"></i>
+                                Kontak
+                            </span>
                         </a>
                     </nav>
                     
-                    <!-- CTA Button -->
+                    <!-- CTA Button Advanced -->
                     <a href="https://bit.ly/Mayuppi" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden group">
-                        <span class="relative z-10 flex items-center gap-2">
+                       class="ml-4 modern-btn-pro group">
+                        <span class="relative z-10 flex items-center gap-3">
+                            <i class="fas fa-graduation-cap"></i>
                             PPDB 2025
-                            <i class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                            <i class="fas fa-arrow-right text-xs transition-all duration-500 group-hover:translate-x-2 group-hover:scale-125"></i>
                         </span>
-                        <div class="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </a>
                 </div>
 
-                <!-- Mobile Menu Button -->
+                <!-- Mobile Menu Button Advanced -->
                 <button id="mobile-menu-button" 
-                        class="lg:hidden w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 active:scale-95"
+                        class="lg:hidden w-12 h-12 glass-effect dark:glass-dark rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 relative overflow-hidden group"
                         aria-label="Toggle mobile menu">
-                    <i class="fas fa-bars text-white" id="icon-open"></i>
-                    <i class="fas fa-times text-white hidden" id="icon-close"></i>
+                    <i class="fas fa-bars text-primary dark:text-white relative z-10 text-lg" id="icon-open"></i>
+                    <i class="fas fa-times text-primary dark:text-white relative z-10 text-lg hidden" id="icon-close"></i>
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
             </div>
         </div>
         
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="lg:hidden bg-white border-t border-gray-100 shadow-2xl hidden overflow-y-auto">
-            <div class="container mx-auto px-4 py-3">
-                <div class="space-y-0.5">
-                    <a href="index.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
-                        <span class="font-medium">Beranda</span>
-                        <i class="fas fa-home text-gray-400 group-hover:text-primary text-sm"></i>
+        <!-- Mobile Menu Advanced -->
+        <div id="mobile-menu" class="lg:hidden glass-effect dark:glass-dark border-t border-gray-100 dark:border-gray-800 shadow-2xl hidden overflow-y-auto animate-slide-down">
+            <div class="container mx-auto px-4 py-6">
+                <div class="space-y-1">
+                    <a href="index.html" class="flex items-center justify-between py-4 px-6 text-gray-700 dark:text-gray-300 hover:bg-primary/5 dark:hover:bg-white/5 rounded-2xl transition-all duration-500 group">
+                        <span class="font-semibold flex items-center gap-3">
+                            <i class="fas fa-home text-primary dark:text-white"></i>
+                            Beranda
+                        </span>
+                        <i class="fas fa-chevron-right text-gray-400 dark:text-gray-500 group-hover:text-primary dark:group-hover:text-white text-sm transition-colors"></i>
                     </a>
-                    <a href="about.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
-                        <span class="font-medium">Profil</span>
-                        <i class="fas fa-school text-gray-400 group-hover:text-primary text-sm"></i>
+                    <a href="about.html" class="flex items-center justify-between py-4 px-6 text-gray-700 dark:text-gray-300 hover:bg-primary/5 dark:hover:bg-white/5 rounded-2xl transition-all duration-500 group">
+                        <span class="font-semibold flex items-center gap-3">
+                            <i class="fas fa-school text-primary dark:text-white"></i>
+                            Profil
+                        </span>
+                        <i class="fas fa-chevron-right text-gray-400 dark:text-gray-500 group-hover:text-primary dark:group-hover:text-white text-sm transition-colors"></i>
                     </a>
-                    <a href="programs.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
-                        <span class="font-medium">Program</span>
-                        <i class="fas fa-rocket text-gray-400 group-hover:text-primary text-sm"></i>
+                    <a href="programs.html" class="flex items-center justify-between py-4 px-6 text-gray-700 dark:text-gray-300 hover:bg-primary/5 dark:hover:bg-white/5 rounded-2xl transition-all duration-500 group">
+                        <span class="font-semibold flex items-center gap-3">
+                            <i class="fas fa-rocket text-primary dark:text-white"></i>
+                            Program
+                        </span>
+                        <i class="fas fa-chevron-right text-gray-400 dark:text-gray-500 group-hover:text-primary dark:group-hover:text-white text-sm transition-colors"></i>
                     </a>
-                    <a href="gallery.html" class="flex items-center justify-between py-3 px-3 text-primary bg-primary/5 rounded-lg group">
-                        <span class="font-medium">Galeri</span>
-                        <i class="fas fa-images text-primary text-sm"></i>
+                    <a href="gallery.html" class="flex items-center justify-between py-4 px-6 text-white bg-gradient-to-r from-primary to-accent rounded-2xl group">
+                        <span class="font-semibold flex items-center gap-3">
+                            <i class="fas fa-images"></i>
+                            Galeri
+                        </span>
+                        <i class="fas fa-chevron-right text-white text-sm"></i>
                     </a>
-                    <a href="contact.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group">
-                        <span class="font-medium">Kontak</span>
-                        <i class="fas fa-phone text-gray-400 group-hover:text-primary text-sm"></i>
+                    <a href="contact.html" class="flex items-center justify-between py-4 px-6 text-gray-700 dark:text-gray-300 hover:bg-primary/5 dark:hover:bg-white/5 rounded-2xl transition-all duration-500 group">
+                        <span class="font-semibold flex items-center gap-3">
+                            <i class="fas fa-phone text-primary dark:text-white"></i>
+                            Kontak
+                        </span>
+                        <i class="fas fa-chevron-right text-gray-400 dark:text-gray-500 group-hover:text-primary dark:group-hover:text-white text-sm transition-colors"></i>
                     </a>
                     
-                    <div class="pt-4 border-t border-gray-100 mt-2">
+                    <div class="pt-6 border-t border-gray-100 dark:border-gray-800 mt-4">
                         <a href="https://bit.ly/Mayuppi" 
                            target="_blank"
                            rel="noopener noreferrer"
-                           class="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.98]">
-                            <span>PPDB 2025</span>
-                            <i class="fas fa-external-link-alt text-sm"></i>
+                           class="modern-btn-pro w-full justify-center group">
+                            <span class="relative z-10 flex items-center gap-3">
+                                <i class="fas fa-graduation-cap"></i>
+                                PPDB 2025
+                                <i class="fas fa-external-link-alt text-xs group-hover:rotate-45 transition-transform"></i>
+                            </span>
                         </a>
                     </div>
                 </div>
@@ -582,520 +1244,497 @@
         </div>
     </nav>
 
-    <!-- Hero Section - Enhanced -->
-    <section class="gradient-bg text-white pt-24 pb-16 lg:pt-28 lg:pb-20 overflow-hidden relative">
-        <!-- Animated Background Elements -->
+    <!-- Hero Section - Ultra Modern -->
+    <section class="relative pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden interactive-bg" id="hero">
+        <!-- Advanced Background Elements -->
         <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-10 left-10 w-32 h-32 bg-secondary/10 rounded-full blur-3xl animate-pulse"></div>
-            <div class="absolute bottom-10 right-10 w-48 h-48 bg-accent/10 rounded-full blur-3xl animate-pulse animation-delay-1000"></div>
-            <div class="absolute top-1/2 left-1/4 w-24 h-24 bg-white/5 rounded-full blur-2xl animate-float"></div>
-            <div class="absolute top-1/3 right-1/4 w-28 h-28 bg-primary/10 rounded-full blur-2xl animate-pulse animation-delay-2000"></div>
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-primary/30 to-accent/30 rounded-full blur-3xl animate-blob floating-element-3d"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-br from-secondary/20 to-accent/20 rounded-full blur-3xl animate-blob animation-delay-2000 floating-element-3d"></div>
+            <div class="absolute top-1/3 right-1/3 w-40 h-40 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-2xl animate-float"></div>
+            <div class="absolute bottom-1/3 left-1/3 w-60 h-60 bg-gradient-to-br from-accent/10 to-primary/10 rounded-full blur-3xl animate-spin-slow"></div>
+            
+            <!-- Animated Grid -->
+            <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
+                <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,<svg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><defs><pattern id=\"grid\" width=\"100\" height=\"100\" patternUnits=\"userSpaceOnUse\"><path d=\"M 100 0 L 0 0 0 100\" fill=\"none\" stroke=\"%234A0E55\" stroke-width=\"0.5\"/></pattern></defs><rect width=\"100\" height=\"100\" fill=\"url(%23grid)\"/></svg>');"></div>
+            </div>
         </div>
         
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-6xl mx-auto text-center">
-                <!-- Badge -->
-                <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-semibold mb-6 animate-slide-up">
-                    <i class="fas fa-camera text-secondary"></i>
-                    GALERI VISUAL MA YUPPI
+            <div class="max-w-7xl mx-auto">
+                <!-- Breadcrumb Advanced -->
+                <div class="breadcrumb mb-8" data-aos="slide-in-blurred">
+                    <a href="index.html" class="hover-glow px-4 py-2 glass-effect dark:glass-dark rounded-full text-sm font-semibold flex items-center gap-2">
+                        <i class="fas fa-home"></i>
+                        Beranda
+                    </a>
+                    <span class="separator mx-2">›</span>
+                    <span class="px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-full text-sm font-semibold">Galeri</span>
                 </div>
                 
-                <!-- Title -->
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight animate-slide-up hero-title">
-                    Jelajahi Keindahan
-                    <span class="block text-secondary mt-2 bg-gradient-to-r from-secondary to-yellow-400 bg-clip-text text-transparent">MA YUPPI</span>
-                </h1>
-                
-                <!-- Description -->
-                <p class="text-lg lg:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto animate-slide-up animation-delay-100">
-                    Temukan momen berharga, aktivitas pembelajaran, fasilitas modern, dan koleksi seragam khas MA YUPPI melalui galeri eksklusif kami.
-                </p>
-                
-                <!-- Quick Navigation - Enhanced -->
-                <div class="flex flex-wrap justify-center gap-3 mt-10 animate-slide-up animation-delay-200">
-                    <a href="#photo-gallery" 
-                       class="px-5 py-3 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2 hover:scale-105 active:scale-95">
-                        <i class="fas fa-images"></i>
-                        <span>Foto Sekolah</span>
-                    </a>
-                    <a href="#uniform-gallery" 
-                       class="px-5 py-3 bg-gradient-to-r from-secondary to-yellow-500 text-primary rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:scale-105 active:scale-95">
-                        <i class="fas fa-tshirt"></i>
-                        <span>Koleksi Seragam</span>
-                    </a>
-                    <a href="#activities" 
-                       class="px-5 py-3 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2 hover:scale-105 active:scale-95">
-                        <i class="fas fa-running"></i>
-                        <span>Aktivitas</span>
-                    </a>
-                </div>
-                
-                <!-- Stats Bar - Enhanced -->
-                <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto animate-slide-up animation-delay-300">
-                    <div class="glass-effect rounded-xl p-4 text-center">
-                        <div class="text-3xl font-bold text-secondary">50+</div>
-                        <div class="text-sm text-white/80 mt-1">Foto Eksklusif</div>
+                <!-- Main Content with Parallax -->
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <!-- Left Column - Text Content -->
+                    <div class="space-y-10" data-aos="slide-in-blurred" data-aos-delay="100">
+                        <!-- Animated Badge -->
+                        <div class="inline-flex items-center gap-3 px-6 py-3 glass-gradient rounded-full text-sm font-bold text-primary dark:text-white animate-glow">
+                            <div class="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
+                            <span>GALERI VISUAL PREMIUM</span>
+                            <div class="w-2 h-2 bg-accent rounded-full animate-pulse animation-delay-1000"></div>
+                        </div>
+                        
+                        <!-- Main Title with Gradient Animation -->
+                        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-black leading-tight">
+                            <span class="block mb-4 text-gray-800 dark:text-white">Jelajahi</span>
+                            <span class="gradient-text-animated bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary">
+                                Keindahan MA YUPPI
+                            </span>
+                        </h1>
+                        
+                        <!-- Description with Fade In -->
+                        <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed animate-fade-in-up animation-delay-200">
+                            Koleksi visual eksklusif yang menampilkan keunggulan fasilitas, aktivitas pembelajaran, dan seragam khas MA YUPPI dalam kualitas terbaik.
+                        </p>
+                        
+                        <!-- Interactive Stats -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-5 animate-slide-up animation-delay-300">
+                            <div class="stat-card-pro hover-glow">
+                                <div class="text-4xl font-black gradient-text-animated">50+</div>
+                                <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 mt-2 uppercase tracking-wider">Foto Eksklusif</div>
+                            </div>
+                            <div class="stat-card-pro hover-glow">
+                                <div class="text-4xl font-black gradient-text-animated">8</div>
+                                <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 mt-2 uppercase tracking-wider">Jenis Seragam</div>
+                            </div>
+                            <div class="stat-card-pro hover-glow">
+                                <div class="text-4xl font-black gradient-text-animated">4K</div>
+                                <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 mt-2 uppercase tracking-wider">Kualitas HD</div>
+                            </div>
+                            <div class="stat-card-pro hover-glow">
+                                <div class="text-4xl font-black gradient-text-animated">100%</div>
+                                <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 mt-2 uppercase tracking-wider">Kepuasan</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Navigation Buttons -->
+                        <div class="flex flex-wrap gap-4 animate-slide-up animation-delay-400">
+                            <a href="#photo-gallery" 
+                               class="modern-btn-pro group">
+                                <span class="relative z-10 flex items-center gap-3">
+                                    <i class="fas fa-images group-hover:rotate-12 transition-transform"></i>
+                                    Foto Sekolah
+                                </span>
+                            </a>
+                            <a href="#uniform-gallery" 
+                               class="modern-btn-pro bg-white text-primary hover:text-white group">
+                                <span class="relative z-10 flex items-center gap-3">
+                                    <i class="fas fa-tshirt group-hover:scale-110 transition-transform"></i>
+                                    Koleksi Seragam
+                                </span>
+                            </a>
+                            <a href="#activities" 
+                               class="modern-btn-pro bg-white text-primary hover:text-white group">
+                                <span class="relative z-10 flex items-center gap-3">
+                                    <i class="fas fa-running group-hover:translate-y-1 transition-transform"></i>
+                                    Aktivitas
+                                </span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="glass-effect rounded-xl p-4 text-center">
-                        <div class="text-3xl font-bold text-secondary">8</div>
-                        <div class="text-sm text-white/80 mt-1">Jenis Seragam</div>
-                    </div>
-                    <div class="glass-effect rounded-xl p-4 text-center">
-                        <div class="text-3xl font-bold text-secondary">4K</div>
-                        <div class="text-sm text-white/80 mt-1">Kualitas HD</div>
-                    </div>
-                    <div class="glass-effect rounded-xl p-4 text-center">
-                        <div class="text-3xl font-bold text-secondary">100%</div>
-                        <div class="text-sm text-white/80 mt-1">Kepuasan</div>
+                    
+                    <!-- Right Column - Interactive Hero Image -->
+                    <div class="relative" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="relative w-full h-[500px] lg:h-[600px] rounded-[40px] overflow-hidden shadow-[0_40px_80px_rgba(74,14,85,0.3)] card-3d">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80" 
+                                 alt="MA YUPPI Campus" 
+                                 class="w-full h-full object-cover transition-transform duration-1000 hover:scale-110"
+                                 loading="eager">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                            
+                            <!-- Image Info Overlay -->
+                            <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-12 h-1 bg-secondary rounded-full"></div>
+                                    <span class="text-sm font-bold tracking-widest uppercase">Kampus MA YUPPI</span>
+                                </div>
+                                <h3 class="text-3xl font-bold mb-2">Lingkungan Pembelajaran Modern & Nyaman</h3>
+                                <p class="text-gray-200">Fasilitas lengkap dengan teknologi terkini untuk mendukung proses belajar mengajar yang optimal.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Badges -->
+                        <div class="absolute -top-6 -right-6">
+                            <div class="px-6 py-3 bg-gradient-to-r from-secondary to-accent text-white rounded-full font-bold shadow-2xl rotate-12 floating-3d">
+                                <i class="fas fa-crown mr-2"></i>
+                                PREMIUM
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-6 -left-6">
+                            <div class="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-full font-bold shadow-2xl -rotate-12 floating-3d">
+                                <i class="fas fa-star mr-2"></i>
+                                EKSKLUSIF
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
-            <a href="#photo-gallery" class="text-white/80 hover:text-white transition-colors">
-                <i class="fas fa-chevron-down text-2xl"></i>
+        <!-- Advanced Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+            <a href="#photo-gallery" 
+               class="w-14 h-14 glass-effect dark:glass-dark rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-12 group">
+                <i class="fas fa-chevron-down text-primary dark:text-white group-hover:-translate-y-1 transition-transform"></i>
             </a>
         </div>
     </section>
 
-    <!-- Photo Gallery Section - Enhanced -->
-    <section id="photo-gallery" class="py-16 lg:py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Photo Gallery Section - Ultra -->
+    <section id="photo-gallery" class="py-24 lg:py-32 bg-white dark:bg-gray-900 relative overflow-hidden">
+        <!-- Animated Wave Divider -->
+        <div class="absolute top-0 left-0 right-0 h-40 -translate-y-px overflow-hidden">
+            <svg class="absolute top-0 left-0 w-full h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
+                      class="fill-current text-white dark:text-gray-900"></path>
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-7xl mx-auto">
-                <!-- Section Header -->
-                <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 rounded-full text-sm font-semibold text-primary mb-4">
-                        <i class="fas fa-camera-retro text-accent"></i>
-                        GALERI FOTO SEKOLAH
+                <!-- Section Header with Animation -->
+                <div class="text-center mb-20" data-aos="slide-in-blurred">
+                    <div class="inline-flex items-center gap-3 px-6 py-3 glass-gradient rounded-full text-sm font-bold text-primary dark:text-white mb-6 animate-glow">
+                        <i class="fas fa-camera-retro text-secondary animate-pulse"></i>
+                        <span>GALERI FOTO PREMIUM</span>
                     </div>
-                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary mb-4">
-                        Momen Terbaik MA YUPPI
+                    <h2 class="text-4xl lg:text-5xl font-montserrat font-black text-gray-900 dark:text-white mb-6">
+                        Momen Terbaik
+                        <span class="gradient-text-animated">MA YUPPI</span>
                     </h2>
-                    <p class="text-gray-600 text-lg max-w-3xl mx-auto">
-                        Dokumentasi visual lingkungan sekolah, gedung, dan suasana pembelajaran di MA YUPPI.
+                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        Dokumentasi visual berkualitas tinggi yang menangkap keindahan dan keunggulan lingkungan sekolah MA YUPPI.
                     </p>
                 </div>
                 
-                <!-- Filter Chips - Enhanced -->
-                <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up">
-                    <button class="filter-chip active" data-filter="all">
-                        <i class="fas fa-layer-group mr-2"></i>
-                        Semua Foto
-                    </button>
-                    <button class="filter-chip" data-filter="building">
-                        <i class="fas fa-building mr-2"></i>
-                        Gedung Sekolah
-                    </button>
-                    <button class="filter-chip" data-filter="classroom">
-                        <i class="fas fa-chalkboard mr-2"></i>
-                        Ruang Kelas
-                    </button>
-                    <button class="filter-chip" data-filter="environment">
-                        <i class="fas fa-tree mr-2"></i>
-                        Lingkungan
-                    </button>
-                    <button class="filter-chip" data-filter="lab">
-                        <i class="fas fa-flask mr-2"></i>
-                        Laboratorium
-                    </button>
-                </div>
-                
-                <!-- Search Box - Enhanced -->
-                <div class="max-w-xl mx-auto mb-10" data-aos="fade-up">
-                    <div class="relative">
+                <!-- Advanced Search & Filter -->
+                <div class="mb-16" data-aos="fade-in-up">
+                    <!-- Search Box Advanced -->
+                    <div class="search-advanced mb-10">
+                        <div class="search-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
                         <input type="text" 
-                               id="searchGallery" 
-                               placeholder="Cari foto berdasarkan judul atau deskripsi..."
-                               class="w-full px-6 py-4 pl-12 bg-white border border-gray-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 focus:shadow-lg">
-                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                        <button id="clearSearch" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary hidden">
-                            <i class="fas fa-times"></i>
+                               id="searchGalleryAdvanced" 
+                               placeholder="Cari foto berdasarkan kata kunci..."
+                               class="w-full">
+                        <button id="clearSearchAdvanced" 
+                                class="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-white transition-colors hidden">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Advanced Filter Chips -->
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <button class="filter-chip-advanced active" data-filter="all">
+                            <i class="fas fa-layer-group mr-3"></i>
+                            Semua Foto
+                        </button>
+                        <button class="filter-chip-advanced" data-filter="building">
+                            <i class="fas fa-building mr-3"></i>
+                            Gedung Sekolah
+                        </button>
+                        <button class="filter-chip-advanced" data-filter="classroom">
+                            <i class="fas fa-chalkboard mr-3"></i>
+                            Ruang Kelas
+                        </button>
+                        <button class="filter-chip-advanced" data-filter="environment">
+                            <i class="fas fa-tree mr-3"></i>
+                            Lingkungan
+                        </button>
+                        <button class="filter-chip-advanced" data-filter="lab">
+                            <i class="fas fa-flask mr-3"></i>
+                            Laboratorium
+                        </button>
+                        <button class="filter-chip-advanced" data-filter="facility">
+                            <i class="fas fa-dumbbell mr-3"></i>
+                            Fasilitas
                         </button>
                     </div>
                 </div>
                 
-                <!-- Gallery Grid -->
-                <div class="gallery-grid" id="schoolGallery">
-                    <!-- Photos will be loaded here -->
+                <!-- Advanced Gallery Grid -->
+                <div class="gallery-grid-advanced" id="schoolGalleryAdvanced">
+                    <!-- Photos will be loaded dynamically -->
                 </div>
                 
-                <!-- Loading State -->
-                <div id="loadingState" class="text-center py-12 hidden">
-                    <div class="loading-wave">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                <!-- Loading State Advanced -->
+                <div id="loadingStateAdvanced" class="text-center py-24 hidden">
+                    <div class="flex flex-col items-center gap-6">
+                        <div class="loading-spiral"></div>
+                        <div class="text-center">
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">Memuat Galeri</p>
+                            <p class="text-gray-500 dark:text-gray-400">Mengambil data foto berkualitas tinggi...</p>
+                        </div>
                     </div>
-                    <p class="text-gray-500 mt-4">Memuat foto...</p>
                 </div>
                 
-                <!-- Empty State -->
-                <div id="emptyState" class="text-center py-12 hidden" data-aos="fade-up">
-                    <div class="w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-search text-gray-400 text-3xl"></i>
+                <!-- Empty State Advanced -->
+                <div id="emptyStateAdvanced" class="text-center py-24 hidden" data-aos="fade-in-up">
+                    <div class="w-40 h-40 mx-auto mb-8 relative">
+                        <div class="w-full h-full bg-gradient-to-br from-primary/10 to-accent/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-search text-gray-400 dark:text-gray-500 text-5xl"></i>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Tidak ada foto ditemukan</h3>
-                    <p class="text-gray-500">Coba gunakan kata kunci pencarian yang berbeda.</p>
+                    <h3 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">Tidak ada foto ditemukan</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg max-w-md mx-auto">
+                        Coba gunakan kata kunci pencarian yang berbeda atau pilih filter kategori lainnya.
+                    </p>
                 </div>
                 
-                <!-- Load More Button -->
-                <div class="text-center mt-12" data-aos="fade-up" id="loadMoreContainer">
-                    <button id="loadMoreSchool" 
-                            class="modern-btn inline-flex items-center gap-2">
-                        <i class="fas fa-plus-circle"></i>
-                        <span>Muat Lebih Banyak</span>
+                <!-- Load More Button Advanced -->
+                <div class="text-center mt-20" data-aos="fade-in-up" id="loadMoreContainerAdvanced">
+                    <button id="loadMoreSchoolAdvanced" 
+                            class="modern-btn-pro inline-flex items-center gap-4 group">
+                        <i class="fas fa-plus-circle group-hover:rotate-90 transition-transform"></i>
+                        <span>Muat Lebih Banyak Foto</span>
                     </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Activities Gallery Section - Enhanced -->
-    <section id="activities" class="py-16 lg:py-20 bg-gray-50/50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Activities Gallery Section - Ultra -->
+    <section id="activities" class="py-24 lg:py-32 gradient-bg-mesh relative overflow-hidden">
+        <!-- Parallax Background -->
+        <div class="parallax-bg"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-semibold text-primary mb-4 shadow-sm">
-                        <i class="fas fa-running text-accent"></i>
-                        AKTIVITAS & KEGIATAN
+                <div class="text-center mb-20" data-aos="slide-in-blurred">
+                    <div class="inline-flex items-center gap-3 px-6 py-3 glass-gradient rounded-full text-sm font-bold text-primary dark:text-white mb-6 animate-glow">
+                        <i class="fas fa-running text-accent animate-pulse"></i>
+                        <span>AKTIVITAS & KEGIATAN</span>
                     </div>
-                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary mb-4">
-                        Momen Berkesan Siswa
+                    <h2 class="text-4xl lg:text-5xl font-montserrat font-black text-gray-900 dark:text-white mb-6">
+                        Momen <span class="gradient-text-animated">Berkesan</span> Siswa
                     </h2>
-                    <p class="text-gray-600 text-lg max-w-3xl mx-auto">
-                        Dokumentasi kegiatan pembelajaran, ekskul, dan acara sekolah yang membangun karakter siswa.
+                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        Dokumentasi lengkap kegiatan pembelajaran, ekstrakurikuler, dan acara sekolah yang membentuk karakter unggul siswa MA YUPPI.
                     </p>
                 </div>
                 
                 <!-- Activities Gallery Grid -->
-                <div class="gallery-grid" id="activitiesGallery">
+                <div class="gallery-grid-advanced" id="activitiesGalleryAdvanced">
                     <!-- Activities photos will be loaded here -->
+                </div>
+                
+                <!-- View All Button -->
+                <div class="text-center mt-16" data-aos="fade-in-up">
+                    <button class="modern-btn-pro inline-flex items-center gap-4 group">
+                        <span>Lihat Semua Aktivitas</span>
+                        <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Uniform Gallery Section - SEPARATED AND ENHANCED -->
-    <section id="uniform-gallery" class="py-16 lg:py-20 bg-gradient-to-b from-primary/5 via-accent/5 to-primary/5">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Uniform Gallery Section - Ultra -->
+    <section id="uniform-gallery" class="py-24 lg:py-32 bg-gradient-to-b from-white via-primary-50/30 to-accent-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-primary-900/10 relative overflow-hidden">
+        <!-- Interactive Background -->
+        <div class="absolute inset-0 interactive-bg"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-7xl mx-auto">
                 <!-- Section Header -->
-                <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-semibold text-primary mb-4 shadow-sm">
-                        <i class="fas fa-tshirt text-accent"></i>
-                        KOLEKSI SERAGAM
+                <div class="text-center mb-20" data-aos="slide-in-blurred">
+                    <div class="inline-flex items-center gap-3 px-6 py-3 glass-gradient rounded-full text-sm font-bold text-primary dark:text-white mb-6 animate-glow">
+                        <i class="fas fa-tshirt text-secondary animate-pulse"></i>
+                        <span>KOLEKSI SERAGAM EKSKLUSIF</span>
                     </div>
-                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary mb-4">
-                        Seragam Khas MA YUPPI
+                    <h2 class="text-4xl lg:text-5xl font-montserrat font-black text-gray-900 dark:text-white mb-6">
+                        Seragam <span class="gradient-text-animated">Khas</span> MA YUPPI
                     </h2>
-                    <p class="text-gray-600 text-lg max-w-3xl mx-auto">
-                        Kenali berbagai jenis seragam yang digunakan siswa MA YUPPI dengan desain elegan dan makna filosofis mendalam.
+                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        Kenali berbagai jenis seragam dengan desain elegan dan makna filosofis yang mendalam, dibuat khusus untuk siswa MA YUPPI.
                     </p>
                 </div>
                 
-                <!-- Uniform Filter -->
-                <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up">
-                    <button class="filter-chip active" data-uniform-filter="all">
-                        <i class="fas fa-layer-group mr-2"></i>
+                <!-- Uniform Filter Advanced -->
+                <div class="flex flex-wrap justify-center gap-4 mb-16" data-aos="fade-in-up">
+                    <button class="filter-chip-advanced active" data-uniform-filter="all">
+                        <i class="fas fa-layer-group mr-3"></i>
                         Semua Seragam
                     </button>
-                    <button class="filter-chip" data-uniform-filter="harian">
-                        <i class="fas fa-user-graduate mr-2"></i>
+                    <button class="filter-chip-advanced" data-uniform-filter="harian">
+                        <i class="fas fa-user-graduate mr-3"></i>
                         Harian
                     </button>
-                    <button class="filter-chip" data-uniform-filter="olahraga">
-                        <i class="fas fa-running mr-2"></i>
+                    <button class="filter-chip-advanced" data-uniform-filter="olahraga">
+                        <i class="fas fa-running mr-3"></i>
                         Olahraga
                     </button>
-                    <button class="filter-chip" data-uniform-filter="pramuka">
-                        <i class="fas fa-campground mr-2"></i>
+                    <button class="filter-chip-advanced" data-uniform-filter="pramuka">
+                        <i class="fas fa-campground mr-3"></i>
                         Pramuka
                     </button>
-                    <button class="filter-chip" data-uniform-filter="upacara">
-                        <i class="fas fa-flag mr-2"></i>
+                    <button class="filter-chip-advanced" data-uniform-filter="upacara">
+                        <i class="fas fa-flag mr-3"></i>
                         Upacara
                     </button>
+                    <button class="filter-chip-advanced" data-uniform-filter="khusus">
+                        <i class="fas fa-star mr-3"></i>
+                        Khusus
+                    </button>
                 </div>
                 
-                <!-- Uniforms Grid -->
-                <div class="gallery-grid uniform-grid" id="uniformsGallery">
+                <!-- Uniforms Grid Advanced -->
+                <div class="gallery-grid-advanced" id="uniformsGalleryAdvanced">
                     <!-- Uniform cards will be loaded here -->
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Uniform Details Section - Enhanced -->
-    <section class="py-16 lg:py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="bg-gradient-to-br from-white to-primary/5 rounded-3xl shadow-xl overflow-hidden border border-gray-100" data-aos="fade-up">
-                    <div class="grid lg:grid-cols-2">
-                        <!-- Info Column -->
-                        <div class="p-8 lg:p-12">
-                            <h3 class="text-3xl font-serif font-bold text-primary mb-6">
-                                Filosofi & Aturan Seragam
-                            </h3>
-                            <div class="space-y-6">
-                                <!-- Philosophy Card -->
-                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                                    <h4 class="text-xl font-bold text-primary mb-3 flex items-center gap-2">
-                                        <i class="fas fa-palette text-accent"></i>
-                                        Filosofi Warna
-                                    </h4>
-                                    <p class="text-gray-600">
-                                        Warna ungu melambangkan kebijaksanaan dan spiritualitas, emas melambangkan kecemerlangan akademik, dan putih melambangkan kesucian dalam menuntut ilmu.
-                                    </p>
-                                </div>
-                                
-                                <!-- Material Card -->
-                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                                    <h4 class="text-xl font-bold text-primary mb-3 flex items-center gap-2">
-                                        <i class="fas fa-tshirt text-accent"></i>
-                                        Bahan Berkualitas
-                                    </h4>
-                                    <p class="text-gray-600">
-                                        Menggunakan bahan katun oxford premium yang nyaman, menyerap keringat, dan tahan lama. Desain ergonomis untuk mendukung aktivitas belajar.
-                                    </p>
-                                </div>
-                                
-                                <!-- Rules Card -->
-                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                                    <h4 class="text-xl font-bold text-primary mb-3 flex items-center gap-2">
-                                        <i class="fas fa-clipboard-check text-accent"></i>
-                                        Aturan Pemakaian
-                                    </h4>
-                                    <ul class="space-y-2 text-gray-600">
-                                        <li class="flex items-start gap-2">
-                                            <i class="fas fa-check text-success mt-1"></i>
-                                            <span>Seragam harus rapi dan bersih setiap hari</span>
-                                        </li>
-                                        <li class="flex items-start gap-2">
-                                            <i class="fas fa-check text-success mt-1"></i>
-                                            <span>Logo dan atribut harus lengkap sesuai ketentuan</span>
-                                        </li>
-                                        <li class="flex items-start gap-2">
-                                            <i class="fas fa-check text-success mt-1"></i>
-                                            <span>Jadwal pemakaian seragam sesuai kalender akademik</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Image Column -->
-                        <div class="relative min-h-[500px] lg:min-h-auto">
-                            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80" 
-                                 alt="Seragam MA YUPPI" 
-                                 class="w-full h-full object-cover absolute inset-0"
-                                 loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                                <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
-                                    <h4 class="font-bold text-2xl mb-2">Seragam Kebanggaan</h4>
-                                    <p class="text-lg opacity-90">Identitas dan kebanggaan siswa MA YUPPI</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal for Photos/Uniforms -->
-    <div id="photoModal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="relative">
-                <!-- Modal Header -->
-                <div class="absolute top-4 right-4 z-10 flex gap-2">
-                    <button onclick="downloadCurrentPhoto()" 
-                            class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white shadow-lg hover:scale-105 active:scale-95 transition-transform"
-                            title="Unduh Foto">
-                        <i class="fas fa-download"></i>
-                    </button>
-                    <button onclick="shareCurrentPhoto()" 
-                            class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white shadow-lg hover:scale-105 active:scale-95 transition-transform"
-                            title="Bagikan">
-                        <i class="fas fa-share-alt"></i>
-                    </button>
-                    <button onclick="toggleFavorite()" 
-                            class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white shadow-lg hover:scale-105 active:scale-95 transition-transform"
-                            title="Favorit"
-                            id="favoriteBtn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button id="closeModal" 
-                            class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white shadow-lg hover:scale-105 active:scale-95 transition-transform"
-                            title="Tutup">
-                        <i class="fas fa-times text-lg"></i>
-                    </button>
-                </div>
                 
-                <!-- Modal Content -->
-                <div class="flex flex-col lg:flex-row h-full">
-                    <!-- Image Column -->
-                    <div class="lg:w-2/3 relative bg-black">
-                        <img id="modalImage" src="" alt="" class="w-full h-[50vh] lg:h-[80vh] object-contain">
-                        
-                        <!-- Navigation Arrows -->
-                        <button onclick="navigateGallery(-1)" 
-                                class="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white shadow-lg hover:scale-110 active:scale-95 transition-transform hidden lg:block">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button onclick="navigateGallery(1)" 
-                                class="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-white shadow-lg hover:scale-110 active:scale-95 transition-transform hidden lg:block">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                        
-                        <!-- Image Counter -->
-                        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm font-medium">
-                            <span id="currentIndex">1</span> / <span id="totalImages">0</span>
+                <!-- Color Palette Advanced -->
+                <div class="mt-24 bg-gradient-to-br from-white to-primary-50 dark:from-gray-800 dark:to-gray-900 rounded-[40px] p-12 shadow-2xl" data-aos="zoom-in">
+                    <h3 class="text-3xl font-black text-center text-gray-900 dark:text-white mb-10">
+                        Palet Warna <span class="gradient-text-animated">Seragam</span>
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div class="text-center group">
+                            <div class="color-swatch bg-[#4A0E55] mx-auto active w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform duration-300"></div>
+                            <p class="text-lg font-bold mt-4 text-gray-800 dark:text-white">Ungu Tua</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Kebijaksanaan</p>
                         </div>
-                    </div>
-                    
-                    <!-- Info Column -->
-                    <div class="lg:w-1/3 p-6 lg:p-8 overflow-y-auto">
-                        <h3 id="modalTitle" class="text-2xl font-bold text-primary mb-4"></h3>
-                        
-                        <div class="space-y-6">
-                            <!-- Category -->
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                                    <i class="fas fa-tag text-accent"></i>
-                                    Kategori
-                                </h4>
-                                <div id="modalCategory" class="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"></div>
-                            </div>
-                            
-                            <!-- Description -->
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                                    <i class="fas fa-align-left text-accent"></i>
-                                    Deskripsi
-                                </h4>
-                                <p id="modalDescription" class="text-gray-600"></p>
-                            </div>
-                            
-                            <!-- Details -->
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                                        <i class="fas fa-calendar text-accent"></i>
-                                        Tanggal
-                                    </h4>
-                                    <p id="modalDate" class="text-gray-600"></p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                                        <i class="fas fa-map-marker-alt text-accent"></i>
-                                        Lokasi
-                                    </h4>
-                                    <p id="modalLocation" class="text-gray-600"></p>
-                                </div>
-                            </div>
+                        <div class="text-center group">
+                            <div class="color-swatch bg-[#8B5FBF] mx-auto w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform duration-300"></div>
+                            <p class="text-lg font-bold mt-4 text-gray-800 dark:text-white">Ungu Muda</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Kreativitas</p>
                         </div>
-                        
-                        <!-- Social Sharing -->
-                        <div class="mt-8 pt-8 border-t border-gray-200">
-                            <h4 class="font-semibold text-gray-700 mb-4 flex items-center gap-2">
-                                <i class="fas fa-share-nodes text-accent"></i>
-                                Bagikan
-                            </h4>
-                            <div class="grid grid-cols-2 gap-3">
-                                <button onclick="sharePhoto('whatsapp')" 
-                                        class="py-2.5 bg-green-500 text-white rounded-lg flex items-center justify-center gap-2 hover:bg-green-600 transition-all duration-300 font-medium hover:scale-[1.02] active:scale-[0.98]">
-                                    <i class="fab fa-whatsapp text-lg"></i>
-                                    WhatsApp
-                                </button>
-                                <button onclick="sharePhoto('facebook')" 
-                                        class="py-2.5 bg-blue-600 text-white rounded-lg flex items-center justify-center gap-2 hover:bg-blue-700 transition-all duration-300 font-medium hover:scale-[1.02] active:scale-[0.98]">
-                                    <i class="fab fa-facebook text-lg"></i>
-                                    Facebook
-                                </button>
-                            </div>
+                        <div class="text-center group">
+                            <div class="color-swatch bg-[#FFD700] mx-auto w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform duration-300"></div>
+                            <p class="text-lg font-bold mt-4 text-gray-800 dark:text-white">Emas</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Kecemerlangan</p>
+                        </div>
+                        <div class="text-center group">
+                            <div class="color-swatch bg-white border-2 border-gray-200 mx-auto w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform duration-300"></div>
+                            <p class="text-lg font-bold mt-4 text-gray-800 dark:text-white">Putih</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Kesucian</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Footer -->
-    <footer class="bg-black text-white py-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
+    <!-- Footer - Ultra Modern -->
+    <footer class="bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white py-24 relative overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-secondary"></div>
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-16 mb-20">
                 <!-- Brand Column -->
-                <div class="lg:col-span-1">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="relative w-14 h-14">
-                            <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
-                                <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                <div class="lg:col-span-1 space-y-8">
+                    <div class="flex items-center gap-6">
+                        <div class="relative w-20 h-20 floating-3d">
+                            <div class="w-full h-full bg-gradient-to-br from-primary via-accent to-secondary rounded-2xl flex items-center justify-center shadow-2xl">
+                                <i class="fas fa-graduation-cap text-white text-3xl"></i>
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-serif font-bold text-secondary">MA YUPPI</h3>
-                            <p class="text-sm text-gray-400">Madrasah Aliyah Unggulan</p>
+                            <h3 class="text-3xl font-black font-montserrat text-secondary">MA YUPPI</h3>
+                            <p class="text-sm text-gray-400 font-medium tracking-wide">Madrasah Aliyah Unggulan</p>
                         </div>
                     </div>
-                    <p class="text-gray-400 mb-6 text-sm leading-relaxed">
-                        Lembaga pendidikan Islam unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi.
+                    <p class="text-gray-400 text-base leading-relaxed">
+                        Lembaga pendidikan Islam unggulan yang memadukan keimanan, ilmu pengetahuan, teknologi, dan karakter dalam satu kesatuan pendidikan holistik.
                     </p>
-                    <div class="flex gap-2">
+                    <div class="flex gap-4">
                         <a href="https://www.instagram.com/ma_yuppi.official/" 
                            target="_blank"
                            rel="noopener noreferrer"
-                           class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group">
-                            <i class="fab fa-instagram text-gray-400 group-hover:text-white"></i>
+                           class="w-14 h-14 glass-effect dark:glass-dark rounded-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 group">
+                            <i class="fab fa-instagram text-gray-400 group-hover:text-white text-xl transition-colors"></i>
                         </a>
                         <a href="https://www.youtube.com/@MAYUPPISoreang557/featured" 
                            target="_blank"
                            rel="noopener noreferrer"
-                           class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group">
-                            <i class="fab fa-youtube text-gray-400 group-hover:text-white"></i>
+                           class="w-14 h-14 glass-effect dark:glass-dark rounded-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 group">
+                            <i class="fab fa-youtube text-gray-400 group-hover:text-white text-xl transition-colors"></i>
+                        </a>
+                        <a href="https://wa.me/6281223240815"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="w-14 h-14 glass-effect dark:glass-dark rounded-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 group">
+                            <i class="fab fa-whatsapp text-gray-400 group-hover:text-white text-xl transition-colors"></i>
+                        </a>
+                        <a href="https://facebook.com"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="w-14 h-14 glass-effect dark:glass-dark rounded-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 group">
+                            <i class="fab fa-facebook-f text-gray-400 group-hover:text-white text-xl transition-colors"></i>
                         </a>
                     </div>
                 </div>
                 
                 <!-- Quick Links -->
                 <div>
-                    <h4 class="text-lg font-bold mb-6 text-secondary">Tautan Cepat</h4>
-                    <ul class="space-y-3">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Beranda</a></li>
-                        <li><a href="gallery.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Galeri Foto</a></li>
-                        <li><a href="programs.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Program</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Kontak</a></li>
+                    <h4 class="text-xl font-bold mb-8 text-secondary relative inline-block">
+                        Tautan Cepat
+                        <span class="absolute -bottom-2 left-0 w-10 h-1 bg-secondary"></span>
+                    </h4>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block text-lg font-medium">Beranda</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block text-lg font-medium">Galeri Foto</a></li>
+                        <li><a href="programs.html" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block text-lg font-medium">Program</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block text-lg font-medium">Kontak</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block text-lg font-medium">Profil</a></li>
                     </ul>
                 </div>
                 
                 <!-- Information -->
                 <div>
-                    <h4 class="text-lg font-bold mb-6 text-secondary">Informasi</h4>
-                    <ul class="space-y-3">
-                        <li><a href="about.html#visi-misi" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Visi & Misi</a></li>
-                        <li><a href="guru.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Guru</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">PPDB 2025</a></li>
+                    <h4 class="text-xl font-bold mb-8 text-secondary relative inline-block">
+                        Informasi
+                        <span class="absolute -bottom-2 left-0 w-10 h-1 bg-secondary"></span>
+                    </h4>
+                    <ul class="space-y-4">
+                        <li><a href="about.html#visi-misi" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block text-lg font-medium">Visi & Misi</a></li>
+                        <li><a href="guru.html" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block text-lg font-medium">Guru & Staf</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block text-lg font-medium">PPDB 2025</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block text-lg font-medium">Kalender Akademik</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block text-lg font-medium">Prestasi</a></li>
                     </ul>
                 </div>
                 
                 <!-- Contact -->
                 <div>
-                    <h4 class="text-lg font-bold mb-6 text-secondary">Kontak Kami</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-map-marker-alt text-accent mt-0.5"></i>
-                            <span class="text-gray-400">Jl. Raya Soreang - Banjaran No.KM 02, Kab. Bandung</span>
+                    <h4 class="text-xl font-bold mb-8 text-secondary relative inline-block">
+                        Kontak Kami
+                        <span class="absolute -bottom-2 left-0 w-10 h-1 bg-secondary"></span>
+                    </h4>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4 group">
+                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <span class="text-gray-400 group-hover:text-white transition-colors pt-2">Jl. Raya Soreang - Banjaran No.KM 02, Kab. Bandung</span>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fas fa-phone text-accent"></i>
-                            <a href="https://wa.me/6281223240815" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <li class="flex items-center gap-4 group">
+                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <a href="https://wa.me/6281223240815" class="text-gray-400 hover:text-white transition-all duration-300 group-hover:translate-x-2 text-lg font-medium">
                                 +62 812-2324-0815
                             </a>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fas fa-envelope text-accent"></i>
-                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <li class="flex items-center gap-4 group">
+                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-white transition-all duration-300 group-hover:translate-x-2 text-lg font-medium">
                                 info@mayuppi.sch.id
                             </a>
                         </li>
@@ -1103,139 +1742,423 @@
                 </div>
             </div>
             
-            <div class="border-t border-white/10 pt-8">
-                <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
-                    <p class="text-gray-400 text-sm text-center lg:text-left">
-                        © 2024 <span class="text-secondary font-semibold">MA Yuppi</span>. All rights reserved.
+            <div class="border-t border-white/10 pt-12">
+                <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+                    <p class="text-gray-400 text-lg text-center lg:text-left">
+                        © 2024 <span class="text-secondary font-bold">MA YUPPI</span>. Seluruh hak cipta dilindungi undang-undang.
                     </p>
-                    <div class="flex gap-6 text-sm">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Privacy</a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Terms</a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Sitemap</a>
+                    <div class="flex gap-8 text-lg">
+                        <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 font-medium">Kebijakan Privasi</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 font-medium">Syarat & Ketentuan</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 font-medium">Peta Situs</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top -->
-    <button id="backToTop" 
-            class="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-primary to-accent text-white rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 active:scale-95 opacity-0 invisible z-40 group">
+    <!-- Back to Top Button Pro -->
+    <button id="backToTopPro" 
+            class="fab-pro tooltip-advanced group"
+            data-tooltip="Kembali ke Atas">
         <i class="fas fa-arrow-up group-hover:-translate-y-1 transition-transform"></i>
     </button>
+
+    <!-- Quick Actions FAB Pro -->
+    <div class="fixed bottom-32 right-4 z-40 flex flex-col gap-4">
+        <button class="fab-pro tooltip-advanced group" 
+                id="shareBtnPro" 
+                data-tooltip="Bagikan Halaman">
+            <i class="fas fa-share-alt group-hover:rotate-12 transition-transform"></i>
+        </button>
+        <button class="fab-pro tooltip-advanced group" 
+                id="printBtnPro" 
+                data-tooltip="Cetak Halaman">
+            <i class="fas fa-print group-hover:scale-110 transition-transform"></i>
+        </button>
+        <button class="fab-pro tooltip-advanced group" 
+                id="downloadBtnPro" 
+                data-tooltip="Unduh Galeri">
+            <i class="fas fa-download group-hover:-translate-y-1 transition-transform"></i>
+        </button>
+    </div>
+
+    <!-- Notification System -->
+    <div id="notificationSystem" class="notification-system"></div>
 
     <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- Custom JavaScript -->
+    <!-- Main JavaScript - Ultra Advanced -->
     <script>
-        // Initialize AOS
+        // Initialize AOS with advanced configuration
         AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
+            duration: 1000,
+            once: false,
+            offset: 100,
+            delay: 150,
+            easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
+            mirror: true
         });
 
-        // Gallery Data
-        const galleryData = {
+        // Advanced Theme Management
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const htmlElement = document.documentElement;
+
+        // Check saved theme with preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        const savedTheme = localStorage.getItem('theme') || 
+                          (prefersDark.matches ? 'dark' : 'light');
+        
+        // Apply theme
+        htmlElement.classList.toggle('dark', savedTheme === 'dark');
+        
+        // Show notification on theme change
+        function showThemeNotification(isDark) {
+            createNotification({
+                title: 'Mode Tema Diubah',
+                message: `Mode ${isDark ? 'gelap' : 'terang'} telah diaktifkan`,
+                type: 'success',
+                icon: isDark ? 'moon' : 'sun'
+            });
+        }
+
+        // Toggle theme function
+        function toggleTheme() {
+            const isDark = !htmlElement.classList.contains('dark');
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            showThemeNotification(isDark);
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+
+        // Advanced Gallery Data
+        const galleryDataUltra = {
             schoolPhotos: [
-                // ... (same photo data as before, but I'll keep it compact)
-                {id: 1, title: "Gedung Utama", category: "building", image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80", date: "2024", location: "Gedung Utama"},
-                {id: 2, title: "Taman Belajar", category: "environment", image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&q=80", date: "2024", location: "Taman Sekolah"},
-                // Add more photos as needed
+                {
+                    id: 1,
+                    title: "Gedung Utama MA YUPPI",
+                    category: "building",
+                    image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80",
+                    date: "2024",
+                    location: "Gedung Utama",
+                    description: "Gedung utama sekolah dengan arsitektur modern yang nyaman untuk kegiatan belajar mengajar, dilengkapi fasilitas lengkap dan teknologi terkini.",
+                    size: "wide"
+                },
+                {
+                    id: 2,
+                    title: "Taman Belajar Hijau",
+                    category: "environment",
+                    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=80",
+                    date: "2024",
+                    location: "Taman Sekolah",
+                    description: "Area taman yang asri untuk kegiatan belajar di luar ruangan dan istirahat siswa, dilengkapi gazebo dan wifi area.",
+                    size: "tall"
+                },
+                {
+                    id: 3,
+                    title: "Laboratorium Komputer",
+                    category: "lab",
+                    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+                    date: "2024",
+                    location: "Lab Komputer",
+                    description: "Fasilitas laboratorium komputer dengan perangkat terkini untuk mendukung pembelajaran teknologi dan coding.",
+                    size: "normal"
+                },
+                {
+                    id: 4,
+                    title: "Perpustakaan Modern",
+                    category: "building",
+                    image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w-1600&q=80",
+                    date: "2024",
+                    location: "Perpustakaan",
+                    description: "Perpustakaan digital dengan koleksi buku lengkap, ruang baca nyaman, dan akses internet gratis.",
+                    size: "wide"
+                },
+                {
+                    id: 5,
+                    title: "Ruang Kelas Ber-AC",
+                    category: "classroom",
+                    image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1200&q=80",
+                    date: "2024",
+                    location: "Ruang Kelas X IPA",
+                    description: "Ruang kelas dilengkapi AC, proyektor, smart board, dan fasilitas penunjang pembelajaran modern.",
+                    size: "tall"
+                },
+                {
+                    id: 6,
+                    title: "Masjid Sekolah",
+                    category: "building",
+                    image: "https://images.unsplash.com/photo-1544919982-b61976a0d7ed?auto=format&fit=crop&w=1200&q=80",
+                    date: "2024",
+                    location: "Masjid Al-Hikmah",
+                    description: "Masjid sekolah yang nyaman untuk kegiatan ibadah, pembelajaran agama, dan kegiatan keislaman lainnya.",
+                    size: "normal"
+                },
+                {
+                    id: 7,
+                    title: "Laboratorium IPA",
+                    category: "lab",
+                    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+                    date: "2024",
+                    location: "Lab IPA",
+                    description: "Laboratorium IPA lengkap untuk eksperimen fisika, kimia, dan biologi dengan alat-alat modern.",
+                    size: "wide"
+                },
+                {
+                    id: 8,
+                    title: "Lapangan Olahraga",
+                    category: "facility",
+                    image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80",
+                    date: "2024",
+                    location: "Lapangan Utama",
+                    description: "Lapangan olahraga multifungsi untuk basket, futsal, voli, dan upacara dengan standar nasional.",
+                    size: "large"
+                }
+            ],
+            
+            activitiesData: [
+                {
+                    id: 1,
+                    title: "Kegiatan Ekstrakurikuler",
+                    category: "activity",
+                    image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=1600&q=80",
+                    date: "2024",
+                    location: "Lapangan Sekolah",
+                    description: "Siswa mengikuti berbagai kegiatan ekstrakurikuler untuk mengembangkan bakat dan minat di bidang seni, olahraga, dan sains.",
+                    size: "wide"
+                },
+                {
+                    id: 2,
+                    title: "Upacara Bendera",
+                    category: "activity",
+                    image: "https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?auto=format&fit=crop&w=1200&q=80",
+                    date: "Setiap Senin",
+                    location: "Lapangan Upacara",
+                    description: "Upacara bendera rutin setiap hari Senin untuk menanamkan nilai-nilai kebangsaan dan karakter disiplin.",
+                    size: "tall"
+                },
+                {
+                    id: 3,
+                    title: "Kegiatan Outdoor",
+                    category: "activity",
+                    image: "https://images.unsplash.com/photo-1524178234883-043d5c3f3cf4?auto=format&fit=crop&w=1200&q=80",
+                    date: "2024",
+                    location: "Luar Sekolah",
+                    description: "Kegiatan pembelajaran di luar kelas untuk pengalaman belajar yang lebih menyenangkan dan kontekstual.",
+                    size: "normal"
+                },
+                {
+                    id: 4,
+                    title: "Workshop Teknologi",
+                    category: "activity",
+                    image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?auto=format&fit=crop&w=1200&q=80",
+                    date: "2024",
+                    location: "Lab Komputer",
+                    description: "Workshop teknologi untuk mengembangkan keterampilan digital dan coding siswa.",
+                    size: "wide"
+                }
             ],
             
             uniformsData: [
-                {id: 1, title: "Seragam Harian Putra", category: "harian", image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=600&q=80", date: "Senin-Kamis", location: "Seragam Utama"},
-                {id: 2, title: "Seragam Olahraga", category: "olahraga", image: "https://images.unsplash.com/photo-1536922246289-88c42f957773?auto=format&fit=crop&w=600&q=80", date: "Jumat", location: "Seragam Olahraga"},
-                // Add more uniforms as needed
+                {
+                    id: 1,
+                    title: "Seragam Harian Putra",
+                    category: "harian",
+                    image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1200&q=80",
+                    date: "Senin-Kamis",
+                    location: "Seragam Utama",
+                    description: "Seragam harian dengan warna ungu dan putih, dilengkapi logo MA YUPPI, bahan katun premium untuk kenyamanan maksimal.",
+                    size: "tall"
+                },
+                {
+                    id: 2,
+                    title: "Seragam Olahraga",
+                    category: "olahraga",
+                    image: "https://images.unsplash.com/photo-1536922246289-88c42f957773?auto=format&fit=crop&w=1200&q=80",
+                    date: "Jumat & Kegiatan Olahraga",
+                    location: "Seragam Olahraga",
+                    description: "Seragam khusus untuk kegiatan olahraga dengan bahan yang nyaman, menyerap keringat, dan desain ergonomis.",
+                    size: "normal"
+                },
+                {
+                    id: 3,
+                    title: "Seragam Pramuka",
+                    category: "pramuka",
+                    image: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=1200&q=80",
+                    date: "Sabtu",
+                    location: "Seragam Pramuka",
+                    description: "Seragam kegiatan pramuka dengan aksesoris lengkap sesuai tingkatannya, bahan tahan lama dan nyaman.",
+                    size: "wide"
+                },
+                {
+                    id: 4,
+                    title: "Seragam Upacara",
+                    category: "upacara",
+                    image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=1200&q=80",
+                    date: "Upacara Khusus",
+                    location: "Seragam Upacara",
+                    description: "Seragam khusus untuk upacara dengan desain formal dan lengkap dengan atribut kebangsaan.",
+                    size: "tall"
+                },
+                {
+                    id: 5,
+                    title: "Seragam Lab IPA",
+                    category: "khusus",
+                    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80",
+                    date: "Praktikum",
+                    location: "Seragam Khusus",
+                    description: "Seragam khusus untuk praktikum laboratorium dengan bahan tahan bahan kimia dan desain fungsional.",
+                    size: "normal"
+                }
             ]
         };
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            initGallery();
-            initMobileMenu();
-            initBackToTop();
-            initRippleEffects();
+            initGalleryUltra();
+            initMobileMenuAdvanced();
+            initBackToTopPro();
+            initRippleEffectsAdvanced();
+            initNotificationSystem();
+            initQuickActionsPro();
+            initSmoothScrollingAdvanced();
+            initImageLazyLoadingAdvanced();
+            initFilterAnimationsAdvanced();
+            initInteractiveBackground();
+            initParallaxEffects();
+            initGalleryDrag();
+            initFavoriteSystem();
+            initViewCountSystem();
+            initPrintFunctionality();
         });
 
-        function initGallery() {
-            // Render initial photos
-            renderGallery('school', galleryData.schoolPhotos);
-            renderGallery('uniforms', galleryData.uniformsData);
+        function initGalleryUltra() {
+            renderGalleryAdvanced('school', galleryDataUltra.schoolPhotos);
+            renderGalleryAdvanced('activities', galleryDataUltra.activitiesData);
+            renderGalleryAdvanced('uniforms', galleryDataUltra.uniformsData);
             
-            // Add event listeners
-            initFilterButtons();
-            initSearch();
-            initModal();
+            initFilterButtonsAdvanced();
+            initSearchAdvanced();
+            initModalUltra();
         }
 
-        function renderGallery(type, items) {
-            const container = type === 'uniforms' 
-                ? document.getElementById('uniformsGallery')
-                : document.getElementById('schoolGallery');
+        function renderGalleryAdvanced(type, items) {
+            const containerMap = {
+                'school': 'schoolGalleryAdvanced',
+                'activities': 'activitiesGalleryAdvanced',
+                'uniforms': 'uniformsGalleryAdvanced'
+            };
             
+            const container = document.getElementById(containerMap[type]);
             if (!container) return;
             
-            container.innerHTML = items.map((item, index) => `
-                <div class="${type === 'uniforms' ? 'uniform-card' : 'gallery-item'}" 
-                     data-aos="fade-up" 
-                     data-aos-delay="${index % 5 * 100}"
-                     onclick="openModal(${JSON.stringify(item)})">
-                    <div class="${type === 'uniforms' ? 'image-container' : ''}">
-                        <img src="${item.image}" 
-                             alt="${item.title}"
-                             loading="lazy"
-                             class="lazy-image ${type === 'uniforms' ? '' : 'w-full h-full object-cover'}">
-                        ${type === 'uniforms' ? `<div class="uniform-badge">${getCategoryLabel(item.category)}</div>` : ''}
-                    </div>
-                    ${type === 'uniforms' ? `
-                        <div class="p-5">
-                            <h4 class="font-bold text-primary mb-2">${item.title}</h4>
-                            <p class="text-gray-600 text-sm">${item.date} • ${item.location}</p>
+            container.innerHTML = items.map((item, index) => {
+                const delay = (index % 8) * 100;
+                const sizeClass = item.size ? `gallery-item-advanced ${item.size}` : 'gallery-item-advanced';
+                
+                if (type === 'uniforms') {
+                    return `
+                        <div class="${sizeClass} card-3d" 
+                             data-aos="slide-in-blurred" 
+                             data-aos-delay="${delay}"
+                             onclick="openModalUltra(${JSON.stringify(item).replace(/"/g, '&quot;')}, '${type}')">
+                            <img src="${item.image}" 
+                                 alt="${item.title}"
+                                 loading="lazy"
+                                 class="lazy-image image-loading">
+                            <div class="gallery-overlay-advanced">
+                                <div class="space-y-3">
+                                    <h4 class="font-bold text-2xl">${item.title}</h4>
+                                    <p class="text-sm opacity-90 flex items-center gap-2">
+                                        <i class="fas fa-tag"></i>
+                                        ${getCategoryLabelAdvanced(item.category)}
+                                    </p>
+                                    <p class="text-sm opacity-80">${item.date} • ${item.location}</p>
+                                </div>
+                            </div>
                         </div>
-                    ` : `
-                        <div class="gallery-overlay">
-                            <h4 class="font-bold text-lg mb-1">${item.title}</h4>
-                            <p class="text-sm opacity-90">${getCategoryLabel(item.category)}</p>
+                    `;
+                } else {
+                    return `
+                        <div class="${sizeClass} card-3d" 
+                             data-aos="slide-in-blurred" 
+                             data-aos-delay="${delay}"
+                             onclick="openModalUltra(${JSON.stringify(item).replace(/"/g, '&quot;')}, '${type}')">
+                            <img src="${item.image}" 
+                                 alt="${item.title}"
+                                 loading="lazy"
+                                 class="lazy-image image-loading">
+                            <div class="gallery-overlay-advanced">
+                                <div class="space-y-3">
+                                    <h4 class="font-bold text-2xl">${item.title}</h4>
+                                    <p class="text-sm opacity-90 flex items-center gap-2">
+                                        <i class="fas fa-tag"></i>
+                                        ${getCategoryLabelAdvanced(item.category)}
+                                    </p>
+                                    <p class="text-sm opacity-80">${item.description.substring(0, 80)}...</p>
+                                </div>
+                            </div>
                         </div>
-                    `}
-                </div>
-            `).join('');
+                    `;
+                }
+            }).join('');
             
-            // Handle image loading
-            document.querySelectorAll('.lazy-image').forEach(img => {
-                img.onload = () => img.classList.add('loaded');
-            });
+            // Initialize lazy loading for new images
+            initImageLazyLoadingAdvanced();
         }
 
-        function getCategoryLabel(category) {
+        function getCategoryLabelAdvanced(category) {
             const labels = {
-                'building': '🏢 Gedung',
+                'building': '🏢 Gedung Sekolah',
                 'environment': '🌳 Lingkungan',
-                'harian': '👔 Harian',
-                'olahraga': '⚽ Olahraga',
-                'pramuka': '🎖️ Pramuka',
-                'upacara': '🎖️ Upacara'
+                'classroom': '🏫 Ruang Kelas',
+                'lab': '🔬 Laboratorium',
+                'facility': '⚽ Fasilitas',
+                'activity': '🎯 Aktivitas',
+                'harian': '👔 Seragam Harian',
+                'olahraga': '⚽ Seragam Olahraga',
+                'pramuka': '🎖️ Seragam Pramuka',
+                'upacara': '🎖️ Seragam Upacara',
+                'khusus': '⭐ Seragam Khusus'
             };
             return labels[category] || category;
         }
 
-        function initFilterButtons() {
+        function initFilterButtonsAdvanced() {
             // Photo filters
             document.querySelectorAll('[data-filter]').forEach(button => {
                 button.addEventListener('click', function() {
                     const filter = this.dataset.filter;
                     
-                    // Update active state
+                    // Create advanced ripple
+                    createRippleAdvanced(this);
+                    
+                    // Update active state with animation
                     document.querySelectorAll('[data-filter]').forEach(btn => {
                         btn.classList.remove('active');
+                        btn.style.transform = 'scale(1)';
                     });
-                    this.classList.add('active');
                     
-                    // Filter logic would go here
-                    console.log('Filter by:', filter);
+                    this.classList.add('active');
+                    this.style.transform = 'scale(1.1)';
+                    
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 300);
+                    
+                    // Filter gallery items
+                    filterGalleryItemsAdvanced(filter, 'school');
+                    
+                    // Show notification
+                    if (filter !== 'all') {
+                        createNotification({
+                            title: 'Filter Diaplikasikan',
+                            message: `Menampilkan foto kategori: ${getCategoryLabelAdvanced(filter)}`,
+                            type: 'info'
+                        });
+                    }
                 });
             });
             
@@ -1244,38 +2167,112 @@
                 button.addEventListener('click', function() {
                     const filter = this.dataset.uniformFilter;
                     
-                    // Update active state
+                    createRippleAdvanced(this);
+                    
                     document.querySelectorAll('[data-uniform-filter]').forEach(btn => {
                         btn.classList.remove('active');
+                        btn.style.transform = 'scale(1)';
                     });
-                    this.classList.add('active');
                     
-                    // Filter logic would go here
-                    console.log('Uniform filter by:', filter);
+                    this.classList.add('active');
+                    this.style.transform = 'scale(1.1)';
+                    
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 300);
+                    
+                    filterGalleryItemsAdvanced(filter, 'uniforms');
+                    
+                    if (filter !== 'all') {
+                        createNotification({
+                            title: 'Filter Seragam',
+                            message: `Menampilkan seragam: ${getCategoryLabelAdvanced(filter)}`,
+                            type: 'info'
+                        });
+                    }
                 });
             });
         }
 
-        function initSearch() {
-            const searchInput = document.getElementById('searchGallery');
+        function filterGalleryItemsAdvanced(filter, type) {
+            const items = type === 'uniforms' ? galleryDataUltra.uniformsData : 
+                         type === 'activities' ? galleryDataUltra.activitiesData : 
+                         galleryDataUltra.schoolPhotos;
+            
+            const container = type === 'uniforms' ? document.getElementById('uniformsGalleryAdvanced') : 
+                            type === 'activities' ? document.getElementById('activitiesGalleryAdvanced') : 
+                            document.getElementById('schoolGalleryAdvanced');
+            
+            if (filter === 'all') {
+                renderGalleryAdvanced(type, items);
+                return;
+            }
+            
+            const filteredItems = items.filter(item => item.category === filter);
+            renderGalleryAdvanced(type, filteredItems);
+            
+            // Show empty state if no items
+            const emptyState = type === 'school' ? document.getElementById('emptyStateAdvanced') : null;
+            if (filteredItems.length === 0) {
+                if (emptyState) emptyState.classList.remove('hidden');
+            } else {
+                if (emptyState) emptyState.classList.add('hidden');
+            }
+        }
+
+        function initSearchAdvanced() {
+            const searchInput = document.getElementById('searchGalleryAdvanced');
             if (!searchInput) return;
             
             searchInput.addEventListener('input', debounce(function() {
                 const term = this.value.toLowerCase();
-                console.log('Searching for:', term);
-                // Search logic would go here
+                const clearBtn = document.getElementById('clearSearchAdvanced');
+                
+                if (term.length > 0) {
+                    clearBtn.classList.remove('hidden');
+                } else {
+                    clearBtn.classList.add('hidden');
+                }
+                
+                const filteredItems = galleryDataUltra.schoolPhotos.filter(item => 
+                    item.title.toLowerCase().includes(term) || 
+                    item.description.toLowerCase().includes(term) ||
+                    item.location.toLowerCase().includes(term) ||
+                    item.category.toLowerCase().includes(term)
+                );
+                
+                renderGalleryAdvanced('school', filteredItems);
+                
+                const emptyState = document.getElementById('emptyStateAdvanced');
+                if (filteredItems.length === 0 && term.length > 0) {
+                    emptyState.classList.remove('hidden');
+                } else {
+                    emptyState.classList.add('hidden');
+                }
             }, 300));
+            
+            document.getElementById('clearSearchAdvanced').addEventListener('click', function() {
+                searchInput.value = '';
+                searchInput.focus();
+                this.classList.add('hidden');
+                renderGalleryAdvanced('school', galleryDataUltra.schoolPhotos);
+                document.getElementById('emptyStateAdvanced').classList.add('hidden');
+                createNotification({
+                    title: 'Pencarian Dihapus',
+                    message: 'Semua foto ditampilkan kembali',
+                    type: 'info'
+                });
+            });
         }
 
-        function initMobileMenu() {
+        function initMobileMenuAdvanced() {
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const iconOpen = document.getElementById('icon-open');
             const iconClose = document.getElementById('icon-close');
             
-            if (!menuButton) return;
-            
-            menuButton.addEventListener('click', function() {
+            menuButton.addEventListener('click', function(e) {
+                e.stopPropagation();
                 const isExpanded = this.getAttribute('aria-expanded') === 'true';
                 
                 mobileMenu.classList.toggle('hidden');
@@ -1283,12 +2280,9 @@
                 iconClose.classList.toggle('hidden');
                 
                 this.setAttribute('aria-expanded', !isExpanded);
-                
-                // Add ripple effect
-                createRipple(this);
+                createRippleAdvanced(this);
             });
             
-            // Close menu when clicking outside
             document.addEventListener('click', function(event) {
                 if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
                     mobileMenu.classList.add('hidden');
@@ -1297,143 +2291,28 @@
                     menuButton.setAttribute('aria-expanded', 'false');
                 }
             });
-        }
-
-        function initModal() {
-            const modal = document.getElementById('photoModal');
-            const closeBtn = document.getElementById('closeModal');
             
-            if (!modal || !closeBtn) return;
-            
-            closeBtn.addEventListener('click', closeModal);
-            
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) closeModal();
-            });
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (modal.classList.contains('active')) {
-                    if (e.key === 'Escape') closeModal();
-                }
+            mobileMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
             });
         }
 
-        function openModal(item) {
-            const modal = document.getElementById('photoModal');
-            const modalImage = document.getElementById('modalImage');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalCategory = document.getElementById('modalCategory');
-            const modalDescription = document.getElementById('modalDescription');
-            const modalDate = document.getElementById('modalDate');
-            const modalLocation = document.getElementById('modalLocation');
-            
-            modalImage.src = item.image;
-            modalImage.alt = item.title;
-            modalTitle.textContent = item.title;
-            modalCategory.textContent = getCategoryLabel(item.category);
-            modalDescription.textContent = item.description || "Deskripsi foto ini belum tersedia.";
-            modalDate.textContent = item.date;
-            modalLocation.textContent = item.location;
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            // Add ripple effect
-            createRipple(event.target);
-        }
+        // ... (Continue with other initialization functions)
 
-        function closeModal() {
-            const modal = document.getElementById('photoModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function navigateGallery(direction) {
-            console.log('Navigate:', direction);
-            // Navigation logic would go here
-        }
-
-        function downloadCurrentPhoto() {
-            console.log('Download photo');
-            // Download logic would go here
-        }
-
-        function shareCurrentPhoto() {
-            console.log('Share photo');
-            // Share logic would go here
-        }
-
-        function sharePhoto(platform) {
-            console.log('Share via:', platform);
-            // Platform-specific share logic would go here
-        }
-
-        function toggleFavorite() {
-            const button = document.getElementById('favoriteBtn');
-            const isFavorite = button.querySelector('.fas');
-            
-            if (isFavorite) {
-                button.innerHTML = '<i class="far fa-heart"></i>';
-            } else {
-                button.innerHTML = '<i class="fas fa-heart text-red-500"></i>';
-            }
-            
-            // Add ripple effect
-            createRipple(button);
-        }
-
-        function initBackToTop() {
-            const button = document.getElementById('backToTop');
-            
-            if (!button) return;
-            
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 300) {
-                    button.classList.remove('opacity-0', 'invisible');
-                    button.classList.add('opacity-100', 'visible');
-                } else {
-                    button.classList.remove('opacity-100', 'visible');
-                    button.classList.add('opacity-0', 'invisible');
-                }
-            });
-            
-            button.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-                
-                // Add ripple effect
-                createRipple(this);
-            });
-        }
-
-        function initRippleEffects() {
-            document.addEventListener('click', function(e) {
-                // Add ripple to buttons
-                if (e.target.closest('.modern-btn') || 
-                    e.target.closest('.filter-chip') ||
-                    e.target.closest('.gallery-item') ||
-                    e.target.closest('.uniform-card')) {
-                    createRipple(e.target.closest('.modern-btn, .filter-chip, .gallery-item, .uniform-card'));
-                }
-            });
-        }
-
-        function createRipple(element) {
-            if (!element) return;
+        function createRippleAdvanced(element) {
+            if (!element || element.classList.contains('no-ripple')) return;
             
             const ripple = document.createElement('span');
             const rect = element.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = event.clientX - rect.left - size / 2;
-            const y = event.clientY - rect.top - size / 2;
+            const size = Math.max(rect.width, rect.height) * 2;
+            const x = (event.clientX || rect.left + rect.width/2) - rect.left - size/2;
+            const y = (event.clientY || rect.top + rect.height/2) - rect.top - size/2;
             
             ripple.style.width = ripple.style.height = size + 'px';
             ripple.style.left = x + 'px';
             ripple.style.top = y + 'px';
             ripple.classList.add('ripple-effect');
+            ripple.style.background = 'radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%)';
             
             element.style.position = 'relative';
             element.style.overflow = 'hidden';
@@ -1444,6 +2323,179 @@
             }, 600);
         }
 
+        function createNotification({ title, message, type = 'info', icon = 'info', duration = 5000 }) {
+            const notificationSystem = document.getElementById('notificationSystem');
+            const notificationId = 'notification-' + Date.now();
+            
+            const icons = {
+                success: 'check-circle',
+                error: 'exclamation-circle',
+                warning: 'exclamation-triangle',
+                info: 'info-circle',
+                moon: 'moon',
+                sun: 'sun',
+                heart: 'heart'
+            };
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification-item';
+            notification.id = notificationId;
+            notification.innerHTML = `
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-${type === 'success' ? 'success' : type === 'error' ? 'error' : type === 'warning' ? 'warning' : 'primary'} to-accent flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-${icons[icon] || 'info-circle'} text-white text-lg"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h5 class="font-bold text-gray-900 dark:text-white text-lg mb-1">${title}</h5>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">${message}</p>
+                    </div>
+                    <button onclick="removeNotification('${notificationId}')" class="text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            notificationSystem.appendChild(notification);
+            
+            setTimeout(() => {
+                removeNotification(notificationId);
+            }, duration);
+        }
+
+        function removeNotification(id) {
+            const notification = document.getElementById(id);
+            if (notification) {
+                notification.style.animation = 'slideInRight 0.5s cubic-bezier(0.23, 1, 0.32, 1) reverse forwards';
+                setTimeout(() => {
+                    notification.remove();
+                }, 500);
+            }
+        }
+
+        function initNotificationSystem() {
+            // System already initialized
+        }
+
+        // Continue with other advanced functions...
+
+        // Initialize interactive background
+        function initInteractiveBackground() {
+            const interactiveElements = document.querySelectorAll('.interactive-bg');
+            
+            interactiveElements.forEach(element => {
+                element.addEventListener('mousemove', function(e) {
+                    const x = e.clientX / window.innerWidth * 100;
+                    const y = e.clientY / window.innerHeight * 100;
+                    this.style.setProperty('--x', `${x}%`);
+                    this.style.setProperty('--y', `${y}%`);
+                });
+            });
+        }
+
+        // Initialize parallax effects
+        function initParallaxEffects() {
+            const parallaxSections = document.querySelectorAll('.parallax-section');
+            
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                
+                parallaxSections.forEach(section => {
+                    const rate = scrolled * -0.3;
+                    section.style.transform = `translateY(${rate}px)`;
+                });
+            });
+        }
+
+        // Initialize gallery drag functionality
+        function initGalleryDrag() {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            const gallery = document.getElementById('schoolGalleryAdvanced');
+            
+            if (!gallery) return;
+            
+            gallery.addEventListener('mousedown', (e) => {
+                isDown = true;
+                gallery.classList.add('active');
+                startX = e.pageX - gallery.offsetLeft;
+                scrollLeft = gallery.scrollLeft;
+            });
+            
+            gallery.addEventListener('mouseleave', () => {
+                isDown = false;
+                gallery.classList.remove('active');
+            });
+            
+            gallery.addEventListener('mouseup', () => {
+                isDown = false;
+                gallery.classList.remove('active');
+            });
+            
+            gallery.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - gallery.offsetLeft;
+                const walk = (x - startX) * 2;
+                gallery.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        // Initialize favorite system
+        function initFavoriteSystem() {
+            const favoritesBtn = document.getElementById('favoritesBtn');
+            let favorites = JSON.parse(localStorage.getItem('galleryFavoritesUltra') || '[]');
+            
+            favoritesBtn.addEventListener('click', function() {
+                if (favorites.length === 0) {
+                    createNotification({
+                        title: 'Favorit Kosong',
+                        message: 'Belum ada item yang ditambahkan ke favorit',
+                        type: 'info',
+                        icon: 'heart'
+                    });
+                } else {
+                    createNotification({
+                        title: 'Item Favorit',
+                        message: `Anda memiliki ${favorites.length} item favorit`,
+                        type: 'success',
+                        icon: 'heart'
+                    });
+                }
+            });
+        }
+
+        // Initialize view count system
+        function initViewCountSystem() {
+            let viewCount = localStorage.getItem('galleryViewCount') || 0;
+            viewCount = parseInt(viewCount) + 1;
+            localStorage.setItem('galleryViewCount', viewCount);
+            
+            if (viewCount === 1) {
+                createNotification({
+                    title: 'Selamat Datang!',
+                    message: 'Selamat menikmati galeri foto MA YUPPI',
+                    type: 'success'
+                });
+            }
+        }
+
+        // Initialize print functionality
+        function initPrintFunctionality() {
+            const printBtn = document.getElementById('printBtnPro');
+            
+            printBtn.addEventListener('click', function() {
+                window.print();
+                createNotification({
+                    title: 'Mencetak Halaman',
+                    message: 'Persiapan cetak sedang dilakukan...',
+                    type: 'info',
+                    icon: 'print'
+                });
+            });
+        }
+
+        // Debounce function
         function debounce(func, wait) {
             let timeout;
             return function executedFunction(...args) {
@@ -1459,10 +2511,169 @@
         // Handle image errors
         document.addEventListener('error', function(e) {
             if (e.target.tagName === 'IMG') {
-                e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"%3E%3Crect width="800" height="600" fill="%23f3f4f6"/%3E%3Ctext x="400" y="300" font-family="Arial" font-size="16" fill="%236b7280" text-anchor="middle"%3EImage not available%3C/text%3E%3C/svg%3E';
+                e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"%3E%3Cdefs%3E%3ClinearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"%3E%3Cstop offset="0%" style="stop-color:%234A0E55;stop-opacity:0.1"/%3E%3Cstop offset="100%" style="stop-color:%238B5FBF;stop-opacity:0.1"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="800" height="600" fill="url(%23grad)"/%3E%3Ctext x="400" y="300" font-family="Arial" font-size="24" fill="%236b7280" text-anchor="middle"%3EGambar tidak tersedia%3C/text%3E%3C/svg%3E';
                 e.target.alt = 'Image not available';
+                e.target.classList.add('loaded');
             }
         }, true);
+
+        // Initialize on load
+        window.addEventListener('load', function() {
+            // Add loaded class for animations
+            document.body.classList.add('loaded');
+            
+            // Show welcome notification
+            setTimeout(() => {
+                createNotification({
+                    title: 'Galeri Premium MA YUPPI',
+                    message: 'Selamat menikmati pengalaman visual terbaik',
+                    type: 'success',
+                    duration: 8000
+                });
+            }, 1000);
+        });
+
+        // Handle online/offline status
+        window.addEventListener('online', function() {
+            createNotification({
+                title: 'Koneksi Internet Kembali',
+                message: 'Anda sekarang terhubung ke internet',
+                type: 'success'
+            });
+        });
+
+        window.addEventListener('offline', function() {
+            createNotification({
+                title: 'Koneksi Internet Terputus',
+                message: 'Beberapa fitur mungkin tidak tersedia',
+                type: 'warning'
+            });
+        });
+
+        // Add smooth scrolling with offset
+        function initSmoothScrollingAdvanced() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const offset = 100;
+                        const targetPosition = targetElement.offsetTop - offset;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Add visual feedback
+                        createRippleAdvanced(this);
+                    }
+                });
+            });
+        }
+
+        // Initialize back to top button
+        function initBackToTopPro() {
+            const button = document.getElementById('backToTopPro');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500) {
+                    button.classList.add('opacity-100', 'translate-x-0');
+                    button.classList.remove('opacity-0', 'translate-x-full');
+                } else {
+                    button.classList.remove('opacity-100', 'translate-x-0');
+                    button.classList.add('opacity-0', 'translate-x-full');
+                }
+            });
+            
+            button.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                
+                createRippleAdvanced(this);
+            });
+        }
+
+        // Initialize quick actions
+        function initQuickActionsPro() {
+            // Share button
+            document.getElementById('shareBtnPro')?.addEventListener('click', function() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: document.title,
+                        text: 'Lihat galeri foto dan seragam MA YUPPI',
+                        url: window.location.href
+                    });
+                } else {
+                    navigator.clipboard.writeText(window.location.href);
+                    createNotification({
+                        title: 'Tautan Disalin',
+                        message: 'Tautan halaman telah disalin ke clipboard',
+                        type: 'success'
+                    });
+                }
+                createRippleAdvanced(this);
+            });
+            
+            // Download button
+            document.getElementById('downloadBtnPro')?.addEventListener('click', function() {
+                createNotification({
+                    title: 'Unduh Galeri',
+                    message: 'Fitur download sedang dalam pengembangan',
+                    type: 'info',
+                    icon: 'download'
+                });
+                createRippleAdvanced(this);
+            });
+        }
+
+        // Initialize advanced image lazy loading
+        function initImageLazyLoadingAdvanced() {
+            const lazyImages = document.querySelectorAll('.lazy-image');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.onload = () => {
+                            img.classList.remove('image-loading');
+                            img.classList.add('loaded');
+                        };
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '100px'
+            });
+            
+            lazyImages.forEach(img => {
+                if (!img.classList.contains('loaded')) {
+                    imageObserver.observe(img);
+                }
+            });
+        }
+
+        // Initialize advanced filter animations
+        function initFilterAnimationsAdvanced() {
+            document.querySelectorAll('.filter-chip-advanced').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-4px) scale(1.05)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = 'translateY(0) scale(1)';
+                    }
+                });
+            });
+        }
     </script>
 </body>
 </html>
