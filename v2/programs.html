@@ -5,19 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Program & Ekstrakurikuler - MA YUPPI</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -42,13 +34,6 @@
                     fontFamily: {
                         'serif': ['Playfair Display', 'serif'],
                         'sans': ['Inter', 'system-ui', 'sans-serif']
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'slide-up': 'slideUp 0.6s ease-out',
-                        'fade-in': 'fadeIn 0.5s ease-out',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'gradient': 'gradient 8s ease infinite',
                     }
                 }
             }
@@ -56,110 +41,121 @@
     </script>
     
     <style>
-        /* Custom Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
         
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes gradient {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         
-        /* Custom Classes */
-        .glass-morphism {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        html { scroll-behavior: smooth; }
+        
+        .category-badge-all { 
+            background: linear-gradient(135deg, #4A0E55, #8B5FBF);
+            color: white;
+        }
+        .category-badge-akademik { 
+            background: linear-gradient(135deg, #4A0E55, #6A359C);
+            color: white;
+        }
+        .category-badge-karakter { 
+            background: linear-gradient(135deg, #9C27B0, #E91E63);
+            color: white;
+        }
+        .category-badge-minat-bakat { 
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            color: white;
+        }
+        .category-badge-layanan { 
+            background: linear-gradient(135deg, #00BCD4, #0097A7);
+            color: white;
         }
         
-        .card-hover {
-            transition: all 0.3s ease;
+        .program-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .card-hover:hover {
+        .program-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px -12px rgba(74, 14, 85, 0.15);
+            box-shadow: 0 20px 40px -12px rgba(74, 14, 85, 0.25);
         }
         
         .program-gradient {
-            background: linear-gradient(135deg, #4A0E55 0%, #8B5FBF 50%, #FFD700 100%);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            background: linear-gradient(135deg, #4A0E55 0%, #6A359C 30%, #9D77D9 70%, #FFD700 100%);
         }
         
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
         }
         
-        /* Selection Color */
-        ::selection {
-            background-color: rgba(139, 95, 191, 0.3);
+        .slide-in {
+            animation: slideIn 0.6s ease-out forwards;
         }
         
-        /* Category Badge Colors */
-        .category-academik { background: linear-gradient(135deg, #4A0E55, #8B5FBF); }
-        .category-seni { background: linear-gradient(135deg, #9C27B0, #E91E63); }
-        .category-olahraga { background: linear-gradient(135deg, #00BCD4, #0097A7); }
-        .category-keterampilan { background: linear-gradient(135deg, #FF9800, #F57C00); }
-        .category-teknologi { background: linear-gradient(135deg, #2196F3, #0D47A1); }
-        .category-karakter { background: linear-gradient(135deg, #4CAF50, #2E7D32); }
-        
-        /* Program Card Styles */
-        .program-card {
-            position: relative;
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
             overflow: hidden;
         }
         
-        .program-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: inherit;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
+        /* Improved mobile tap targets */
+        @media (max-width: 768px) {
+            .category-btn {
+                min-height: 48px;
+                padding: 0.75rem;
+            }
+            
+            .program-card {
+                margin-bottom: 1rem;
+            }
         }
         
-        .program-card:hover::before {
-            transform: scaleX(1);
+        /* Smooth transitions for filters */
+        .category-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* Achievement Badges */
-        .achievement-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .category-btn.active {
+            transform: scale(1.05);
         }
         
-        .gold-badge { background: linear-gradient(135deg, #FFD700, #FFC107); color: #5D4037; }
-        .silver-badge { background: linear-gradient(135deg, #E0E0E0, #BDBDBD); color: #424242; }
-        .bronze-badge { background: linear-gradient(135deg, #D7CCC8, #8D6E63); color: #212121; }
+        /* Loading spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .animate-spin-slow {
+            animation: spin 1.5s linear infinite;
+        }
+        
+        /* Back to top button */
+        #backToTop {
+            transition: all 0.3s ease;
+        }
+        
+        /* Improved modal/detail view */
+        .program-modal {
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Search input styling */
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(74, 14, 85, 0.1);
+        }
     </style>
 </head>
-<body class="font-sans antialiased bg-white text-gray-800">
-    
- 
-     <!-- Navigation -->
+<body class="font-sans antialiased bg-gray-50 text-gray-800">
+         <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100 transition-all duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-14 sm:h-16 lg:h-20">
@@ -389,124 +385,197 @@
         </div>
     </nav>
 
-
+    
     <!-- Hero Section -->
-    <section class="program-gradient text-white py-16 lg:py-20 overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-0 left-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl"></div>
+    <section class="program-gradient text-white 
+    pt-20 sm:pt-24 lg:pt-28 
+    pb-12 md:pb-16 lg:pb-25 
+    overflow-hidden relative">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-48 md:w-72 h-48 md:h-72 bg-secondary/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-48 md:w-72 h-48 md:h-72 bg-accent/10 rounded-full blur-3xl"></div>
         </div>
         
         <div class="container mx-auto px-4 relative z-10">
             <div class="max-w-6xl mx-auto text-center">
-                <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-semibold mb-6">
-                    <i class="fas fa-rocket text-secondary"></i>
-                    Kembangkan Potensi, Raih Prestasi
+                <div class="inline-flex items-center gap-2 px-3 md:px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-xs md:text-sm font-semibold mb-4 md:mb-6">
+                    <div class="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
+                    <span>Kembangkan Potensi, Raih Prestasi</span>
                 </div>
                 
-                <h1 class="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold mb-6 leading-tight">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold mb-4 md:mb-6 leading-tight px-4">
                     Program & Ekstrakurikuler
-                    <span class="block text-secondary">MA YUPPI</span>
+                    <span class="block text-secondary mt-2">MA YUPPI</span>
                 </h1>
                 
-                <p class="text-lg lg:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
-                    Lebih dari 30 program unggulan untuk mengembangkan potensi akademik, karakter Islami, dan keterampilan abad 21.
-                    Temukan minat dan bakat Anda di sini.
+                <p class="text-base md:text-lg lg:text-xl text-white/90 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto px-4">
+                    Beragam program unggulan untuk mengembangkan potensi akademik, karakter Islami, 
+                    dan keterampilan siswa. Temukan minat dan bakat Anda di sini.
                 </p>
                 
-                <!-- Quick Stats -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mt-12">
-                    <div class="glass-morphism p-4 rounded-xl">
-                        <p class="text-2xl lg:text-3xl font-bold mb-1">30+</p>
-                        <p class="text-white/70 text-sm">Program Ekskul</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-2xl mx-auto mt-8 md:mt-12 px-4">
+                    <div class="bg-white/10 backdrop-blur-sm p-3 md:p-4 rounded-xl border border-white/20">
+                        <p class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-1 md:mb-2">13+</p>
+                        <p class="text-white/80 text-xs md:text-sm font-medium">Program Unggulan</p>
                     </div>
-                    <div class="glass-morphism p-4 rounded-xl">
-                        <p class="text-2xl lg:text-3xl font-bold mb-1">6</p>
-                        <p class="text-white/70 text-sm">Kategori Utama</p>
+                    <div class="bg-white/10 backdrop-blur-sm p-3 md:p-4 rounded-xl border border-white/20">
+                        <p class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-1 md:mb-2">4</p>
+                        <p class="text-white/80 text-xs md:text-sm font-medium">Kategori</p>
                     </div>
-                    <div class="glass-morphism p-4 rounded-xl">
-                        <p class="text-2xl lg:text-3xl font-bold mb-1">98%</p>
-                        <p class="text-white/70 text-sm">Siswa Aktif</p>
+                    <div class="bg-white/10 backdrop-blur-sm p-3 md:p-4 rounded-xl border border-white/20">
+                        <p class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-1 md:mb-2">98%</p>
+                        <p class="text-white/80 text-xs md:text-sm font-medium">Siswa Aktif</p>
                     </div>
-                    <div class="glass-morphism p-4 rounded-xl">
-                        <p class="text-2xl lg:text-3xl font-bold mb-1">85+</p>
-                        <p class="text-white/70 text-sm">Prestasi Nasional</p>
+                    <div class="bg-white/10 backdrop-blur-sm p-3 md:p-4 rounded-xl border border-white/20">
+                        <p class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-1 md:mb-2">85+</p>
+                        <p class="text-white/80 text-xs md:text-sm font-medium">Prestasi</p>
                     </div>
                 </div>
                 
-                <!-- Scroll Indicator -->
-                <div class="mt-12 animate-bounce">
-                    <a href="#programs" class="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors duration-300">
-                        <span class="text-sm font-medium">EXPLORE PROGRAMS</span>
-                        <i class="fas fa-chevron-down"></i>
+                <div class="mt-10 md:mt-14">
+                    <a href="#program-list" class="inline-flex flex-col items-center gap-3 text-white/70 hover:text-white transition-colors duration-300 group">
+                        <span class="text-xs md:text-sm font-semibold tracking-wider">JELAJAHI PROGRAM</span>
+                        <div class="w-6 h-10 border-2 border-white/50 rounded-full p-1">
+                            <div class="w-1 h-3 bg-white/70 rounded-full mx-auto animate-bounce"></div>
+                        </div>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Program Categories -->
-    <section id="categories" class="py-12 lg:py-16 bg-gray-50">
+    <!-- Search & Filter Section -->
+    <section class="py-6 md:py-8 bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
-                <h2 class="text-2xl lg:text-3xl font-bold text-primary mb-8 text-center">
-                    Kategori Program
-                </h2>
+                <div class="flex flex-col md:flex-row gap-4 items-stretch md:items-center">
+                    <!-- Search Input -->
+                    <div class="flex-1">
+                        <div class="relative">
+                            <input type="text" 
+                                   id="searchInput" 
+                                   placeholder="Cari program..." 
+                                   class="w-full px-4 py-3 pl-12 border-2 border-gray-200 rounded-xl focus:border-primary focus:outline-none search-input transition-all duration-300">
+                            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            <button id="clearSearch" class="hidden absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Filter Dropdown (Mobile) -->
+                    <div class="md:hidden">
+                        <select id="mobileFilter" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:outline-none">
+                            <option value="all">Semua Kategori</option>
+                            <option value="akademik">Akademik</option>
+                            <option value="karakter">Karakter</option>
+                            <option value="minat-bakat">Minat & Bakat</option>
+                            <option value="layanan">Layanan</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Categories (Desktop) -->
+    <section id="categories" class="py-8 md:py-10 bg-white border-b border-gray-100 hidden md:block">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-6 md:mb-8">
+                    <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-primary mb-2 md:mb-3">
+                        Temukan Program Sesuai Minat
+                    </h2>
+                    <p class="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
+                        Pilih kategori program yang ingin Anda eksplorasi
+                    </p>
+                </div>
                 
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-                    <button class="category-btn active px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] bg-gradient-to-br from-primary to-accent text-white shadow-lg"
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                    <button class="category-btn active flex flex-col items-center justify-center p-4 rounded-xl transition-all duration-300 bg-gradient-to-br from-primary to-accent text-white shadow-lg hover:shadow-xl"
                             data-category="all">
-                        <i class="fas fa-th-large mr-2"></i>
-                        Semua
+                        <i class="fas fa-th-large text-lg mb-2"></i>
+                        <span class="text-sm font-semibold">Semua</span>
                     </button>
-                    <button class="category-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] bg-white text-gray-700 shadow-sm hover:shadow-md"
+                    
+                    <button class="category-btn flex flex-col items-center justify-center p-4 rounded-xl transition-all duration-300 bg-gray-50 hover:bg-gray-100 text-gray-700"
                             data-category="akademik">
-                        <i class="fas fa-graduation-cap mr-2"></i>
-                        Akademik
+                        <i class="fas fa-graduation-cap text-lg mb-2 text-primary"></i>
+                        <span class="text-sm font-semibold">Akademik</span>
                     </button>
-                    <button class="category-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] bg-white text-gray-700 shadow-sm hover:shadow-md"
+                    
+                    <button class="category-btn flex flex-col items-center justify-center p-4 rounded-xl transition-all duration-300 bg-gray-50 hover:bg-gray-100 text-gray-700"
                             data-category="karakter">
-                        <i class="fas fa-heart mr-2"></i>
-                        Karakter
+                        <i class="fas fa-heart text-lg mb-2 text-pink-500"></i>
+                        <span class="text-sm font-semibold">Karakter</span>
                     </button>
-                    <button class="category-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] bg-white text-gray-700 shadow-sm hover:shadow-md"
-                            data-category="teknologi">
-                        <i class="fas fa-laptop-code mr-2"></i>
-                        Teknologi
+                    
+                    <button class="category-btn flex flex-col items-center justify-center p-4 rounded-xl transition-all duration-300 bg-gray-50 hover:bg-gray-100 text-gray-700"
+                            data-category="minat-bakat">
+                        <i class="fas fa-palette text-lg mb-2 text-orange-500"></i>
+                        <span class="text-sm font-semibold">Minat & Bakat</span>
                     </button>
-                    <button class="category-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] bg-white text-gray-700 shadow-sm hover:shadow-md"
-                            data-category="seni">
-                        <i class="fas fa-palette mr-2"></i>
-                        Seni & Budaya
+                    
+                    <button class="category-btn flex flex-col items-center justify-center p-4 rounded-xl transition-all duration-300 bg-gray-50 hover:bg-gray-100 text-gray-700"
+                            data-category="layanan">
+                        <i class="fas fa-hands-helping text-lg mb-2 text-teal-500"></i>
+                        <span class="text-sm font-semibold">Layanan</span>
                     </button>
-                    <button class="category-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] bg-white text-gray-700 shadow-sm hover:shadow-md"
-                            data-category="olahraga">
-                        <i class="fas fa-futbol mr-2"></i>
-                        Olahraga
-                    </button>
+                </div>
+                
+                <div class="mt-6 text-center" id="active-filter-info">
+                    <span class="text-sm text-gray-500">Menampilkan <span id="program-count" class="font-semibold text-primary">13</span> program</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Programs Grid -->
-    <section id="programs" class="py-12 lg:py-16">
+    <section id="program-list" class="py-8 md:py-12 lg:py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="programsGrid">
-                    <!-- Program cards will be generated by JavaScript -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 md:mb-8 gap-4">
+                    <div>
+                        <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-primary">
+                            Semua Program
+                        </h2>
+                        <p class="text-sm md:text-base text-gray-600 mt-1">Program unggulan MA YUPPI</p>
+                    </div>
+                    
+                    <!-- Sort Options -->
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm text-gray-600">Urutkan:</span>
+                        <select id="sortPrograms" class="px-3 py-2 border border-gray-200 rounded-lg focus:border-primary focus:outline-none text-sm">
+                            <option value="default">Default</option>
+                            <option value="name">Nama A-Z</option>
+                            <option value="featured">Unggulan</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Program Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8" id="programsGrid">
+                    <!-- Program cards akan digenerate oleh JavaScript -->
+                </div>
+                
+                <!-- Loading State -->
+                <div id="loadingState" class="hidden text-center py-12">
+                    <div class="inline-block">
+                        <div class="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin mb-4"></div>
+                        <p class="text-gray-600">Memuat program...</p>
+                    </div>
                 </div>
                 
                 <!-- Empty State -->
-                <div id="emptyState" class="hidden text-center py-16">
-                    <div class="max-w-md mx-auto">
-                        <div class="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-search text-gray-400 text-3xl"></i>
+                <div id="emptyState" class="hidden text-center py-12 md:py-16">
+                    <div class="max-w-md mx-auto px-4">
+                        <div class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+                            <i class="fas fa-search text-gray-400 text-2xl md:text-3xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-700 mb-3">Program Tidak Ditemukan</h3>
-                        <p class="text-gray-600 mb-6">Tidak ada program yang sesuai dengan kategori yang dipilih. Coba kategori lain.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-gray-700 mb-2 md:mb-3">Program Tidak Ditemukan</h3>
+                        <p class="text-sm md:text-base text-gray-600 mb-4 md:mb-6">Tidak ada program yang sesuai dengan pencarian Anda.</p>
                         <button id="resetFilter" 
-                                class="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300">
+                                class="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]">
                             Tampilkan Semua Program
                         </button>
                     </div>
@@ -516,526 +585,392 @@
     </section>
 
     <!-- Program Unggulan Section -->
-    <section class="py-16 lg:py-20 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5">
+    <section class="py-12 md:py-16 lg:py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12" data-aos="fade-up">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-semibold text-primary mb-4">
+                <div class="text-center mb-8 md:mb-12">
+                    <div class="inline-flex items-center gap-2 px-3 md:px-4 py-2 bg-secondary/10 rounded-full text-xs md:text-sm font-semibold text-primary mb-3 md:mb-4">
                         <i class="fas fa-crown text-secondary"></i>
-                        PROGRAM UNGGULAN
+                        PROGRAM UNGGULAN MA YUPPI
                     </div>
-                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary mb-6">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-primary mb-4 md:mb-6 px-4">
                         Flagship Programs
                     </h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    <p class="text-sm md:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-4">
                         Program khusus yang menjadi keunggulan MA YUPPI dalam membentuk siswa berkompetensi global
                     </p>
                 </div>
                 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Flagship 1 -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover" data-aos="fade-up">
-                                            <div class="relative h-56 overflow-hidden">
-                        <!-- Foto -->
-                        <img 
-                            src="images/foto 1.png"
-                            alt="Gema Ramadhan MA YUPPI"
-                            class="absolute inset-0 w-full h-full object-cover"
-                        >
-                        <!-- Badge -->
-                        <div class="absolute top-4 left-4 z-10">
-                            <span class="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-bold text-primary">
-                                <i class="fas fa-star text-secondary mr-1"></i> Unggulan
-                            </span>
-                        </div>
-                    </div>
-                       <div class="p-8">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-2xl font-bold text-primary">Program Keagamaan & Penguatan Tauhid</h3>
-                                <div class="w-12 h-12 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-book-open text-primary"></i>
+                <!-- Flagship Programs Grid -->
+                <div class="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+                    <!-- Program 1 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden program-card">
+                        <div class="bg-gradient-to-br from-primary to-purple-800 h-40 md:h-48 relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            <div class="absolute top-4 left-4 z-10">
+                                <span class="px-2 md:px-3 py-1 bg-secondary text-primary text-xs font-bold rounded-full">
+                                    <i class="fas fa-star mr-1"></i> Unggulan
+                                </span>
+                            </div>
+                            <div class="absolute bottom-4 left-4 z-10">
+                                <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-book-open text-white text-lg"></i>
                                 </div>
                             </div>
-                            <p class="text-gray-600 mb-6 leading-relaxed">
-                               Program pembinaan keislaman yang menanamkan nilai tauhid, akhlak, dan ibadah dalam kehidupan sehari-hari melalui kegiatan keagamaan yang terstruktur dan berkelanjutan.
-                            </p>
-                            <div class="grid grid-cols-2 gap-4 mb-6">
-                                <div class="text-center">
-                                    <p class="text-2xl font-bold text-primary mb-1">45</p>
-                                    <p class="text-sm text-gray-500">Siswa Aktif</p>
-                                </div>
-                                <div class="text-center">
-                                    <p class="text-2xl font-bold text-primary mb-1">5+</p>
-                                    <p class="text-sm text-gray-500">Hafiz Baru/Tahun</p>
-                                </div>
-                            </div>
-                            <a href="galeri.html" class="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group">
-                                <span>Selengkapnya</span>
-                                <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
-                            </a>
                         </div>
-                    </div>
-                    
-                    <!-- Flagship 2 -->
-                   <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="100">
-    
-            <!-- HEADER IMAGE -->
-            <div class="relative h-48 overflow-hidden">
-
-                <!-- FOTO -->
-                <img 
-                    src="images/foto 1.png" 
-                    alt="Gema Ramadhan"
-                    class="absolute inset-0 w-full h-full object-cover"
-                >
-                
-                <!-- BADGE UNGGULAN -->
-                <div class="absolute top-4 left-4 z-10">
-                    <span class="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-bold text-primary">
-                        <i class="fas fa-star text-secondary mr-1"></i> Unggulan
-                    </span>
-                </div>
-            </div>
-
-            <!-- CONTENT -->
-            <div class="p-8">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-2xl font-bold text-primary">
-                        Gema Ramadhan & Kaderisasi Imam
-                    </h3>
-                    <div class="w-12 h-12 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-microscope text-primary"></i>
-                    </div>
-                </div>
-
-                <p class="text-gray-600 mb-6 leading-relaxed">
-                    Kegiatan khusus bulan Ramadhan yang berfokus pada penguatan spiritual, peningkatan kualitas ibadah, serta pembinaan calon imam dan pemimpin keagamaan yang kompeten.
-                </p>
-
-                <div class="grid grid-cols-2 gap-4 mb-6">
-                    <div class="text-center">
-                        <p class="text-2xl font-bold text-primary mb-1">32</p>
-                        <p class="text-sm text-gray-500">Siswa Aktif</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-2xl font-bold text-primary mb-1">12</p>
-                        <p class="text-sm text-gray-500">Prestasi Nasional</p>
-                    </div>
-                </div>
-
-                <a href="galeri.html" class="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group">
-                    <span>Selengkapnya</span>
-                    <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
-                </a>
-            </div>
-        </div>
                         
-            <!-- Flagship 3 -->
-           <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="200">
-            <div class="relative h-56 overflow-hidden">
-             <!-- Foto -->
-         <img 
-          src="images/foto 1.png"
-          alt="Gema Ramadhan MA YUPPI"
-          class="absolute inset-0 w-full h-full object-cover"
-        >
-
-         <!-- Badge -->
-        <div class="absolute top-4 left-4 z-10">
-        <span class="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-bold text-primary">
-            <i class="fas fa-star text-secondary mr-1"></i> Unggulan
-              </span>
-                </div>
-                    </div>
-                     <div class="p-8">
-                                    <div class="flex items-center justify-between mb-4">
-                                        <h3 class="text-2xl font-bold text-primary">Teaching Practicum (PPL) and Character Development Training</h3>
-                                        <div class="w-12 h-12 bg-gradient-to-br from-accent/10 to-primary/10 rounded-lg flex items-center justify-center">
-                                            <!-- <i class="fas fa-robot text-primary"></i> -->
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-600 mb-6 leading-relaxed">
-                                    Program praktik mengajar dan pelatihan pengembangan karakter untuk membekali peserta dengan kompetensi pedagogik, etika profesi, serta jiwa kepemimpinan yang unggul.
-                                    </p>
-                                    <div class="grid grid-cols-2 gap-4 mb-6">
-                                        <div class="text-center">
-                                            <p class="text-2xl font-bold text-primary mb-1">38</p>
-                                            <p class="text-sm text-gray-500">Siswa Aktif</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <p class="text-2xl font-bold text-primary mb-1">3</p>
-                                            <p class="text-sm text-gray-500">Juara Hackathon</p>
-                                        </div>
-                                        
-                                    </div>
-                                     <a href="galeri.html" class="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group">
-                                            <span>Selengkapnya</span>
-                                            <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
-                                        </a>
+                        <div class="p-4 md:p-6">
+                            <span class="category-badge-karakter px-2 md:px-3 py-1 text-xs font-semibold rounded-full mb-2 inline-block">
+                                Karakter & Keagamaan
+                            </span>
+                            <h3 class="text-lg md:text-xl font-bold text-primary mb-2">
+                                Program Keagamaan & Penguatan Tauhid
+                            </h3>
+                            
+                            <p class="text-gray-600 mb-4 md:mb-6 text-sm leading-relaxed">
+                                Program pembinaan keislaman yang menanamkan nilai tauhid, akhlak, dan ibadah dalam kehidupan sehari-hari.
+                            </p>
+                            
+                            <div class="space-y-2 md:space-y-3">
+                                <div class="flex items-center gap-2 text-xs md:text-sm">
+                                    <i class="fas fa-users text-primary/60 w-4 md:w-5"></i>
+                                    <span class="text-gray-700"><strong class="text-primary">45+</strong> Siswa Aktif</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs md:text-sm">
+                                    <i class="fas fa-trophy text-primary/60 w-4 md:w-5"></i>
+                                    <span class="text-gray-700"><strong class="text-primary">5+</strong> Hafiz Baru/Tahun</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-
-    <!-- Achievements Section -->
-    <section class="py-16 lg:py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12" data-aos="fade-up">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-full text-sm font-semibold text-primary mb-4">
-                        <i class="fas fa-trophy text-secondary"></i>
-                        PRESTASI & PENGHARGAAN
-                    </div>
-                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary mb-6">
-                        Pencapaian Siswa
-                    </h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        Hasil karya dan pencapaian siswa dalam berbagai kompetisi tingkat regional, nasional, dan internasional
-                    </p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Achievement 1 -->
-                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover" data-aos="fade-up">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-16 h-16 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-trophy text-yellow-600 text-2xl"></i>
+                    
+                    <!-- Program 2 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden program-card">
+                        <div class="bg-gradient-to-br from-accent to-purple-600 h-40 md:h-48 relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            <div class="absolute top-4 left-4 z-10">
+                                <span class="px-2 md:px-3 py-1 bg-secondary text-primary text-xs font-bold rounded-full">
+                                    <i class="fas fa-star mr-1"></i> Unggulan
+                                </span>
                             </div>
-                            <div>
-                                <span class="gold-badge achievement-badge">Juara 1</span>
-                                <p class="text-sm text-gray-500 mt-1">SUPERNOVA</p>
+                            <div class="absolute bottom-4 left-4 z-10">
+                                <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-microphone text-white text-lg"></i>
+                                </div>
                             </div>
                         </div>
-                        <h3 class="text-xl font-bold text-primary mb-2">Peraih Mendali Emas</h3>
-                        <p class="text-gray-600 mb-4">Bidang Bahasa Inggris</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm font-semibold text-accent">English Klub</span>
-                            <span class="text-sm text-gray-500">2025</span>
+                        
+                        <div class="p-4 md:p-6">
+                            <span class="category-badge-karakter px-2 md:px-3 py-1 text-xs font-semibold rounded-full mb-2 inline-block">
+                                Karakter & Kepemimpinan
+                            </span>
+                            <h3 class="text-lg md:text-xl font-bold text-primary mb-2">
+                                Gema Ramadhan & Kaderisasi Imam
+                            </h3>
+                            
+                            <p class="text-gray-600 mb-4 md:mb-6 text-sm leading-relaxed">
+                                Kegiatan khusus bulan Ramadhan untuk penguatan spiritual dan pembinaan calon imam serta pemimpin keagamaan.
+                            </p>
+                            
+                            <div class="space-y-2 md:space-y-3">
+                                <div class="flex items-center gap-2 text-xs md:text-sm">
+                                    <i class="fas fa-users text-primary/60 w-4 md:w-5"></i>
+                                    <span class="text-gray-700"><strong class="text-primary">32+</strong> Peserta Rutin</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs md:text-sm">
+                                    <i class="fas fa-trophy text-primary/60 w-4 md:w-5"></i>
+                                    <span class="text-gray-700"><strong class="text-primary">12</strong> Imam Terlatih</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Achievement 2 -->
-                   <div class="bg-white rounded-2xl p-6 shadow-lg card-hover" data-aos="fade-up">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-16 h-16 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-trophy text-yellow-600 text-2xl"></i>
+                    <!-- Program 3 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden program-card">
+                        <div class="bg-gradient-to-br from-secondary/80 to-orange-500 h-40 md:h-48 relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            <div class="absolute top-4 left-4 z-10">
+                                <span class="px-2 md:px-3 py-1 bg-secondary text-primary text-xs font-bold rounded-full">
+                                    <i class="fas fa-star mr-1"></i> Unggulan
+                                </span>
                             </div>
-                            <div>
-                                <span class="gold-badge achievement-badge">Juara 1</span>
-                                <p class="text-sm text-gray-500 mt-1">National Hero Competition</p>
+                            <div class="absolute bottom-4 left-4 z-10">
+                                <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chalkboard-teacher text-white text-lg"></i>
+                                </div>
                             </div>
                         </div>
-                        <h3 class="text-xl font-bold text-primary mb-2">Peraih Mendali Emas</h3>
-                        <p class="text-gray-600 mb-4">Bidang Pendidikan Kewarganegaraan</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm font-semibold text-accent">PKN</span>
-                            <span class="text-sm text-gray-500">2025</span>
+                        
+                        <div class="p-4 md:p-6">
+                            <span class="category-badge-akademik px-2 md:px-3 py-1 text-xs font-semibold rounded-full mb-2 inline-block">
+                                Akademik & Karakter
+                            </span>
+                            <h3 class="text-lg md:text-xl font-bold text-primary mb-2">
+                                Teaching Practicum & Character Development
+                            </h3>
+                            
+                            <p class="text-gray-600 mb-4 md:mb-6 text-sm leading-relaxed">
+                                Program praktik mengajar dan pelatihan pengembangan karakter untuk kompetensi pedagogik dan jiwa kepemimpinan.
+                            </p>
+                            
+                            <div class="space-y-2 md:space-y-3">
+                                <div class="flex items-center gap-2 text-xs md:text-sm">
+                                    <i class="fas fa-users text-primary/60 w-4 md:w-5"></i>
+                                    <span class="text-gray-700"><strong class="text-primary">38+</strong> Peserta Aktif</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs md:text-sm">
+                                    <i class="fas fa-trophy text-primary/60 w-4 md:w-5"></i>
+                                    <span class="text-gray-700"><strong class="text-primary">3+</strong> Penghargaan</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <!-- Achievement 3 -->
-                   <div class="bg-white rounded-2xl p-6 shadow-lg card-hover" data-aos="fade-up">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-16 h-16 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-trophy text-yellow-600 text-2xl"></i>
-                            </div>
-                            <div>
-                                <span class="gold-badge achievement-badge">Juara 1</span>
-                                <p class="text-sm text-gray-500 mt-1">Kejuaraan Sains Siswa Nasional</p>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-2">Peraih Mendali Emas</h3>
-                        <p class="text-gray-600 mb-4">Bidang Sains</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm font-semibold text-accent">Sains</span>
-                            <span class="text-sm text-gray-500">2025</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Achievement 4 -->
-                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover" data-aos="fade-up">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-16 h-16 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-star text-yellow-600 text-2xl"></i>
-                            </div>
-                            <div>
-                                <span class="gold-badge achievement-badge">Best Speaker</span>
-                                <p class="text-sm text-gray-500 mt-1">Tingkat Regional</p>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-2">English Debate Championship</h3>
-                        <p class="text-gray-600 mb-4">Asia Southeast Debate Tournament</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm font-semibold text-accent">English Debate</span>
-                            <span class="text-sm text-gray-500">2023</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Achievement 5 -->
-                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-16 h-16 bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-book-quran text-primary text-2xl"></i>
-                            </div>
-                            <div>
-                                <span class="gold-badge achievement-badge">Hafiz 30 Juz</span>
-                                <p class="text-sm text-gray-500 mt-1">Tingkat Kota</p>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-2">Tahfidz Quran Competition</h3>
-                        <p class="text-gray-600 mb-4">Kompetisi Tahfidz Al-Quran 30 Juz</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm font-semibold text-accent">Tahfidz Quran</span>
-                            <span class="text-sm text-gray-500">2023</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Achievement 6 -->
-                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-code text-blue-600 text-2xl"></i>
-                            </div>
-                            <div>
-                                <span class="silver-badge achievement-badge">Juara 2</span>
-                                <p class="text-sm text-gray-500 mt-1">Hackathon Nasional</p>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-2">Mobile App Development</h3>
-                        <p class="text-gray-600 mb-4">National Student Hackathon 2023</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm font-semibold text-accent">Coding & Robotik</span>
-                            <span class="text-sm text-gray-500">2023</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- View All Achievements -->
-                <div class="text-center mt-12">
-                    <a href="#" 
-                       class="inline-flex items-center gap-3 px-8 py-3.5 bg-white border-2 border-primary text-primary rounded-xl font-bold hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-[1.02] group">
-                        <span>Lihat Semua Prestasi</span>
-                        <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 lg:py-20 bg-gradient-to-br from-primary via-accent/90 to-primary text-white">
-        <div class="container mx-auto px-4">
+    <section class="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-primary via-primary/90 to-accent text-white relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-48 md:w-64 h-48 md:h-64 bg-white/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-48 md:w-64 h-48 md:h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
             <div class="max-w-4xl mx-auto text-center">
-                <div class="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-calendar-check text-3xl text-secondary"></i>
+                <div class="w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 backdrop-blur-sm">
+                    <i class="fas fa-calendar-check text-2xl md:text-3xl text-secondary"></i>
                 </div>
                 
-                <h2 class="text-3xl lg:text-4xl font-serif font-bold mb-6">
-                    Bergabung dengan Program Kami
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-serif font-bold mb-4 md:mb-6 px-4">
+                    Siap Mengembangkan Potensi Anda?
                 </h2>
                 
-                <p class="text-lg text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
-                    Pilih program yang sesuai dengan minat dan bakat Anda. Daftarkan diri Anda sekarang untuk mengembangkan potensi maksimal.
+                <p class="text-sm md:text-base lg:text-lg text-white/90 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto px-4">
+                    Bergabunglah dengan program yang sesuai dengan minat dan bakat Anda. 
+                    Daftarkan diri sekarang untuk mengembangkan potensi maksimal bersama MA YUPPI.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
                     <a href="https://ppdb.mayuppi.sch.id" 
                        target="_blank"
                        rel="noopener noreferrer"
-                       class="px-8 py-3.5 bg-secondary text-primary rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3">
-                        <i class="fas fa-user-plus"></i>
-                        Daftar Sekarang
+                       class="px-6 md:px-8 py-3 md:py-4 bg-secondary text-primary rounded-xl font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 md:gap-3 group text-sm md:text-base">
+                        <i class="fas fa-user-plus text-base md:text-lg"></i>
+                        Daftar PPDB 2025
                     </a>
                     
                     <a href="contact.html" 
-                       class="px-8 py-3.5 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3">
-                        <i class="fas fa-comments"></i>
+                       class="px-6 md:px-8 py-3 md:py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 md:gap-3 group text-sm md:text-base">
+                        <i class="fas fa-comments text-base md:text-lg"></i>
                         Konsultasi Program
                     </a>
                 </div>
+                
+                <p class="text-white/70 text-xs md:text-sm mt-6 md:mt-8 px-4">
+                    <i class="fas fa-clock mr-2"></i>
+                    Pendaftaran dibuka hingga 30 Juni 2025
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <!-- Footer -->
-    <footer class="bg-black text-white py-8 sm:py-12">
-        <!-- Background Gradient -->
-        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary/10 to-transparent opacity-30"></div>
-        
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Footer Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 mb-6 sm:mb-8 lg:mb-12">
-                <!-- Brand Column -->
-                <div class="sm:col-span-2 lg:col-span-1">
-                    <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-                        <div class="relative w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14">
-                            <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-lg sm:rounded-xl flex items-center justify-center">
-                                <i class="fas fa-graduation-cap text-white text-lg sm:text-xl lg:text-2xl"></i>
-                            </div>
-                            <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-accent rounded-lg sm:rounded-xl blur opacity-30 -z-10"></div>
+<footer class="bg-gray-900 text-white pt-8 sm:pt-12 lg:pt-20 pb-6 sm:pb-8 relative">
+    <!-- Background Gradient -->
+    <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary/10 to-transparent opacity-30"></div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Footer Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 mb-6 sm:mb-8 lg:mb-12">
+            <!-- Brand Column -->
+            <div class="sm:col-span-2 lg:col-span-1">
+                <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                    <div class="relative w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14">
+                        <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-lg sm:rounded-xl flex items-center justify-center overflow-hidden">
+                            <img 
+                                src="images/logo-MA.png" 
+                                alt="Logo MA YUPPI"
+                                class="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 object-contain"
+                                loading="lazy"
+                            >
                         </div>
-                        <div>
-                            <h3 class="text-lg sm:text-xl lg:text-2xl font-serif font-bold text-secondary">MA YUPPI</h3>
-                            <p class="text-xs sm:text-sm text-gray-400">Madrasah Aliyah Unggulan</p>
-                        </div>
+
+                        <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-accent rounded-lg sm:rounded-xl blur opacity-30 -z-10"></div>
                     </div>
-                    <p class="text-gray-400 mb-4 sm:mb-6 text-sm leading-relaxed">
-                        Lembaga pendidikan Islam unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi untuk mencetak generasi pemimpin masa depan.
-                    </p>
-                    <div class="flex gap-1 sm:gap-2">
-                        <a href="https://www.instagram.com/ma_yuppi.official/" 
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
-                           aria-label="Instagram">
-                            <i class="fab fa-instagram text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@MAYUPPISoreang557/featured" 
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
-                           aria-label="YouTube">
-                            <i class="fab fa-youtube text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
-                        </a>
-                        <a href="#" 
-                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
-                           aria-label="TikTok">
-                            <i class="fab fa-tiktok text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
-                        </a>
-                        <a href="#" 
-                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
-                           aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
-                        </a>
+                    <div>
+                        <h3 class="text-lg sm:text-xl lg:text-2xl font-serif font-bold text-secondary">MA YUPPI</h3>
+                        <p class="text-xs sm:text-sm text-gray-400">Madrasah Aliyah Unggulan</p>
                     </div>
                 </div>
-                
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-6 text-secondary relative inline-block">
-                        Tautan Cepat
-                        <span class="absolute -bottom-1 sm:-bottom-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
-                    </h4>
-                    <ul class="space-y-2 sm:space-y-3">
-                        <li>
-                            <a href="#hero" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
-                                Beranda
-                            </a>
-                        </li>
-                        <li>
-                            <a href="about.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
-                                Profil Sekolah
-                            </a>
-                        </li>
-                        <li>
-                            <a href="programs.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
-                                Program & Ekskul
-                            </a>
-                        </li>
-                        <li>
-                            <a href="galeri.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
-                                Galeri & Artikel
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Information -->
-                <div>
-                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-6 text-secondary relative inline-block">
-                        Informasi
-                        <span class="absolute -bottom-1 sm:-bottom-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
-                    </h4>
-                    <ul class="space-y-2 sm:space-y-3">
-                        <li>
-                            <a href="about.html#visi-misi" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
-                                Visi & Misi
-                            </a>
-                        </li>
-                        <!-- <li>
-                            <a href="guru.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
-                                Guru
-                            </a>
-                        </li> -->
-                        <li>
-                            <a href="contact.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
-                                Kontak Kami
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Contact Info -->
-                <div class="sm:col-span-2 lg:col-span-1">
-                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-6 text-secondary relative inline-block">
-                        Kontak Kami
-                        <span class="absolute -bottom-1 sm:-bottom-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
-                    </h4>
-                    <ul class="space-y-2 sm:space-y-3 text-sm">
-                        <li class="flex items-start gap-2 sm:gap-3">
-                            <i class="fas fa-map-marker-alt text-accent mt-0.5 sm:mt-1 flex-shrink-0 text-xs sm:text-sm"></i>
-                            <span class="text-gray-400">
-                                Jl. Raya Soreang - Banjaran No.KM 02, Cingcin, Kec. Soreang, Kabupaten Bandung, Jawa Barat 40914
-                            </span>
-                        </li>
-                        <li class="flex items-center gap-2 sm:gap-3">
-                            <i class="fas fa-phone text-accent flex-shrink-0 text-xs sm:text-sm"></i>
-                            <a href="https://wa.me/6281223240815" class="text-gray-400 hover:text-white transition-colors duration-300 break-all">
-                                +62 812-2324-0815
-                            </a>
-                        </li>
-                        <li class="flex items-center gap-2 sm:gap-3">
-                            <i class="fas fa-envelope text-accent flex-shrink-0 text-xs sm:text-sm"></i>
-                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-white transition-colors duration-300 break-all">
-                                info@mayuppi.sch.id
-                            </a>
-                        </li>
-                        <li class="flex items-center gap-2 sm:gap-3">
-                            <i class="fas fa-globe text-accent flex-shrink-0 text-xs sm:text-sm"></i>
-                            <a href="https://www.mayuppi.sch.id" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300 break-all">
-                                www.mayuppi.sch.id
-                            </a>
-                        </li>
-                    </ul>
+                <p class="text-gray-400 mb-4 sm:mb-6 text-sm leading-relaxed">
+                    Lembaga pendidikan Islam unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi untuk mencetak generasi pemimpin masa depan.
+                </p>
+                <div class="flex gap-1 sm:gap-2">
+                    <a href="https://www.instagram.com/ma_yuppi.official/" 
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
+                       aria-label="Instagram">
+                        <i class="fab fa-instagram text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@MAYUPPISoreang557/featured" 
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
+                       aria-label="YouTube">
+                        <i class="fab fa-youtube text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
+                    </a>
+                    <a href="#" 
+                       class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
+                       aria-label="TikTok">
+                        <i class="fab fa-tiktok text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
+                    </a>
+                    <a href="#" 
+                       class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
+                       aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
+                    </a>
                 </div>
             </div>
             
-            <!-- Divider -->
-            <div class="border-t border-white/10 pt-4 sm:pt-6 lg:pt-8">
-                <div class="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
-                    <!-- Copyright -->
-                    <p class="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
-                        © 2024 <span class="text-secondary font-semibold">MA Yuppi</span>. All rights reserved. 
-                        <span class="hidden sm:inline">|</span> 
-                        <span class="block sm:inline mt-1 sm:mt-0">Designed with <i class="fas fa-heart text-red-500 mx-1"></i> for education.</span>
-                    </p>
-                    
-                    <!-- Footer Links -->
-                    <div class="flex gap-3 sm:gap-4 lg:gap-6 text-xs sm:text-sm">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
-                            Privacy
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-6 text-secondary relative inline-block">
+                    Tautan Cepat
+                    <span class="absolute -bottom-1 sm:-bottom-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
+                </h4>
+                <ul class="space-y-2 sm:space-y-3">
+                    <li>
+                        <a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm hover:translate-x-1 hover:duration-300 inline-block">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i>
+                            Beranda
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
-                            Terms
+                    </li>
+                    <li>
+                        <a href="about.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm hover:translate-x-1 hover:duration-300 inline-block">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i>
+                            Profil Sekolah
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
-                            Sitemap
+                    </li>
+                    <li>
+                        <a href="programs.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm hover:translate-x-1 hover:duration-300 inline-block">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i>
+                            Program & Ekskul
                         </a>
-                    </div>
+                    </li>
+                    <li>
+                        <a href="galeri-ma.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm hover:translate-x-1 hover:duration-300 inline-block">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i>
+                            Galeri & Artikel
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Information -->
+            <div>
+                <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-6 text-secondary relative inline-block">
+                    Informasi
+                    <span class="absolute -bottom-1 sm:-bottom-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
+                </h4>
+                <ul class="space-y-2 sm:space-y-3">
+                    <li>
+                        <a href="about.html#visi-misi" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm hover:translate-x-1 hover:duration-300 inline-block">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i>
+                            Visi & Misi
+                        </a>
+                    </li>
+                    <li>
+                        <a href="guru.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm hover:translate-x-1 hover:duration-300 inline-block">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i>
+                            Guru
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm hover:translate-x-1 hover:duration-300 inline-block">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i>
+                            Kontak Kami
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://bit.ly/Mayuppi" target="_blank" 
+                           class="text-gray-400 hover:text-white transition-colors duration-300 text-sm hover:translate-x-1 hover:duration-300 inline-block">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i>
+                            PPDB 2025
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="sm:col-span-2 lg:col-span-1">
+                <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-6 text-secondary relative inline-block">
+                    Kontak Kami
+                    <span class="absolute -bottom-1 sm:-bottom-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
+                </h4>
+                <ul class="space-y-2 sm:space-y-3 text-sm">
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-map-marker-alt text-accent mt-0.5 sm:mt-1 flex-shrink-0 text-xs sm:text-sm"></i>
+                        <span class="text-gray-400">
+                            Jl. Raya Soreang - Banjaran No.KM 02, Cingcin, Kec. Soreang, Kabupaten Bandung, Jawa Barat 40914
+                        </span>
+                    </li>
+                    <li class="flex items-center gap-2 sm:gap-3">
+                        <i class="fas fa-phone text-accent flex-shrink-0 text-xs sm:text-sm"></i>
+                        <a href="https://wa.me/6281223240815" class="text-gray-400 hover:text-white transition-colors duration-300 break-all hover:underline">
+                            +62 812-2324-0815
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-2 sm:gap-3">
+                        <i class="fas fa-envelope text-accent flex-shrink-0 text-xs sm:text-sm"></i>
+                        <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-white transition-colors duration-300 break-all hover:underline">
+                            info@mayuppi.sch.id
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-2 sm:gap-3">
+                        <i class="fas fa-globe text-accent flex-shrink-0 text-xs sm:text-sm"></i>
+                        <a href="https://www.mayuppi.sch.id" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300 break-all hover:underline">
+                            www.mayuppi.sch.id
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Divider -->
+        <div class="border-t border-gray-700 pt-4 sm:pt-6 lg:pt-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+                <!-- Copyright -->
+                <p class="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
+                    © 2024 <span class="text-secondary font-semibold">MA Yuppi</span>. All rights reserved. 
+                    <span class="hidden sm:inline">|</span> 
+                    <span class="block sm:inline mt-1 sm:mt-0">Designed with <i class="fas fa-heart text-red-500 mx-1"></i> for education.</span>
+                </p>
+                
+                <!-- Footer Links -->
+                <div class="flex gap-3 sm:gap-4 lg:gap-6 text-xs sm:text-sm">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 hover:underline">
+                        Privacy
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 hover:underline">
+                        Terms
+                    </a>
+                    <a href="sitemap.html" class="text-gray-400 hover:text-white transition-colors duration-300 hover:underline">
+                        Sitemap
+                    </a>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
+    
 
-
-
-    <!-- Back to Top -->
+    <!-- Back to Top Button -->
     <button id="backToTop" 
-            class="fixed bottom-6 right-6 w-12 h-12 bg-gradient-to-br from-primary to-accent text-white rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 active:scale-95 opacity-0 invisible">
-        <i class="fas fa-arrow-up"></i>
+            class="fixed bottom-6 right-6 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-primary to-accent text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 opacity-0 invisible z-50 flex items-center justify-center group">
+        <i class="fas fa-arrow-up text-lg group-hover:transform group-hover:-translate-y-1 transition-transform duration-300"></i>
     </button>
 
     <!-- JavaScript Libraries -->
@@ -1050,277 +985,232 @@
             offset: 50
         });
 
-        // Programs Data
+        // Enhanced Programs Data
         const programsData = [
             {
                 id: 1,
-                name: "Tahfidz Dan Tahsin Quran",
+                name: "Tahsin & Tahfidz Pagi",
                 category: "karakter",
-                description: "Program menghafal Al-Quran dengan dan membenarkan bacaan sesuai tajwid.   ",
+                description: "Program mengawali hari dengan Al-Qur'an melalui tahsin dan tahfidz secara rutin untuk membentuk karakter Qurani.",
                 icon: "fas fa-book-quran",
-                color: "category-karakter",
-                students: 45,
-                achievements: "",
-                featured: true
+                color: "category-badge-karakter",
+                schedule: "Setiap Pagi Sebelum KBM",
+                achievements: "Peningkatan Hafalan & Tajwid",
+                featured: true,
+                highlights: [
+                    "Rutinitas Harian Qurani",
+                    "Pembinaan Tajwid",
+                    "Pembiasaan Ibadah",
+                    "Lingkungan Religius"
+                ]
             },
             {
                 id: 2,
-                name: "Klub Sains & Riset",
+                name: "Fun Learning",
                 category: "akademik",
-                description: "Riset dan eksperimen sains untuk olimpiade dan kompetisi karya ilmiah nasional.",
-                icon: "fas fa-flask",
-                color: "category-academik",
-                students: 32,
-                achievements: "12 Prestasi Nasional",
-                featured: true
+                description: "Metode pembelajaran aktif, nyaman, dan menyenangkan untuk meningkatkan minat dan pemahaman belajar siswa.",
+                icon: "fas fa-smile-beam",
+                color: "category-badge-akademik",
+                schedule: "Jam KBM",
+                achievements: "Motivasi & Prestasi Belajar",
+                featured: true,
+                highlights: [
+                    "Active Learning",
+                    "Diskusi Interaktif",
+                    "Pembelajaran Kontekstual",
+                    "Student Centered"
+                ]
             },
             {
                 id: 3,
-                name: "Coding & Robotik",
-                category: "teknologi",
-                description: "Pembelajaran pemrograman, pengembangan aplikasi, dan robotika untuk talenta digital masa depan.",
-                icon: "fas fa-laptop-code",
-                color: "category-teknologi",
-                students: 38,
-                achievements: "3 Juara Hackathon",
-                featured: true
+                name: "Guru sebagai Sahabat",
+                category: "karakter",
+                description: "Pendekatan humanis di mana guru tidak hanya mengajar di kelas, tetapi juga membersamai siswa di luar kelas.",
+                icon: "fas fa-hand-holding-heart",
+                color: "category-badge-karakter",
+                schedule: "Setiap Hari",
+                achievements: "Kedekatan & Kenyamanan Belajar",
+                featured: true,
+                highlights: [
+                    "Pendampingan Personal",
+                    "Hubungan Humanis",
+                    "Komunikasi Terbuka",
+                    "Keteladanan Guru"
+                ]
             },
             {
                 id: 4,
-                name: "English Debate Club",
-                category: "akademik",
-                description: "Melatih kemampuan berbicara, berpikir kritis, dan argumentasi dalam bahasa Inggris.",
+                name: "Layanan Konseling Terbuka",
+                category: "layanan",
+                description: "Ruang aman bagi siswa untuk berbagi cerita dan solusi, baik akademik, sosial, maupun keluarga.",
                 icon: "fas fa-comments",
-                color: "category-academik",
-                students: 28,
-                achievements: "2 Best Speaker Awards"
+                color: "category-badge-layanan",
+                schedule: "Sesuai Kebutuhan",
+                achievements: "Kesejahteraan Mental Siswa",
+                featured: false,
+                highlights: [
+                    "Konseling Akademik",
+                    "Konseling Pribadi",
+                    "Pendekatan Rahasia & Aman",
+                    "Pendampingan Psikososial"
+                ]
             },
             {
                 id: 5,
-                name: "Kaligrafi & Seni Islami",
-                category: "seni",
-                description: "Seni kaligrafi Arab, desain grafis, dan seni lukis dengan nilai-nilai Islam.",
-                icon: "fas fa-pen-nib",
-                color: "category-seni",
-                students: 25,
-                achievements: "Pameran Nasional"
+                name: "Program Literasi",
+                category: "akademik",
+                description: "Menumbuhkan budaya membaca, menulis, dan berpikir kritis melalui berbagai kegiatan literasi.",
+                icon: "fas fa-book-open",
+                color: "category-badge-akademik",
+                schedule: "Mingguan",
+                achievements: "Peningkatan Budaya Literasi",
+                featured: false,
+                highlights: [
+                    "Gerakan Membaca",
+                    "Menulis Kreatif",
+                    "Diskusi Buku",
+                    "Berpikir Kritis"
+                ]
             },
-            // {
-            //     id: 6,
-            //     name: "Futsal Team",
-            //     category: "olahraga",
-            //     description: "Tim futsal putra dan putri dengan prestasi tingkat kota dan provinsi.",
-            //     icon: "fas fa-futbol",
-            //     color: "category-olahraga",
-            //     students: 42,
-            //     achievements: "Juara 2 Turnamen Kota"
-            // },
-            // {
-            //     id: 7,
-            //     name: "Jurnalistik & Multimedia",
-            //     category: "keterampilan",
-            //     description: "Majalah sekolah, fotografi, videografi, dan pengelolaan media sosial.",
-            //     icon: "fas fa-newspaper",
-            //     color: "category-keterampilan",
-            //     students: 30,
-            //     achievements: "Majalah Terbaik Jabar"
-            // },
-            // {
-            //     id: 8,
-            //     name: "Nasyid & Hadroh",
-            //     category: "seni",
-            //     description: "Seni musik Islami dengan alat musik tradisional dan modern.",
-            //     icon: "fas fa-music",
-            //     color: "category-seni",
-            //     students: 35,
-            //     achievements: "Penampilan Nasional"
-            // },
-            // {
-            //     id: 9,
-            //     name: "PMR & Pramuka",
-            //     category: "karakter",
-            //     description: "Kepedulian sosial, pertolongan pertama, dan kegiatan kepramukaan.",
-            //     icon: "fas fa-hands-helping",
-            //     color: "category-karakter",
-            //     students: 50,
-            //     achievements: "Pramuka Garuda"
-            // },
-            // {
-            //     id: 10,
-            //     name: "Teater Islami",
-            //     category: "seni",
-            //     description: "Seni peran dan drama dengan nilai-nilai Islam dan budaya lokal.",
-            //     icon: "fas fa-theater-masks",
-            //     color: "category-seni",
-            //     students: 20,
-            //     achievements: "Festival Teater Pelajar"
-            // },
-            // {
-            //     id: 11,
-            //     name: "Olimpiade Matematika",
-            //     category: "akademik",
-            //     description: "Persiapan kompetisi matematika tingkat nasional dan internasional.",
-            //     icon: "fas fa-calculator",
-            //     color: "category-academik",
-            //     students: 24,
-            //     achievements: "Medali Perunggu Nasional"
-            // },
-            // {
-            //     id: 12,
-            //     name: "Renang",
-            //     category: "olahraga",
-            //     description: "Olahraga renang untuk kesehatan dan kompetisi tingkat regional.",
-            //     icon: "fas fa-swimmer",
-            //     color: "category-olahraga",
-            //     students: 18,
-            //     achievements: "Peraih Medali Provinsi"
-            // },
-            // {
-            //     id: 13,
-            //     name: "Kewirausahaan",
-            //     category: "keterampilan",
-            //     description: "Pelatihan bisnis, pemasaran digital, dan pengembangan produk kreatif.",
-            //     icon: "fas fa-chart-line",
-            //     color: "category-keterampilan",
-            //     students: 22,
-            //     achievements: "Business Plan Competition"
-            // },
-            // {
-            //     id: 14,
-            //     name: "Bahasa Asing (Arab & Inggris)",
-            //     category: "akademik",
-            //     description: "Penguasaan bahasa Arab dan Inggris untuk komunikasi global.",
-            //     icon: "fas fa-language",
-            //     color: "category-academik",
-            //     students: 40,
-            //     achievements: "TOEFL/TOAFL Certification"
-            // },
-            // {
-            //     id: 15,
-            //     name: "Marching Band",
-            //     category: "seni",
-            //     description: "Paduan suara dan musik dengan instrumen marching band.",
-            //     icon: "fas fa-drum",
-            //     color: "category-seni",
-            //     students: 32,
-            //     achievements: "Juara 3 Nasional"
-            // }
+            {
+                id: 6,
+                name: "Ekstrakurikuler Beragam",
+                category: "minat-bakat",
+                description: "Beragam kegiatan ekstrakurikuler untuk mengembangkan minat, bakat, dan potensi siswa.",
+                icon: "fas fa-puzzle-piece",
+                color: "category-badge-minat-bakat",
+                schedule: "Sore Hari",
+                achievements: "Prestasi Non-Akademik",
+                featured: false,
+                highlights: [
+                    "Seni & Olahraga",
+                    "Keagamaan",
+                    "Kepemimpinan",
+                    "Kreativitas"
+                ]
+            },
+            {
+                id: 7,
+                name: "Detention Edukatif",
+                category: "karakter",
+                description: "Pembinaan karakter melalui pendekatan edukatif untuk membentuk disiplin dan soft skills siswa.",
+                icon: "fas fa-user-check",
+                color: "category-badge-karakter",
+                schedule: "Sesuai Pelanggaran",
+                achievements: "Perbaikan Sikap & Disiplin",
+                featured: false,
+                highlights: [
+                    "Pembinaan Karakter",
+                    "Refleksi Diri",
+                    "Penguatan Soft Skills",
+                    "Pendampingan Guru"
+                ]
+            },
+            {
+                id: 8,
+                name: "Program Beasiswa",
+                category: "layanan",
+                description: "Memberikan kesempatan belajar yang luas tanpa batas melalui berbagai skema beasiswa.",
+                icon: "fas fa-graduation-cap",
+                color: "category-badge-layanan",
+                schedule: "Tahunan",
+                achievements: "Akses Pendidikan Merata",
+                featured: true,
+                highlights: [
+                    "Beasiswa Prestasi",
+                    "Beasiswa Yatim & Dhuafa",
+                    "Kesempatan Setara",
+                    "Pendampingan Akademik"
+                ]
+            },
+            {
+                id: 9,
+                name: "Program Ramadhan Unggulan",
+                category: "karakter",
+                description: "Penguatan iman dan kaderisasi imam tarawih serta pembinaan ibadah selama bulan Ramadhan.",
+                icon: "fas fa-moon",
+                color: "category-badge-karakter",
+                schedule: "Bulan Ramadhan",
+                achievements: "Imam & Kader Dakwah",
+                featured: true,
+                highlights: [
+                    "Pesantren Ramadhan",
+                    "Imam Tarawih",
+                    "Kajian Intensif",
+                    "Pengabdian Masyarakat"
+                ]
+            },
+            {
+                id: 10,
+                name: "7 Kebiasaan Anak Indonesia Hebat",
+                category: "karakter",
+                description: "Program pembiasaan untuk membentuk karakter unggul dan siap menghadapi masa depan.",
+                icon: "fas fa-star",
+                color: "category-badge-karakter",
+                schedule: "Harian",
+                achievements: "Karakter Unggul",
+                featured: true,
+                highlights: [
+                    "Disiplin",
+                    "Tanggung Jawab",
+                    "Mandiri",
+                    "Kolaboratif"
+                ]
+            },
+            {
+                id: 11,
+                name: "Karya Tulis Ilmiah (KTI)",
+                category: "akademik",
+                description: "Melatih nalar akademik, riset, dan penulisan ilmiah siswa.",
+                icon: "fas fa-file-alt",
+                color: "category-badge-akademik",
+                schedule: "Mingguan",
+                achievements: "Karya Ilmiah Siswa",
+                featured: false,
+                highlights: [
+                    "Metodologi Penelitian",
+                    "Penulisan Ilmiah",
+                    "Presentasi Karya",
+                    "Berpikir Analitis"
+                ]
+            },
+            {
+                id: 12,
+                name: "PPL (Praktik Pengalaman Lapangan)",
+                category: "akademik",
+                description: "Program pembelajaran langsung di masyarakat untuk membangun pengalaman sosial dan profesional siswa.",
+                icon: "fas fa-people-arrows",
+                color: "category-badge-akademik",
+                schedule: "Program Khusus",
+                achievements: "Pengalaman Lapangan",
+                featured: false,
+                highlights: [
+                    "Belajar Sosial",
+                    "Pengabdian Masyarakat",
+                    "Praktik Nyata",
+                    "Soft Skill Development"
+                ]
+            },
+            {
+                id: 13,
+                name: "Character Building Training (CBT)",
+                category: "karakter",
+                description: "Pelatihan intensif untuk penguatan karakter, kepemimpinan, dan mental tangguh siswa.",
+                icon: "fas fa-dumbbell",
+                color: "category-badge-karakter",
+                schedule: "Program Berkala",
+                achievements: "Mental & Leadership",
+                featured: true,
+                highlights: [
+                    "Leadership Training",
+                    "Mental Tangguh",
+                    "Team Building",
+                    "Motivasi Diri"
+                ]
+            }
         ];
 
-        // Render programs
-        function renderPrograms(category = 'all') {
-            const grid = document.getElementById('programsGrid');
-            const emptyState = document.getElementById('emptyState');
-            
-            // Clear grid
-            grid.innerHTML = '';
-            
-            // Filter programs
-            const filteredPrograms = programsData.filter(program => 
-                category === 'all' ? true : program.category === category
-            );
-            
-            // Show empty state if no results
-            if (filteredPrograms.length === 0) {
-                emptyState.classList.remove('hidden');
-                grid.classList.add('hidden');
-                return;
-            }
-            
-            // Hide empty state and show grid
-            emptyState.classList.add('hidden');
-            grid.classList.remove('hidden');
-            
-            // Render programs
-            filteredPrograms.forEach(program => {
-                const programCard = document.createElement('div');
-                programCard.className = 'program-card bg-white rounded-2xl shadow-lg overflow-hidden';
-                programCard.setAttribute('data-aos', 'fade-up');
-                programCard.innerHTML = `
-                    <div class="relative">
-                        <div class="${program.color} h-2"></div>
-                        <div class="p-6">
-                            <div class="flex items-start justify-between mb-4">
-                                <div>
-                                    <div class="flex items-center gap-3 mb-2">
-                                        <div class="w-12 h-12 ${program.color} rounded-lg flex items-center justify-center">
-                                            <i class="${program.icon} text-white text-lg"></i>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-xl font-bold text-primary">${program.name}</h3>
-                                            <div class="flex items-center gap-2 mt-1">
-                                                <span class="px-3 py-1 ${program.color} text-white text-xs font-semibold rounded-full">
-                                                    ${program.category.charAt(0).toUpperCase() + program.category.slice(1)}
-                                                </span>
-                                                ${program.featured ? `
-                                                    <span class="px-3 py-1 bg-secondary text-primary text-xs font-semibold rounded-full">
-                                                        <i class="fas fa-star text-xs mr-1"></i> Unggulan
-                                                    </span>
-                                                ` : ''}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">
-                                        ${program.description}
-                                    </p>
-                                    
-                                    <div class="grid grid-cols-2 gap-4 mb-6">
-                                        <div class="text-center">
-                                            <p class="text-2xl font-bold text-primary mb-1">${program.students}</p>
-                                            <p class="text-xs text-gray-500">Siswa Aktif</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <p class="text-lg font-bold text-primary mb-1">${program.achievements}</p>
-                                            <p class="text-xs text-gray-500">Pencapaian</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <button onclick="openProgramDetail(${program.id})" 
-                                            class="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group">
-                                        <span>Detail Program</span>
-                                        <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                grid.appendChild(programCard);
-            });
-            
-            // Re-initialize AOS for dynamically loaded content
-            AOS.refresh();
-        }
-
-        // Category filter
-        document.querySelectorAll('.category-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                document.querySelectorAll('.category-btn').forEach(btn => {
-                    btn.classList.remove('active', 'bg-gradient-to-br', 'from-primary', 'to-accent', 'text-white', 'shadow-lg');
-                    btn.classList.add('bg-white', 'text-gray-700', 'shadow-sm');
-                });
-                
-                // Add active class to clicked button
-                this.classList.remove('bg-white', 'text-gray-700', 'shadow-sm');
-                this.classList.add('active', 'bg-gradient-to-br', 'from-primary', 'to-accent', 'text-white', 'shadow-lg');
-                
-                // Filter programs
-                const category = this.getAttribute('data-category');
-                renderPrograms(category);
-            });
-        });
-
-        // Reset filter button
-        document.getElementById('resetFilter').addEventListener('click', function() {
-            const allBtn = document.querySelector('[data-category="all"]');
-            allBtn.click();
-        });
-
-      
-        // Mobile Menu Toggle
+          // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const iconOpen = document.getElementById('icon-open');
         const iconClose = document.getElementById('icon-close');
@@ -1375,39 +1265,305 @@
             }
         });
 
-
-        // Back to top button
-        const backToTop = document.getElementById('backToTop');
-        
+        // Navbar scroll effect
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                backToTop.classList.remove('opacity-0', 'invisible');
-                backToTop.classList.add('opacity-100', 'visible');
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-lg');
             } else {
-                backToTop.classList.remove('opacity-100', 'visible');
-                backToTop.classList.add('opacity-0', 'invisible');
+                navbar.classList.remove('shadow-lg');
             }
         });
 
-        backToTop.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+        // State management
+        let currentCategory = 'all';
+        let currentSort = 'default';
+        let searchQuery = '';
 
-        // Open program detail (placeholder function)
-        function openProgramDetail(id) {
-            const program = programsData.find(p => p.id === id);
-            if (program) {
-                alert(`Detail program: ${program.name}\n\n${program.description}\n\nFitur ini akan diimplementasikan pada versi selanjutnya.`);
-                // In production, this would open a modal or navigate to program detail page
+        // Render programs
+        function renderPrograms() {
+            const grid = document.getElementById('programsGrid');
+            const emptyState = document.getElementById('emptyState');
+            const loadingState = document.getElementById('loadingState');
+            
+            // Show loading
+            grid.classList.add('hidden');
+            emptyState.classList.add('hidden');
+            loadingState.classList.remove('hidden');
+            
+            setTimeout(() => {
+                // Hide loading
+                loadingState.classList.add('hidden');
+                
+                // Clear grid
+                grid.innerHTML = '';
+                
+                // Filter programs
+                let filteredPrograms = programsData;
+                
+                // Apply category filter
+                if (currentCategory !== 'all') {
+                    filteredPrograms = filteredPrograms.filter(program => program.category === currentCategory);
+                }
+                
+                // Apply search filter
+                if (searchQuery) {
+                    filteredPrograms = filteredPrograms.filter(program => 
+                        program.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        program.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        program.highlights.some(h => h.toLowerCase().includes(searchQuery.toLowerCase()))
+                    );
+                }
+                
+                // Apply sorting
+                if (currentSort === 'name') {
+                    filteredPrograms.sort((a, b) => a.name.localeCompare(b.name));
+                } else if (currentSort === 'featured') {
+                    filteredPrograms.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+                }
+                
+                // Update program count
+                document.getElementById('program-count').textContent = filteredPrograms.length;
+                
+                // Show empty state if no results
+                if (filteredPrograms.length === 0) {
+                    emptyState.classList.remove('hidden');
+                    grid.classList.add('hidden');
+                    return;
+                }
+                
+                // Hide empty state and show grid
+                emptyState.classList.add('hidden');
+                grid.classList.remove('hidden');
+                
+                // Render programs
+                filteredPrograms.forEach((program, index) => {
+                    const programCard = document.createElement('div');
+                    programCard.className = 'program-card bg-white rounded-xl overflow-hidden shadow-lg fade-in';
+                    programCard.style.animationDelay = `${index * 0.1}s`;
+                    
+                    programCard.innerHTML = `
+                        <div class="p-4 md:p-6">
+                            <!-- Category & Featured Badge -->
+                            <div class="flex items-center justify-between mb-3 md:mb-4">
+                                <span class="${program.color} px-2 md:px-3 py-1 text-xs font-semibold rounded-full">
+                                    ${getCategoryLabel(program.category)}
+                                </span>
+                                ${program.featured ? `
+                                    <span class="px-2 md:px-3 py-1 bg-gradient-to-r from-secondary to-yellow-400 text-primary text-xs font-bold rounded-full flex items-center gap-1">
+                                        <i class="fas fa-star text-xs"></i>
+                                        <span class="hidden sm:inline">Unggulan</span>
+                                    </span>
+                                ` : ''}
+                            </div>
+                            
+                            <!-- Icon & Title -->
+                            <div class="flex items-start gap-3 md:gap-4 mb-3 md:mb-4">
+                                <div class="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="${program.icon} text-primary text-lg md:text-xl"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="text-base md:text-xl font-bold text-primary mb-1 md:mb-2 leading-tight">
+                                        ${program.name}
+                                    </h3>
+                                    <div class="flex items-center gap-2 text-xs md:text-sm text-gray-500">
+                                        <i class="fas fa-trophy"></i>
+                                        <span class="truncate">${program.achievements}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Description -->
+                            <p class="text-gray-600 mb-4 md:mb-5 text-xs md:text-sm leading-relaxed line-clamp-3">
+                                ${program.description}
+                            </p>
+                            
+                            <!-- Program Details -->
+                            <div class="space-y-2 md:space-y-3 mb-4 md:mb-6">
+                                <div class="flex items-center gap-2 md:gap-3 text-xs md:text-sm">
+                                    <div class="flex items-center gap-2 text-gray-600">
+                                        <i class="fas fa-clock text-primary/60 w-4"></i>
+                                        <span class="font-medium">Jadwal:</span>
+                                    </div>
+                                    <span class="text-gray-700 truncate">${program.schedule}</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Highlights -->
+                            <div class="mb-4 md:mb-6">
+                                <p class="text-xs md:text-sm font-semibold text-primary mb-2">Fokus Program:</p>
+                                <div class="flex flex-wrap gap-1.5 md:gap-2">
+                                    ${program.highlights.slice(0, 3).map(highlight => `
+                                        <span class="px-2 md:px-3 py-1 bg-primary/5 text-primary text-xs rounded-full">
+                                            ${highlight}
+                                        </span>
+                                    `).join('')}
+                                    ${program.highlights.length > 3 ? `
+                                        <span class="px-2 md:px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                                            +${program.highlights.length - 3}
+                                        </span>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    grid.appendChild(programCard);
+                });
+                
+                // Re-initialize AOS
+                AOS.refresh();
+            }, 300);
+        }
+
+        // Helper function untuk label kategori
+        function getCategoryLabel(category) {
+            const labels = {
+                'all': 'Semua',
+                'akademik': 'Akademik',
+                'karakter': 'Karakter',
+                'minat-bakat': 'Minat & Bakat',
+                'layanan': 'Layanan'
+            };
+            return labels[category] || category;
+        }
+
+        // Category filter functionality (Desktop)
+        function initCategoryFilters() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-gradient-to-br', 'from-primary', 'to-accent', 'text-white', 'shadow-lg');
+                        btn.classList.add('bg-gray-50', 'hover:bg-gray-100', 'text-gray-700');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.remove('bg-gray-50', 'hover:bg-gray-100', 'text-gray-700');
+                    this.classList.add('active', 'bg-gradient-to-br', 'from-primary', 'to-accent', 'text-white', 'shadow-lg');
+                    
+                    // Update category and render
+                    currentCategory = this.getAttribute('data-category');
+                    renderPrograms();
+                });
+            });
+        }
+
+        // Mobile filter functionality
+        function initMobileFilter() {
+            const mobileFilter = document.getElementById('mobileFilter');
+            if (mobileFilter) {
+                mobileFilter.addEventListener('change', function() {
+                    currentCategory = this.value;
+                    renderPrograms();
+                });
             }
         }
 
-        // Initial render
+        // Search functionality
+        function initSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const clearSearch = document.getElementById('clearSearch');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    searchQuery = this.value.trim();
+                    
+                    // Show/hide clear button
+                    if (searchQuery) {
+                        clearSearch.classList.remove('hidden');
+                    } else {
+                        clearSearch.classList.add('hidden');
+                    }
+                    
+                    renderPrograms();
+                });
+            }
+            
+            if (clearSearch) {
+                clearSearch.addEventListener('click', function() {
+                    searchInput.value = '';
+                    searchQuery = '';
+                    this.classList.add('hidden');
+                    renderPrograms();
+                });
+            }
+        }
+
+        // Sort functionality
+        function initSort() {
+            const sortSelect = document.getElementById('sortPrograms');
+            if (sortSelect) {
+                sortSelect.addEventListener('change', function() {
+                    currentSort = this.value;
+                    renderPrograms();
+                });
+            }
+        }
+
+        // Reset filter button
+        function initResetFilter() {
+            const resetBtn = document.getElementById('resetFilter');
+            if (resetBtn) {
+                resetBtn.addEventListener('click', function() {
+                    // Reset all filters
+                    currentCategory = 'all';
+                    currentSort = 'default';
+                    searchQuery = '';
+                    
+                    // Reset UI
+                    document.getElementById('searchInput').value = '';
+                    document.getElementById('clearSearch').classList.add('hidden');
+                    document.getElementById('sortPrograms').value = 'default';
+                    
+                    const mobileFilter = document.getElementById('mobileFilter');
+                    if (mobileFilter) mobileFilter.value = 'all';
+                    
+                    const allBtn = document.querySelector('[data-category="all"]');
+                    if (allBtn) allBtn.click();
+                    else renderPrograms();
+                });
+            }
+        }
+
+        // Back to top button
+        function initBackToTop() {
+            const backToTop = document.getElementById('backToTop');
+            
+            if (backToTop) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 300) {
+                        backToTop.classList.remove('opacity-0', 'invisible');
+                        backToTop.classList.add('opacity-100', 'visible');
+                    } else {
+                        backToTop.classList.remove('opacity-100', 'visible');
+                        backToTop.classList.add('opacity-0', 'invisible');
+                    }
+                });
+
+                backToTop.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        }
+
+        // Initialize all features
         document.addEventListener('DOMContentLoaded', function() {
+            // Initial render
             renderPrograms();
+            
+            // Initialize all functionalities
+            initCategoryFilters();
+            initMobileFilter();
+            initSearch();
+            initSort();
+            initResetFilter();
+            initBackToTop();
         });
     </script>
 </body>
