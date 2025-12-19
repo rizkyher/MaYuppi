@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Galeri Seragam - MA YUPPI</title>
+    
+    <!-- Preconnect untuk performa lebih baik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="preload" href="images/seragam-harian.jpg" as="image">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': {
+                            DEFAULT: '#4A0E55',
+                            50: '#F5F2F7',
+                            100: '#EBE4EF',
+                            200: '#D7C9DF',
+                            300: '#C3AECF',
+                            400: '#AF93BF',
+                            500: '#9B78AF',
+                            600: '#875D9F',
+                            700: '#73428F',
+                            800: '#5F277F',
+                            900: '#4A0E55'
+                        },
+                        'secondary': {
+                            DEFAULT: '#FFD700',
+                            50: '#FFFDF2',
+                            100: '#FFFBCC',
+                            200: '#FFF7A3',
+                            300: '#FFF380',
+                            400: '#FFEF5C',
+                            500: '#FFEB33',
+                            600: '#FFE600',
+                            700: '#E6C300',
+                            800: '#CCAB00',
+                            900: '#B39400'
+                        },
+                        'accent': {
+                            DEFAULT: '#8B5FBF',
+                            50: '#F8F5FC',
+                            100: '#F0EAF7',
+                            200: '#E1D5F0',
+                            300: '#D2C0E8',
+                            400: '#C3ABE1',
+                            500: '#B496D9',
+                            600: '#A581D1',
+                            700: '#966CC9',
+                            800: '#8757C1',
+                            900: '#8B5FBF'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'blob': 'blob 10s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' }
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Modern Glassmorphism */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(90deg, #4A0E55 0%, #8B5FBF 50%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Uniform Cards */
+        .uniform-card {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            cursor: pointer;
+            position: relative;
+            border: 2px solid transparent;
+        }
+        
+        .uniform-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 30px 60px rgba(74, 14, 85, 0.25);
+            border-color: #8B5FBF;
+        }
+        
+        .uniform-card .image-container {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .uniform-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .uniform-card:hover img {
+            transform: scale(1.2) rotate(2deg);
+        }
+        
+        .uniform-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #4A0E55, #8B5FBF);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+        
+        /* Gender Badge */
+        .gender-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+        
+        .gender-badge.ikhwan {
+            background: linear-gradient(45deg, #2563eb, #3b82f6);
+            color: white;
+        }
+        
+        .gender-badge.akhwat {
+            background: linear-gradient(45deg, #db2777, #ec4899);
+            color: white;
+        }
+        
+        .gender-badge.all {
+            background: linear-gradient(45deg, #7c3aed, #8b5cf6);
+            color: white;
+        }
+        
+        /* Filter Chips */
+        .filter-chip {
+            padding: 12px 24px;
+            border-radius: 30px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            color: #4A0E55;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .filter-chip:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(74, 14, 85, 0.2);
+            border-color: #8B5FBF;
+        }
+        
+        .filter-chip.active {
+            background: linear-gradient(45deg, #4A0E55, #8B5FBF);
+            color: white;
+            border-color: #FFD700;
+            box-shadow: 0 8px 30px rgba(74, 14, 85, 0.3);
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(15px) saturate(180%);
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            transform: scale(0.8) translateY(50px);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+        
+        /* Responsive Grid */
+        .uniform-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+        
+        @media (max-width: 768px) {
+            .uniform-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .uniform-card .image-container {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .uniform-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-chip {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-gradient-to-br from-primary-50 via-white to-accent-50 text-gray-900 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-primary-900 dark:text-white transition-colors duration-300">
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14 sm:h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="relative w-10 h-10 sm:w-12 sm:h-12">
+                        <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-lg sm:rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                            <i class="fas fa-graduation-cap text-white text-lg sm:text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="hidden xs:block">
+                        <h1 class="text-lg sm:text-xl font-black font-serif text-primary leading-tight">MA YUPPI</h1>
+                        <p class="text-xs text-gray-500 font-medium">Madrasah Aliyah</p>
+                    </div>
+                </a>
+                
+                <!-- Navigation Links -->
+                <div class="hidden lg:flex items-center space-x-1">
+                    <a href="index.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                        Beranda
+                    </a>
+                    <a href="about.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                        Profil
+                    </a>
+                    <a href="programs.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                        Program
+                    </a>
+                    <a href="galeri-ma.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                        Galeri MA
+                    </a>
+                    <a href="galeri-seragam.html" class="px-5 py-2.5 text-sm font-semibold text-primary transition-colors duration-300 rounded-lg bg-primary/5">
+                        Galeri Seragam
+                    </a>
+                    <a href="contact.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                        Kontak
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="lg:hidden w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300">
+                    <i class="fas fa-bars text-white text-base sm:text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-16 lg:pt-28 lg:pb-20 overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-10 left-10 w-32 h-32 bg-secondary/20 rounded-full blur-3xl animate-blob"></div>
+            <div class="absolute bottom-10 right-10 w-48 h-48 bg-accent/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <!-- Breadcrumb -->
+                <div class="breadcrumb mb-6" data-aos="fade-right">
+                    <a href="index.html" class="hover:text-primary">Beranda</a>
+                    <span class="separator mx-2">/</span>
+                    <span class="text-primary font-semibold">Galeri Seragam</span>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="text-center">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 glass-effect dark:glass-dark rounded-full text-sm font-semibold text-primary dark:text-white mb-6 animate-slide-up">
+                        <i class="fas fa-tshirt text-secondary animate-pulse"></i>
+                        <span>KOLEKSI SERAGAM MA YUPPI</span>
+                    </div>
+                    
+                    <!-- Title -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-6">
+                        Seragam <span class="gradient-text">Khas</span>
+                        <span class="block mt-4">MA YUPPI</span>
+                    </h1>
+                    
+                    <!-- Description -->
+                    <p class="text-lg lg:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8 animate-slide-up">
+                        Kenali berbagai jenis seragam yang digunakan siswa MA YUPPI dengan desain elegan dan makna filosofis mendalam.
+                    </p>
+                    
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-8 animate-slide-up animation-delay-100">
+                        <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                            <div class="text-2xl font-bold text-primary dark:text-white">8</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Jenis Seragam</div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                            <div class="text-2xl font-bold text-primary dark:text-white">2</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Varian Gender</div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                            <div class="text-2xl font-bold text-primary dark:text-white">5</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Hari Pemakaian</div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                            <div class="text-2xl font-bold text-primary dark:text-white">100%</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Kesesuaian Syar'i</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Navigation -->
+                    <div class="flex flex-wrap justify-center gap-3 animate-slide-up animation-delay-200">
+                        <a href="#uniform-gallery" class="modern-btn group bg-gradient-to-r from-primary to-accent text-white">
+                            <i class="fas fa-tshirt mr-2 group-hover:scale-110 transition-transform"></i>
+                            <span>Lihat Koleksi</span>
+                        </a>
+                        <a href="#color-palette" class="modern-btn group">
+                            <i class="fas fa-palette mr-2 group-hover:rotate-12 transition-transform"></i>
+                            <span>Palet Warna</span>
+                        </a>
+                        <a href="galeri-ma.html" class="modern-btn group">
+                            <i class="fas fa-images mr-2 group-hover:translate-y-1 transition-transform"></i>
+                            <span>Lihat Galeri MA</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Uniform Gallery Section -->
+    <section id="uniform-gallery" class="py-16 lg:py-20 bg-gradient-to-b from-white via-primary-50 to-accent-50 dark:from-gray-900 dark:via-gray-900 dark:to-primary-900/20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary dark:text-white mb-4">
+                        Koleksi <span class="gradient-text">Lengkap</span> Seragam
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg max-w-3xl mx-auto">
+                        Filter berdasarkan hari pemakaian dan jenis kelamin untuk melihat seragam yang sesuai.
+                    </p>
+                </div>
+                
+                <!-- Filters -->
+                <div class="space-y-8 mb-12" data-aos="fade-up">
+                    <!-- Hari Filter -->
+                    <div>
+                        <h3 class="text-lg font-bold text-primary mb-4 text-center">Filter berdasarkan Hari:</h3>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <button class="filter-chip active" data-filter="all">
+                                <i class="fas fa-layer-group mr-2"></i>
+                                Semua Seragam
+                            </button>
+                            <button class="filter-chip" data-filter="harian">
+                                <i class="fas fa-user-graduate mr-2"></i>
+                                Harian (Senin-Selasa)
+                            </button>
+                            <button class="filter-chip" data-filter="pramuka">
+                                <i class="fas fa-campground mr-2"></i>
+                                Pramuka (Rabu)
+                            </button>
+                            <button class="filter-chip" data-filter="kamis-jumat">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                Kamis & Jumat
+                            </button>
+                            <button class="filter-chip" data-filter="olahraga">
+                                <i class="fas fa-running mr-2"></i>
+                                Olahraga
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Gender Filter -->
+                    <div>
+                        <h3 class="text-lg font-bold text-primary mb-4 text-center">Filter berdasarkan Jenis Kelamin:</h3>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <button class="filter-chip active" data-gender="all">
+                                <i class="fas fa-venus-mars mr-2"></i>
+                                Semua
+                            </button>
+                            <button class="filter-chip" data-gender="ikhwan">
+                                <i class="fas fa-male mr-2"></i>
+                                Ikhwan
+                            </button>
+                            <button class="filter-chip" data-gender="akhwat">
+                                <i class="fas fa-female mr-2"></i>
+                                Akhwat
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Uniforms Grid -->
+                <div class="uniform-grid" id="uniformsGallery">
+                    <!-- Uniform cards will be loaded here -->
+                </div>
+                
+                <!-- Empty State -->
+                <div id="emptyState" class="text-center py-16 hidden" data-aos="fade-up">
+                    <div class="w-32 h-32 mx-auto mb-6">
+                        <div class="w-full h-full bg-gradient-to-br from-primary/10 to-accent/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-search text-gray-400 dark:text-gray-500 text-4xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-3">Tidak ada seragam ditemukan</h3>
+                    <p class="text-gray-500 dark:text-gray-400 max-w-md mx-auto">Coba gunakan filter yang berbeda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Palette Section -->
+    <section id="color-palette" class="py-16 lg:py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary dark:text-white mb-4">
+                        Filosofi <span class="gradient-text">Warna</span> Seragam
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg max-w-3xl mx-auto">
+                        Setiap warna pada seragam MA YUPPI memiliki makna filosofis yang mendalam.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-4 gap-8" data-aos="fade-up">
+                    <div class="text-center">
+                        <div class="w-24 h-24 mx-auto rounded-2xl bg-[#4A0E55] shadow-xl mb-4"></div>
+                        <h3 class="text-xl font-bold text-primary mb-2">Ungu Tua</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Identitas sekolah, kebijaksanaan, dan spiritualitas</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-24 h-24 mx-auto rounded-2xl bg-[#8B5FBF] shadow-xl mb-4"></div>
+                        <h3 class="text-xl font-bold text-primary mb-2">Ungu Muda</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Kreativitas, inovasi, dan kecerdasan</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-24 h-24 mx-auto rounded-2xl bg-[#FFD700] shadow-xl mb-4"></div>
+                        <h3 class="text-xl font-bold text-primary mb-2">Emas</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Prestasi, keunggulan, dan kemuliaan</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-24 h-24 mx-auto rounded-2xl bg-white border border-gray-200 shadow-xl mb-4"></div>
+                        <h3 class="text-xl font-bold text-primary mb-2">Putih</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Kesucian, kejujuran, dan kebersihan hati</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-gradient-to-r from-primary to-accent relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-4xl mx-auto text-center text-white">
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold mb-6">
+                    Ingin Melihat Foto Sekolah?
+                </h2>
+                <p class="text-lg lg:text-xl mb-8 opacity-90">
+                    Jelajahi galeri foto eksklusif lingkungan sekolah, fasilitas, dan aktivitas pembelajaran di MA YUPPI.
+                </p>
+                <a href="galeri-ma.html" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
+                    <i class="fas fa-images text-lg"></i>
+                    <span>Lihat Galeri MA</span>
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex justify-center items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold text-secondary">MA YUPPI</h3>
+                </div>
+                <p class="text-gray-400 mb-6 max-w-2xl mx-auto">
+                    Madrasah Aliyah Unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi.
+                </p>
+                <div class="flex justify-center gap-6 mb-8">
+                    <a href="index.html" class="text-gray-400 hover:text-white transition-colors">Beranda</a>
+                    <a href="about.html" class="text-gray-400 hover:text-white transition-colors">Profil</a>
+                    <a href="galeri-ma.html" class="text-gray-400 hover:text-white transition-colors">Galeri MA</a>
+                    <a href="galeri-seragam.html" class="text-white font-semibold">Galeri Seragam</a>
+                    <a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Kontak</a>
+                </div>
+                <p class="text-gray-500 text-sm">
+                    © 2024 MA YUPPI. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="uniformModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 id="modalTitle" class="text-2xl font-bold text-primary mb-2"></h3>
+                        <div class="flex gap-2">
+                            <span id="modalCategory" class="px-3 py-1 bg-primary text-white text-sm rounded-full"></span>
+                            <span id="modalGender" class="px-3 py-1 text-sm rounded-full"></span>
+                        </div>
+                    </div>
+                    <button id="closeModal" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
+                        <i class="fas fa-times text-gray-600"></i>
+                    </button>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                        <img id="modalImage" class="w-full h-96 object-cover rounded-2xl shadow-lg" alt="Seragam">
+                    </div>
+                    <div>
+                        <div class="mb-6">
+                            <h4 class="text-lg font-bold text-primary mb-3">Ketentuan Pemakaian:</h4>
+                            <ul id="modalRules" class="space-y-2 text-gray-600"></ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-bold text-primary mb-3">Detail:</h4>
+                            <p id="modalDescription" class="text-gray-600 mb-4"></p>
+                            <div class="text-sm text-gray-500">
+                                <p><i class="fas fa-calendar-day mr-2"></i> <span id="modalDate"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Uniforms Data
+        const uniformsData = [
+            {
+                id: 1,
+                title: "Seragam Senin (Ikhwan)",
+                category: "harian",
+                gender: "ikhwan",
+                image: "images/seragam/ikhwan-senin.jpeg",
+                date: "Senin",
+                description: "Seragam ikhwan hari Senin Madrasah Aliyah YUPPI.",
+                rules: [
+                    "Kemeja putih dimasukkan",
+                    "Memakai almamater madrasah",
+                    "Rambut rapi dan tidak diwarnai",
+                    "Celana panjang model standar",
+                    "Sepatu sekolah dominan hitam",
+                    "Kaos kaki hitam"
+                ]
+            },
+            {
+                id: 2,
+                title: "Seragam Senin (Akhwat)",
+                category: "harian",
+                gender: "akhwat",
+                image: "images/seragam/akhwat-senin.jpeg",
+                date: "Senin",
+                description: "Seragam akhwat hari Senin Madrasah Aliyah YUPPI.",
+                rules: [
+                    "Wajib memakai ciput setiap hari",
+                    "Kerudung segitiga panjang dan tebal",
+                    "Memakai almamater madrasah",
+                    "Rok span panjang menutupi area belakang",
+                    "Sepatu sekolah dominan hitam",
+                    "Kaos kaki hitam atau putih"
+                ]
+            },
+            {
+                id: 3,
+                title: "Seragam Selasa (Ikhwan)",
+                category: "harian",
+                gender: "ikhwan",
+                image: "images/seragam/ikhwan-selasa.jpeg",
+                date: "Selasa",
+                description: "Seragam ikhwan hari Selasa dengan rompi Madrasah Aliyah YUPPI.",
+                rules: [
+                    "Kemeja putih tetap dimasukkan",
+                    "Memakai rompi Madrasah Aliyah YUPPI",
+                    "Atribut lengkap sesuai ketentuan",
+                    "Celana dan sepatu sesuai hari Senin"
+                ]
+            },
+            {
+                id: 4,
+                title: "Seragam Pramuka",
+                category: "pramuka",
+                gender: "all",
+                image: "images/seragam/rabu.jpeg",
+                date: "Rabu",
+                description: "Seragam Pramuka Madrasah Aliyah YUPPI.",
+                rules: [
+                    "Seragam pramuka lengkap",
+                    "Memakai atribut pramuka resmi",
+                    "Sepatu dan kaos kaki sesuai aturan",
+                    "Baret dan perlengkapan lengkap"
+                ]
+            },
+            {
+                id: 5,
+                title: "Seragam Kamis & Jumat",
+                category: "kamis-jumat",
+                gender: "all",
+                image: "images/seragam/kamis-jumat.jpeg",
+                date: "Kamis & Jumat",
+                description: "Seragam khas Kamis & Jumat Madrasah Aliyah YUPPI.",
+                rules: [
+                    "Kerudung hitam untuk akhwat",
+                    "Kerah/collar berwarna hitam",
+                    "Atribut sekolah tetap dipasang",
+                    "Ketentuan sepatu mengikuti aturan"
+                ]
+            },
+            {
+                id: 6,
+                title: "Seragam Olahraga",
+                category: "olahraga",
+                gender: "all",
+                image: "images/seragam/olahraga.jpeg",
+                date: "Jam Olahraga",
+                description: "Seragam olahraga Madrasah Aliyah YUPPI.",
+                rules: [
+                    "Ikhwan boleh memakai sepatu sport",
+                    "Celana olahraga standar",
+                    "Akhwat memakai kerudung sporty",
+                    "Setelah olahraga ganti seragam"
+                ]
+            }
+        ];
+
+        // State Management
+        let currentFilter = 'all';
+        let currentGender = 'all';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderUniforms();
+            initFilters();
+            initModal();
+            initMobileMenu();
+        });
+
+        function renderUniforms() {
+            const container = document.getElementById('uniformsGallery');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (!container) return;
+
+            // Filter uniforms
+            const filteredUniforms = uniformsData.filter(uniform => {
+                const categoryMatch = currentFilter === 'all' || uniform.category === currentFilter;
+                const genderMatch = currentGender === 'all' || uniform.gender === currentGender || uniform.gender === 'all';
+                return categoryMatch && genderMatch;
+            });
+
+            // Show/hide empty state
+            if (filteredUniforms.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            // Render uniforms
+            container.innerHTML = filteredUniforms.map((uniform, index) => `
+                <div class="uniform-card" 
+                     data-id="${uniform.id}"
+                     data-aos="fade-up"
+                     data-aos-delay="${(index % 4) * 100}">
+                    <div class="image-container">
+                        <img src="${uniform.image}" 
+                             alt="${uniform.title}"
+                             loading="lazy"
+                             onerror="this.src='https://via.placeholder.com/400x300?text=Seragam+MA+YUPPI'">
+                        <div class="uniform-badge">${getCategoryLabel(uniform.category)}</div>
+                        <div class="gender-badge ${uniform.gender}">
+                            ${uniform.gender === 'ikhwan' ? 'Ikhwan' : 
+                              uniform.gender === 'akhwat' ? 'Akhwat' : 'Semua'}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-primary text-lg mb-2">${uniform.title}</h4>
+                        <p class="text-sm text-gray-500 mb-3">${uniform.date}</p>
+                        <p class="text-sm text-gray-600 line-clamp-2">${uniform.description}</p>
+                        <button class="mt-4 text-primary font-semibold text-sm hover:text-accent transition-colors">
+                            Lihat Detail <i class="fas fa-chevron-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add click event to cards
+            container.querySelectorAll('.uniform-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const id = Number(this.dataset.id);
+                    const uniform = uniformsData.find(u => u.id === id);
+                    if (uniform) openModal(uniform);
+                });
+            });
+        }
+
+        function initFilters() {
+            // Day filters
+            document.querySelectorAll('[data-filter]').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active state
+                    document.querySelectorAll('[data-filter]').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+
+                    // Update filter and re-render
+                    currentFilter = this.dataset.filter;
+                    renderUniforms();
+                });
+            });
+
+            // Gender filters
+            document.querySelectorAll('[data-gender]').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active state
+                    document.querySelectorAll('[data-gender]').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+
+                    // Update filter and re-render
+                    currentGender = this.dataset.gender;
+                    renderUniforms();
+                });
+            });
+        }
+
+        function initModal() {
+            const modal = document.getElementById('uniformModal');
+            const closeBtn = document.getElementById('closeModal');
+
+            if (!modal || !closeBtn) return;
+
+            // Close modal
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            // Close on overlay click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                }
+            });
+        }
+
+        function openModal(uniform) {
+            const modal = document.getElementById('uniformModal');
+            if (!modal) return;
+
+            // Populate modal content
+            document.getElementById('modalTitle').textContent = uniform.title;
+            document.getElementById('modalCategory').textContent = getCategoryLabel(uniform.category);
+            document.getElementById('modalGender').textContent = uniform.gender === 'ikhwan' ? 'Ikhwan' : 
+                                                               uniform.gender === 'akhwat' ? 'Akhwat' : 'Semua';
+            document.getElementById('modalGender').className = `px-3 py-1 text-sm rounded-full ${uniform.gender === 'ikhwan' ? 'bg-blue-100 text-blue-800' :
+                                                              uniform.gender === 'akhwat' ? 'bg-pink-100 text-pink-800' :
+                                                              'bg-purple-100 text-purple-800'}`;
+            document.getElementById('modalImage').src = uniform.image;
+            document.getElementById('modalImage').alt = uniform.title;
+            document.getElementById('modalDescription').textContent = uniform.description;
+            document.getElementById('modalDate').textContent = `Hari: ${uniform.date}`;
+
+            // Populate rules
+            const rulesList = document.getElementById('modalRules');
+            rulesList.innerHTML = uniform.rules.map(rule => `
+                <li class="flex items-start">
+                    <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                    <span>${rule}</span>
+                </li>
+            `).join('');
+
+            // Show modal
+            modal.classList.add('active');
+        }
+
+        function getCategoryLabel(category) {
+            const labels = {
+                'harian': 'Harian (Senin-Selasa)',
+                'pramuka': 'Pramuka (Rabu)',
+                'kamis-jumat': 'Kamis & Jumat',
+                'olahraga': 'Olahraga',
+                'upacara': 'Upacara'
+            };
+            return labels[category] || category;
+        }
+
+        function initMobileMenu() {
+            const button = document.getElementById('mobile-menu-button');
+            const nav = document.getElementById('navbar');
+            
+            button.addEventListener('click', () => {
+                // Create mobile menu if it doesn't exist
+                if (!document.getElementById('mobile-menu')) {
+                    const mobileMenu = document.createElement('div');
+                    mobileMenu.id = 'mobile-menu';
+                    mobileMenu.className = 'lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-2xl';
+                    mobileMenu.innerHTML = `
+                        <div class="container mx-auto px-4 py-4">
+                            <div class="space-y-2">
+                                <a href="index.html" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Beranda</a>
+                                <a href="about.html" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Profil</a>
+                                <a href="galeri-ma.html" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Galeri MA</a>
+                                <a href="galeri-seragam.html" class="block py-3 px-4 bg-primary/5 text-primary rounded-lg font-semibold">Galeri Seragam</a>
+                                <a href="contact.html" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Kontak</a>
+                            </div>
+                        </div>
+                    `;
+                    nav.appendChild(mobileMenu);
+                    
+                    // Toggle menu
+                    mobileMenu.classList.toggle('hidden');
+                } else {
+                    document.getElementById('mobile-menu').classList.toggle('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

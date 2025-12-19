@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Galeri Foto - MA YUPPI</title>
+    
+    <!-- Preconnect untuk performa lebih baik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': {
+                            DEFAULT: '#4A0E55',
+                            50: '#F5F2F7',
+                            100: '#EBE4EF',
+                            200: '#D7C9DF',
+                            300: '#C3AECF',
+                            400: '#AF93BF',
+                            500: '#9B78AF',
+                            600: '#875D9F',
+                            700: '#73428F',
+                            800: '#5F277F',
+                            900: '#4A0E55'
+                        },
+                        'secondary': {
+                            DEFAULT: '#FFD700',
+                            50: '#FFFDF2',
+                            100: '#FFFBCC',
+                            200: '#FFF7A3',
+                            300: '#FFF380',
+                            400: '#FFEF5C',
+                            500: '#FFEB33',
+                            600: '#FFE600',
+                            700: '#E6C300',
+                            800: '#CCAB00',
+                            900: '#B39400'
+                        },
+                        'accent': {
+                            DEFAULT: '#8B5FBF',
+                            50: '#F8F5FC',
+                            100: '#F0EAF7',
+                            200: '#E1D5F0',
+                            300: '#D2C0E8',
+                            400: '#C3ABE1',
+                            500: '#B496D9',
+                            600: '#A581D1',
+                            700: '#966CC9',
+                            800: '#8757C1',
+                            900: '#8B5FBF'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'progress': 'progress 3s linear forwards',
+                        'shimmer': 'shimmer 2s infinite',
+                        'slide-in-right': 'slideInRight 0.5s ease-out',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'scale-up': 'scaleUp 0.3s ease-out',
+                        'ripple': 'ripple 0.6s linear',
+                        'gradient': 'gradient 8s ease infinite',
+                        'wave': 'wave 2s linear infinite',
+                        'blob': 'blob 10s infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                        'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+                        'slide-down': 'slideDown 0.3s ease-out',
+                        'fade-in-up': 'fadeInUp 0.5s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        progress: {
+                            '0%': { width: '100%' },
+                            '100%': { width: '0%' }
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200px 0' },
+                            '100%': { backgroundPosition: '200px 0' }
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(0)' }
+                        },
+                        scaleUp: {
+                            '0%': { transform: 'scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        ripple: {
+                            '0%': { transform: 'scale(0)', opacity: '1' },
+                            '100%': { transform: 'scale(4)', opacity: '0' }
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' }
+                        },
+                        wave: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' }
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        fadeInUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    },
+                    screens: {
+                        'xs': '375px',
+                        '3xl': '1920px',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Modern Glassmorphism */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Gradient Background Animation */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #4A0E55, #5C1A68, #8B5FBF, #FFD700);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #4A0E55 0%, #8B5FBF 50%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #4A0E55, #8B5FBF);
+            border-radius: 10px;
+            border: 3px solid #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #5C1A68, #9D77D9);
+        }
+        
+        /* Selection */
+        ::selection {
+            background: rgba(139, 95, 191, 0.3);
+            color: white;
+        }
+        
+        /* Gallery Grid - Enhanced */
+        .gallery-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+        
+        /* Gallery Item - Modern Card */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(74, 14, 85, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease, filter 0.3s ease;
+            filter: brightness(0.95);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.15);
+            filter: brightness(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(74, 14, 85, 0.95) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            color: white;
+            transform: translateY(20px);
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Modern Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(15px) saturate(180%);
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            max-width: 1200px;
+            width: 100%;
+            max-height: 90vh;
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            transform: scale(0.8) translateY(50px);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+        
+        /* Filter Chips */
+        .filter-chip {
+            padding: 12px 24px;
+            border-radius: 30px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            color: #4A0E55;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .filter-chip:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(74, 14, 85, 0.2);
+            border-color: #8B5FBF;
+        }
+        
+        .filter-chip.active {
+            background: linear-gradient(45deg, #4A0E55, #8B5FBF);
+            color: white;
+            border-color: #FFD700;
+            box-shadow: 0 8px 30px rgba(74, 14, 85, 0.3);
+        }
+        
+        /* Loading Animation */
+        .loading-wave {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .loading-wave span {
+            width: 6px;
+            height: 30px;
+            background: linear-gradient(45deg, #4A0E55, #8B5FBF);
+            border-radius: 3px;
+            animation: wave 1.4s ease-in-out infinite;
+            transform-origin: bottom;
+        }
+        
+        @keyframes wave {
+            0%, 60%, 100% { transform: scaleY(0.3); }
+            30% { transform: scaleY(1); }
+        }
+        
+        /* Modern Button */
+        .modern-btn {
+            position: relative;
+            overflow: hidden;
+            background: white;
+            color: #4A0E55;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 14px 32px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 25px rgba(74, 14, 85, 0.15);
+            z-index: 1;
+        }
+        
+        .modern-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(74, 14, 85, 0.25);
+        }
+        
+        /* Pagination */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 3rem;
+        }
+
+        .pagination-btn {
+            min-width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: white;
+            color: #4A0E55;
+            border: 2px solid #e5e7eb;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .pagination-btn:hover:not(.disabled):not(.active) {
+            transform: translateY(-3px);
+            border-color: #8B5FBF;
+            box-shadow: 0 10px 25px rgba(74, 14, 85, 0.15);
+        }
+
+        .pagination-btn.active {
+            background: linear-gradient(45deg, #4A0E55, #8B5FBF);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 8px 25px rgba(74, 14, 85, 0.25);
+        }
+
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .gallery-item {
+                aspect-ratio: 1/1;
+            }
+            
+            .modal-content {
+                margin: 0.5rem;
+                max-height: calc(100vh - 1rem);
+                border-radius: 20px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-chip {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-gradient-to-br from-primary-50 via-white to-accent-50 text-gray-900 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-primary-900 dark:text-white transition-colors duration-300">
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14 sm:h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="relative w-10 h-10 sm:w-12 sm:h-12">
+                        <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-lg sm:rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                            <i class="fas fa-graduation-cap text-white text-lg sm:text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="hidden xs:block">
+                        <h1 class="text-lg sm:text-xl font-black font-serif text-primary leading-tight">MA YUPPI</h1>
+                        <p class="text-xs text-gray-500 font-medium">Madrasah Aliyah</p>
+                    </div>
+                </a>
+                
+                <!-- Navigation Links -->
+                <div class="hidden lg:flex items-center space-x-1">
+                    <a href="index.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                        Beranda
+                    </a>
+                    <a href="about.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                        Profil
+                    </a>
+                    <a href="programs.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                        Program
+                    </a>
+                    <a href="galeri-ma.html" class="px-5 py-2.5 text-sm font-semibold text-primary transition-colors duration-300 rounded-lg bg-primary/5">
+                        Galeri MA
+                    </a>
+                    <a href="galeri-seragam.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                        Galeri Seragam
+                    </a>
+                    <a href="contact.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
+                        Kontak
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="lg:hidden w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300">
+                    <i class="fas fa-bars text-white text-base sm:text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-16 lg:pt-28 lg:pb-20 overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-10 left-10 w-32 h-32 bg-secondary/20 rounded-full blur-3xl animate-blob"></div>
+            <div class="absolute bottom-10 right-10 w-48 h-48 bg-accent/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <!-- Breadcrumb -->
+                <div class="breadcrumb mb-6" data-aos="fade-right">
+                    <a href="index.html" class="hover:text-primary">Beranda</a>
+                    <span class="separator mx-2">/</span>
+                    <span class="text-primary font-semibold">Galeri MA</span>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="text-center">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 glass-effect dark:glass-dark rounded-full text-sm font-semibold text-primary dark:text-white mb-6 animate-slide-up">
+                        <i class="fas fa-camera text-secondary animate-pulse"></i>
+                        <span>GALERI FOTO MA YUPPI</span>
+                    </div>
+                    
+                    <!-- Title -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-6">
+                        Jelajahi Keindahan
+                        <span class="block mt-4 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient">
+                            MA YUPPI
+                        </span>
+                    </h1>
+                    
+                    <!-- Description -->
+                    <p class="text-lg lg:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8 animate-slide-up">
+                        Dokumentasi visual lingkungan sekolah, gedung, dan suasana pembelajaran di MA YUPPI.
+                    </p>
+                    
+                    <!-- Quick Navigation -->
+                    <div class="flex flex-wrap justify-center gap-3 animate-slide-up animation-delay-100">
+                        <a href="#photo-gallery" class="modern-btn group bg-gradient-to-r from-primary to-accent text-white">
+                            <i class="fas fa-images mr-2 group-hover:rotate-12 transition-transform"></i>
+                            <span>Foto Sekolah</span>
+                        </a>
+                        <a href="#activities" class="modern-btn group">
+                            <i class="fas fa-running mr-2 group-hover:translate-y-1 transition-transform"></i>
+                            <span>Aktivitas</span>
+                        </a>
+                        <a href="galeri-seragam.html" class="modern-btn group">
+                            <i class="fas fa-tshirt mr-2 group-hover:scale-110 transition-transform"></i>
+                            <span>Lihat Seragam</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="photo-gallery" class="py-16 lg:py-20 bg-white dark:bg-gray-900/50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary dark:text-white mb-4">
+                        Momen Terbaik <span class="gradient-text">MA YUPPI</span>
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg max-w-3xl mx-auto">
+                        Koleksi foto eksklusif lingkungan sekolah, fasilitas, dan aktivitas pembelajaran.
+                    </p>
+                </div>
+                
+                <!-- Filter Chips -->
+                <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up">
+                    <button class="filter-chip active" data-filter="all">
+                        <i class="fas fa-layer-group mr-2"></i>
+                        Semua Foto
+                    </button>
+                    <button class="filter-chip" data-filter="building">
+                        <i class="fas fa-building mr-2"></i>
+                        Gedung Sekolah
+                    </button>
+                    <button class="filter-chip" data-filter="classroom">
+                        <i class="fas fa-chalkboard mr-2"></i>
+                        Ruang Kelas
+                    </button>
+                    <button class="filter-chip" data-filter="environment">
+                        <i class="fas fa-tree mr-2"></i>
+                        Lingkungan
+                    </button>
+                </div>
+                
+                <!-- Gallery Grid -->
+                <div class="gallery-grid" id="schoolGallery">
+                    <!-- Photos will be loaded here by JavaScript -->
+                </div>
+                
+                <!-- Loading State -->
+                <div id="loadingState" class="text-center py-16 hidden">
+                    <div class="loading-wave">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 mt-6">Memuat foto...</p>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination-container" id="paginationContainer">
+                    <!-- Pagination buttons will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Gallery Section -->
+    <section id="activities" class="py-16 lg:py-20 bg-gradient-to-b from-primary-50/50 to-white dark:from-gray-900/50 dark:to-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary dark:text-white mb-4">
+                        Momen <span class="gradient-text">Berkesan</span> Siswa
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg max-w-3xl mx-auto">
+                        Dokumentasi kegiatan pembelajaran, ekskul, dan acara sekolah.
+                    </p>
+                </div>
+                
+                <!-- Activities Gallery Grid -->
+                <div class="gallery-grid" id="activitiesGallery">
+                    <!-- Activities photos will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-gradient-to-r from-primary to-accent relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-4xl mx-auto text-center text-white">
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold mb-6">
+                    Ingin Melihat Koleksi Seragam?
+                </h2>
+                <p class="text-lg lg:text-xl mb-8 opacity-90">
+                    Jelajahi koleksi lengkap seragam khas MA YUPPI dengan desain elegan dan makna filosofis mendalam.
+                </p>
+                <a href="galeri-seragam.html" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
+                    <i class="fas fa-tshirt text-lg"></i>
+                    <span>Lihat Galeri Seragam</span>
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex justify-center items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold text-secondary">MA YUPPI</h3>
+                </div>
+                <p class="text-gray-400 mb-6 max-w-2xl mx-auto">
+                    Madrasah Aliyah Unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi.
+                </p>
+                <div class="flex justify-center gap-6 mb-8">
+                    <a href="index.html" class="text-gray-400 hover:text-white transition-colors">Beranda</a>
+                    <a href="about.html" class="text-gray-400 hover:text-white transition-colors">Profil</a>
+                    <a href="galeri-ma.html" class="text-white font-semibold">Galeri MA</a>
+                    <a href="galeri-seragam.html" class="text-gray-400 hover:text-white transition-colors">Seragam</a>
+                    <a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Kontak</a>
+                </div>
+                <p class="text-gray-500 text-sm">
+                    © 2024 MA YUPPI. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Gallery Data
+        const galleryData = {
+            schoolPhotos: [
+                {
+                    id: 1,
+                    title: "Gedung Utama",
+                    category: "building",
+                    image: "images/foto-1.jpg",
+                    description: "Gedung utama MA YUPPI dengan arsitektur modern."
+                },
+                {
+                    id: 2,
+                    title: "Ruang Kelas",
+                    category: "classroom",
+                    image: "images/foto-2.jpg",
+                    description: "Ruang kelas yang nyaman dan dilengkapi teknologi."
+                },
+                {
+                    id: 3,
+                    title: "Perpustakaan",
+                    category: "building",
+                    image: "images/foto-3.jpg",
+                    description: "Perpustakaan dengan koleksi buku lengkap."
+                },
+                {
+                    id: 4,
+                    title: "Taman Sekolah",
+                    category: "environment",
+                    image: "images/foto-4.jpg",
+                    description: "Area hijau untuk relaksasi dan belajar."
+                },
+                {
+                    id: 5,
+                    title: "Laboratorium",
+                    category: "building",
+                    image: "images/foto-5.jpg",
+                    description: "Laboratorium sains yang lengkap."
+                },
+                {
+                    id: 6,
+                    title: "Masjid",
+                    category: "building",
+                    image: "images/foto-6.jpg",
+                    description: "Masjid sekolah untuk kegiatan ibadah."
+                }
+            ],
+            
+            activitiesData: [
+                {
+                    id: 1,
+                    title: "Upacara Bendera",
+                    category: "activity",
+                    image: "images/activity-1.jpg",
+                    description: "Upacara bendera setiap hari Senin."
+                },
+                {
+                    id: 2,
+                    title: "Kegiatan Pramuka",
+                    category: "activity",
+                    image: "images/activity-2.jpg",
+                    description: "Latihan pramuka setiap Rabu."
+                },
+                {
+                    id: 3,
+                    title: "Olahraga",
+                    category: "activity",
+                    image: "images/activity-3.jpg",
+                    description: "Kegiatan olahraga rutin."
+                },
+                {
+                    id: 4,
+                    title: "Belajar Kelompok",
+                    category: "activity",
+                    image: "images/activity-4.jpg",
+                    description: "Siswa belajar kelompok di perpustakaan."
+                }
+            ]
+        };
+
+        // Pagination Configuration
+        const paginationConfig = {
+            currentPage: 1,
+            itemsPerPage: 6,
+            totalItems: 0,
+            filteredItems: []
+        };
+
+        // Initialize Gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            initGallery();
+            initFilters();
+            initMobileMenu();
+        });
+
+        function initGallery() {
+            paginationConfig.filteredItems = [...galleryData.schoolPhotos];
+            paginationConfig.totalItems = galleryData.schoolPhotos.length;
+            renderGallery('school');
+            renderGallery('activities');
+            renderPagination();
+        }
+
+        function renderGallery(type) {
+            const container = type === 'school' ? 'schoolGallery' : 'activitiesGallery';
+            const items = type === 'school' ? 
+                getCurrentPageItems() : 
+                galleryData.activitiesData;
+
+            const element = document.getElementById(container);
+            if (!element) return;
+
+            element.innerHTML = items.map((item, index) => `
+                <div class="gallery-item" 
+                     data-category="${item.category}"
+                     data-aos="fade-up"
+                     data-aos-delay="${(index % 6) * 100}">
+                    <img src="${item.image}" 
+                         alt="${item.title}"
+                         loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4 class="font-bold text-xl">${item.title}</h4>
+                        <p class="text-sm">${getCategoryLabel(item.category)}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getCurrentPageItems() {
+            const startIndex = (paginationConfig.currentPage - 1) * paginationConfig.itemsPerPage;
+            const endIndex = startIndex + paginationConfig.itemsPerPage;
+            return paginationConfig.filteredItems.slice(startIndex, endIndex);
+        }
+
+        function renderPagination() {
+            const container = document.getElementById('paginationContainer');
+            if (!container) return;
+
+            const totalPages = Math.ceil(paginationConfig.totalItems / paginationConfig.itemsPerPage);
+            if (totalPages <= 1) {
+                container.innerHTML = '';
+                return;
+            }
+
+            let html = `
+                <button class="pagination-btn prev" ${paginationConfig.currentPage === 1 ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            `;
+
+            for (let i = 1; i <= totalPages; i++) {
+                html += `
+                    <button class="pagination-btn ${i === paginationConfig.currentPage ? 'active' : ''}" data-page="${i}">
+                        ${i}
+                    </button>
+                `;
+            }
+
+            html += `
+                <button class="pagination-btn next" ${paginationConfig.currentPage === totalPages ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            `;
+
+            container.innerHTML = html;
+
+            // Bind pagination events
+            container.querySelectorAll('.pagination-btn:not([disabled])').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const page = btn.classList.contains('prev') ? paginationConfig.currentPage - 1 :
+                                btn.classList.contains('next') ? paginationConfig.currentPage + 1 :
+                                Number(btn.dataset.page);
+                    
+                    if (page >= 1 && page <= totalPages) {
+                        paginationConfig.currentPage = page;
+                        renderGallery('school');
+                        renderPagination();
+                    }
+                });
+            });
+        }
+
+        function initFilters() {
+            document.querySelectorAll('[data-filter]').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active state
+                    document.querySelectorAll('[data-filter]').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+
+                    // Filter items
+                    const filter = this.dataset.filter;
+                    paginationConfig.filteredItems = filter === 'all' 
+                        ? [...galleryData.schoolPhotos]
+                        : galleryData.schoolPhotos.filter(item => item.category === filter);
+                    
+                    paginationConfig.totalItems = paginationConfig.filteredItems.length;
+                    paginationConfig.currentPage = 1;
+
+                    renderGallery('school');
+                    renderPagination();
+                });
+            });
+        }
+
+        function getCategoryLabel(category) {
+            const labels = {
+                building: '🏢 Gedung Sekolah',
+                environment: '🌳 Lingkungan',
+                classroom: '🏫 Ruang Kelas',
+                activity: '🎯 Aktivitas'
+            };
+            return labels[category] || category;
+        }
+
+        function initMobileMenu() {
+            const button = document.getElementById('mobile-menu-button');
+            const nav = document.getElementById('navbar');
+            
+            button.addEventListener('click', () => {
+                // Create mobile menu if it doesn't exist
+                if (!document.getElementById('mobile-menu')) {
+                    const mobileMenu = document.createElement('div');
+                    mobileMenu.id = 'mobile-menu';
+                    mobileMenu.className = 'lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-2xl';
+                    mobileMenu.innerHTML = `
+                        <div class="container mx-auto px-4 py-4">
+                            <div class="space-y-2">
+                                <a href="index.html" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Beranda</a>
+                                <a href="about.html" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Profil</a>
+                                <a href="galeri-ma.html" class="block py-3 px-4 bg-primary/5 text-primary rounded-lg font-semibold">Galeri MA</a>
+                                <a href="galeri-seragam.html" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Galeri Seragam</a>
+                                <a href="contact.html" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Kontak</a>
+                            </div>
+                        </div>
+                    `;
+                    nav.appendChild(mobileMenu);
+                    
+                    // Toggle menu
+                    mobileMenu.classList.toggle('hidden');
+                } else {
+                    document.getElementById('mobile-menu').classList.toggle('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
