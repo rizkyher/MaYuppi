@@ -259,9 +259,50 @@
                             Guru
                         </a> -->
                         
-                        <a href="galeri.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
-                            Galeri
-                        </a>
+                       <div class="relative group" x-data="{ open: false }">
+                            <button
+                                class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg flex items-center gap-1"
+                                @click="open = !open"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                                Galeri
+                                <i class="fas fa-chevron-down text-xs transition-transform duration-300"
+                                :class="{ 'rotate-180': open }"></i>
+                            </button>
+
+                            <div
+                                class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-100
+                                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                                    transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
+                                role="menu"
+                                aria-label="Galeri submenu">
+
+                                <a href="galeri-ma.html"
+                                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors duration-300"
+                                role="menuitem">
+                                    <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-images text-primary text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-sm text-gray-800">Galeri MA</p>
+                                        <p class="text-xs text-gray-500">Kegiatan & Dokumentasi</p>
+                                    </div>
+                                </a>
+
+                                <a href="galeri-seragam.html"
+                                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors duration-300"
+                                role="menuitem">
+                                    <div class="w-8 h-8 bg-accent/10 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-user-tie text-primary text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-sm text-gray-800">Galeri Seragam</p>
+                                        <p class="text-xs text-gray-500">Aturan & Contoh Seragam</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
                         
                         <a href="contact.html" class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300 rounded-lg">
                             Kontak
@@ -334,10 +375,32 @@
                         <i class="fas fa-chalkboard-teacher text-gray-400 group-hover:text-primary text-sm"></i>
                     </a>
                      -->
-                    <a href="galeri.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
-                        <span class="font-medium">Galeri</span>
-                        <i class="fas fa-newspaper text-gray-400 group-hover:text-primary text-sm"></i>
-                    </a>
+                    <div class="border-t border-gray-100 pt-2 mt-2">
+                        <p class="px-3 py-1.5 text-sm font-semibold text-gray-500">GALERI</p>
+
+                        <a href="galeri-ma.html"
+                        class="flex items-center gap-3 py-2.5 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 mobile-tap-target">
+                            <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-images text-primary text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Galeri MA</p>
+                                <p class="text-xs text-gray-500">Kegiatan & Dokumentasi</p>
+                            </div>
+                        </a>
+
+                        <a href="galeri-seragam.html"
+                        class="flex items-center gap-3 py-2.5 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 mobile-tap-target">
+                            <div class="w-8 h-8 bg-accent/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-user-tie text-primary text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Galeri Seragam</p>
+                                <p class="text-xs text-gray-500">Aturan Seragam</p>
+                            </div>
+                        </a>
+                    </div>
+
                     
                     <a href="contact.html" class="flex items-center justify-between py-3 px-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300 group mobile-tap-target">
                         <span class="font-medium">Kontak</span>
