@@ -514,189 +514,117 @@
         });
 
         // Teacher Data (Sama dengan sebelumnya)
-        const guruList = [
-            {
-                id: 1,
-                nama: "Fatimah Azzahra, S.Pd",
-                mapel: "Bahasa Arab",
-                foto: "images/guru (1).png",
-                gelar: "S1 Pendidikan Bahasa Arab",
-                biodata: "Ahli dalam pengajaran bahasa Arab untuk pemula hingga tingkat lanjut dengan metode komunikatif yang menyenangkan.",
-                keahlian: ["Metode Komunikatif", "Linguistik Arab", "Budaya Arab", "Tahfidz Al-Quran"],
-                pencapaian: ["Pelatih Olimpiade Bahasa Arab", "Penulis Buku Ajar", "Presenter Konferensi"]
-            },
-            {
-                id: 2,
-                nama: "Ir. Khalid Musa, M.T",
-                mapel: "Fisika",
-                foto: "images/guru (2).png",
-                gelar: "S2 Teknik Fisika",
-                biodata: "Mengajar Fisika tingkat lanjut dengan pendekatan eksperimen dan aplikasi nyata.",
-                keahlian: ["Fisika Kuantum", "Eksperimen Laboratorium", "Penelitian Sains", "Robotics"],
-                pencapaian: ["Juara 1 Lomba Inovasi", "Peneliti Energi Terbarukan", "Pembimbing Olimpiade"]
-            },
-            {
-                id: 3,
-                nama: "Laila Andini, S.Si",
-                mapel: "Kimia",
-                foto: "images/guru (3).png",
-                gelar: "S1 Kimia Murni",
-                biodata: "Spesialisasi Kimia Organik dengan pengalaman 5 tahun mengajar.",
-                keahlian: ["Kimia Organik", "Analisis Laboratorium", "Kimia Material", "Kimia Lingkungan"],
-                pencapaian: ["Pengembang Kurikulum", "Pelatih Olimpiade", "Peneliti Muda Terbaik"]
-            },
-            {
-                id: 4,
-                nama: "Rahmat Hidayat, S.Kom",
-                mapel: "TIK",
-                foto: "images/guru (4).png",
-                gelar: "S1 Teknik Informatika",
-                biodata: "Ahli pemrograman & jaringan dengan sertifikasi internasional.",
-                keahlian: ["Web Development", "Jaringan Komputer", "Data Science", "AI & ML"],
-                pencapaian: ["Sertifikasi Google", "Pengembang E-Learning", "Juara Hackathon"]
-            },
-            {
-                id: 5,
-                nama: "Dr. Ahmad Fauzi, M.Pd",
-                mapel: "Matematika",
-                foto: "images/guru (5).png",
-                gelar: "S3 Pendidikan Matematika",
-                biodata: "Doktor Pendidikan Matematika dengan spesialisasi pembelajaran inovatif.",
-                keahlian: ["Matematika Terapan", "Penelitian Pendidikan", "Kurikulum", "Statistika"],
-                pencapaian: ["Penulis Buku Best Seller", "Dosen Tamu", "Konsultan Kurikulum"]
-            },
-            {
-                id: 6,
-                nama: "Siti Aminah, S.Pd.I",
-                mapel: "Pendidikan Agama",
-                foto: "images/guru (6).png",
-                gelar: "S1 Pendidikan Agama Islam",
-                biodata: "Guru Pendidikan Agama Islam dengan pendekatan karakter building.",
-                keahlian: ["Fiqih", "Akidah Akhlak", "Metodologi", "Tahfidz Quran"],
-                pencapaian: ["Pelatih Tahfidz", "Pembina Rohis", "Penulis Modul"]
-            },
-            {
-                id: 7,
-                nama: "Budi Santoso, M.Pd",
-                mapel: "Sejarah",
-                foto: "images/guru (7).png",
-                gelar: "S2 Pendidikan Sejarah",
-                biodata: "Spesialis sejarah Indonesia dengan metode storytelling yang menarik.",
-                keahlian: ["Sejarah Indonesia", "Penelitian", "Museum Studies", "Historiografi"],
-                pencapaian: ["Pembicara Seminar", "Penulis Buku", "Kurator Pameran"]
-            },
-            {
-                id: 8,
-                nama: "Dewi Sartika, S.Pd",
-                mapel: "Seni Budaya",
-                foto: "images/guru (8).png",
-                gelar: "S1 Pendidikan Seni",
-                biodata: "Seniman dan pendidik dengan spesialisasi seni rupa dan musik tradisional.",
-                keahlian: ["Seni Rupa", "Musik Tradisional", "Teater", "Kriya"],
-                pencapaian: ["Pemenang Lomba Seni", "Pelatih Teater", "Kurator Pameran"]
-            },
-            {
-                id: 9,
-                nama: "Maya Indah, S.Pd",
-                mapel: "Bahasa Inggris",
-                foto: "images/guru (5).png",
-                gelar: "S1 Pendidikan Bahasa Inggris",
-                biodata: "Guru bahasa Inggris dengan sertifikasi TOEFL dan IELTS.",
-                keahlian: ["English Conversation", "TOEFL", "Academic Writing", "Public Speaking"],
-                pencapaian: ["Sertifikat IELTS Trainer", "Pembimbing Olimpiade", "Pengajar Pertukaran"]
-            },
-            {
-                id: 10,
-                nama: "Rudi Hartono, M.Pd",
-                mapel: "Olahraga",
-                foto: "images/guru (2).png",
-                gelar: "S2 Pendidikan Olahraga",
-                biodata: "Pelatih olahraga berpengalaman dengan spesialisasi atletik dan bola basket.",
-                keahlian: ["Atletik", "Bola Basket", "Fisioterapi", "Manajemen Tim"],
-                pencapaian: ["Pelatih Juara Provinsi", "Wasit Nasional", "Pembina UKS"]
-            },
-            {
-                id: 11,
-                nama: "Sri Wahyuni, S.Pd",
-                mapel: "Bahasa Indonesia",
-                foto: "images/guru (6).png",
-                gelar: "S1 Pendidikan Bahasa Indonesia",
-                biodata: "Ahli sastra Indonesia dan penulisan kreatif.",
-                keahlian: ["Sastra Indonesia", "Menulis Kreatif", "Drama", "Jurnalistik"],
-                pencapaian: ["Penulis Puisi", "Pembina Teater", "Juri Lomba Pidato"]
-            },
-            {
-                id: 12,
-                nama: "Agus Salim, M.Pd",
-                mapel: "Ekonomi",
-                foto: "images/guru (7).png",
-                gelar: "S2 Pendidikan Ekonomi",
-                biodata: "Guru ekonomi dengan pendekatan praktis dan aplikatif.",
-                keahlian: ["Ekonomi Mikro", "Kewirausahaan", "Manajemen Bisnis", "Akuntansi"],
-                pencapaian: ["Konsultan UKM", "Pembimbing Kompetisi", "Penulis Modul"]
-            },
-            // Menambahkan lebih banyak guru untuk demonstrasi paginasi
-            {
-                id: 13,
-                nama: "Dian Pratama, M.Pd",
-                mapel: "Biologi",
-                foto: "images/guru (1).png",
-                gelar: "S2 Pendidikan Biologi",
-                biodata: "Spesialis biologi molekuler dengan pendekatan praktikum laboratorium.",
-                keahlian: ["Biologi Molekuler", "Genetika", "Ekologi", "Mikrobiologi"],
-                pencapaian: ["Peneliti Bioteknologi", "Pengembang Modul Praktikum", "Pelatih OSN"]
-            },
-            {
-                id: 14,
-                nama: "Hendra Gunawan, S.Pd",
-                mapel: "Geografi",
-                foto: "images/guru (2).png",
-                gelar: "S1 Pendidikan Geografi",
-                biodata: "Ahli geografi fisik dengan spesialisasi SIG dan penginderaan jauh.",
-                keahlian: ["Sistem Informasi Geografis", "Penginderaan Jauh", "Geologi", "Klimatologi"],
-                pencapaian: ["Operator SIG Berpengalaman", "Pembimbing Study Tour", "Penulis Atlas"]
-            },
-            {
-                id: 15,
-                nama: "Rina Marlina, M.Pd",
-                mapel: "Sosiologi",
-                foto: "images/guru (3).png",
-                gelar: "S2 Pendidikan Sosiologi",
-                biodata: "Pakar sosiologi pendidikan dengan fokus pada penelitian sosial.",
-                keahlian: ["Sosiologi Pendidikan", "Penelitian Kualitatif", "Antropologi", "Psikologi Sosial"],
-                pencapaian: ["Peneliti Sosial", "Konsultan Pendidikan", "Penulis Jurnal Ilmiah"]
-            },
-            {
-                id: 16,
-                nama: "Fajar Nugroho, S.Pd",
-                mapel: "Pendidikan Kewarganegaraan",
-                foto: "images/guru (4).png",
-                gelar: "S1 Pendidikan PKn",
-                biodata: "Guru PKn dengan pendekatan pendidikan karakter dan warga negara global.",
-                keahlian: ["Hukum Tata Negara", "Demokrasi", "HAM", "Global Citizenship"],
-                pencapaian: ["Pelatih Debat Konstitusi", "Pembina OSIS", "Penulis Modul Civic Education"]
-            },
-            {
-                id: 17,
-                nama: "Sari Dewi, M.Pd",
-                mapel: "Bahasa Jerman",
-                foto: "images/guru (5).png",
-                gelar: "S2 Pendidikan Bahasa Jerman",
-                biodata: "Guru bahasa Jerman dengan sertifikasi Goethe Institut dan pengalaman di Jerman.",
-                keahlian: ["Bahasa Jerman", "Budaya Jerman", "TestDaF Preparation", "Intercultural Studies"],
-                pencapaian: ["Sertifikat Goethe C1", "Pembimbing Pertukaran ke Jerman", "Penerjemah Bersertifikat"]
-            },
-            {
-                id: 18,
-                nama: "Bambang Setiawan, S.Pd",
-                mapel: "Prakarya",
-                foto: "images/guru (6).png",
-                gelar: "S1 Pendidikan Keterampilan",
-                biodata: "Ahli kerajinan tangan dan kewirausahaan dengan pengalaman industri.",
-                keahlian: ["Kerajinan Tangan", "Kewirausahaan", "Desain Produk", "Marketing"],
-                pencapaian: ["Pengusaha UKM Sukses", "Pelatih Wirausaha Muda", "Juara Lomba Kreativitas"]
-            }
-        ];
+       const guruList = [
+    {
+        id: 1,
+        nama: "Herawati, S.Si",
+        mapel: "Fisika, Kimia, Biologi",
+        foto: "images/guru/herawati.png",
+        gelar: "S1 Fisika Murni – Institut Sains dan Teknologi Nasional (ISTN)",
+        biodata: "Guru sains dengan latar belakang Fisika Murni serta aktif dalam riset dan kegiatan ilmiah nasional.",
+        keahlian: ["Fisika", "Kimia", "Biologi", "Riset Sains"],
+        pencapaian: [
+            "Juara II Olimpiade Fisika Mahasiswa PTS Kopertis III Jakarta (2010)",
+            "Pemakalah Seminar Nasional Fisika di Pusat Penelitian LIPI PUSPITEK Serpong"
+        ]
+    },
+    {
+        id: 2,
+        nama: "Sulaeman",
+        mapel: "Matematika",
+        foto: "images/guru/sulaeman.png",
+        gelar: "S1 Matematika – Universitas Bale Bandung",
+        biodata: "Guru matematika dengan pengalaman organisasi dan kepemimpinan kemahasiswaan.",
+        keahlian: ["Matematika", "Logika", "Kepemimpinan", "Pembinaan Organisasi"],
+        pencapaian: [
+            "Ketua Himpunan Mahasiswa Matematika",
+            "Ketua Ikhwan UKM FDUM"
+        ]
+    },
+    {
+        id: 3,
+        nama: "M. Taufik Firdaus, S.Pd",
+        mapel: "Pembina Keagamaan & Ketauhidan",
+        foto: "images/guru/taufik.png",
+        gelar: "S1 Pendidikan – STAI Kharisma Cicurug",
+        biodata: "Pembina keagamaan yang fokus pada pembentukan akhlak dan ketauhidan siswa.",
+        keahlian: ["Ketauhidan", "Tahfidz Al-Qur'an", "Pembinaan Asrama", "Pendidikan Karakter"],
+        pencapaian: [
+            "Murabbi Asrama",
+            "Murabbi Baitul Qur'an YUPPI",
+            "Juara Harapan 1 MTQ"
+        ]
+    },
+    {
+        id: 4,
+        nama: "Alfan Saepul Rahman",
+        mapel: "Pendidikan Kewarganegaraan, Pembina Keagamaan",
+        foto: "images/guru/alfan.png",
+        gelar: "S1 – Universitas Teknologi Digital",
+        biodata: "Guru PKn sekaligus staf tata usaha dan sarana prasarana dengan pengalaman pelatihan nasional.",
+        keahlian: ["PKn", "Administrasi Sekolah", "Manajemen Sarana", "Pembinaan Keagamaan"],
+        pencapaian: [
+            "Pelatihan: Meningkatkan Peluang Budaya Nusantara dalam Kemajuan Ekonomi dan Kreatif Indonesia",
+            "Pengajar Lembaga Tahfidz Baitul Qur'an YUPPI"
+        ]
+    },
+    {
+        id: 5,
+        nama: "Dra. Hj. Yati Nurhayati",
+        mapel: "Fikih & Akidah Akhlak",
+        foto: "images/guru/yati.png",
+        gelar: "S1 – IAIN Sunan Gunung Djati Bandung",
+        biodata: "Wakil Kepala Madrasah bidang Kurikulum dengan pengalaman panjang di bidang pendidikan dan organisasi.",
+        keahlian: ["Fikih", "Akidah Akhlak", "Manajemen Kurikulum", "Kurikulum Merdeka"],
+        pencapaian: [
+            "Wakamad Kurikulum",
+            "Pelatihan Implementasi Kurikulum Merdeka (IKM)",
+            "Pelatihan P5 dan Kurikulum",
+            "Sekretaris YRSI Bandung",
+            "Sekretaris FORHATI Jawa Barat"
+        ]
+    },
+    {
+        id: 6,
+        nama: "Cece Saepudin, S.Pd",
+        mapel: "Bahasa Inggris & Bahasa Sunda",
+        foto: "images/guru/cece.png",
+        gelar: "S1 Pendidikan Bahasa dan Sastra Inggris – Universitas Islam Nusantara",
+        biodata: "Pengajar bahasa dengan pengalaman mengajar di lembaga kursus dan pendidikan nonformal.",
+        keahlian: ["Bahasa Inggris", "Bahasa Sunda", "English Conversation", "Metodologi Pengajaran"],
+        pencapaian: [
+            "Pelatihan Kompetensi Pendidik Pendidikan Nonformal Bidang Bahasa Inggris",
+            "Pengajar Sydney College Bahasa Inggris",
+            "Pengajar LPK Queen Bahasa Inggris"
+        ]
+    },
+    {
+        id: 7,
+        nama: "Dra. Hj. Sopiati",
+        mapel: "Fikih, Akidah & SKI",
+        foto: "images/guru/sopiati.png",
+        gelar: "S1 – IAIN Sunan Gunung Djati Bandung",
+        biodata: "Pendidik senior dengan pengalaman kepemimpinan madrasah diniyah.",
+        keahlian: ["Fikih", "Akidah", "Sejarah Kebudayaan Islam", "Manajemen Madrasah"],
+        pencapaian: [
+            "Kepala Madrasah Diniyah Nurul Hikmah",
+            "Juara MTQ"
+        ]
+    },
+    {
+        id: 8,
+        nama: "Hari Setiawan, S.S, HE",
+        mapel: "Sejarah",
+        foto: "images/guru/hari.png",
+        gelar: "S1 Sastra Asia Barat – Universitas Gadjah Mada",
+        biodata: "Guru sejarah dengan pengalaman mengajar internasional.",
+        keahlian: ["Sejarah Dunia", "Sejarah Islam", "Studi Timur Tengah", "Bahasa Asing"],
+        pencapaian: [
+            "Pengajar di 3 sekolah di Negara Turki"
+        ]
+    }
+];
+
 
         // State management
         let currentFilter = "all";
