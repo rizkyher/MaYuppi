@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://mayuppi.sch.id/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://mayuppi.sch.id/about</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://mayuppi.sch.id/programs</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://mayuppi.sch.id/guru</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://mayuppi.sch.id/galeri</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://mayuppi.sch.id/galeri-ma</loc>
+    <priority>0.65</priority>
+  </url>
+
+  <url>
+    <loc>https://mayuppi.sch.id/galeri-seragam</loc>
+    <priority>0.65</priority>
+  </url>
+
+  <url>
+    <loc>https://mayuppi.sch.id/contact</loc>
+    <priority>0.70</priority>
+  </url>
+
+</urlset>
