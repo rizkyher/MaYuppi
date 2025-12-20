@@ -769,18 +769,18 @@
                         <i class="fas fa-layer-group mr-2"></i>
                         Semua Foto
                     </button>
-                    <button class="filter-chip" data-filter="building">
-                        <!-- <i class="fas fa-building mr-2"></i> -->
+                    <!-- <button class="filter-chip" data-filter="building">
+                        <i class="fas fa-building mr-2"></i>
                        CBT
                     </button>
                     <button class="filter-chip" data-filter="classroom">
-                        <!-- <i class="fas fa-chalkboard mr-2"></i> -->
+                        <i class="fas fa-chalkboard mr-2"></i>
                         OMI
                     </button>
                     <button class="filter-chip" data-filter="environment">
-                        <!-- <i class="fas fa-tree mr-2"></i> -->
+                        <i class="fas fa-tree mr-2"></i>
                        KATURITA 
-                    </button>
+                    </button> -->
                 </div>
                 
                 <!-- Gallery Grid -->
@@ -853,35 +853,179 @@
         </div>
     </section>
 
+    
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <div class="flex justify-center items-center gap-4 mb-6">
-                   <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-lg sm:rounded-xl flex items-center justify-center overflow-hidden">
-                      <img 
-                          src="images/logo-MA.png" 
-                          alt="Logo MA YUPPI"
-                          class="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 object-contain"
-                          loading="lazy"
-                      >
-                  </div>
+    <footer class="bg-black text-white pt-8 sm:pt-12 lg:pt-20 pb-6 sm:pb-8 relative">
+        <!-- Background Gradient -->
+        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary/10 to-transparent opacity-30"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Footer Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 mb-6 sm:mb-8 lg:mb-12">
+                <!-- Brand Column -->
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                        <div class="relative w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14">
+                           <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-lg sm:rounded-xl flex items-center justify-center overflow-hidden">
+                            <img 
+                                src="images/logo-MA.png" 
+                                alt="Logo MA YUPPI"
+                                class="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 object-contain"
+                                loading="lazy"
+                            >
+                        </div>
 
-                    <h3 class="text-2xl font-serif font-bold text-secondary">MA YUPPI</h3>
+                            <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-accent rounded-lg sm:rounded-xl blur opacity-30 -z-10"></div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg sm:text-xl lg:text-2xl font-serif font-bold text-secondary">MA YUPPI</h3>
+                            <p class="text-xs sm:text-sm text-gray-400">Madrasah Aliyah Unggulan</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4 sm:mb-6 text-sm leading-relaxed">
+                        Lembaga pendidikan Islam unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi untuk mencetak generasi pemimpin masa depan.
+                    </p>
+                    <div class="flex gap-1 sm:gap-2">
+                        <a href="https://www.instagram.com/ma_yuppi.official/" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
+                           aria-label="Instagram">
+                            <i class="fab fa-instagram text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@MAYUPPISoreang557/featured" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
+                           aria-label="YouTube">
+                            <i class="fab fa-youtube text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
+                        </a>
+                        <a href="#" 
+                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
+                           aria-label="TikTok">
+                            <i class="fab fa-tiktok text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
+                        </a>
+                        <a href="#" 
+                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
+                           aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
+                        </a>
+                    </div>
                 </div>
-                <p class="text-gray-400 mb-6 max-w-2xl mx-auto">
-                    Madrasah Aliyah Unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi.
-                </p>
-                <div class="flex justify-center gap-6 mb-8">
-                    <a href="index.html" class="text-gray-400 hover:text-white transition-colors">Beranda</a>
-                    <a href="about.html" class="text-gray-400 hover:text-white transition-colors">Profil</a>
-                    <a href="galeri-ma.html" class="text-white font-semibold">Galeri MA</a>
-                    <a href="galeri-seragam.html" class="text-gray-400 hover:text-white transition-colors">Seragam</a>
-                    <a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Kontak</a>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-6 text-secondary relative inline-block">
+                        Tautan Cepat
+                        <span class="absolute -bottom-1 sm:-bottom-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-2 sm:space-y-3">
+                        <li>
+                            <a href="#hero" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Beranda
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Profil Sekolah
+                            </a>
+                        </li>
+                        <li>
+                            <a href="programs.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Program & Ekskul
+                            </a>
+                        </li>
+                        <li>
+                            <a href="galeri.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Galeri & Artikel
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <p class="text-gray-500 text-sm">
-                    © 2024 MA YUPPI. All rights reserved.
-                </p>
+                
+                <!-- Information -->
+                <div>
+                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-6 text-secondary relative inline-block">
+                        Informasi
+                        <span class="absolute -bottom-1 sm:-bottom-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-2 sm:space-y-3">
+                        <li>
+                            <a href="about.html#visi-misi" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Visi & Misi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="guru.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Guru
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Kontak Kami
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-6 text-secondary relative inline-block">
+                        Kontak Kami
+                        <span class="absolute -bottom-1 sm:-bottom-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-2 sm:space-y-3 text-sm">
+                        <li class="flex items-start gap-2 sm:gap-3">
+                            <i class="fas fa-map-marker-alt text-accent mt-0.5 sm:mt-1 flex-shrink-0 text-xs sm:text-sm"></i>
+                            <span class="text-gray-400">
+                                Jl. Raya Soreang - Banjaran No.KM 02, Cingcin, Kec. Soreang, Kabupaten Bandung, Jawa Barat 40914
+                            </span>
+                        </li>
+                        <li class="flex items-center gap-2 sm:gap-3">
+                            <i class="fas fa-phone text-accent flex-shrink-0 text-xs sm:text-sm"></i>
+                            <a href="https://wa.me/6281223240815" class="text-gray-400 hover:text-white transition-colors duration-300 break-all">
+                                +62 812-2324-0815
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-2 sm:gap-3">
+                            <i class="fas fa-envelope text-accent flex-shrink-0 text-xs sm:text-sm"></i>
+                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-white transition-colors duration-300 break-all">
+                                info@mayuppi.sch.id
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-2 sm:gap-3">
+                            <i class="fas fa-globe text-accent flex-shrink-0 text-xs sm:text-sm"></i>
+                            <a href="https://www.mayuppi.sch.id" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300 break-all">
+                                www.mayuppi.sch.id
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Divider -->
+            <div class="border-t border-white/10 pt-4 sm:pt-6 lg:pt-8">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+                    <!-- Copyright -->
+                    <p class="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
+                        © 2024 <span class="text-secondary font-semibold">MA Yuppi</span>. All rights reserved. 
+                        <span class="hidden sm:inline">|</span> 
+                        <span class="block sm:inline mt-1 sm:mt-0">Designed with <i class="fas fa-heart text-red-500 mx-1"></i> for education.</span>
+                    </p>
+                    
+                    <!-- Footer Links -->
+                    <div class="flex gap-3 sm:gap-4 lg:gap-6 text-xs sm:text-sm">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            Privacy
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            Terms
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            Sitemap
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -901,46 +1045,46 @@
             schoolPhotos: [
                 {
                     id: 1,
-                    title: "Gedung Utama",
+                    title: "Gema Ramadhan",
                     category: "building",
-                    image: "images/foto 2.png",
-                    description: "Gedung utama MA YUPPI dengan arsitektur modern."
+                    image: "images/Gema.png",
+                    description: "Gema Ramadhan di MA YUPPI."
                 },
                 {
                     id: 2,
-                    title: "Ruang Kelas",
+                    title: "Praktik Pengalaman lapangan",
                     category: "classroom",
-                    image: "images/foto-2.jpg",
-                    description: "Ruang kelas yang nyaman dan dilengkapi teknologi."
+                    image: "images/ppl 1.jpeg",
+                    description: "Praktik Pengalaman lapangan siswa."
                 },
                 {
                     id: 3,
-                    title: "Perpustakaan",
+                    title: "Karya Tulis Ilmiah",
                     category: "building",
-                    image: "images/foto-3.jpg",
+                    image: "images/katurita/katurita 1.jpg",
                     description: "Perpustakaan dengan koleksi buku lengkap."
                 },
                 {
                     id: 4,
-                    title: "Taman Sekolah",
+                    title: "Character Building Training",
                     category: "environment",
-                    image: "images/foto-4.jpg",
-                    description: "Area hijau untuk relaksasi dan belajar."
+                    image: "images/CBT/CBT 1.jpg",
+                    description: "Character Building Training"
                 },
-                {
-                    id: 5,
-                    title: "Laboratorium",
-                    category: "building",
-                    image: "images/foto-5.jpg",
-                    description: "Laboratorium sains yang lengkap."
-                },
-                {
-                    id: 6,
-                    title: "Masjid",
-                    category: "building",
-                    image: "images/foto-6.jpg",
-                    description: "Masjid sekolah untuk kegiatan ibadah."
-                }
+                // {
+                //     id: 5,
+                //     title: "Laboratorium",
+                //     category: "building",
+                //     image: "images/foto-5.jpg",
+                //     description: "Laboratorium sains yang lengkap."
+                // },
+                // {
+                //     id: 6,
+                //     title: "Masjid",
+                //     category: "building",
+                //     image: "images/foto-6.jpg",
+                //     description: "Masjid sekolah untuk kegiatan ibadah."
+                // }
             ],
             
             activitiesData: [
@@ -1215,9 +1359,9 @@
 
         function getCategoryLabel(category) {
             const labels = {
-                building: '🏢 Gedung Sekolah',
-                environment: '🌳 Lingkungan',
-                classroom: '🏫 Ruang Kelas',
+                building: '🎯 Aktivitas',
+                environment: '🎯 Aktivitas',
+                classroom: '🎯 Aktivitas',
                 activity: '🎯 Aktivitas'
             };
             return labels[category] || category;

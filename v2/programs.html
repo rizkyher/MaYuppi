@@ -1128,22 +1128,28 @@
                 ]
             },
             {
-                id: 6,
-                name: "Ekstrakurikuler Beragam",
-                category: "minat-bakat",
-                description: "Beragam kegiatan ekstrakurikuler untuk mengembangkan minat, bakat, dan potensi siswa.",
-                icon: "fas fa-puzzle-piece",
-                color: "category-badge-minat-bakat",
-                schedule: "Sore Hari",
-                achievements: "Prestasi Non-Akademik",
-                featured: false,
-                highlights: [
-                    "Seni & Olahraga",
-                    "Keagamaan",
-                    "Kepemimpinan",
-                    "Kreativitas"
-                ]
-            },
+    id: 6,
+    name: "Ekstrakurikuler Beragam",
+    category: "minat-bakat",
+    description: "Beragam kegiatan ekstrakurikuler untuk mengembangkan minat, bakat, dan potensi siswa.",
+    icon: "fas fa-puzzle-piece",
+    color: "category-badge-minat-bakat",
+    schedule: "Sore Hari",
+    achievements: "Prestasi Non-Akademik",
+    featured: false,
+    highlights: [
+        "English Club",
+        "Karya Ilmiah Remaja",
+        "Palang Merah Remaja",
+        "Badminton",
+        "Paduan Suara",
+        "Irema",
+        "Pramuka",
+        "Memanah",
+        "Futsal"
+    ]
+},
+
             {
                 id: 7,
                 name: "Detention Edukatif",
@@ -1445,21 +1451,17 @@
                             </div>
                             
                             <!-- Highlights -->
-                            <div class="mb-4 md:mb-6">
-                                <p class="text-xs md:text-sm font-semibold text-primary mb-2">Fokus Program:</p>
-                                <div class="flex flex-wrap gap-1.5 md:gap-2">
-                                    ${program.highlights.slice(0, 3).map(highlight => `
-                                        <span class="px-2 md:px-3 py-1 bg-primary/5 text-primary text-xs rounded-full">
-                                            ${highlight}
-                                        </span>
-                                    `).join('')}
-                                    ${program.highlights.length > 3 ? `
-                                        <span class="px-2 md:px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
-                                            +${program.highlights.length - 3}
-                                        </span>
-                                    ` : ''}
-                                </div>
-                            </div>
+                    <div class="mb-4 md:mb-6">
+                    <p class="text-xs md:text-sm font-semibold text-primary mb-2">Fokus Program:</p>
+                    <div class="flex flex-wrap gap-1.5 md:gap-2">
+                        ${program.highlights.map(highlight => `
+                            <span class="px-2 md:px-3 py-1 bg-primary/5 text-primary text-xs rounded-full">
+                                ${highlight}
+                            </span>
+                        `).join('')}
+                    </div>
+                </div>
+
                         </div>
                     `;
                     

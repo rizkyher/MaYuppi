@@ -745,13 +745,13 @@
                             </div>
                             <div class="bg-gray-50 rounded-xl p-4 border border-gray-200 hover:border-accent transition-all duration-300">
                                 <div class="flex items-start gap-3">
-                                    <div class="w-10 h-10 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <!-- <div class="w-10 h-10 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center flex-shrink-0">
                                         <i class="fas fa-users text-white text-sm"></i>
-                                    </div>
-                                    <div>
+                                    </div> -->
+                                    <!-- <div>
                                         <p class="font-bold text-primary mb-1">100+ Siswa</p>
                                         <p class="text-sm text-gray-600">Aktif & Berprestasi</p>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -963,17 +963,43 @@
                 </div>
                 
                 <!-- Organizational Chart -->
-                <div class="max-w-4xl mx-auto">
+             <div class="max-w-4xl mx-auto">
                     <!-- Kepala Madrasah -->
                     <div class="bg-gradient-to-br from-primary to-accent text-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-xl mb-8 text-center transform hover:scale-[1.02] transition-all duration-300">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-user-tie text-2xl sm:text-3xl text-secondary"></i>
+                        
+                        <!-- Foto -->
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-white/30 shadow-md">
+                            <img 
+                                src="images/guru/heri.png" 
+                                alt="Kepala Madrasah"
+                                class="w-full h-full object-cover"
+                            >
                         </div>
-                        <p class="text-xs sm:text-sm text-secondary font-bold uppercase tracking-widest mb-2">Kepala Madrasah</p>
-                        <h3 class="text-xl sm:text-2xl lg:text-3xl font-serif font-bold mb-2">Heri Hoerudin S.Ag., M.Pd</h3>
-                        <p class="text-white/80 text-sm sm:text-base">Pemimpin visioner dengan pengalaman 20 tahun di bidang pendidikan Islam</p>
+
+                        <p class="text-xs sm:text-sm text-secondary font-bold uppercase tracking-widest mb-2">
+                            Kepala Madrasah
+                        </p>
+
+                        <h3 class="text-xl sm:text-2xl lg:text-3xl font-serif font-bold mb-2">
+                            Heri Hoerudin S.Ag., M.Pd
+                        </h3>
+
+                        <p class="text-white/80 text-sm sm:text-base">
+                            Pemimpin visioner dengan pengalaman 20 tahun di bidang pendidikan Islam
+                        </p>
+
+                        <!-- Lihat Profil -->
+                       <a href="javascript:void(0)"
+                        onclick="openProfilKepala()"
+                        class="inline-flex items-center gap-2 mt-4 text-sm sm:text-base font-semibold text-secondary 
+                                hover:text-white transition-colors duration-300">
+                            Lihat Profil
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+
                     </div>
-                    
+                </div>
+    
                     <!-- Wakil Kepala Madrasah -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                         <!-- Waka Kurikulum -->
@@ -1218,118 +1244,148 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-8 sm:py-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
-                <!-- Brand -->
-                <div>
-                    <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                        <div class="relative w-10 h-10 sm:w-12 sm:h-12">
-                            <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                                <i class="fas fa-graduation-cap text-white text-lg sm:text-xl"></i>
-                            </div>
-                            <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-accent rounded-lg blur opacity-30 -z-10"></div>
+   <!-- Footer -->
+    <footer class="bg-dark text-white pt-8 sm:pt-12 lg:pt-20 pb-6 sm:pb-8 relative">
+        <!-- Background Gradient -->
+        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary/10 to-transparent opacity-30"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Footer Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 mb-6 sm:mb-8 lg:mb-12">
+                <!-- Brand Column -->
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                        <div class="relative w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14">
+                           <div class="w-full h-full bg-gradient-to-br from-primary to-accent rounded-lg sm:rounded-xl flex items-center justify-center overflow-hidden">
+                            <img 
+                                src="images/logo-MA.png" 
+                                alt="Logo MA YUPPI"
+                                class="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 object-contain"
+                                loading="lazy"
+                            >
+                        </div>
+
+                            <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-accent rounded-lg sm:rounded-xl blur opacity-30 -z-10"></div>
                         </div>
                         <div>
-                            <h4 class="text-lg sm:text-xl font-serif font-bold text-secondary">MA YUPPI</h4>
+                            <h3 class="text-lg sm:text-xl lg:text-2xl font-serif font-bold text-secondary">MA YUPPI</h3>
                             <p class="text-xs sm:text-sm text-gray-400">Madrasah Aliyah Unggulan</p>
                         </div>
                     </div>
-                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
-                        Lembaga pendidikan Islam unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi.
+                    <p class="text-gray-400 mb-4 sm:mb-6 text-sm leading-relaxed">
+                        Lembaga pendidikan Islam unggulan yang memadukan keimanan, ilmu pengetahuan, dan teknologi untuk mencetak generasi pemimpin masa depan.
                     </p>
                     <div class="flex gap-1 sm:gap-2">
                         <a href="https://www.instagram.com/ma_yuppi.official/" 
                            target="_blank"
                            rel="noopener noreferrer"
-                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 mobile-tap-target">
-                            <i class="fab fa-instagram text-gray-400 hover:text-white text-sm sm:text-base"></i>
+                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
+                           aria-label="Instagram">
+                            <i class="fab fa-instagram text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
                         </a>
                         <a href="https://www.youtube.com/@MAYUPPISoreang557/featured" 
                            target="_blank"
                            rel="noopener noreferrer"
-                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 mobile-tap-target">
-                            <i class="fab fa-youtube text-gray-400 hover:text-white text-sm sm:text-base"></i>
+                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
+                           aria-label="YouTube">
+                            <i class="fab fa-youtube text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
                         </a>
                         <a href="#" 
-                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 mobile-tap-target">
-                            <i class="fab fa-facebook-f text-gray-400 hover:text-white text-sm sm:text-base"></i>
+                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
+                           aria-label="TikTok">
+                            <i class="fab fa-tiktok text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
+                        </a>
+                        <a href="#" 
+                           class="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group mobile-tap-target"
+                           aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in text-gray-400 group-hover:text-white text-sm sm:text-base"></i>
                         </a>
                     </div>
                 </div>
                 
                 <!-- Quick Links -->
                 <div>
-                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-secondary">Tautan Cepat</h4>
-                    <ul class="space-y-1 sm:space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                            <span>Beranda</span>
-                        </a></li>
-                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                            <span>Profil Sekolah</span>
-                        </a></li>
-                        <li><a href="programs.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                            <span>Program & Ekskul</span>
-                        </a></li>
-                        <li><a href="galeri.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                            <span>Galeri</span>
-                        </a></li>
+                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-6 text-secondary relative inline-block">
+                        Tautan Cepat
+                        <span class="absolute -bottom-1 sm:-bottom-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-2 sm:space-y-3">
+                        <li>
+                            <a href="#hero" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Beranda
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Profil Sekolah
+                            </a>
+                        </li>
+                        <li>
+                            <a href="programs.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Program & Ekskul
+                            </a>
+                        </li>
+                        <li>
+                            <a href="galeri.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Galeri & Artikel
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 
                 <!-- Information -->
                 <div>
-                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-secondary">Informasi</h4>
-                    <ul class="space-y-1 sm:space-y-2">
-                        <li><a href="#visi-misi" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                            <span>Visi & Misi</span>
-                        </a></li>
-                        <li><a href="#struktur" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                            <span>Struktur Organisasi</span>
-                        </a></li>
-                        <li><a href="#guru-staf" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                            <span>Guru & Staf</span>
-                        </a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-xs sm:text-sm flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                            <span>Kontak Kami</span>
-                        </a></li>
+                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-6 text-secondary relative inline-block">
+                        Informasi
+                        <span class="absolute -bottom-1 sm:-bottom-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-2 sm:space-y-3">
+                        <li>
+                            <a href="about.html#visi-misi" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Visi & Misi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="guru.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Guru
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact.html" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                                Kontak Kami
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 
-                <!-- Contact -->
-                <div>
-                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-secondary">Kontak Kami</h4>
-                    <ul class="space-y-2 text-xs sm:text-sm">
-                        <li class="flex items-start gap-2">
-                            <i class="fas fa-map-marker-alt text-accent mt-0.5 flex-shrink-0"></i>
+                <!-- Contact Info -->
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-6 text-secondary relative inline-block">
+                        Kontak Kami
+                        <span class="absolute -bottom-1 sm:-bottom-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-2 sm:space-y-3 text-sm">
+                        <li class="flex items-start gap-2 sm:gap-3">
+                            <i class="fas fa-map-marker-alt text-accent mt-0.5 sm:mt-1 flex-shrink-0 text-xs sm:text-sm"></i>
                             <span class="text-gray-400">
-                                Jl. Pendidikan No. 123, Bandung, Jawa Barat 40123
+                                Jl. Raya Soreang - Banjaran No.KM 02, Cingcin, Kec. Soreang, Kabupaten Bandung, Jawa Barat 40914
                             </span>
                         </li>
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-phone text-accent flex-shrink-0"></i>
-                            <a href="tel:+62221234567" class="text-gray-400 hover:text-white transition-colors duration-300">
-                                (022) 123-4567
+                        <li class="flex items-center gap-2 sm:gap-3">
+                            <i class="fas fa-phone text-accent flex-shrink-0 text-xs sm:text-sm"></i>
+                            <a href="https://wa.me/6281223240815" class="text-gray-400 hover:text-white transition-colors duration-300 break-all">
+                                +62 812-2324-0815
                             </a>
                         </li>
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-envelope text-accent flex-shrink-0"></i>
-                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <li class="flex items-center gap-2 sm:gap-3">
+                            <i class="fas fa-envelope text-accent flex-shrink-0 text-xs sm:text-sm"></i>
+                            <a href="mailto:info@mayuppi.sch.id" class="text-gray-400 hover:text-white transition-colors duration-300 break-all">
                                 info@mayuppi.sch.id
                             </a>
                         </li>
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-globe text-accent flex-shrink-0"></i>
-                            <a href="https://www.mayuppi.sch.id" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <li class="flex items-center gap-2 sm:gap-3">
+                            <i class="fas fa-globe text-accent flex-shrink-0 text-xs sm:text-sm"></i>
+                            <a href="https://www.mayuppi.sch.id" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300 break-all">
                                 www.mayuppi.sch.id
                             </a>
                         </li>
@@ -1337,17 +1393,27 @@
                 </div>
             </div>
             
-            <!-- Copyright -->
-            <div class="border-t border-white/10 pt-4 sm:pt-6">
-                <div class="flex flex-col sm:flex-row justify-between items-center">
-                    <p class="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-0 text-center sm:text-left">
-                        © <span id="current-year">2024</span> <span class="text-secondary font-semibold">MA Yuppi</span>. All rights reserved.
-                        <span class="block sm:inline mt-1 sm:mt-0">Made with <i class="fas fa-heart text-red-500 mx-1"></i> for education.</span>
+            <!-- Divider -->
+            <div class="border-t border-white/10 pt-4 sm:pt-6 lg:pt-8">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+                    <!-- Copyright -->
+                    <p class="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
+                        © 2024 <span class="text-secondary font-semibold">MA Yuppi</span>. All rights reserved. 
+                        <span class="hidden sm:inline">|</span> 
+                        <span class="block sm:inline mt-1 sm:mt-0">Designed with <i class="fas fa-heart text-red-500 mx-1"></i> for education.</span>
                     </p>
-                    <div class="flex gap-3 sm:gap-4 text-xs sm:text-sm">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Kebijakan Privasi</a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Syarat Layanan</a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Peta Situs</a>
+                    
+                    <!-- Footer Links -->
+                    <div class="flex gap-3 sm:gap-4 lg:gap-6 text-xs sm:text-sm">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            Privacy
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            Terms
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            Sitemap
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1846,6 +1912,74 @@ function toggleProfilDetail() {
         text.textContent = 'Sembunyikan';
         icon.classList.add('rotate-180');
     }
+}
+</script>
+<div id="profilModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center">
+  <div class="bg-white w-full max-w-3xl max-h-[90vh] rounded-2xl overflow-y-auto relative p-6">
+
+    <!-- Close -->
+    <button onclick="closeProfil()" 
+            class="absolute top-4 right-4 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center">
+      ✕
+    </button>
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row gap-6">
+      <img src="images/guru/heri.png"
+           class="w-32 h-32 rounded-full object-cover border-4 border-primary/30 mx-auto sm:mx-0">
+
+      <div>
+        <h2 class="text-2xl font-bold text-primary">
+          H. Heri Hoerudin, S.Ag., M.Pd
+        </h2>
+        <p class="text-secondary font-semibold mb-3">Kepala Madrasah</p>
+
+        <p class="text-gray-600">
+          Pemimpin pendidikan dengan latar belakang Bahasa Arab dan Manajemen Pendidikan serta berpengalaman dalam pengembangan kelembagaan madrasah.
+        </p>
+      </div>
+    </div>
+
+    <!-- Pendidikan -->
+    <div class="grid sm:grid-cols-2 gap-4 mt-6">
+      <div class="bg-gray-50 p-4 rounded-xl">
+        <h4 class="font-semibold text-primary mb-2">Pendidikan</h4>
+        <ul class="list-disc list-inside text-gray-700">
+          <li>S1 Bahasa dan Sastra Arab – UNINUS</li>
+          <li>S2 Manajemen Pendidikan – Universitas Madani</li>
+        </ul>
+      </div>
+
+      <div class="bg-gray-50 p-4 rounded-xl">
+        <h4 class="font-semibold text-primary mb-2">Prestasi</h4>
+        <ul class="list-disc list-inside text-gray-700">
+          <li>Juara 1 Pidato Bahasa Arab Tingkat Pondok Pesantren (1990)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Organisasi -->
+    <div class="mt-6">
+      <h4 class="font-semibold text-primary mb-2">Pengalaman Organisasi</h4>
+      <ul class="space-y-2 text-gray-700">
+        <li>• Senat Fakultas – Sekretaris (1995–1996)</li>
+        <li>• Teater Titik Nol Bandung – Ketua & Pendiri (1999–2001)</li>
+        <li>• KKMA 6 Wilayah – Ketua</li>
+        <li>• PGMI Kab. Bandung – Kabag. Koperasi & Kewirausahaan</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+<script>
+function openProfilKepala() {
+  document.getElementById('profilModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProfil() {
+  document.getElementById('profilModal').classList.add('hidden');
+  document.body.style.overflow = 'auto';
 }
 </script>
 
