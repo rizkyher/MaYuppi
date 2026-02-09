@@ -359,7 +359,7 @@
                                  loading="lazy">
                         </div>
                     </div>
-                    <div class="hidden xs:block">
+                    <div class="hidden sm:block">
                         <h1 class="text-lg sm:text-xl font-black font-serif text-primary leading-tight">MA YUPPI</h1>
                         <p class="text-xs text-gray-500 font-medium">Madrasah Aliyah</p>
                     </div>
@@ -586,11 +586,11 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-6xl mx-auto">
                 <!-- Breadcrumb -->
-                <div class="breadcrumb mb-6" data-aos="fade-right">
+                <!-- <div class="breadcrumb mb-6" data-aos="fade-right">
                     <a href="index.html" class="hover:text-primary">Beranda</a>
                     <span class="separator mx-2">/</span>
                     <span class="text-primary font-semibold">Galeri Seragam</span>
-                </div>
+                </div> -->
                 
                 <!-- Main Content -->
                 <div class="text-center">
@@ -631,21 +631,47 @@
                         </div>
                     </div>
                     
-                    <!-- Quick Navigation -->
-                    <div class="flex flex-wrap justify-center gap-3 animate-slide-up animation-delay-200">
-                        <a href="#uniform-gallery" class="modern-btn group bg-gradient-to-r from-primary to-accent text-white">
-                            <i class="fas fa-tshirt mr-2 group-hover:scale-110 transition-transform"></i>
-                            <span>Lihat Koleksi</span>
-                        </a>
-                        <a href="#color-palette" class="modern-btn group">
-                            <i class="fas fa-palette mr-2 group-hover:rotate-12 transition-transform"></i>
-                            <span>Palet Warna</span>
-                        </a>
-                        <a href="galeri-ma.html" class="modern-btn group">
-                            <i class="fas fa-images mr-2 group-hover:translate-y-1 transition-transform"></i>
-                            <span>Lihat Galeri MA</span>
-                        </a>
-                    </div>
+                   <div class="flex flex-wrap justify-center gap-4 mt-6 animate-slide-up animation-delay-200">
+
+                    <!-- Foto Sekolah (ACTIVE) -->
+                    <a href="#uniform-gallery"
+                    class="group flex items-center gap-2 px-6 py-3 rounded-full
+                            bg-gradient-to-r from-primary to-accent
+                            text-white font-semibold shadow-lg
+                            hover:shadow-xl hover:-translate-y-0.5
+                            transition-all duration-300">
+                        <i class="fas fa-tshirt transition-transform duration-300 group-hover:scale-110"></i>
+                        <span>Lihat Seragam</span>
+                    </a>
+
+                    <!-- Aktivitas -->
+                    <a href="#color-palette"
+                    class="group flex items-center gap-2 px-6 py-3 rounded-full
+                            bg-white dark:bg-gray-800
+                            text-primary border border-gray-200 dark:border-gray-700
+                            font-semibold shadow
+                            hover:bg-primary hover:text-white
+                            hover:shadow-lg hover:-translate-y-0.5
+                            transition-all duration-300">
+                       <i class="fas fa-palette mr-2 group-hover:rotate-12 transition-transform"></i>
+                        <span>Palet Warna</span>
+                    </a>
+
+                    <!-- Lihat Seragam -->
+                    <a href="galeri-ma.html"
+                    class="group flex items-center gap-2 px-6 py-3 rounded-full
+                            bg-white dark:bg-gray-800
+                            text-primary border border-gray-200 dark:border-gray-700
+                            font-semibold shadow
+                            hover:bg-primary hover:text-white
+                            hover:shadow-lg hover:-translate-y-0.5
+                            transition-all duration-300">
+                       <i class="fas fa-images mr-2 group-hover:translate-y-1 transition-transform"></i>
+                        <span>Lihat Galeri</span>
+                    </a>
+
+                </div>
+
                 </div>
             </div>
         </div>
